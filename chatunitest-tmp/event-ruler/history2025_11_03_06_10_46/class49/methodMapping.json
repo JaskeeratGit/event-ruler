@@ -1,0 +1,194 @@
+{
+  "method0": {
+    "methodName": "pattern",
+    "signature": "pattern()",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "type",
+    "signature": "type()",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method10": {
+    "methodName": "anythingButMatch",
+    "signature": "anythingButMatch(Set)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method11": {
+    "methodName": "anythingButIgnoreCaseMatch",
+    "signature": "anythingButIgnoreCaseMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method12": {
+    "methodName": "anythingButIgnoreCaseMatch",
+    "signature": "anythingButIgnoreCaseMatch(Set)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method13": {
+    "methodName": "anythingButNumberMatch",
+    "signature": "anythingButNumberMatch(Set)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method14": {
+    "methodName": "anythingButNumbersMatch",
+    "signature": "anythingButNumbersMatch(Set)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method15": {
+    "methodName": "anythingButPrefix",
+    "signature": "anythingButPrefix(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method16": {
+    "methodName": "anythingButPrefix",
+    "signature": "anythingButPrefix(Set)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method17": {
+    "methodName": "anythingButSuffix",
+    "signature": "anythingButSuffix(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method18": {
+    "methodName": "anythingButSuffix",
+    "signature": "anythingButSuffix(Set)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method19": {
+    "methodName": "anythingButWildcard",
+    "signature": "anythingButWildcard(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "exactMatch",
+    "signature": "exactMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method20": {
+    "methodName": "anythingButWildcard",
+    "signature": "anythingButWildcard(Set)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method21": {
+    "methodName": "numericEquals",
+    "signature": "numericEquals(double)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method22": {
+    "methodName": "numericEquals",
+    "signature": "numericEquals(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method23": {
+    "methodName": "existencePatterns",
+    "signature": "existencePatterns()",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method24": {
+    "methodName": "absencePatterns",
+    "signature": "absencePatterns()",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method25": {
+    "methodName": "equalsIgnoreCaseMatch",
+    "signature": "equalsIgnoreCaseMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method26": {
+    "methodName": "wildcardMatch",
+    "signature": "wildcardMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method27": {
+    "methodName": "clone",
+    "signature": "clone()",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method28": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method29": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "prefixMatch",
+    "signature": "prefixMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method30": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method31": {
+    "methodName": "Patterns",
+    "signature": "Patterns(MatchType)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "prefixEqualsIgnoreCaseMatch",
+    "signature": "prefixEqualsIgnoreCaseMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method5": {
+    "methodName": "suffixMatch",
+    "signature": "suffixMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method6": {
+    "methodName": "suffixEqualsIgnoreCaseMatch",
+    "signature": "suffixEqualsIgnoreCaseMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method7": {
+    "methodName": "anythingButMatch",
+    "signature": "anythingButMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method8": {
+    "methodName": "anythingButMatch",
+    "signature": "anythingButMatch(double)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method9": {
+    "methodName": "anythingButNumberMatch",
+    "signature": "anythingButNumberMatch(String)",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

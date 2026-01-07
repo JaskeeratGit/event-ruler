@@ -1,0 +1,10 @@
+package software.amazon.event.ruler;
+
+import org.junit.runner.RunWith;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.SelectClasses;
+
+@RunWith(value = JUnitPlatform.class)
+@SelectClasses(value = { Patterns_existencePatterns_23_0_Test.class, Patterns_equals_28_0_Test.class, Patterns_exactMatch_2_0_Test.class, Patterns_anythingButWildcard_19_0_Test.class, Patterns_anythingButNumbersMatch_14_0_Test.class, Patterns_anythingButNumberMatch_13_0_Test.class, Patterns_anythingButWildcard_20_0_Test.class, Patterns_toString_30_0_Test.class, Patterns_anythingButMatch_10_0_Test.class, Patterns_anythingButPrefix_15_0_Test.class, Patterns_numericEquals_22_0_Test.class, Patterns_anythingButSuffix_18_0_Test.class, Patterns_anythingButPrefix_16_0_Test.class, Patterns_anythingButIgnoreCaseMatch_11_0_Test.class, Patterns_hashCode_29_0_Test.class, Patterns_absencePatterns_24_0_Test.class, Patterns_clone_27_0_Test.class, Patterns_anythingButIgnoreCaseMatch_12_0_Test.class, Patterns_wildcardMatch_26_0_Test.class, Patterns_anythingButSuffix_17_0_Test.class, Patterns_equalsIgnoreCaseMatch_25_0_Test.class, Patterns_numericEquals_21_0_Test.class })
+public class Patterns_Suite {
+}

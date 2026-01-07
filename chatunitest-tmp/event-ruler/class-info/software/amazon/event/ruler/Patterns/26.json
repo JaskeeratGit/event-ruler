@@ -1,0 +1,22 @@
+{
+  "className": "Patterns",
+  "methodName": "wildcardMatch",
+  "brief": "public static ValuePatterns wildcardMatch(final String value){}",
+  "methodSignature": "wildcardMatch(String)",
+  "sourceCode": "public static ValuePatterns wildcardMatch(final String value) {\n        return new ValuePatterns(MatchType.WILDCARD, value);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public static ValuePatterns wildcardMatch(final String value) {\n    return new ValuePatterns(MatchType.WILDCARD, value);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

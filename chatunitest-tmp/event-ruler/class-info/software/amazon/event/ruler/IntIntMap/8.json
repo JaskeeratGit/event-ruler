@@ -1,0 +1,25 @@
+{
+  "className": "IntIntMap",
+  "methodName": "rehash",
+  "brief": "private void rehash(final int newCapacity){}",
+  "methodSignature": "rehash(int)",
+  "sourceCode": "private void rehash(final int newCapacity) {\n        threshold = (int) (newCapacity * loadFactor);\n        mask = newCapacity - 1;\n\n        final int oldCapacity = table.length;\n        final long[] oldTable = table;\n\n        table = makeTable(newCapacity);\n        size = 0;\n\n        for (int i = oldCapacity - 1; i >= 0; i--) {\n            if (oldTable[i] != EMPTY_CELL) {\n                final int oldKey = (int) (oldTable[i] & KEY_MASK);\n                final int oldValue = (int) (oldTable[i] >> 32);\n                put(oldKey, oldValue);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "put(int, int)",
+      "makeTable(int)"
+    ]
+  },
+  "full_method_info": "private void rehash(final int newCapacity) {\n    threshold = (int) (newCapacity * loadFactor);\n    mask = newCapacity - 1;\n    final int oldCapacity = table.length;\n    final long[] oldTable = table;\n    table = makeTable(newCapacity);\n    size = 0;\n    for (int i = oldCapacity - 1; i >= 0; i--) {\n        if (oldTable[i] != EMPTY_CELL) {\n            final int oldKey = (int) (oldTable[i] & KEY_MASK);\n            final int oldValue = (int) (oldTable[i] >> 32);\n            put(oldKey, oldValue);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

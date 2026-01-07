@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "getMatches",
+  "brief": "abstract Iterable<ByteMatch> getMatches();",
+  "methodSignature": "getMatches()",
+  "sourceCode": "abstract Iterable<ByteMatch> getMatches();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns matches that are triggered if this transition is made. This is a convenience function that traverses the\n * linked list of matches and returns all of them in an Iterable.\n *\n * @return matches that are triggered if this transition is made.\n */\nabstract Iterable<ByteMatch> getMatches();",
+  "method_comment": "\n     * Returns matches that are triggered if this transition is made. This is a convenience function that traverses the\n     * linked list of matches and returns all of them in an Iterable.\n     *\n     * @return matches that are triggered if this transition is made.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "getNextByteState",
+  "brief": "abstract ByteState getNextByteState();",
+  "methodSignature": "getNextByteState()",
+  "sourceCode": "abstract ByteState getNextByteState();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the state to transfer to.\n *\n * @return the state to transfer to, or {@code null} if this transition does not transfer to a state\n */\nabstract ByteState getNextByteState();",
+  "method_comment": "\n     * Returns the state to transfer to.\n     *\n     * @return the state to transfer to, or {@code null} if this transition does not transfer to a state\n     ",
+  "method_annotation": ""
+}

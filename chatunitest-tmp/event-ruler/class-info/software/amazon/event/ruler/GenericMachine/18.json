@@ -1,0 +1,39 @@
+{
+  "className": "GenericMachine",
+  "methodName": "addRule",
+  "brief": "public void addRule(final T name, final byte[] json) throws IOException{}",
+  "methodSignature": "addRule(T, byte[])",
+  "sourceCode": "public void addRule(final T name, final byte[] json) throws IOException {\n        try {\n            JsonRuleCompiler.compile(json, configuration.isRuleOverriding()).forEach(rule -> addPatternRule(name, rule));\n        } catch (JsonParseException e) {\n            addPatternRule(name, RuleCompiler.compile(json, configuration.isRuleOverriding()));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "T",
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "byte": [],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "compile(byte[], boolean)"
+    ],
+    "software.amazon.event.ruler.GenericMachineConfiguration": [
+      "isRuleOverriding()"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "addPatternRule(T, Patterns>>)"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "compile(byte[], boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Add a rule to the machine.  A rule is a set of names, each of which\n * is associated with one or more values.\n *\n * @param name ARN of the rule\n * @param json the JSON form of the rule\n */\npublic void addRule(final T name, final byte[] json) throws IOException {\n    try {\n        JsonRuleCompiler.compile(json, configuration.isRuleOverriding()).forEach(rule -> addPatternRule(name, rule));\n    } catch (JsonParseException e) {\n        addPatternRule(name, RuleCompiler.compile(json, configuration.isRuleOverriding()));\n    }\n}",
+  "method_comment": "\n     * Add a rule to the machine.  A rule is a set of names, each of which\n     * is associated with one or more values.\n     *\n     * @param name ARN of the rule\n     * @param json the JSON form of the rule\n     ",
+  "method_annotation": ""
+}

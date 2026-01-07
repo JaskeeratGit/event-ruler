@@ -1,0 +1,20 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButMatch",
+  "brief": "public static AnythingBut anythingButMatch(final Set<String> anythingButs){}",
+  "methodSignature": "anythingButMatch(Set)",
+  "sourceCode": "public static AnythingBut anythingButMatch(final Set<String> anythingButs) {\n        return new AnythingBut(anythingButs, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<String>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public static AnythingBut anythingButMatch(final Set<String> anythingButs) {\n    return new AnythingBut(anythingButs, false);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

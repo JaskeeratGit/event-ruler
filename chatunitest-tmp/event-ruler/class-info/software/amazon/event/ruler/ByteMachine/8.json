@@ -1,0 +1,53 @@
+{
+  "className": "ByteMachine",
+  "methodName": "deleteMatchStepForWildcard",
+  "brief": "private SingleByteTransition deleteMatchStepForWildcard(ByteState byteState, int charIndex, Patterns pattern,\n                                                            InputCharacter[] characters,\n                                                            SingleByteTransition transition, ByteState nextByteState){}",
+  "methodSignature": "deleteMatchStepForWildcard(ByteState, int, Patterns, InputCharacter[], SingleByteTransition, ByteState)",
+  "sourceCode": "private SingleByteTransition deleteMatchStepForWildcard(ByteState byteState, int charIndex, Patterns pattern,\n                                                            InputCharacter[] characters,\n                                                            SingleByteTransition transition, ByteState nextByteState) {\n        final InputCharacter currentChar = characters[charIndex];\n\n        // There will be a match using second last character on second last state when last character is\n        // a wildcard. This allows empty substring to satisfy wildcard.\n        if (charIndex == characters.length - 2 && isWildcard(characters[characters.length - 1])) {\n            // Delete the match.\n            SingleByteTransition updatedTransition = deleteMatch(currentChar, byteState, pattern, transition);\n            if (updatedTransition != null) {\n                return updatedTransition;\n            }\n\n        // Undo the machine changes for a wildcard as described in the Javadoc of addTransitionNextStateForWildcard.\n        } else if (nextByteState != null && isWildcard(currentChar)) {\n            // Remove transition for all possible byte values if it leads to an only self-referencing state\n            if (nextByteState.hasOnlySelfReferentialTransition()) {\n                byteState.removeTransitionForAllBytes(transition);\n            }\n\n            // Remove match on last char that exists for second-last char wildcard on second last state to be satisfied\n            // by empty substring.\n            if (charIndex == characters.length - 2 && isWildcard(characters[characters.length - 2])) {\n                deleteMatches(characters[charIndex + 1], byteState, pattern);\n            // Remove match on second last char that exists for third last and last char wildcard combination on third\n            // last state to be both satisfied by empty substrings. I.e. \"ax\" can match \"a*x*\".\n            } else if (charIndex == characters.length - 3 && isWildcard(characters[characters.length - 1]) &&\n                    isWildcard(characters[characters.length - 3])) {\n                deleteMatches(characters[charIndex + 1], byteState, pattern);\n            }\n\n            // Remove transition that exists for wildcard to be satisfied by empty substring.\n            ByteTransition skipWildcardTransition = getTransition(byteState, characters[charIndex + 1]);\n            for (SingleByteTransition eachTrans : skipWildcardTransition.expand()) {\n                ByteState skipWildcardState = eachTrans.getNextByteState();\n                if (!eachTrans.getMatches().iterator().hasNext() && skipWildcardState != null &&\n                        (skipWildcardState.hasNoTransitions() ||\n                         skipWildcardState.hasOnlySelfReferentialTransition())) {\n                    removeTransition(byteState, characters[charIndex + 1], eachTrans);\n                }\n            }\n        }\n\n        return transition;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "int",
+    "Patterns",
+    "InputCharacter[]",
+    "SingleByteTransition",
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "hasNoTransitions()",
+      "hasOnlySelfReferentialTransition()",
+      "removeTransitionForAllBytes(SingleByteTransition)"
+    ],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.SingleByteTransition": [
+      "getMatches()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "removeTransition(ByteState, InputCharacter, SingleByteTransition)",
+      "isWildcard(InputCharacter)",
+      "deleteMatch(InputCharacter, ByteState, Patterns, SingleByteTransition)",
+      "deleteMatches(InputCharacter, ByteTransition, Patterns)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getNextByteState()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()"
+    ],
+    "java.lang.Iterable": [
+      "iterator()"
+    ]
+  },
+  "full_method_info": "/**\n * Performs delete match step handling for certain wildcard cases.\n *\n * @param byteState The current ByteState.\n * @param charIndex The index of the current character in characters.\n * @param pattern The pattern we are deleting.\n * @param characters The array of InputCharacters corresponding to the pattern's value.\n * @param transition One of the transitions from byteState using the current byte.\n * @param nextByteState The next ByteState led to by transition.\n * @return Transition, or a replacement for transition if the original instance no longer exists in the machine.\n */\nprivate SingleByteTransition deleteMatchStepForWildcard(ByteState byteState, int charIndex, Patterns pattern, InputCharacter[] characters, SingleByteTransition transition, ByteState nextByteState) {\n    final InputCharacter currentChar = characters[charIndex];\n    // There will be a match using second last character on second last state when last character is\n    // a wildcard. This allows empty substring to satisfy wildcard.\n    if (charIndex == characters.length - 2 && isWildcard(characters[characters.length - 1])) {\n        // Delete the match.\n        SingleByteTransition updatedTransition = deleteMatch(currentChar, byteState, pattern, transition);\n        if (updatedTransition != null) {\n            return updatedTransition;\n        }\n        // Undo the machine changes for a wildcard as described in the Javadoc of addTransitionNextStateForWildcard.\n    } else if (nextByteState != null && isWildcard(currentChar)) {\n        // Remove transition for all possible byte values if it leads to an only self-referencing state\n        if (nextByteState.hasOnlySelfReferentialTransition()) {\n            byteState.removeTransitionForAllBytes(transition);\n        }\n        // Remove match on last char that exists for second-last char wildcard on second last state to be satisfied\n        // by empty substring.\n        if (charIndex == characters.length - 2 && isWildcard(characters[characters.length - 2])) {\n            deleteMatches(characters[charIndex + 1], byteState, pattern);\n            // Remove match on second last char that exists for third last and last char wildcard combination on third\n            // last state to be both satisfied by empty substrings. I.e. \"ax\" can match \"a*x*\".\n        } else if (charIndex == characters.length - 3 && isWildcard(characters[characters.length - 1]) && isWildcard(characters[characters.length - 3])) {\n            deleteMatches(characters[charIndex + 1], byteState, pattern);\n        }\n        // Remove transition that exists for wildcard to be satisfied by empty substring.\n        ByteTransition skipWildcardTransition = getTransition(byteState, characters[charIndex + 1]);\n        for (SingleByteTransition eachTrans : skipWildcardTransition.expand()) {\n            ByteState skipWildcardState = eachTrans.getNextByteState();\n            if (!eachTrans.getMatches().iterator().hasNext() && skipWildcardState != null && (skipWildcardState.hasNoTransitions() || skipWildcardState.hasOnlySelfReferentialTransition())) {\n                removeTransition(byteState, characters[charIndex + 1], eachTrans);\n            }\n        }\n    }\n    return transition;\n}",
+  "method_comment": "\n     * Performs delete match step handling for certain wildcard cases.\n     *\n     * @param byteState The current ByteState.\n     * @param charIndex The index of the current character in characters.\n     * @param pattern The pattern we are deleting.\n     * @param characters The array of InputCharacters corresponding to the pattern's value.\n     * @param transition One of the transitions from byteState using the current byte.\n     * @param nextByteState The next ByteState led to by transition.\n     * @return Transition, or a replacement for transition if the original instance no longer exists in the machine.\n     ",
+  "method_annotation": ""
+}

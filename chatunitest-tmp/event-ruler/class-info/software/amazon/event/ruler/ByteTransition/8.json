@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "isShortcutTrans",
+  "brief": "boolean isShortcutTrans(){}",
+  "methodSignature": "isShortcutTrans()",
+  "sourceCode": "boolean isShortcutTrans() {\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tell if current transition is a shortcut transition or not.\n *\n * @return True if and only if this is a shortcut transition.\n */\nboolean isShortcutTrans() {\n    return false;\n}",
+  "method_comment": "\n     * Tell if current transition is a shortcut transition or not.\n     *\n     * @return True if and only if this is a shortcut transition.\n     ",
+  "method_annotation": ""
+}

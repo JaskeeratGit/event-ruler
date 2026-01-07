@@ -1,0 +1,30 @@
+{
+  "className": "CIDR",
+  "methodName": "ipToBytes",
+  "brief": "private static byte[] ipToBytes(final String ip){}",
+  "methodSignature": "ipToBytes(String)",
+  "sourceCode": "private static byte[] ipToBytes(final String ip) {\n\n        // have to do the regex check because if we past what looks like a hostname, InetAddress.getByName will\n        //  launch a DNS search\n        byte[] addr = {};\n        try {\n            if (isIPv4OrIPv6(ip)) {\n                addr = InetAddress.getByName(ip).getAddress();\n            }\n        } catch (Exception e) {\n            barf(\"Invalid IP address: \" + ip);\n        }\n        if (addr.length != 4 && addr.length != 16) {\n            barf(\"Nonstandard IP address: \" + ip);\n        }\n        return addr;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.CIDR": [
+      "isIPv4OrIPv6(String)",
+      "barf(String)"
+    ],
+    "java.net.InetAddress": [
+      "getByName(String)",
+      "getAddress()"
+    ]
+  },
+  "full_method_info": "private static byte[] ipToBytes(final String ip) {\n    // have to do the regex check because if we past what looks like a hostname, InetAddress.getByName will\n    // launch a DNS search\n    byte[] addr = {};\n    try {\n        if (isIPv4OrIPv6(ip)) {\n            addr = InetAddress.getByName(ip).getAddress();\n        }\n    } catch (Exception e) {\n        barf(\"Invalid IP address: \" + ip);\n    }\n    if (addr.length != 4 && addr.length != 16) {\n        barf(\"Nonstandard IP address: \" + ip);\n    }\n    return addr;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

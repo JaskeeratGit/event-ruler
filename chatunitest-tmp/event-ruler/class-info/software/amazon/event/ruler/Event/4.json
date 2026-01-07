@@ -1,0 +1,43 @@
+{
+  "className": "Event",
+  "methodName": "doFlatten",
+  "brief": "private static List<String> doFlatten(final JsonNode eventRoot) throws IllegalArgumentException{}",
+  "methodSignature": "doFlatten(JsonNode)",
+  "sourceCode": "private static List<String> doFlatten(final JsonNode eventRoot) throws IllegalArgumentException {\n\n        final TreeMap<String, List<String>> fields = new TreeMap<>();\n\n        if (!eventRoot.isObject()) {\n            throw new IllegalArgumentException(\"Event must be a JSON object\");\n        }\n\n        final Stack<String> path = new Stack<>();\n        flattenObject(eventRoot, fields, path);\n\n        // Ruler algorithm will explore all possible matches based on field (key value pair) in event, duplicated fields\n        // in event do NOT impact final matches but it will downgrade the performance by producing duplicated\n        // checking Steps, in worse case, those the duplicated steps can stuck the process and use up all memory, so when\n        // building the event, dedupe the fields from event can low such risk.\n        final Set<String> uniqueValues = new HashSet<>();\n        final List<String> nameVals = new ArrayList<>();\n        for (Map.Entry<String, List<String>> entry : fields.entrySet()) {\n            String k = entry.getKey();\n            List<String> vs = entry.getValue();\n            if(vs.size() != 1) {\n                uniqueValues.clear();\n                for (String v : vs) {\n                    if (uniqueValues.add(v)) {\n                        nameVals.add(k);\n                        nameVals.add(v);\n                    }\n                }\n            } else {\n                nameVals.add(k);\n                nameVals.add(vs.get(0));\n            }\n        }\n        return nameVals;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "isObject()"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "flattenObject(JsonNode, String>>, String>)"
+    ],
+    "java.util.TreeMap": [
+      "entrySet()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.List": [
+      "get(int)",
+      "add(E)",
+      "size()"
+    ],
+    "java.util.Set": [
+      "add(E)",
+      "clear()"
+    ]
+  },
+  "full_method_info": "private static List<String> doFlatten(final JsonNode eventRoot) throws IllegalArgumentException {\n    final TreeMap<String, List<String>> fields = new TreeMap<>();\n    if (!eventRoot.isObject()) {\n        throw new IllegalArgumentException(\"Event must be a JSON object\");\n    }\n    final Stack<String> path = new Stack<>();\n    flattenObject(eventRoot, fields, path);\n    // Ruler algorithm will explore all possible matches based on field (key value pair) in event, duplicated fields\n    // in event do NOT impact final matches but it will downgrade the performance by producing duplicated\n    // checking Steps, in worse case, those the duplicated steps can stuck the process and use up all memory, so when\n    // building the event, dedupe the fields from event can low such risk.\n    final Set<String> uniqueValues = new HashSet<>();\n    final List<String> nameVals = new ArrayList<>();\n    for (Map.Entry<String, List<String>> entry : fields.entrySet()) {\n        String k = entry.getKey();\n        List<String> vs = entry.getValue();\n        if (vs.size() != 1) {\n            uniqueValues.clear();\n            for (String v : vs) {\n                if (uniqueValues.add(v)) {\n                    nameVals.add(k);\n                    nameVals.add(v);\n                }\n            }\n        } else {\n            nameVals.add(k);\n            nameVals.add(vs.get(0));\n        }\n    }\n    return nameVals;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

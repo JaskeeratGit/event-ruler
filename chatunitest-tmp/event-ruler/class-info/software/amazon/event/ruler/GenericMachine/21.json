@@ -1,0 +1,39 @@
+{
+  "className": "GenericMachine",
+  "methodName": "deleteRule",
+  "brief": "public void deleteRule(final T name, final InputStream json) throws IOException{}",
+  "methodSignature": "deleteRule(T, InputStream)",
+  "sourceCode": "public void deleteRule(final T name, final InputStream json) throws IOException {\n        try {\n            JsonRuleCompiler.compile(json, configuration.isRuleOverriding()).forEach(rule -> deletePatternRule(name, rule));\n        } catch (JsonParseException e) {\n            deletePatternRule(name, RuleCompiler.compile(json, configuration.isRuleOverriding()));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "T",
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "java.io.InputStream": [],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "compile(InputStream, boolean)"
+    ],
+    "software.amazon.event.ruler.GenericMachineConfiguration": [
+      "isRuleOverriding()"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "deletePatternRule(T, Patterns>>)"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "compile(InputStream, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Delete a rule to the machine.  A rule is a set of names, each of which\n * is associated with one or more values.\n *\n * @param name ARN of the rule\n * @param json the JSON form of the rule\n */\npublic void deleteRule(final T name, final InputStream json) throws IOException {\n    try {\n        JsonRuleCompiler.compile(json, configuration.isRuleOverriding()).forEach(rule -> deletePatternRule(name, rule));\n    } catch (JsonParseException e) {\n        deletePatternRule(name, RuleCompiler.compile(json, configuration.isRuleOverriding()));\n    }\n}",
+  "method_comment": "\n     * Delete a rule to the machine.  A rule is a set of names, each of which\n     * is associated with one or more values.\n     *\n     * @param name ARN of the rule\n     * @param json the JSON form of the rule\n     ",
+  "method_annotation": ""
+}

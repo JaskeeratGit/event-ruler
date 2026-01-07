@@ -1,0 +1,38 @@
+{
+  "className": "ByteMachine",
+  "methodName": "putTransitionMatch",
+  "brief": "private static SingleByteTransition putTransitionMatch(ByteState state, InputCharacter character,\n                                                           SingleByteTransition transition, ByteMatch match){}",
+  "methodSignature": "putTransitionMatch(ByteState, InputCharacter, SingleByteTransition, ByteMatch)",
+  "sourceCode": "private static SingleByteTransition putTransitionMatch(ByteState state, InputCharacter character,\n                                                           SingleByteTransition transition, ByteMatch match) {\n        // In order to avoid change being felt by the concurrent query thread in the middle of change, we clone the\n        // trans firstly and will not update state store until the changes have completely applied in the new trans.\n        SingleByteTransition trans = (SingleByteTransition) transition.clone();\n        SingleByteTransition single = trans.setMatch(match);\n        if (single != null && !single.isEmpty() && single != transition) {\n            addTransition(state, character, single);\n        }\n        removeTransition(state, character, transition);\n        return single;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "InputCharacter",
+    "SingleByteTransition",
+    "ByteMatch"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.SingleByteTransition": [
+      "setMatch(ByteMatch)"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [],
+    "software.amazon.event.ruler.ByteTransition": [
+      "isEmpty()",
+      "clone()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "removeTransition(ByteState, InputCharacter, SingleByteTransition)",
+      "addTransition(ByteState, InputCharacter, SingleByteTransition)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the cloned transition with the match set.\n */\nprivate static SingleByteTransition putTransitionMatch(ByteState state, InputCharacter character, SingleByteTransition transition, ByteMatch match) {\n    // In order to avoid change being felt by the concurrent query thread in the middle of change, we clone the\n    // trans firstly and will not update state store until the changes have completely applied in the new trans.\n    SingleByteTransition trans = (SingleByteTransition) transition.clone();\n    SingleByteTransition single = trans.setMatch(match);\n    if (single != null && !single.isEmpty() && single != transition) {\n        addTransition(state, character, single);\n    }\n    removeTransition(state, character, transition);\n    return single;\n}",
+  "method_comment": "\n     * Returns the cloned transition with the match set.\n     ",
+  "method_annotation": ""
+}

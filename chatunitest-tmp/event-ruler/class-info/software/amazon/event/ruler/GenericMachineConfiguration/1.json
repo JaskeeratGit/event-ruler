@@ -1,0 +1,18 @@
+{
+  "className": "GenericMachineConfiguration",
+  "methodName": "isRuleOverriding",
+  "brief": "public boolean isRuleOverriding(){}",
+  "methodSignature": "isRuleOverriding()",
+  "sourceCode": "public boolean isRuleOverriding() {\n        return ruleOverriding;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public boolean isRuleOverriding() {\n    return ruleOverriding;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

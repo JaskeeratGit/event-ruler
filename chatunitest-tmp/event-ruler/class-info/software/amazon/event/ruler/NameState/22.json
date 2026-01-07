@@ -1,0 +1,33 @@
+{
+  "className": "NameState",
+  "methodName": "evaluateComplexity",
+  "brief": "public int evaluateComplexity(MachineComplexityEvaluator evaluator){}",
+  "methodSignature": "evaluateComplexity(MachineComplexityEvaluator)",
+  "sourceCode": "public int evaluateComplexity(MachineComplexityEvaluator evaluator) {\n        int maxComplexity = evaluator.getMaxComplexity();\n        int complexity = 0;\n        for (ByteMachine byteMachine : valueTransitions.values()) {\n            complexity = Math.max(complexity, byteMachine.evaluateComplexity(evaluator));\n            if (complexity >= maxComplexity) {\n                return maxComplexity;\n            }\n        }\n        return complexity;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MachineComplexityEvaluator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.MachineComplexityEvaluator": [
+      "getMaxComplexity()"
+    ],
+    "java.util.Map": [
+      "values()"
+    ],
+    "java.lang.Math": [
+      "max(int, int)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "evaluateComplexity(MachineComplexityEvaluator)"
+    ]
+  },
+  "full_method_info": "public int evaluateComplexity(MachineComplexityEvaluator evaluator) {\n    int maxComplexity = evaluator.getMaxComplexity();\n    int complexity = 0;\n    for (ByteMachine byteMachine : valueTransitions.values()) {\n        complexity = Math.max(complexity, byteMachine.evaluateComplexity(evaluator));\n        if (complexity >= maxComplexity) {\n            return maxComplexity;\n        }\n    }\n    return complexity;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

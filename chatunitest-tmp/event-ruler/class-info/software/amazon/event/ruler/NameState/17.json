@@ -1,0 +1,25 @@
+{
+  "className": "NameState",
+  "methodName": "getKeyTransitionOn",
+  "brief": "NameMatcher<NameState> getKeyTransitionOn(final String token){}",
+  "methodSignature": "getKeyTransitionOn(String)",
+  "sourceCode": "NameMatcher<NameState> getKeyTransitionOn(final String token) {\n        return mustNotExistMatchers.get(token);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "NameMatcher<NameState> getKeyTransitionOn(final String token) {\n    return mustNotExistMatchers.get(token);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

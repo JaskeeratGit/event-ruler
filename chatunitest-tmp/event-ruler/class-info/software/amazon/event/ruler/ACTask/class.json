@@ -1,0 +1,72 @@
+{
+  "fullClassName": "software.amazon.event.ruler.ACTask",
+  "className": "ACTask",
+  "index": 0,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "class ACTask",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayDeque;",
+    "import java.util.ArrayList;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Queue;",
+    "import java.util.Set;",
+    "import static software.amazon.event.ruler.SetOperations.intersection;"
+  ],
+  "fields": [
+    "public final Event event;",
+    "final int fieldCount;",
+    "private final Set<Object> matchingRules = new HashSet<>();",
+    "private final Queue<ACStep> stepQueue = new ArrayDeque<>();",
+    "private final GenericMachine<?> machine;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "startState()": "0",
+    "nextStep()": "1",
+    "addStep(int, NameState, Set, ArrayMembership)": "2",
+    "stepsRemain()": "3",
+    "getMatchedRules()": "4",
+    "collectRules(Set, NameState, Patterns, SubRuleContext.Generator)": "5",
+    "ACTask(Event, GenericMachine)": "6"
+  },
+  "methodsBrief": [
+    "NameState startState(){}",
+    "ACStep nextStep(){}",
+    "void addStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds,\n                 final ArrayMembership membershipSoFar){}",
+    "boolean stepsRemain(){}",
+    "List<Object> getMatchedRules(){}",
+    "void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern,\n                      final SubRuleContext.Generator subRuleContextGenerator){}",
+    "ACTask(Event event, GenericMachine<?> machine){}"
+  ],
+  "constructorSigs": [
+    "ACTask(Event, GenericMachine)"
+  ],
+  "constructorBrief": [
+    "ACTask(Event event, GenericMachine<?> machine){}"
+  ],
+  "getterSetterSigs": [
+    "getMatchedRules()"
+  ],
+  "getterSetterBrief": [
+    "List<Object> getMatchedRules(){}"
+  ],
+  "constructorDeps": {
+    "software.amazon.event.ruler.Event": [],
+    "java.util.List": [
+      "size()"
+    ]
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Queue;\nimport java.util.Set;\nimport static software.amazon.event.ruler.SetOperations.intersection;\n\n/**\n * Represents the state of an Array-Consistent rule-finding project.\n */\nclass ACTask {\n\n    // the event we're matching rules to, and its fieldcount\n    public final Event event;\n\n    final int fieldCount;\n\n    // the rules that matched the event, if we find any\n    private final Set<Object> matchingRules = new HashSet<>();\n\n    // Steps queued up for processing\n    private final Queue<ACStep> stepQueue = new ArrayDeque<>();\n\n    // the state machine\n    private final GenericMachine<?> machine;\n\n    ACTask(Event event, GenericMachine<?> machine) {\n        this.event = event;\n        this.machine = machine;\n        fieldCount = event.fields.size();\n    }\n\n    NameState startState() {\n        return machine.getStartState();\n    }\n\n    ACStep nextStep() {\n        return stepQueue.remove();\n    }\n\n    /*\n     *  Add a step to the queue for later consideration\n     */\n    void addStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds, final ArrayMembership membershipSoFar) {\n        stepQueue.add(new ACStep(fieldIndex, nameState, candidateSubRuleIds, membershipSoFar));\n    }\n\n    boolean stepsRemain() {\n        return !stepQueue.isEmpty();\n    }\n\n    List<Object> getMatchedRules() {\n        return new ArrayList<>(matchingRules);\n    }\n\n    void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern, final SubRuleContext.Generator subRuleContextGenerator) {\n        Set<SubRuleContext> terminalSubRuleIds = nameState.getTerminalSubRuleIdsForPattern(pattern);\n        if (terminalSubRuleIds == null) {\n            return;\n        }\n        // If no candidates, that means we're on the first step, so all sub-rules are candidates.\n        if (candidateSubRuleIds == null || candidateSubRuleIds.isEmpty()) {\n            for (SubRuleContext terminalSubRuleId : terminalSubRuleIds) {\n                matchingRules.add(terminalSubRuleId.getRuleName());\n            }\n        } else {\n            intersection(candidateSubRuleIds, terminalSubRuleIds, matchingRules, SubRuleContext::getRuleName);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents the state of an Array-Consistent rule-finding project.\n */\nclass ACTask {\n\n    // the event we're matching rules to, and its fieldcount\n    public final Event event;\n\n    final int fieldCount;\n\n    // the rules that matched the event, if we find any\n    private final Set<Object> matchingRules = new HashSet<>();\n\n    // Steps queued up for processing\n    private final Queue<ACStep> stepQueue = new ArrayDeque<>();\n\n    // the state machine\n    private final GenericMachine<?> machine;\n\n    ACTask(Event event, GenericMachine<?> machine) {\n        this.event = event;\n        this.machine = machine;\n        fieldCount = event.fields.size();\n    }\n\n    NameState startState() {\n        return machine.getStartState();\n    }\n\n    ACStep nextStep() {\n        return stepQueue.remove();\n    }\n\n    /*\n     *  Add a step to the queue for later consideration\n     */\n    void addStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds, final ArrayMembership membershipSoFar) {\n        stepQueue.add(new ACStep(fieldIndex, nameState, candidateSubRuleIds, membershipSoFar));\n    }\n\n    boolean stepsRemain() {\n        return !stepQueue.isEmpty();\n    }\n\n    List<Object> getMatchedRules() {\n        return new ArrayList<>(matchingRules);\n    }\n\n    void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern, final SubRuleContext.Generator subRuleContextGenerator) {\n        Set<SubRuleContext> terminalSubRuleIds = nameState.getTerminalSubRuleIdsForPattern(pattern);\n        if (terminalSubRuleIds == null) {\n            return;\n        }\n        // If no candidates, that means we're on the first step, so all sub-rules are candidates.\n        if (candidateSubRuleIds == null || candidateSubRuleIds.isEmpty()) {\n            for (SubRuleContext terminalSubRuleId : terminalSubRuleIds) {\n                matchingRules.add(terminalSubRuleId.getRuleName());\n            }\n        } else {\n            intersection(candidateSubRuleIds, terminalSubRuleIds, matchingRules, SubRuleContext::getRuleName);\n        }\n    }\n}",
+  "subClasses": []
+}

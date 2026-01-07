@@ -1,0 +1,28 @@
+{
+  "className": "GenericMachine",
+  "methodName": "rulesForEvent",
+  "brief": "@Deprecated\n    @SuppressWarnings(\"unchecked\")\n    public List<T> rulesForEvent(final JsonNode eventRoot){}",
+  "methodSignature": "rulesForEvent(JsonNode)",
+  "sourceCode": "@Deprecated\n    @SuppressWarnings(\"unchecked\")\n    public List<T> rulesForEvent(final JsonNode eventRoot) {\n        return (List<T>) Finder.rulesForEvent(Event.flatten(eventRoot), this, subRuleContextGenerator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [],
+    "software.amazon.event.ruler.Finder": [
+      "rulesForEvent(String>, GenericMachine<?>, Generator)"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "flatten(JsonNode)"
+    ]
+  },
+  "full_method_info": "/**\n * Return any rules that match the fields in the parsed Json event.\n *\n * @param eventRoot the root node of the parsed JSON.\n * @return list of rule names that match. The list may be empty but never null.\n * @deprecated The rulesForJSONEvent version provides array-consistent matching, which is probably what your users want.\n */\n@Deprecated\n@SuppressWarnings(\"unchecked\")\npublic List<T> rulesForEvent(final JsonNode eventRoot) {\n    return (List<T>) Finder.rulesForEvent(Event.flatten(eventRoot), this, subRuleContextGenerator);\n}",
+  "method_comment": "\n     * Return any rules that match the fields in the parsed Json event.\n     *\n     * @param eventRoot the root node of the parsed JSON.\n     * @return list of rule names that match. The list may be empty but never null.\n     * @deprecated The rulesForJSONEvent version provides array-consistent matching, which is probably what your users want.\n     ",
+  "method_annotation": "@Deprecated\n@SuppressWarnings(\"unchecked\")\n"
+}

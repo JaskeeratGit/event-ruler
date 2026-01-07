@@ -1,0 +1,29 @@
+{
+  "className": "ByteState",
+  "methodName": "removeTransitionForAllBytes",
+  "brief": "void removeTransitionForAllBytes(final SingleByteTransition transition){}",
+  "methodSignature": "removeTransitionForAllBytes(SingleByteTransition)",
+  "sourceCode": "void removeTransitionForAllBytes(final SingleByteTransition transition) {\n        // Saving the value to avoid reading an updated value\n        Object transitionStore = this.transitionStore;\n        if (transitionStore == null) {\n            return;\n        }\n\n        if (transitionStore instanceof SingleByteTransitionEntry) {\n            SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n            if (transition.equals(entry.transition)) {\n                this.transitionStore = null;\n            }\n        } else {\n            ByteMap map = (ByteMap) transitionStore;\n            map.removeTransitionForAllBytes(transition);\n            if (map.isEmpty()) {\n                this.transitionStore = null;\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "java.lang.Object": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "isEmpty()",
+      "removeTransitionForAllBytes(SingleByteTransition)"
+    ]
+  },
+  "full_method_info": "/**\n * Removes the given transition for all possible byte values from this state.\n *\n * @param transition the transition to be removed for all possible byte values\n */\nvoid removeTransitionForAllBytes(final SingleByteTransition transition) {\n    // Saving the value to avoid reading an updated value\n    Object transitionStore = this.transitionStore;\n    if (transitionStore == null) {\n        return;\n    }\n    if (transitionStore instanceof SingleByteTransitionEntry) {\n        SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n        if (transition.equals(entry.transition)) {\n            this.transitionStore = null;\n        }\n    } else {\n        ByteMap map = (ByteMap) transitionStore;\n        map.removeTransitionForAllBytes(transition);\n        if (map.isEmpty()) {\n            this.transitionStore = null;\n        }\n    }\n}",
+  "method_comment": "\n     * Removes the given transition for all possible byte values from this state.\n     *\n     * @param transition the transition to be removed for all possible byte values\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "SingleByteTransition",
+  "methodName": "getMatch",
+  "brief": "abstract ByteMatch getMatch();",
+  "methodSignature": "getMatch()",
+  "sourceCode": "abstract ByteMatch getMatch();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the match that is triggered if this transition is made.\n *\n * @return the match, or {@code null} if this transition does not support matching\n */\nabstract ByteMatch getMatch();",
+  "method_comment": "\n     * Returns the match that is triggered if this transition is made.\n     *\n     * @return the match, or {@code null} if this transition does not support matching\n     ",
+  "method_annotation": ""
+}

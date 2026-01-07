@@ -1,0 +1,24 @@
+{
+  "className": "NameMatcher",
+  "methodName": "addPattern",
+  "brief": "R addPattern(@Nonnull Patterns pattern, @Nonnull NameState nameState);",
+  "methodSignature": "addPattern(Patterns, NameState)",
+  "sourceCode": "R addPattern(@Nonnull Patterns pattern, @Nonnull NameState nameState);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": []
+  },
+  "full_method_info": "/**\n * Adds the given pattern to this name matcher and associate it with the existing or new match result.\n *\n * @param pattern   the pattern to be added\n * @param nameState the namestate\n * @return the match result with which the added pattern is associated\n */\nR addPattern(@Nonnull Patterns pattern, @Nonnull NameState nameState);",
+  "method_comment": "\n     * Adds the given pattern to this name matcher and associate it with the existing or new match result.\n     *\n     * @param pattern   the pattern to be added\n     * @param nameState the namestate\n     * @return the match result with which the added pattern is associated\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "Range",
+  "methodName": "lessThan",
+  "brief": "public static Range lessThan(final String val){}",
+  "methodSignature": "lessThan(String)",
+  "sourceCode": "public static Range lessThan(final String val) {\n        byte[] byteVal = stringToComparableBytes(val);\n        return between(MIN_RANGE_BYTES, false, byteVal, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.Range": [
+      "stringToComparableBytes(String)",
+      "between(byte[], boolean, byte[], boolean)"
+    ]
+  },
+  "full_method_info": "public static Range lessThan(final String val) {\n    byte[] byteVal = stringToComparableBytes(val);\n    return between(MIN_RANGE_BYTES, false, byteVal, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

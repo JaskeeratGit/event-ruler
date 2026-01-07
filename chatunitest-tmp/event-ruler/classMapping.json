@@ -1,0 +1,485 @@
+{
+  "class41": {
+    "className": "NameMatcher",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class40": {
+    "className": "Builder",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , static ]",
+    "extend": "[GenericMachine.Builder<Machine, String>]",
+    "implement": "[]"
+  },
+  "class43": {
+    "className": "Operation",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[private ]",
+    "extend": "",
+    "implement": "[]"
+  },
+  "class42": {
+    "className": "ByteMap",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class45": {
+    "className": "IntIntMap",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[Cloneable]"
+  },
+  "class44": {
+    "className": "ByteTransition",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[abstract ]",
+    "extend": "[]",
+    "implement": "[Cloneable]"
+  },
+  "class47": {
+    "className": "EntryIterator",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[private ]",
+    "extend": "[]",
+    "implement": "[Iterator<Entry>]"
+  },
+  "class46": {
+    "className": "Entry",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class49": {
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Cloneable]"
+  },
+  "class48": {
+    "className": "CompositeByteTransition",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[final ]",
+    "extend": "[SingleByteTransition]",
+    "implement": "[]"
+  },
+  "class7": {
+    "className": "InputCharacterType",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "",
+    "implement": "[]"
+  },
+  "class6": {
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[InputCharacter]",
+    "implement": "[]"
+  },
+  "class5": {
+    "className": "MatchTypeParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class4": {
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class3": {
+    "className": "StringValueParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class30": {
+    "className": "ListBasedRuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class2": {
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[InputCharacter]",
+    "implement": "[]"
+  },
+  "class1": {
+    "className": "DefaultParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[MatchTypeParser, ByteParser]"
+  },
+  "class32": {
+    "className": "SubRuleContext",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class0": {
+    "className": "ACTask",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class31": {
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , final ]",
+    "extend": "[Patterns]",
+    "implement": "[]"
+  },
+  "class34": {
+    "className": "Step",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class33": {
+    "className": "Generator",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[static , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class36": {
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class35": {
+    "className": "SingleByteTransition",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[abstract ]",
+    "extend": "[ByteTransition]",
+    "implement": "[Iterable]"
+  },
+  "class38": {
+    "className": "ArrayMembership",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class37": {
+    "className": "GenericMachineConfiguration",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class39": {
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[GenericMachine<String>]",
+    "implement": "[]"
+  },
+  "class19": {
+    "className": "TransitionValueType",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "",
+    "implement": "[]"
+  },
+  "class9": {
+    "className": "ParseException",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[RuntimeException]",
+    "implement": "[]"
+  },
+  "class8": {
+    "className": "EqualsIgnoreCaseParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class61": {
+    "className": "MatchType",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "",
+    "implement": "[]"
+  },
+  "class60": {
+    "className": "ACFinder",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class63": {
+    "className": "Event",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class62": {
+    "className": "Path",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class21": {
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class65": {
+    "className": "Value",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class20": {
+    "className": "AnythingButValuesSet",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[Patterns]",
+    "implement": "[]"
+  },
+  "class64": {
+    "className": "Progress",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class23": {
+    "className": "ShortcutTransition",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[SingleByteTransition]",
+    "implement": "[]"
+  },
+  "class67": {
+    "className": "Constants",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class22": {
+    "className": "NameState",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class66": {
+    "className": "Field",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class25": {
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class24": {
+    "className": "ValuePatterns",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[Patterns]",
+    "implement": "[]"
+  },
+  "class68": {
+    "className": "SingleStateNameMatcher",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[NameMatcher<NameState>]"
+  },
+  "class27": {
+    "className": "Task",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class26": {
+    "className": "CompoundByteTransition",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , final ]",
+    "extend": "[ByteTransition]",
+    "implement": "[]"
+  },
+  "class29": {
+    "className": "RuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class28": {
+    "className": "MachineComplexityEvaluator",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class50": {
+    "className": "ByteState",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[SingleByteTransition]",
+    "implement": "[]"
+  },
+  "class52": {
+    "className": "Finder",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class51": {
+    "className": "SingleByteTransitionEntry",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[private , static , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class10": {
+    "className": "InputCharacter",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class54": {
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class53": {
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[Patterns]",
+    "implement": "[]"
+  },
+  "class12": {
+    "className": "SuffixEqualsIgnoreCaseParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[EqualsIgnoreCaseParser]",
+    "implement": "[]"
+  },
+  "class56": {
+    "className": "ACStep",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class11": {
+    "className": "ByteParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class55": {
+    "className": "Builder",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class14": {
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[InputCharacter]",
+    "implement": "[]"
+  },
+  "class58": {
+    "className": "NameStateWithPattern",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class13": {
+    "className": "WildcardParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[StringValueParser]"
+  },
+  "class57": {
+    "className": "ByteMatch",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[final ]",
+    "extend": "[SingleByteTransition]",
+    "implement": "[]"
+  },
+  "class16": {
+    "className": "ComparableNumber",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class15": {
+    "className": "SuffixParser",
+    "packageName": "software.amazon.event.ruler.input",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[StringValueParser]"
+  },
+  "class59": {
+    "className": "SetOperations",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class18": {
+    "className": "EmptyByteTransition",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[public , static , final ]",
+    "extend": "[SingleByteTransition]",
+    "implement": "[]"
+  },
+  "class17": {
+    "className": "ByteMachine",
+    "packageName": "software.amazon.event.ruler",
+    "modifier": "[]",
+    "extend": "[]",
+    "implement": "[]"
+  }
+}

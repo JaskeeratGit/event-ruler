@@ -1,0 +1,29 @@
+{
+  "className": "MachineComplexityEvaluator",
+  "methodName": "contains",
+  "brief": "private static boolean contains(Iterable<SingleByteTransition> iterable, SingleByteTransition single){}",
+  "methodSignature": "contains(Iterable, SingleByteTransition)",
+  "sourceCode": "private static boolean contains(Iterable<SingleByteTransition> iterable, SingleByteTransition single) {\n        if (iterable instanceof Set) {\n            return ((Set) iterable).contains(single);\n        }\n        for (SingleByteTransition eachSingle : iterable) {\n            if (single.equals(eachSingle)) {\n                return true;\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<SingleByteTransition>",
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "java.util.Set": [
+      "contains(Object)"
+    ],
+    "java.lang.Object": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "private static boolean contains(Iterable<SingleByteTransition> iterable, SingleByteTransition single) {\n    if (iterable instanceof Set) {\n        return ((Set) iterable).contains(single);\n    }\n    for (SingleByteTransition eachSingle : iterable) {\n        if (single.equals(eachSingle)) {\n            return true;\n        }\n    }\n    return false;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

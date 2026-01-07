@@ -1,0 +1,34 @@
+{
+  "className": "ArrayMembership",
+  "methodName": "checkArrayConsistency",
+  "brief": "static ArrayMembership checkArrayConsistency(final ArrayMembership membershipSoFar, final ArrayMembership fieldMembership){}",
+  "methodSignature": "checkArrayConsistency(ArrayMembership, ArrayMembership)",
+  "sourceCode": "static ArrayMembership checkArrayConsistency(final ArrayMembership membershipSoFar, final ArrayMembership fieldMembership) {\n\n        // no existing memberships, so we'll take the ones from the field, if any\n        if (membershipSoFar.isEmpty()) {\n            return fieldMembership.isEmpty() ? membershipSoFar : new ArrayMembership(fieldMembership);\n        }\n\n        // any change will come from memberships in the new field we're investigating. For each of its memberships\n        ArrayMembership newMembership = null;\n        for (IntIntMap.Entry arrayEntry : fieldMembership.membership.entries()) {\n            final int array = arrayEntry.getKey();\n            final int indexInThisArrayOfThisField = arrayEntry.getValue();\n            final int indexInThisArrayPreviouslyAppearingInMatch = membershipSoFar.getMembership(array);\n\n            if (indexInThisArrayPreviouslyAppearingInMatch == IntIntMap.NO_VALUE) {\n\n                // if there's no membership so far, this is an acceptable delta. Update the new memberships, first\n                //  creating it if necessary\n                if (newMembership == null) {\n                    newMembership = new ArrayMembership(membershipSoFar);\n                }\n                newMembership.putMembership(array, indexInThisArrayOfThisField);\n\n            } else {\n\n                // This field does appear within an index that has already appeared in the matching task so far.\n                //  If it's in the same element, fine, no updates. If it's a different entry, return null to\n                //  signal array-inconsistency.\n                if (indexInThisArrayOfThisField != indexInThisArrayPreviouslyAppearingInMatch) {\n                    return null;\n                }\n            }\n        }\n\n        // we may have scanned all the fields and not added anything, in which case return the input\n        return (newMembership == null) ? membershipSoFar : newMembership;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ArrayMembership",
+    "ArrayMembership"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ArrayMembership": [
+      "isEmpty()",
+      "getMembership(int)",
+      "putMembership(int, int)"
+    ],
+    "software.amazon.event.ruler.IntIntMap": [
+      "entries()"
+    ],
+    "software.amazon.event.ruler.IntIntMap.Entry": [
+      "getValue()",
+      "getKey()"
+    ]
+  },
+  "full_method_info": "/**\n * We are stepping through the NameState machine field by field, and have built up data on the array memberships\n *  observed so far in this map. We need to compare this to the array-membership data of the field we're looking at\n *  and see if they are consistent.  Either or both memberships might be empty, which simplifies things.\n * Method returns null if the new field's membership is inconsistent with so-far membership.  If it is compatible,\n *  returns the possibly-revised array membership of the matching task.\n *\n * @param fieldMembership Array membership of the field under consideration\n * @param membershipSoFar Array membership observed so far in a rule-matching task\n * @return null or the new matching-task membership so far\n */\nstatic ArrayMembership checkArrayConsistency(final ArrayMembership membershipSoFar, final ArrayMembership fieldMembership) {\n    // no existing memberships, so we'll take the ones from the field, if any\n    if (membershipSoFar.isEmpty()) {\n        return fieldMembership.isEmpty() ? membershipSoFar : new ArrayMembership(fieldMembership);\n    }\n    // any change will come from memberships in the new field we're investigating. For each of its memberships\n    ArrayMembership newMembership = null;\n    for (IntIntMap.Entry arrayEntry : fieldMembership.membership.entries()) {\n        final int array = arrayEntry.getKey();\n        final int indexInThisArrayOfThisField = arrayEntry.getValue();\n        final int indexInThisArrayPreviouslyAppearingInMatch = membershipSoFar.getMembership(array);\n        if (indexInThisArrayPreviouslyAppearingInMatch == IntIntMap.NO_VALUE) {\n            // if there's no membership so far, this is an acceptable delta. Update the new memberships, first\n            // creating it if necessary\n            if (newMembership == null) {\n                newMembership = new ArrayMembership(membershipSoFar);\n            }\n            newMembership.putMembership(array, indexInThisArrayOfThisField);\n        } else {\n            // This field does appear within an index that has already appeared in the matching task so far.\n            // If it's in the same element, fine, no updates. If it's a different entry, return null to\n            // signal array-inconsistency.\n            if (indexInThisArrayOfThisField != indexInThisArrayPreviouslyAppearingInMatch) {\n                return null;\n            }\n        }\n    }\n    // we may have scanned all the fields and not added anything, in which case return the input\n    return (newMembership == null) ? membershipSoFar : newMembership;\n}",
+  "method_comment": "\n     * We are stepping through the NameState machine field by field, and have built up data on the array memberships\n     *  observed so far in this map. We need to compare this to the array-membership data of the field we're looking at\n     *  and see if they are consistent.  Either or both memberships might be empty, which simplifies things.\n     * Method returns null if the new field's membership is inconsistent with so-far membership.  If it is compatible,\n     *  returns the possibly-revised array membership of the matching task.\n     *\n     * @param fieldMembership Array membership of the field under consideration\n     * @param membershipSoFar Array membership observed so far in a rule-matching task\n     * @return null or the new matching-task membership so far\n     ",
+  "method_annotation": ""
+}

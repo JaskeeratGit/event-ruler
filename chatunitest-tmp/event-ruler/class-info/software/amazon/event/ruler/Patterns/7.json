@@ -1,0 +1,25 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButMatch",
+  "brief": "public static AnythingBut anythingButMatch(final String anythingBut){}",
+  "methodSignature": "anythingButMatch(String)",
+  "sourceCode": "public static AnythingBut anythingButMatch(final String anythingBut) {\n        return new AnythingBut(Collections.singleton(anythingBut), false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "singleton(T)"
+    ]
+  },
+  "full_method_info": "public static AnythingBut anythingButMatch(final String anythingBut) {\n    return new AnythingBut(Collections.singleton(anythingBut), false);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

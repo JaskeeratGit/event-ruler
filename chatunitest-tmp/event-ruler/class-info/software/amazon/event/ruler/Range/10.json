@@ -1,0 +1,28 @@
+{
+  "className": "Range",
+  "methodName": "digitSequence",
+  "brief": "static byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast, boolean isCIDR){}",
+  "methodSignature": "digitSequence(byte, byte, boolean, boolean, boolean)",
+  "sourceCode": "static byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast, boolean isCIDR) {\n        return isCIDR ?\n                digitSequence(first, last, includeFirst, includeLast, HEX_DIGITS, Range::getHexByteIndex) :\n                digitSequence(first, last, includeFirst, includeLast, BASE128_DIGITS, Integer::new);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte",
+    "byte",
+    "boolean",
+    "boolean",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Range": [
+      "digitSequence(byte, byte, boolean, boolean, byte[], Integer>)"
+    ]
+  },
+  "full_method_info": "/**\n * This is necessitated by the fact that we do range comparisons of numbers, fixed-length strings of digits, and\n *  in the case where the numbers represent IP addresses, they are hex digits.  So we need to be able to say\n *  \"for all digits between '3' and 'C'\". This is for that.\n *\n * @param first Start one digit higher than this, for example '4'\n * @param last Stop one digit lower than this, for example 'B'\n * @return The digit list, for example [ '4', '5', '6', '7', '8', '9', '9', 'A' ] (with 'B' for longDigitSequence)\n */\nstatic byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast, boolean isCIDR) {\n    return isCIDR ? digitSequence(first, last, includeFirst, includeLast, HEX_DIGITS, Range::getHexByteIndex) : digitSequence(first, last, includeFirst, includeLast, BASE128_DIGITS, Integer::new);\n}",
+  "method_comment": "\n     * This is necessitated by the fact that we do range comparisons of numbers, fixed-length strings of digits, and\n     *  in the case where the numbers represent IP addresses, they are hex digits.  So we need to be able to say\n     *  \"for all digits between '3' and 'C'\". This is for that.\n     *\n     * @param first Start one digit higher than this, for example '4'\n     * @param last Stop one digit lower than this, for example 'B'\n     * @return The digit list, for example [ '4', '5', '6', '7', '8', '9', '9', 'A' ] (with 'B' for longDigitSequence)\n     ",
+  "method_annotation": ""
+}

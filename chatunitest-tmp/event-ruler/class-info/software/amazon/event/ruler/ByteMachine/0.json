@@ -1,0 +1,39 @@
+{
+  "className": "ByteMachine",
+  "methodName": "transitionOn",
+  "brief": "Set<NameStateWithPattern> transitionOn(final String valString){}",
+  "methodSignature": "transitionOn(String)",
+  "sourceCode": "Set<NameStateWithPattern> transitionOn(final String valString) {\n\n        // not thread-safe, but this is only used in the scope of this method on one thread\n        final Set<NameStateWithPattern> transitionTo = new HashSet<>();\n\n        // Do CIDR matching if there is at least one IP pattern, then move on to NUMERIC or STRING matching below.\n        if (hasIP.get() > 0) {\n            try {\n                // we'll try both the quoted and unquoted version to help people whose events aren't in JSON\n                String ipString;\n                if (valString.startsWith(\"\\\"\") && valString.endsWith(\"\\\"\")) {\n                    ipString = CIDR.ipToString(valString.substring(1, valString.length() -1));\n                } else {\n                    ipString = CIDR.ipToString(valString);\n                }\n                doTransitionOn(ipString, transitionTo, TransitionValueType.CIDR);\n            } catch (IllegalArgumentException e) {\n                // no-op, couldn't treat this as an IP address\n            }\n        }\n\n        // Do just one of NUMERIC or STRING matching. Do NUMERIC if machine has numeric patterns and provided value\n        // is a number. Otherwise, do STRING. We'll still get the correct behavior even if there are both numeric and\n        // string patterns present as no value can satisfy both a numeric and a string pattern. This is due to string\n        // patterns starting/ending with a double quotation, where as numeric patterns never do.\n        if (hasNumeric.get() > 0) {\n            try {\n                doTransitionOn(ComparableNumber.generate(valString), transitionTo, TransitionValueType.NUMERIC);\n                return transitionTo;\n            } catch (Exception e) {\n                // no-op, couldn't treat this as a sensible number\n            }\n        }\n        doTransitionOn(valString, transitionTo, TransitionValueType.STRING);\n        return transitionTo;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int, int)",
+      "length()",
+      "endsWith(String)"
+    ],
+    "java.util.concurrent.atomic.AtomicInteger": [
+      "get()"
+    ],
+    "software.amazon.event.ruler.CIDR": [
+      "ipToString(String)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "doTransitionOn(String, NameStateWithPattern>, TransitionValueType)"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "generate(String)"
+    ]
+  },
+  "full_method_info": "// Multiple different next-namestate steps can result from  processing a single field value, for example\n// \"foot\" matches \"foot\" exactly, \"foo\" as a prefix, and \"hand\" as an anything-but.  So, this\n// method returns a list.\nSet<NameStateWithPattern> transitionOn(final String valString) {\n    // not thread-safe, but this is only used in the scope of this method on one thread\n    final Set<NameStateWithPattern> transitionTo = new HashSet<>();\n    // Do CIDR matching if there is at least one IP pattern, then move on to NUMERIC or STRING matching below.\n    if (hasIP.get() > 0) {\n        try {\n            // we'll try both the quoted and unquoted version to help people whose events aren't in JSON\n            String ipString;\n            if (valString.startsWith(\"\\\"\") && valString.endsWith(\"\\\"\")) {\n                ipString = CIDR.ipToString(valString.substring(1, valString.length() - 1));\n            } else {\n                ipString = CIDR.ipToString(valString);\n            }\n            doTransitionOn(ipString, transitionTo, TransitionValueType.CIDR);\n        } catch (IllegalArgumentException e) {\n            // no-op, couldn't treat this as an IP address\n        }\n    }\n    // Do just one of NUMERIC or STRING matching. Do NUMERIC if machine has numeric patterns and provided value\n    // is a number. Otherwise, do STRING. We'll still get the correct behavior even if there are both numeric and\n    // string patterns present as no value can satisfy both a numeric and a string pattern. This is due to string\n    // patterns starting/ending with a double quotation, where as numeric patterns never do.\n    if (hasNumeric.get() > 0) {\n        try {\n            doTransitionOn(ComparableNumber.generate(valString), transitionTo, TransitionValueType.NUMERIC);\n            return transitionTo;\n        } catch (Exception e) {\n            // no-op, couldn't treat this as a sensible number\n        }\n    }\n    doTransitionOn(valString, transitionTo, TransitionValueType.STRING);\n    return transitionTo;\n}",
+  "method_comment": "  method returns a list.",
+  "method_annotation": ""
+}

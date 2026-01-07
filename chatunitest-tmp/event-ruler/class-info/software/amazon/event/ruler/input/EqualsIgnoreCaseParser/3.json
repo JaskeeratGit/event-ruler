@@ -1,0 +1,22 @@
+{
+  "className": "EqualsIgnoreCaseParser",
+  "methodName": "reverseByteArray",
+  "brief": "private static byte[] reverseByteArray(byte[] byteArray){}",
+  "methodSignature": "reverseByteArray(byte[])",
+  "sourceCode": "private static byte[] reverseByteArray(byte[] byteArray) {\n        byte[] reversedByteArray = new byte[byteArray.length];\n        for (int i = 0; i < byteArray.length; i++) {\n            reversedByteArray[i] = byteArray[byteArray.length - i - 1];\n        }\n        return reversedByteArray;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "private static byte[] reverseByteArray(byte[] byteArray) {\n    byte[] reversedByteArray = new byte[byteArray.length];\n    for (int i = 0; i < byteArray.length; i++) {\n        reversedByteArray[i] = byteArray[byteArray.length - i - 1];\n    }\n    return reversedByteArray;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

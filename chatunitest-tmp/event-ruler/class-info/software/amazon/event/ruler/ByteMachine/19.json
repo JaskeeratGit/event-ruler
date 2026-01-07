@@ -1,0 +1,27 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addExistencePattern",
+  "brief": "private NameState addExistencePattern(Patterns pattern, NameState nameState){}",
+  "methodSignature": "addExistencePattern(Patterns, NameState)",
+  "sourceCode": "private NameState addExistencePattern(Patterns pattern, NameState nameState) {\n        return addMatchValue(pattern, Patterns.EXISTS_BYTE_STRING, nameState);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "addMatchValue(Patterns, String, NameState)"
+    ]
+  },
+  "full_method_info": "private NameState addExistencePattern(Patterns pattern, NameState nameState) {\n    return addMatchValue(pattern, Patterns.EXISTS_BYTE_STRING, nameState);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

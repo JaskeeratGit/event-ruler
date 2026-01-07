@@ -1,0 +1,18 @@
+{
+  "className": "GenericMachine",
+  "methodName": "getStartState",
+  "brief": "final NameState getStartState(){}",
+  "methodSignature": "getStartState()",
+  "sourceCode": "final NameState getStartState() {\n        return startState;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The root state for the machine\n *\n * @return the root state, null if the machine has no rules in it\n */\nfinal NameState getStartState() {\n    return startState;\n}",
+  "method_comment": "\n     * The root state for the machine\n     *\n     * @return the root state, null if the machine has no rules in it\n     ",
+  "method_annotation": ""
+}

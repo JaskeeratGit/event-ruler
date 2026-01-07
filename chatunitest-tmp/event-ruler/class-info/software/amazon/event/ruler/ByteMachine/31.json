@@ -1,0 +1,27 @@
+{
+  "className": "ByteMachine",
+  "methodName": "extractNextJavaCharacterFromInputCharactersForForwardArrays",
+  "brief": "private static String extractNextJavaCharacterFromInputCharactersForForwardArrays(InputCharacter[] characters, int i){}",
+  "methodSignature": "extractNextJavaCharacterFromInputCharactersForForwardArrays(InputCharacter[], int)",
+  "sourceCode": "private static String extractNextJavaCharacterFromInputCharactersForForwardArrays(InputCharacter[] characters, int i) {\n        byte firstByte = InputByte.cast(characters[i]).getByte();\n        if (firstByte >= MIN_FIRST_BYTE_FOR_ONE_BYTE_CHAR && firstByte <= MAX_FIRST_BYTE_FOR_ONE_BYTE_CHAR) {\n            return new String(new byte[] { firstByte } , StandardCharsets.UTF_8);\n        } else if (firstByte >= MIN_FIRST_BYTE_FOR_TWO_BYTE_CHAR && firstByte <= MAX_FIRST_BYTE_FOR_TWO_BYTE_CHAR) {\n            return new String(new byte[] { firstByte, InputByte.cast(characters[i + 1]).getByte() },\n                    StandardCharsets.UTF_8);\n        } else {\n            return new String(new byte[] { firstByte, InputByte.cast(characters[i + 1]).getByte(),\n                    InputByte.cast(characters[i + 2]).getByte() }, StandardCharsets.UTF_8);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.input.InputByte": [
+      "cast(InputCharacter)",
+      "getByte()"
+    ]
+  },
+  "full_method_info": "private static String extractNextJavaCharacterFromInputCharactersForForwardArrays(InputCharacter[] characters, int i) {\n    byte firstByte = InputByte.cast(characters[i]).getByte();\n    if (firstByte >= MIN_FIRST_BYTE_FOR_ONE_BYTE_CHAR && firstByte <= MAX_FIRST_BYTE_FOR_ONE_BYTE_CHAR) {\n        return new String(new byte[] { firstByte }, StandardCharsets.UTF_8);\n    } else if (firstByte >= MIN_FIRST_BYTE_FOR_TWO_BYTE_CHAR && firstByte <= MAX_FIRST_BYTE_FOR_TWO_BYTE_CHAR) {\n        return new String(new byte[] { firstByte, InputByte.cast(characters[i + 1]).getByte() }, StandardCharsets.UTF_8);\n    } else {\n        return new String(new byte[] { firstByte, InputByte.cast(characters[i + 1]).getByte(), InputByte.cast(characters[i + 2]).getByte() }, StandardCharsets.UTF_8);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

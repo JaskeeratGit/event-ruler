@@ -1,0 +1,28 @@
+{
+  "className": "Task",
+  "methodName": "addStep",
+  "brief": "void addStep(final Step step){}",
+  "methodSignature": "addStep(Step)",
+  "sourceCode": "void addStep(final Step step) {\n        // queue it up only if it's the first time we're trying to queue it up\n        // otherwise bad things happen, see comment on seenSteps collection\n        if (seenSteps.add(step)) {\n            stepQueue.add(step);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Step"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Step": [],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "java.util.Queue": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "void addStep(final Step step) {\n    // queue it up only if it's the first time we're trying to queue it up\n    // otherwise bad things happen, see comment on seenSteps collection\n    if (seenSteps.add(step)) {\n        stepQueue.add(step);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

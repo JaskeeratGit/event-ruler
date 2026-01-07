@@ -1,0 +1,41 @@
+{
+  "className": "ByteMachine",
+  "methodName": "getTransitionForMultiBytes",
+  "brief": "private static ByteTransition getTransitionForMultiBytes(SingleByteTransition trans, Set<MultiByte> multiBytes){}",
+  "methodSignature": "getTransitionForMultiBytes(SingleByteTransition, Set)",
+  "sourceCode": "private static ByteTransition getTransitionForMultiBytes(SingleByteTransition trans, Set<MultiByte> multiBytes) {\n        Set<SingleByteTransition> candidates = new HashSet<>();\n\n        for (MultiByte multiByte : multiBytes) {\n            ByteTransition currentTransition = trans;\n            for (byte b : multiByte.getBytes()) {\n                ByteTransition nextTransition = currentTransition.getTransition(b);\n                if (nextTransition == null) {\n                    return EmptyByteTransition.INSTANCE;\n                }\n                currentTransition = nextTransition;\n            }\n\n            if (candidates.isEmpty()) {\n                currentTransition.expand().forEach(t -> candidates.add(t));\n            } else {\n                Set<SingleByteTransition> retainThese = new HashSet<>();\n                currentTransition.expand().forEach(t -> retainThese.add(t));\n                candidates.retainAll(retainThese);\n                if (candidates.isEmpty()) {\n                    return EmptyByteTransition.INSTANCE;\n                }\n            }\n        }\n\n        return coalesce(candidates);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition",
+    "Set<MultiByte>"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.input.MultiByte": [
+      "getBytes()"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getTransition(byte)"
+    ],
+    "java.util.Set": [
+      "isEmpty()",
+      "retainAll(Object>)",
+      "add(E)"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.CompoundByteTransition": [
+      "coalesce(SingleByteTransition>)"
+    ]
+  },
+  "full_method_info": "private static ByteTransition getTransitionForMultiBytes(SingleByteTransition trans, Set<MultiByte> multiBytes) {\n    Set<SingleByteTransition> candidates = new HashSet<>();\n    for (MultiByte multiByte : multiBytes) {\n        ByteTransition currentTransition = trans;\n        for (byte b : multiByte.getBytes()) {\n            ByteTransition nextTransition = currentTransition.getTransition(b);\n            if (nextTransition == null) {\n                return EmptyByteTransition.INSTANCE;\n            }\n            currentTransition = nextTransition;\n        }\n        if (candidates.isEmpty()) {\n            currentTransition.expand().forEach(t -> candidates.add(t));\n        } else {\n            Set<SingleByteTransition> retainThese = new HashSet<>();\n            currentTransition.expand().forEach(t -> retainThese.add(t));\n            candidates.retainAll(retainThese);\n            if (candidates.isEmpty()) {\n                return EmptyByteTransition.INSTANCE;\n            }\n        }\n    }\n    return coalesce(candidates);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

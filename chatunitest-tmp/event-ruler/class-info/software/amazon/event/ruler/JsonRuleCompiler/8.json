@@ -1,0 +1,29 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "compile",
+  "brief": "public static List<Map<String, List<Patterns>>> compile(final Reader source, boolean withOverriding)\n            throws IOException{}",
+  "methodSignature": "compile(Reader, boolean)",
+  "sourceCode": "public static List<Map<String, List<Patterns>>> compile(final Reader source, boolean withOverriding)\n            throws IOException {\n        return doCompile(JSON_FACTORY.createParser(source), withOverriding);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Reader",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.io.Reader": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "doCompile(JsonParser, boolean)"
+    ],
+    "com.fasterxml.jackson.core.JsonFactory": [
+      "createParser(Reader)"
+    ]
+  },
+  "full_method_info": "/**\n * Compile a rule from its JSON form to a Map suitable for use by event.ruler.Ruler (elements are surrounded by quotes).\n *\n * @param source rule, as a String\n * @return List of Sub rule which represented as Map\n * @throws IOException if the rule isn't syntactically valid\n */\npublic static List<Map<String, List<Patterns>>> compile(final Reader source, boolean withOverriding) throws IOException {\n    return doCompile(JSON_FACTORY.createParser(source), withOverriding);\n}",
+  "method_comment": "\n     * Compile a rule from its JSON form to a Map suitable for use by event.ruler.Ruler (elements are surrounded by quotes).\n     *\n     * @param source rule, as a String\n     * @return List of Sub rule which represented as Map\n     * @throws IOException if the rule isn't syntactically valid\n     ",
+  "method_annotation": ""
+}

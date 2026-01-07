@@ -1,0 +1,25 @@
+{
+  "className": "MultiByte",
+  "methodName": "isLessThan",
+  "brief": "private boolean isLessThan(MultiByte other, boolean orEqualTo){}",
+  "methodSignature": "isLessThan(MultiByte, boolean)",
+  "sourceCode": "private boolean isLessThan(MultiByte other, boolean orEqualTo) {\n        byte[] otherBytes = other.getBytes();\n        for (int i = 0; i < bytes.length; i++) {\n            if (i == otherBytes.length) {\n                // otherBytes is a prefix of bytes. Thus, bytes is larger than otherBytes.\n                return false;\n            }\n            if (bytes[i] != otherBytes[i]) {\n                // Most significant differing byte - return if it is less for bytes than otherBytes.\n                return (0xFF & bytes[i]) < (0xFF & otherBytes[i]);\n            }\n        }\n        // bytes is equal to (return true if orEqualTo) or a prefix of (return true) otherBytes.\n        return orEqualTo || (0xFF & bytes.length) < (0xFF & otherBytes.length);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MultiByte",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.MultiByte": [
+      "getBytes()"
+    ]
+  },
+  "full_method_info": "private boolean isLessThan(MultiByte other, boolean orEqualTo) {\n    byte[] otherBytes = other.getBytes();\n    for (int i = 0; i < bytes.length; i++) {\n        if (i == otherBytes.length) {\n            // otherBytes is a prefix of bytes. Thus, bytes is larger than otherBytes.\n            return false;\n        }\n        if (bytes[i] != otherBytes[i]) {\n            // Most significant differing byte - return if it is less for bytes than otherBytes.\n            return (0xFF & bytes[i]) < (0xFF & otherBytes[i]);\n        }\n    }\n    // bytes is equal to (return true if orEqualTo) or a prefix of (return true) otherBytes.\n    return orEqualTo || (0xFF & bytes.length) < (0xFF & otherBytes.length);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

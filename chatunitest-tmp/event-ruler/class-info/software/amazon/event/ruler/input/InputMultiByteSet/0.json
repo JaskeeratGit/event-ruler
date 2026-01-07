@@ -1,0 +1,22 @@
+{
+  "className": "InputMultiByteSet",
+  "methodName": "cast",
+  "brief": "public static InputMultiByteSet cast(InputCharacter character){}",
+  "methodSignature": "cast(InputCharacter)",
+  "sourceCode": "public static InputMultiByteSet cast(InputCharacter character) {\n        return (InputMultiByteSet) character;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": []
+  },
+  "full_method_info": "public static InputMultiByteSet cast(InputCharacter character) {\n    return (InputMultiByteSet) character;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

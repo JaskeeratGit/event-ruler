@@ -1,0 +1,34 @@
+{
+  "className": "ByteMachine",
+  "methodName": "extractNextJavaCharacterFromInputCharactersForBackwardsArrays",
+  "brief": "private String extractNextJavaCharacterFromInputCharactersForBackwardsArrays(InputCharacter[] characters, int i){}",
+  "methodSignature": "extractNextJavaCharacterFromInputCharactersForBackwardsArrays(InputCharacter[], int)",
+  "sourceCode": "private String extractNextJavaCharacterFromInputCharactersForBackwardsArrays(InputCharacter[] characters, int i) {\n        List<Byte> bytesList = new ArrayList<>();\n        for (int multiByteIndex = i; multiByteIndex < characters.length; multiByteIndex++) {\n            if (!isContinuationByte(characters, multiByteIndex)) {\n                // This is the last byte of the suffix char\n                bytesList.add(InputByte.cast(characters[multiByteIndex]).getByte());\n                break;\n            }\n            bytesList.add(InputByte.cast(characters[multiByteIndex]).getByte());\n        }\n        // Undoing the reverse on the byte array to get the valid char\n        return new String(reverseBytesList(bytesList), StandardCharsets.UTF_8);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isContinuationByte(InputCharacter[], int)",
+      "reverseBytesList(Byte>)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.input.InputByte": [
+      "cast(InputCharacter)",
+      "getByte()"
+    ]
+  },
+  "full_method_info": "private String extractNextJavaCharacterFromInputCharactersForBackwardsArrays(InputCharacter[] characters, int i) {\n    List<Byte> bytesList = new ArrayList<>();\n    for (int multiByteIndex = i; multiByteIndex < characters.length; multiByteIndex++) {\n        if (!isContinuationByte(characters, multiByteIndex)) {\n            // This is the last byte of the suffix char\n            bytesList.add(InputByte.cast(characters[multiByteIndex]).getByte());\n            break;\n        }\n        bytesList.add(InputByte.cast(characters[multiByteIndex]).getByte());\n    }\n    // Undoing the reverse on the byte array to get the valid char\n    return new String(reverseBytesList(bytesList), StandardCharsets.UTF_8);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

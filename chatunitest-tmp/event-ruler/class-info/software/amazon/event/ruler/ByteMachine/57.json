@@ -1,0 +1,26 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addTransitionNextStateForWildcard",
+  "brief": "private static void addTransitionNextStateForWildcard(ByteState state,\n                                                          ByteState nextState){}",
+  "methodSignature": "addTransitionNextStateForWildcard(ByteState, ByteState)",
+  "sourceCode": "private static void addTransitionNextStateForWildcard(ByteState state,\n                                                          ByteState nextState) {\n        // Add self-referential * transition to next state (B).\n        nextState.addTransitionForAllBytes(nextState);\n\n        nextState.setIndeterminatePrefix(true);\n\n        // Add * transition from current state (A) to next state (B).\n        state.addTransitionForAllBytes(nextState);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "addTransitionForAllBytes(SingleByteTransition)",
+      "setIndeterminatePrefix(boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Assuming a current wildcard character, a next character of byte b, a current state of A, a next state of B, and a\n * next next state of C, this function produces the following state machine:\n *\n *          ____\n *     *   | *  |\n *  A ---> B <--\n *\n * When processing the next byte (b) of the current rule, which transitions to the next next state of C, the\n * addTransitionNextState function will be invoked to transform the state machine to:\n *\n *           ____                         ____\n *      *   | *  |                  *    | *  |\n *   A ---> B <--               A -----> B <--\n *        b |         =====>    | b    b |\n *      C <--                    --> C <--\n *\n * A more naive implementation would skip B altogether, like:\n *\n *   ____\n *  | * |  b\n *  --> A ---> C\n *\n * But the naive implementation does not work in the case of multiple rules in one machine. Since the current state,\n * A, may already have transitions for other rules, adding a self-referential * transition to A can lead to\n * unintended matches using those existing rules. We must create a new state (B) that the wildcard byte transitions\n * to so that we do not affect existing rules in the machine.\n *\n * @param state The current state.\n * @param nextState The next state.\n */\nprivate static void addTransitionNextStateForWildcard(ByteState state, ByteState nextState) {\n    // Add self-referential * transition to next state (B).\n    nextState.addTransitionForAllBytes(nextState);\n    nextState.setIndeterminatePrefix(true);\n    // Add * transition from current state (A) to next state (B).\n    state.addTransitionForAllBytes(nextState);\n}",
+  "method_comment": "\n     * Assuming a current wildcard character, a next character of byte b, a current state of A, a next state of B, and a\n     * next next state of C, this function produces the following state machine:\n     *\n     *          ____\n     *     *   | *  |\n     *  A ---> B <--\n     *\n     * When processing the next byte (b) of the current rule, which transitions to the next next state of C, the\n     * addTransitionNextState function will be invoked to transform the state machine to:\n     *\n     *           ____                         ____\n     *      *   | *  |                  *    | *  |\n     *   A ---> B <--               A -----> B <--\n     *        b |         =====>    | b    b |\n     *      C <--                    --> C <--\n     *\n     * A more naive implementation would skip B altogether, like:\n     *\n     *   ____\n     *  | * |  b\n     *  --> A ---> C\n     *\n     * But the naive implementation does not work in the case of multiple rules in one machine. Since the current state,\n     * A, may already have transitions for other rules, adding a self-referential * transition to A can lead to\n     * unintended matches using those existing rules. We must create a new state (B) that the wildcard byte transitions\n     * to so that we do not affect existing rules in the machine.\n     *\n     * @param state The current state.\n     * @param nextState The next state.\n     ",
+  "method_annotation": ""
+}

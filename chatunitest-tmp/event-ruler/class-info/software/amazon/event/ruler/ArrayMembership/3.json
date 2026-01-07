@@ -1,0 +1,22 @@
+{
+  "className": "ArrayMembership",
+  "methodName": "isEmpty",
+  "brief": "boolean isEmpty(){}",
+  "methodSignature": "isEmpty()",
+  "sourceCode": "boolean isEmpty() {\n        return membership.isEmpty();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "boolean isEmpty() {\n    return membership.isEmpty();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

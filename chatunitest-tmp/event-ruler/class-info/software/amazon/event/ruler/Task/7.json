@@ -1,0 +1,25 @@
+{
+  "className": "Task",
+  "methodName": "Task",
+  "brief": "Task(final List<String> event, final GenericMachine<?> machine){}",
+  "methodSignature": "Task(List, GenericMachine)",
+  "sourceCode": "Task(final List<String> event, final GenericMachine<?> machine) {\n        this(event.toArray(new String[0]), machine);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>",
+    "GenericMachine<?>"
+  ],
+  "dependentMethods": {
+    "java.util.List": [
+      "toArray(T[])"
+    ]
+  },
+  "full_method_info": "Task(final List<String> event, final GenericMachine<?> machine) {\n    this(event.toArray(new String[0]), machine);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

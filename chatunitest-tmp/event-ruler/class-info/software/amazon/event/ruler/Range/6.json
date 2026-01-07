@@ -1,0 +1,22 @@
+{
+  "className": "Range",
+  "methodName": "deepCopy",
+  "brief": "private static Range deepCopy(final Range range){}",
+  "methodSignature": "deepCopy(Range)",
+  "sourceCode": "private static Range deepCopy(final Range range) {\n        return new Range(range);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Range"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Range": []
+  },
+  "full_method_info": "private static Range deepCopy(final Range range) {\n    return new Range(range);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

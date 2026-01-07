@@ -1,0 +1,18 @@
+{
+  "className": "ShortcutTransition",
+  "methodName": "getShortcuts",
+  "brief": "@Override\n    public Iterable<ShortcutTransition> getShortcuts(){}",
+  "methodSignature": "getShortcuts()",
+  "sourceCode": "@Override\n    public Iterable<ShortcutTransition> getShortcuts() {\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic Iterable<ShortcutTransition> getShortcuts() {\n    return this;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

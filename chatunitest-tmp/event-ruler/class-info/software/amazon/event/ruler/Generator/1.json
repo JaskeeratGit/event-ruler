@@ -1,0 +1,25 @@
+{
+  "className": "Generator",
+  "methodName": "getIdsGeneratedForName",
+  "brief": "public Set<SubRuleContext> getIdsGeneratedForName(Object ruleName){}",
+  "methodSignature": "getIdsGeneratedForName(Object)",
+  "sourceCode": "public Set<SubRuleContext> getIdsGeneratedForName(Object ruleName) {\n            return nameToContext.get(ruleName);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "public Set<SubRuleContext> getIdsGeneratedForName(Object ruleName) {\n    return nameToContext.get(ruleName);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

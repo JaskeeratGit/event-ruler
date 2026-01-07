@@ -1,0 +1,25 @@
+{
+  "className": "NameState",
+  "methodName": "getNextNameState",
+  "brief": "public NameState getNextNameState(String key){}",
+  "methodSignature": "getNextNameState(String)",
+  "sourceCode": "public NameState getNextNameState(String key) {\n        return keyToNextNameState.get(key);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "public NameState getNextNameState(String key) {\n    return keyToNextNameState.get(key);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

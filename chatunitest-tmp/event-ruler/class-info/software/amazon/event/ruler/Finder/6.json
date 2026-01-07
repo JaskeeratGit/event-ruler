@@ -1,0 +1,28 @@
+{
+  "className": "Finder",
+  "methodName": "tryStep",
+  "brief": "private static void tryStep(final Task task, final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "tryStep(Task, SubRuleContext.Generator)",
+  "sourceCode": "private static void tryStep(final Task task, final SubRuleContext.Generator subRuleContextGenerator) {\n        final Step step = task.nextStep();\n\n        tryValueMatching(task, step, subRuleContextGenerator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Task",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Task": [
+      "nextStep()"
+    ],
+    "software.amazon.event.ruler.Finder": [
+      "tryValueMatching(Task, Step, Generator)"
+    ]
+  },
+  "full_method_info": "// remove a step from the work queue and see if there's a transition\nprivate static void tryStep(final Task task, final SubRuleContext.Generator subRuleContextGenerator) {\n    final Step step = task.nextStep();\n    tryValueMatching(task, step, subRuleContextGenerator);\n}",
+  "method_comment": " remove a step from the work queue and see if there's a transition",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "ByteState",
+  "methodName": "putTransitionForAllBytes",
+  "brief": "void putTransitionForAllBytes(@Nonnull SingleByteTransition transition){}",
+  "methodSignature": "putTransitionForAllBytes(SingleByteTransition)",
+  "sourceCode": "void putTransitionForAllBytes(@Nonnull SingleByteTransition transition) {\n        ByteMap map = new ByteMap();\n        map.putTransitionForAllBytes(transition);\n        this.transitionStore = map;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.ByteMap": [
+      "putTransitionForAllBytes(SingleByteTransition)"
+    ]
+  },
+  "full_method_info": "/**\n * Associates the given transition with all possible byte values in this state. If the state previously contained\n * any transitions for any of the byte values, the old transitions are replaced by the given transition.\n *\n * @param transition the transition to be associated with the given byte value\n */\nvoid putTransitionForAllBytes(@Nonnull SingleByteTransition transition) {\n    ByteMap map = new ByteMap();\n    map.putTransitionForAllBytes(transition);\n    this.transitionStore = map;\n}",
+  "method_comment": "\n     * Associates the given transition with all possible byte values in this state. If the state previously contained\n     * any transitions for any of the byte values, the old transitions are replaced by the given transition.\n     *\n     * @param transition the transition to be associated with the given byte value\n     ",
+  "method_annotation": ""
+}

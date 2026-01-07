@@ -1,0 +1,28 @@
+{
+  "className": "ByteMap",
+  "methodName": "hasTransition",
+  "brief": "boolean hasTransition(final ByteTransition transition){}",
+  "methodSignature": "hasTransition(ByteTransition)",
+  "sourceCode": "boolean hasTransition(final ByteTransition transition) {\n        return getSingleByteTransitions().contains(transition);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [],
+    "java.util.Set": [
+      "contains(Object)"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "getSingleByteTransitions()"
+    ]
+  },
+  "full_method_info": "boolean hasTransition(final ByteTransition transition) {\n    return getSingleByteTransitions().contains(transition);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "SingleByteTransition",
+  "methodName": "getTransitionForAllBytes",
+  "brief": "abstract ByteTransition getTransitionForAllBytes();",
+  "methodSignature": "getTransitionForAllBytes()",
+  "sourceCode": "abstract ByteTransition getTransitionForAllBytes();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get the transition that all bytes lead to. Could be compound if all bytes lead to more than one single\n * transition, or could be the empty transition if there are no transitions that all bytes lead to.\n *\n * @return The transition that all bytes lead to.\n */\nabstract ByteTransition getTransitionForAllBytes();",
+  "method_comment": "\n     * Get the transition that all bytes lead to. Could be compound if all bytes lead to more than one single\n     * transition, or could be the empty transition if there are no transitions that all bytes lead to.\n     *\n     * @return The transition that all bytes lead to.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,34 @@
+{
+  "className": "ACFinder",
+  "methodName": "find",
+  "brief": "private static List<Object> find(final ACTask task, final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "find(ACTask, SubRuleContext.Generator)",
+  "sourceCode": "private static List<Object> find(final ACTask task, final SubRuleContext.Generator subRuleContextGenerator) {\n\n        // bootstrap the machine: Start state, first field\n        NameState startState = task.startState();\n        if (startState == null) {\n            return Collections.emptyList();\n        }\n        moveFrom(null, startState, 0, task, new ArrayMembership(), subRuleContextGenerator);\n\n        // each iteration removes a Step and adds zero or more new ones\n        while (task.stepsRemain()) {\n            tryStep(task, subRuleContextGenerator);\n        }\n\n        return task.getMatchedRules();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ACTask",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ACTask": [
+      "getMatchedRules()",
+      "stepsRemain()",
+      "startState()"
+    ],
+    "java.util.Collections": [
+      "emptyList()"
+    ],
+    "software.amazon.event.ruler.ACFinder": [
+      "moveFrom(SubRuleContext>, NameState, int, ACTask, ArrayMembership, Generator)",
+      "tryStep(ACTask, Generator)"
+    ]
+  },
+  "full_method_info": "private static List<Object> find(final ACTask task, final SubRuleContext.Generator subRuleContextGenerator) {\n    // bootstrap the machine: Start state, first field\n    NameState startState = task.startState();\n    if (startState == null) {\n        return Collections.emptyList();\n    }\n    moveFrom(null, startState, 0, task, new ArrayMembership(), subRuleContextGenerator);\n    // each iteration removes a Step and adds zero or more new ones\n    while (task.stepsRemain()) {\n        tryStep(task, subRuleContextGenerator);\n    }\n    return task.getMatchedRules();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

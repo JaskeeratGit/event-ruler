@@ -1,0 +1,22 @@
+{
+  "className": "CompositeByteTransition",
+  "methodName": "hasIndeterminatePrefix",
+  "brief": "@Override\n    boolean hasIndeterminatePrefix(){}",
+  "methodSignature": "hasIndeterminatePrefix()",
+  "sourceCode": "@Override\n    boolean hasIndeterminatePrefix() {\n        return nextState != null && nextState.hasIndeterminatePrefix();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "hasIndeterminatePrefix()"
+    ]
+  },
+  "full_method_info": "@Override\nboolean hasIndeterminatePrefix() {\n    return nextState != null && nextState.hasIndeterminatePrefix();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

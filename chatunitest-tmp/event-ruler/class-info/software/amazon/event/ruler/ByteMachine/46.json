@@ -1,0 +1,50 @@
+{
+  "className": "ByteMachine",
+  "methodName": "insertMatch",
+  "brief": "private NameState insertMatch(InputCharacter[] characters, int currentIndex, ByteState state,\n                                  NameState nextNameState, Patterns pattern, ByteState prevState){}",
+  "methodSignature": "insertMatch(InputCharacter[], int, ByteState, NameState, Patterns, ByteState)",
+  "sourceCode": "private NameState insertMatch(InputCharacter[] characters, int currentIndex, ByteState state,\n                                  NameState nextNameState, Patterns pattern, ByteState prevState) {\n        InputCharacter character = characters[currentIndex];\n\n        ByteMatch match = findMatch(getTransition(state, character).getMatches(), pattern);\n        if (match != null) {\n            // There is a match linked to the transition that's the same type, so we just re-use its nextNameState\n            return match.getNextNameState();\n        }\n\n        // we make a new NameState and hook it up\n        NameState nameState = nextNameState == null ? new NameState() : nextNameState;\n\n        match = new ByteMatch(pattern, nameState);\n        addMatchReferences(match);\n\n        if (isWildcard(character)) {\n            // Rule ends with '*'. Allow no characters up to many characters to match, using a composite match state\n            // that references a self-referencing composite match state. Two composite states are used so the count of\n            // matching rule prefixes is accurate in MachineComplexityEvaluator. If there is a previous state, then the\n            // first composite already exists and we will find it. Otherwise, create a brand new composite.\n            SingleByteTransition composite;\n            if (prevState != null) {\n                composite = getTransitionHavingNextByteState(prevState, state, characters[currentIndex - 1]);\n                assert composite != null : \"Composite must exist\";\n            } else {\n                composite = new ByteState().setMatch(match);\n            }\n\n            ByteState nextState = composite.getNextByteState();\n            CompositeByteTransition compositeClone = (CompositeByteTransition) composite.clone();\n            nextState.addTransitionForAllBytes(compositeClone);\n            nextState.setIndeterminatePrefix(true);\n        } else {\n            addTransition(state, character, match);\n\n            // If second last char was wildcard, the previous state will also need to transition to the match so that\n            // empty substring matches wildcard.\n            if (prevState != null && currentIndex == characters.length - 1 &&\n                    isWildcard(characters[characters.length - 2])) {\n                addTransition(prevState, character, match);\n            }\n        }\n\n        return nameState;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter[]",
+    "int",
+    "ByteState",
+    "NameState",
+    "Patterns",
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteState": [
+      "addTransitionForAllBytes(SingleByteTransition)",
+      "setIndeterminatePrefix(boolean)",
+      "setMatch(ByteMatch)"
+    ],
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isWildcard(InputCharacter)",
+      "getTransitionHavingNextByteState(SingleByteTransition, SingleByteTransition, InputCharacter)",
+      "addTransition(ByteState, InputCharacter, SingleByteTransition)",
+      "addMatchReferences(ByteMatch)",
+      "findMatch(ByteMatch>, Patterns)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "getMatches()",
+      "clone()",
+      "getNextByteState()"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getNextNameState()"
+    ]
+  },
+  "full_method_info": "private NameState insertMatch(InputCharacter[] characters, int currentIndex, ByteState state, NameState nextNameState, Patterns pattern, ByteState prevState) {\n    InputCharacter character = characters[currentIndex];\n    ByteMatch match = findMatch(getTransition(state, character).getMatches(), pattern);\n    if (match != null) {\n        // There is a match linked to the transition that's the same type, so we just re-use its nextNameState\n        return match.getNextNameState();\n    }\n    // we make a new NameState and hook it up\n    NameState nameState = nextNameState == null ? new NameState() : nextNameState;\n    match = new ByteMatch(pattern, nameState);\n    addMatchReferences(match);\n    if (isWildcard(character)) {\n        // Rule ends with '*'. Allow no characters up to many characters to match, using a composite match state\n        // that references a self-referencing composite match state. Two composite states are used so the count of\n        // matching rule prefixes is accurate in MachineComplexityEvaluator. If there is a previous state, then the\n        // first composite already exists and we will find it. Otherwise, create a brand new composite.\n        SingleByteTransition composite;\n        if (prevState != null) {\n            composite = getTransitionHavingNextByteState(prevState, state, characters[currentIndex - 1]);\n            assert composite != null : \"Composite must exist\";\n        } else {\n            composite = new ByteState().setMatch(match);\n        }\n        ByteState nextState = composite.getNextByteState();\n        CompositeByteTransition compositeClone = (CompositeByteTransition) composite.clone();\n        nextState.addTransitionForAllBytes(compositeClone);\n        nextState.setIndeterminatePrefix(true);\n    } else {\n        addTransition(state, character, match);\n        // If second last char was wildcard, the previous state will also need to transition to the match so that\n        // empty substring matches wildcard.\n        if (prevState != null && currentIndex == characters.length - 1 && isWildcard(characters[characters.length - 2])) {\n            addTransition(prevState, character, match);\n        }\n    }\n    return nameState;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

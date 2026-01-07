@@ -1,0 +1,99 @@
+{
+  "fullClassName": "software.amazon.event.ruler.ByteMatch",
+  "className": "ByteMatch",
+  "index": 57,
+  "modifier": "[final ]",
+  "extend": "[SingleByteTransition]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "final class ByteMatch",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collections;",
+    "import java.util.Objects;",
+    "import java.util.Set;"
+  ],
+  "fields": [
+    "private final Patterns pattern;",
+    "private final NameState nextNameState;"
+  ],
+  "superClasses": [
+    "SingleByteTransition"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getNextByteState()": "0",
+    "setNextByteState(ByteState)": "1",
+    "getTransition(byte)": "2",
+    "getTransitionForAllBytes()": "3",
+    "getTransitions()": "4",
+    "getMatch()": "5",
+    "setMatch(ByteMatch)": "6",
+    "getShortcuts()": "7",
+    "getPattern()": "8",
+    "getNextNameState()": "9",
+    "isMatchTrans()": "10",
+    "gatherObjects(Set, int)": "11",
+    "toString()": "12",
+    "equals(Object)": "13",
+    "hashCode()": "14",
+    "ByteMatch(Patterns, NameState)": "15"
+  },
+  "methodsBrief": [
+    "@Override\n    public ByteState getNextByteState(){}",
+    "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState){}",
+    "@Override\n    public ByteTransition getTransition(byte utf8byte){}",
+    "@Override\n    public ByteTransition getTransitionForAllBytes(){}",
+    "@Override\n    public Set<ByteTransition> getTransitions(){}",
+    "@Override\n    ByteMatch getMatch(){}",
+    "@Override\n    public SingleByteTransition setMatch(ByteMatch match){}",
+    "@Override\n    public Set<ShortcutTransition> getShortcuts(){}",
+    "Patterns getPattern(){}",
+    "NameState getNextNameState(){}",
+    "@Override\n    boolean isMatchTrans(){}",
+    "public void gatherObjects(Set<Object> objectSet, int maxObjectCount){}",
+    "@Override\n    public String toString(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "ByteMatch(Patterns pattern, NameState nextNameState){}"
+  ],
+  "constructorSigs": [
+    "ByteMatch(Patterns, NameState)"
+  ],
+  "constructorBrief": [
+    "ByteMatch(Patterns pattern, NameState nextNameState){}"
+  ],
+  "getterSetterSigs": [
+    "getNextByteState()",
+    "setNextByteState(ByteState)",
+    "getTransitionForAllBytes()",
+    "getTransitions()",
+    "getMatch()",
+    "setMatch(ByteMatch)",
+    "getShortcuts()",
+    "getPattern()",
+    "getNextNameState()"
+  ],
+  "getterSetterBrief": [
+    "@Override\n    public ByteState getNextByteState(){}",
+    "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState){}",
+    "@Override\n    public ByteTransition getTransitionForAllBytes(){}",
+    "@Override\n    public Set<ByteTransition> getTransitions(){}",
+    "@Override\n    ByteMatch getMatch(){}",
+    "@Override\n    public SingleByteTransition setMatch(ByteMatch match){}",
+    "@Override\n    public Set<ShortcutTransition> getShortcuts(){}",
+    "Patterns getPattern(){}",
+    "NameState getNextNameState(){}"
+  ],
+  "constructorDeps": {
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.Collections;\nimport java.util.Objects;\nimport java.util.Set;\n\n/**\n * Represents a place in a ByteMachine where we have to do something in addition to just transitioning to another step.\n */\nfinal class ByteMatch extends SingleByteTransition {\n\n    private final Patterns pattern;\n\n    // the next state in the higher-level name/value machine\n    private final NameState nextNameState;\n\n    ByteMatch(Patterns pattern, NameState nextNameState) {\n        this.pattern = pattern;\n        this.nextNameState = nextNameState;\n    }\n\n    @Override\n    public ByteState getNextByteState() {\n        return null;\n    }\n\n    @Override\n    public SingleByteTransition setNextByteState(ByteState nextState) {\n        return nextState == null ? this : new CompositeByteTransition(nextState, this);\n    }\n\n    @Override\n    public ByteTransition getTransition(byte utf8byte) {\n        return null;\n    }\n\n    @Override\n    public ByteTransition getTransitionForAllBytes() {\n        return null;\n    }\n\n    @Override\n    public Set<ByteTransition> getTransitions() {\n        return Collections.emptySet();\n    }\n\n    @Override\n    ByteMatch getMatch() {\n        return this;\n    }\n\n    @Override\n    public SingleByteTransition setMatch(ByteMatch match) {\n        return match;\n    }\n\n    @Override\n    public Set<ShortcutTransition> getShortcuts() {\n        return Collections.emptySet();\n    }\n\n    Patterns getPattern() {\n        return pattern;\n    }\n\n    NameState getNextNameState() {\n        return nextNameState;\n    }\n\n    @Override\n    boolean isMatchTrans() {\n        return true;\n    }\n\n    public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n        if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) {\n            // stops looping\n            objectSet.add(this);\n            nextNameState.gatherObjects(objectSet, maxObjectCount);\n        }\n    }\n\n    @Override\n    public String toString() {\n        return \"BM: HC=\" + hashCode() + \" P=\" + pattern + \"(\" + pattern.pattern() + \") NNS=\" + nextNameState;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        ByteMatch byteMatch = (ByteMatch) o;\n        return Objects.equals(pattern, byteMatch.pattern) && Objects.equals(nextNameState, byteMatch.nextNameState);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(pattern, nextNameState);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents a place in a ByteMachine where we have to do something in addition to just transitioning to another step.\n */\nfinal class ByteMatch extends SingleByteTransition {\n\n    private final Patterns pattern;\n\n    // the next state in the higher-level name/value machine\n    private final NameState nextNameState;\n\n    ByteMatch(Patterns pattern, NameState nextNameState) {\n        this.pattern = pattern;\n        this.nextNameState = nextNameState;\n    }\n\n    @Override\n    public ByteState getNextByteState() {\n        return null;\n    }\n\n    @Override\n    public SingleByteTransition setNextByteState(ByteState nextState) {\n        return nextState == null ? this : new CompositeByteTransition(nextState, this);\n    }\n\n    @Override\n    public ByteTransition getTransition(byte utf8byte) {\n        return null;\n    }\n\n    @Override\n    public ByteTransition getTransitionForAllBytes() {\n        return null;\n    }\n\n    @Override\n    public Set<ByteTransition> getTransitions() {\n        return Collections.emptySet();\n    }\n\n    @Override\n    ByteMatch getMatch() {\n        return this;\n    }\n\n    @Override\n    public SingleByteTransition setMatch(ByteMatch match) {\n        return match;\n    }\n\n    @Override\n    public Set<ShortcutTransition> getShortcuts() {\n        return Collections.emptySet();\n    }\n\n    Patterns getPattern() {\n        return pattern;\n    }\n\n    NameState getNextNameState() {\n        return nextNameState;\n    }\n\n    @Override\n    boolean isMatchTrans() {\n        return true;\n    }\n\n    public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n        if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) {\n            // stops looping\n            objectSet.add(this);\n            nextNameState.gatherObjects(objectSet, maxObjectCount);\n        }\n    }\n\n    @Override\n    public String toString() {\n        return \"BM: HC=\" + hashCode() + \" P=\" + pattern + \"(\" + pattern.pattern() + \") NNS=\" + nextNameState;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        ByteMatch byteMatch = (ByteMatch) o;\n        return Objects.equals(pattern, byteMatch.pattern) && Objects.equals(nextNameState, byteMatch.nextNameState);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(pattern, nextNameState);\n    }\n}",
+  "subClasses": []
+}

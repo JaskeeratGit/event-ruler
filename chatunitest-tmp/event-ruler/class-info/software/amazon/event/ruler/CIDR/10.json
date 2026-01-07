@@ -1,0 +1,22 @@
+{
+  "className": "CIDR",
+  "methodName": "barf",
+  "brief": "private static void barf(final String msg) throws IllegalArgumentException{}",
+  "methodSignature": "barf(String)",
+  "sourceCode": "private static void barf(final String msg) throws IllegalArgumentException {\n        throw new IllegalArgumentException(msg);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "private static void barf(final String msg) throws IllegalArgumentException {\n    throw new IllegalArgumentException(msg);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,42 @@
+{
+  "className": "Event",
+  "methodName": "traverseObject",
+  "brief": "private void traverseObject(final JsonParser parser, final TreeMap<String, List<Value>> fieldMap, final Progress progress) throws IOException{}",
+  "methodSignature": "traverseObject(JsonParser, TreeMap, Progress)",
+  "sourceCode": "private void traverseObject(final JsonParser parser, final TreeMap<String, List<Value>> fieldMap, final Progress progress) throws IOException {\n        while (parser.nextToken() != JsonToken.END_OBJECT) {\n            // step name\n            final String stepName = parser.getCurrentName();\n            JsonToken nextToken = parser.nextToken();\n\n            // If we know current step name hasn't been used by any rules, we don't parse into this step.\n            if (!progress.machine.isFieldStepUsed(stepName)) {\n                ignoreCurrentStep(parser);\n                continue;\n            }\n\n            progress.path.push(stepName);\n            switch (nextToken) {\n                case START_OBJECT:\n                    traverseObject(parser, fieldMap, progress);\n                    break;\n                case START_ARRAY:\n                    traverseArray(parser, fieldMap, progress);\n                    break;\n                case VALUE_STRING:\n                    addField(fieldMap, progress, '\"' + parser.getText() + '\"');\n                    break;\n                default:\n                    addField(fieldMap, progress, parser.getText());\n                    break;\n            }\n            progress.path.pop();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "TreeMap<String,List<Value>>",
+    "Progress"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getCurrentName()",
+      "nextToken()",
+      "getText()"
+    ],
+    "software.amazon.event.ruler.Event.Progress": [],
+    "software.amazon.event.ruler.GenericMachine": [
+      "isFieldStepUsed(String)"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "addField(Value>>, Progress, String)",
+      "ignoreCurrentStep(JsonParser)",
+      "traverseArray(JsonParser, Value>>, Progress)",
+      "traverseObject(JsonParser, Value>>, Progress)"
+    ],
+    "software.amazon.event.ruler.Path": [
+      "pop()",
+      "push(String)"
+    ]
+  },
+  "full_method_info": "private void traverseObject(final JsonParser parser, final TreeMap<String, List<Value>> fieldMap, final Progress progress) throws IOException {\n    while (parser.nextToken() != JsonToken.END_OBJECT) {\n        // step name\n        final String stepName = parser.getCurrentName();\n        JsonToken nextToken = parser.nextToken();\n        // If we know current step name hasn't been used by any rules, we don't parse into this step.\n        if (!progress.machine.isFieldStepUsed(stepName)) {\n            ignoreCurrentStep(parser);\n            continue;\n        }\n        progress.path.push(stepName);\n        switch(nextToken) {\n            case START_OBJECT:\n                traverseObject(parser, fieldMap, progress);\n                break;\n            case START_ARRAY:\n                traverseArray(parser, fieldMap, progress);\n                break;\n            case VALUE_STRING:\n                addField(fieldMap, progress, '\"' + parser.getText() + '\"');\n                break;\n            default:\n                addField(fieldMap, progress, parser.getText());\n                break;\n        }\n        progress.path.pop();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

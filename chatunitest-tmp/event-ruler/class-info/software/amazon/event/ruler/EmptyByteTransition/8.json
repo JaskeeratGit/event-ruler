@@ -1,0 +1,26 @@
+{
+  "className": "EmptyByteTransition",
+  "methodName": "gatherObjects",
+  "brief": "@Override\n        public void gatherObjects(Set<Object> objectSet, int maxObjectCount){}",
+  "methodSignature": "gatherObjects(Set, int)",
+  "sourceCode": "@Override\n        public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n            if(objectSet.size() < maxObjectCount) {\n                objectSet.add(this);\n            }\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<Object>",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "add(E)",
+      "size()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n    if (objectSet.size() < maxObjectCount) {\n        objectSet.add(this);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

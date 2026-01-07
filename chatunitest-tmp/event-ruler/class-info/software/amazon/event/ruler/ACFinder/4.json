@@ -1,0 +1,34 @@
+{
+  "className": "ACFinder",
+  "methodName": "moveFrom",
+  "brief": "private static void moveFrom(final Set<SubRuleContext> candidateSubRuleIdsForNextStep, final NameState nameState,\n                                 int fieldIndex, final ACTask task, final ArrayMembership arrayMembership,\n                                 final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "moveFrom(Set, NameState, int, ACTask, ArrayMembership, SubRuleContext.Generator)",
+  "sourceCode": "private static void moveFrom(final Set<SubRuleContext> candidateSubRuleIdsForNextStep, final NameState nameState,\n                                 int fieldIndex, final ACTask task, final ArrayMembership arrayMembership,\n                                 final SubRuleContext.Generator subRuleContextGenerator) {\n        /*\n         * The Name Matchers look for an [ { exists: false } ] match. They\n         * will match if a particular key is not present\n         * in the event. Hence, if the name state has any matches configured\n         * for the [ { exists: false } ] case, we need to evaluate these\n         * matches regardless. The fields in the event can be completely\n         * disconnected from the fields configured for [ { exists: false } ],\n         * and it does not matter if the current field is used in machine.\n         *\n         * Another possibility is that there can be a final state configured for\n         * [ { exists: false } ] match. This state needs to be evaluated for a match\n         * even if we have matched all the keys in the event. This is needed because\n         * the final state can still be evaluated to true if the particular event\n         * does not have the key configured for [ { exists: false } ].\n         */\n        tryMustNotExistMatch(candidateSubRuleIdsForNextStep, nameState, task, fieldIndex, arrayMembership,\n                subRuleContextGenerator);\n\n        while (fieldIndex < task.fieldCount) {\n            task.addStep(fieldIndex++, nameState, candidateSubRuleIdsForNextStep, arrayMembership);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "int",
+    "ACTask",
+    "ArrayMembership",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ACTask": [
+      "addStep(int, NameState, SubRuleContext>, ArrayMembership)"
+    ],
+    "software.amazon.event.ruler.ArrayMembership": [],
+    "software.amazon.event.ruler.ACFinder": [
+      "tryMustNotExistMatch(SubRuleContext>, NameState, ACTask, int, ArrayMembership, Generator)"
+    ]
+  },
+  "full_method_info": "// Move from a state. Give all the remaining event fields a chance to transition from it.\nprivate static void moveFrom(final Set<SubRuleContext> candidateSubRuleIdsForNextStep, final NameState nameState, int fieldIndex, final ACTask task, final ArrayMembership arrayMembership, final SubRuleContext.Generator subRuleContextGenerator) {\n    /*\n         * The Name Matchers look for an [ { exists: false } ] match. They\n         * will match if a particular key is not present\n         * in the event. Hence, if the name state has any matches configured\n         * for the [ { exists: false } ] case, we need to evaluate these\n         * matches regardless. The fields in the event can be completely\n         * disconnected from the fields configured for [ { exists: false } ],\n         * and it does not matter if the current field is used in machine.\n         *\n         * Another possibility is that there can be a final state configured for\n         * [ { exists: false } ] match. This state needs to be evaluated for a match\n         * even if we have matched all the keys in the event. This is needed because\n         * the final state can still be evaluated to true if the particular event\n         * does not have the key configured for [ { exists: false } ].\n         */\n    tryMustNotExistMatch(candidateSubRuleIdsForNextStep, nameState, task, fieldIndex, arrayMembership, subRuleContextGenerator);\n    while (fieldIndex < task.fieldCount) {\n        task.addStep(fieldIndex++, nameState, candidateSubRuleIdsForNextStep, arrayMembership);\n    }\n}",
+  "method_comment": " Move from a state. Give all the remaining event fields a chance to transition from it.",
+  "method_annotation": ""
+}

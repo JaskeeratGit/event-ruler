@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "SingleStateNameMatcher_addPattern_1_0_Test",
+    "fullName": "software.amazon.event.ruler.SingleStateNameMatcher_addPattern_1_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/SingleStateNameMatcher_addPattern_1_0_Test.java",
+    "className": "SingleStateNameMatcher",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "addPattern",
+    "methodSig": "addPattern(Patterns, NameState)"
+  },
+  "attempt1": {
+    "testClassName": "SingleStateNameMatcher_addPattern_1_1_Test",
+    "fullName": "software.amazon.event.ruler.SingleStateNameMatcher_addPattern_1_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/SingleStateNameMatcher_addPattern_1_0_Test.java",
+    "className": "SingleStateNameMatcher",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "addPattern",
+    "methodSig": "addPattern(Patterns, NameState)"
+  },
+  "attempt2": {
+    "testClassName": "SingleStateNameMatcher_addPattern_1_2_Test",
+    "fullName": "software.amazon.event.ruler.SingleStateNameMatcher_addPattern_1_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/SingleStateNameMatcher_addPattern_1_0_Test.java",
+    "className": "SingleStateNameMatcher",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "addPattern",
+    "methodSig": "addPattern(Patterns, NameState)"
+  },
+  "attempt3": {
+    "testClassName": "SingleStateNameMatcher_addPattern_1_3_Test",
+    "fullName": "software.amazon.event.ruler.SingleStateNameMatcher_addPattern_1_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/SingleStateNameMatcher_addPattern_1_0_Test.java",
+    "className": "SingleStateNameMatcher",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "addPattern",
+    "methodSig": "addPattern(Patterns, NameState)"
+  },
+  "attempt4": {
+    "testClassName": "SingleStateNameMatcher_addPattern_1_4_Test",
+    "fullName": "software.amazon.event.ruler.SingleStateNameMatcher_addPattern_1_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/SingleStateNameMatcher_addPattern_1_0_Test.java",
+    "className": "SingleStateNameMatcher",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "addPattern",
+    "methodSig": "addPattern(Patterns, NameState)"
+  }
+}

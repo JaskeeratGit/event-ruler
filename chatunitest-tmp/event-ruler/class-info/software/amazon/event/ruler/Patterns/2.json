@@ -1,0 +1,22 @@
+{
+  "className": "Patterns",
+  "methodName": "exactMatch",
+  "brief": "public static ValuePatterns exactMatch(final String value){}",
+  "methodSignature": "exactMatch(String)",
+  "sourceCode": "public static ValuePatterns exactMatch(final String value) {\n        return new ValuePatterns(MatchType.EXACT, value);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public static ValuePatterns exactMatch(final String value) {\n    return new ValuePatterns(MatchType.EXACT, value);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

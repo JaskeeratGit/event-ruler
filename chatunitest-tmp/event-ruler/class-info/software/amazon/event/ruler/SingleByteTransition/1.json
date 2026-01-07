@@ -1,0 +1,22 @@
+{
+  "className": "SingleByteTransition",
+  "methodName": "setMatch",
+  "brief": "abstract SingleByteTransition setMatch(ByteMatch match);",
+  "methodSignature": "setMatch(ByteMatch)",
+  "sourceCode": "abstract SingleByteTransition setMatch(ByteMatch match);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "ByteMatch"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteMatch": []
+  },
+  "full_method_info": "/**\n * Sets the match. The method returns this or a new transition that contains the given match if the match is not\n * {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n * support matching.\n *\n * @param match the match\n * @return this or a new transition that contains the given match if the match is not {@code null}; otherwise,\n * {@code null} or a new transition that does not support matching\n */\nabstract SingleByteTransition setMatch(ByteMatch match);",
+  "method_comment": "\n     * Sets the match. The method returns this or a new transition that contains the given match if the match is not\n     * {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n     * support matching.\n     *\n     * @param match the match\n     * @return this or a new transition that contains the given match if the match is not {@code null}; otherwise,\n     * {@code null} or a new transition that does not support matching\n     ",
+  "method_annotation": ""
+}

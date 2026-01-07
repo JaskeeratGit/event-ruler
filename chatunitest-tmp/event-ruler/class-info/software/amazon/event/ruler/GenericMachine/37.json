@@ -1,0 +1,18 @@
+{
+  "className": "GenericMachine",
+  "methodName": "builder",
+  "brief": "public static <T> Builder<GenericMachine<T>, T> builder(){}",
+  "methodSignature": "builder()",
+  "sourceCode": "public static <T> Builder<GenericMachine<T>, T> builder() {\n        return new Builder<>();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public static <T> Builder<GenericMachine<T>, T> builder() {\n    return new Builder<>();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

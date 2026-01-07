@@ -1,0 +1,31 @@
+{
+  "className": "ByteMachine",
+  "methodName": "deletePattern",
+  "brief": "void deletePattern(final Patterns pattern){}",
+  "methodSignature": "deletePattern(Patterns)",
+  "sourceCode": "void deletePattern(final Patterns pattern) {\n        switch (pattern.type()) {\n            case NUMERIC_RANGE:\n                assert pattern instanceof Range;\n                deleteRangePattern((Range) pattern);\n                break;\n            case ANYTHING_BUT:\n                assert pattern instanceof AnythingBut;\n                deleteAnythingButPattern((AnythingBut) pattern);\n                break;\n            case ANYTHING_BUT_IGNORE_CASE:\n            case ANYTHING_BUT_PREFIX:\n            case ANYTHING_BUT_SUFFIX:\n            case ANYTHING_BUT_WILDCARD:\n                assert pattern instanceof AnythingButValuesSet;\n                deleteAnythingButValuesSetPattern((AnythingButValuesSet) pattern);\n                break;\n            case EXACT:\n            case NUMERIC_EQ:\n            case PREFIX:\n            case PREFIX_EQUALS_IGNORE_CASE:\n            case SUFFIX:\n            case SUFFIX_EQUALS_IGNORE_CASE:\n            case EQUALS_IGNORE_CASE:\n            case WILDCARD:\n                assert pattern instanceof ValuePatterns;\n                deleteMatchPattern((ValuePatterns) pattern);\n                break;\n            case EXISTS:\n                deleteExistencePattern(pattern);\n                break;\n            default:\n                throw new AssertionError(pattern + \" is not implemented yet\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "deleteRangePattern(Range)",
+      "deleteMatchPattern(ValuePatterns)",
+      "deleteAnythingButPattern(AnythingBut)",
+      "deleteExistencePattern(Patterns)",
+      "deleteAnythingButValuesSetPattern(AnythingButValuesSet)"
+    ]
+  },
+  "full_method_info": "// this is to support deleteRule().  It deletes the ByteStates that exist to support matching the provided pattern.\nvoid deletePattern(final Patterns pattern) {\n    switch(pattern.type()) {\n        case NUMERIC_RANGE:\n            assert pattern instanceof Range;\n            deleteRangePattern((Range) pattern);\n            break;\n        case ANYTHING_BUT:\n            assert pattern instanceof AnythingBut;\n            deleteAnythingButPattern((AnythingBut) pattern);\n            break;\n        case ANYTHING_BUT_IGNORE_CASE:\n        case ANYTHING_BUT_PREFIX:\n        case ANYTHING_BUT_SUFFIX:\n        case ANYTHING_BUT_WILDCARD:\n            assert pattern instanceof AnythingButValuesSet;\n            deleteAnythingButValuesSetPattern((AnythingButValuesSet) pattern);\n            break;\n        case EXACT:\n        case NUMERIC_EQ:\n        case PREFIX:\n        case PREFIX_EQUALS_IGNORE_CASE:\n        case SUFFIX:\n        case SUFFIX_EQUALS_IGNORE_CASE:\n        case EQUALS_IGNORE_CASE:\n        case WILDCARD:\n            assert pattern instanceof ValuePatterns;\n            deleteMatchPattern((ValuePatterns) pattern);\n            break;\n        case EXISTS:\n            deleteExistencePattern(pattern);\n            break;\n        default:\n            throw new AssertionError(pattern + \" is not implemented yet\");\n    }\n}",
+  "method_comment": " this is to support deleteRule().  It deletes the ByteStates that exist to support matching the provided pattern.",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addAnythingButValuesSetPattern",
+  "brief": "private NameState addAnythingButValuesSetPattern(AnythingButValuesSet pattern, NameState nameState){}",
+  "methodSignature": "addAnythingButValuesSetPattern(AnythingButValuesSet, NameState)",
+  "sourceCode": "private NameState addAnythingButValuesSetPattern(AnythingButValuesSet pattern, NameState nameState) {\n\n        NameState nameStateToBeReturned = nameState;\n        NameState nameStateChecker = null;\n        for(String value : pattern.getValues()) {\n            nameStateToBeReturned = addMatchValue(pattern, value, nameStateToBeReturned);\n            if (nameStateChecker == null) {\n                nameStateChecker = nameStateToBeReturned;\n            }\n            // all the values in the list must point to the same NameState because they are sharing the same pattern\n            // object.\n            assert nameStateChecker == null || nameStateChecker == nameStateToBeReturned : \" nameStateChecker == nameStateToBeReturned\";\n        }\n\n        return nameStateToBeReturned;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "AnythingButValuesSet",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.AnythingButValuesSet": [
+      "getValues()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "addMatchValue(Patterns, String, NameState)"
+    ]
+  },
+  "full_method_info": "private NameState addAnythingButValuesSetPattern(AnythingButValuesSet pattern, NameState nameState) {\n    NameState nameStateToBeReturned = nameState;\n    NameState nameStateChecker = null;\n    for (String value : pattern.getValues()) {\n        nameStateToBeReturned = addMatchValue(pattern, value, nameStateToBeReturned);\n        if (nameStateChecker == null) {\n            nameStateChecker = nameStateToBeReturned;\n        }\n        // all the values in the list must point to the same NameState because they are sharing the same pattern\n        // object.\n        assert nameStateChecker == null || nameStateChecker == nameStateToBeReturned : \" nameStateChecker == nameStateToBeReturned\";\n    }\n    return nameStateToBeReturned;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

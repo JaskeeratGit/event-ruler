@@ -1,0 +1,24 @@
+{
+  "className": "IntIntMap",
+  "methodName": "shiftKeys",
+  "brief": "private void shiftKeys(final int index){}",
+  "methodSignature": "shiftKeys(int)",
+  "sourceCode": "private void shiftKeys(final int index) {\n        int last;\n        int pos = index;\n        while (true) {\n            last = pos;\n            do {\n                pos = (pos + 1) & mask;\n                if (table[pos] == EMPTY_CELL) {\n                    table[last] = EMPTY_CELL;\n                    return;\n                }\n                int key = (int) (table[pos] & KEY_MASK);\n                int keyStartIndex = getStartIndex(key);\n                if (last < pos) { // did we wrap around?\n                    /*\n                     * (no) if the previous position is after the chain startIndex for key, *or* the\n                     * chain startIndex of the key is after the position we're checking, then the\n                     * position we're checking now cannot be a part of the current chain\n                     */\n                    if (last >= keyStartIndex || keyStartIndex > pos) {\n                        break;\n                    }\n                } else {\n                    /*\n                     * (yes) if the previous position is after the chain startIndex for key, *and*\n                     * the chain startIndex of key is after the position we're checking, then the\n                     * position we're checking now cannot be a part of the current chain\n                     */\n                    if (last >= keyStartIndex && keyStartIndex > pos) {\n                        break;\n                    }\n                }\n            } while (true);\n            table[last] = table[pos];\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "getStartIndex(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Shifts entries with the same hash.\n */\nprivate void shiftKeys(final int index) {\n    int last;\n    int pos = index;\n    while (true) {\n        last = pos;\n        do {\n            pos = (pos + 1) & mask;\n            if (table[pos] == EMPTY_CELL) {\n                table[last] = EMPTY_CELL;\n                return;\n            }\n            int key = (int) (table[pos] & KEY_MASK);\n            int keyStartIndex = getStartIndex(key);\n            if (last < pos) {\n                // did we wrap around?\n                /*\n                     * (no) if the previous position is after the chain startIndex for key, *or* the\n                     * chain startIndex of the key is after the position we're checking, then the\n                     * position we're checking now cannot be a part of the current chain\n                     */\n                if (last >= keyStartIndex || keyStartIndex > pos) {\n                    break;\n                }\n            } else {\n                /*\n                     * (yes) if the previous position is after the chain startIndex for key, *and*\n                     * the chain startIndex of key is after the position we're checking, then the\n                     * position we're checking now cannot be a part of the current chain\n                     */\n                if (last >= keyStartIndex && keyStartIndex > pos) {\n                    break;\n                }\n            }\n        } while (true);\n        table[last] = table[pos];\n    }\n}",
+  "method_comment": "\n     * Shifts entries with the same hash.\n     ",
+  "method_annotation": ""
+}

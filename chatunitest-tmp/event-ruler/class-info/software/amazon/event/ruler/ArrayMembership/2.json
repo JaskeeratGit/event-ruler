@@ -1,0 +1,24 @@
+{
+  "className": "ArrayMembership",
+  "methodName": "getMembership",
+  "brief": "int getMembership(int array){}",
+  "methodSignature": "getMembership(int)",
+  "sourceCode": "int getMembership(int array) {\n        return membership.get(array);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "get(int)"
+    ]
+  },
+  "full_method_info": "int getMembership(int array) {\n    return membership.get(array);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

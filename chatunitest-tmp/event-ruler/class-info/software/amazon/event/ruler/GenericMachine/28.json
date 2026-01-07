@@ -1,0 +1,24 @@
+{
+  "className": "GenericMachine",
+  "methodName": "checkAndDeleteUsedFields",
+  "brief": "private void checkAndDeleteUsedFields(final List<String> keys){}",
+  "methodSignature": "checkAndDeleteUsedFields(List)",
+  "sourceCode": "private void checkAndDeleteUsedFields(final List<String> keys) {\n        for (String key : keys) {\n            eraseFieldStep(key);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.GenericMachine": [
+      "eraseFieldStep(String)"
+    ]
+  },
+  "full_method_info": "private void checkAndDeleteUsedFields(final List<String> keys) {\n    for (String key : keys) {\n        eraseFieldStep(key);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

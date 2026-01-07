@@ -1,0 +1,47 @@
+{
+  "fullClassName": "software.amazon.event.ruler.ACStep",
+  "className": "ACStep",
+  "index": 56,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "class ACStep",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Set;"
+  ],
+  "fields": [
+    "final int fieldIndex;",
+    "final NameState nameState;",
+    "final Set<SubRuleContext> candidateSubRuleIds;",
+    "final ArrayMembership membershipSoFar;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "ACStep(int, NameState, Set, ArrayMembership)": "0"
+  },
+  "methodsBrief": [
+    "ACStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds,\n           final ArrayMembership arrayMembership){}"
+  ],
+  "constructorSigs": [
+    "ACStep(int, NameState, Set, ArrayMembership)"
+  ],
+  "constructorBrief": [
+    "ACStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds,\n           final ArrayMembership arrayMembership){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ArrayMembership": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.Set;\n\n/**\n * Represents a suggestion of a state/token combo from which there might be a transition, in an array-consistent fashion.\n */\nclass ACStep {\n\n    final int fieldIndex;\n\n    final NameState nameState;\n\n    final Set<SubRuleContext> candidateSubRuleIds;\n\n    final ArrayMembership membershipSoFar;\n\n    ACStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds, final ArrayMembership arrayMembership) {\n        this.fieldIndex = fieldIndex;\n        this.nameState = nameState;\n        this.candidateSubRuleIds = candidateSubRuleIds;\n        this.membershipSoFar = arrayMembership;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents a suggestion of a state/token combo from which there might be a transition, in an array-consistent fashion.\n */\nclass ACStep {\n\n    final int fieldIndex;\n\n    final NameState nameState;\n\n    final Set<SubRuleContext> candidateSubRuleIds;\n\n    final ArrayMembership membershipSoFar;\n\n    ACStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds, final ArrayMembership arrayMembership) {\n        this.fieldIndex = fieldIndex;\n        this.nameState = nameState;\n        this.candidateSubRuleIds = candidateSubRuleIds;\n        this.membershipSoFar = arrayMembership;\n    }\n}",
+  "subClasses": []
+}

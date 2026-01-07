@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Machine_builder_0_0_Test",
+    "fullName": "software.amazon.event.ruler.Machine_builder_0_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Machine_builder_0_0_Test.java",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt1": {
+    "testClassName": "Machine_builder_0_1_Test",
+    "fullName": "software.amazon.event.ruler.Machine_builder_0_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Machine_builder_0_0_Test.java",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt2": {
+    "testClassName": "Machine_builder_0_2_Test",
+    "fullName": "software.amazon.event.ruler.Machine_builder_0_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Machine_builder_0_0_Test.java",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt3": {
+    "testClassName": "Machine_builder_0_3_Test",
+    "fullName": "software.amazon.event.ruler.Machine_builder_0_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Machine_builder_0_0_Test.java",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt4": {
+    "testClassName": "Machine_builder_0_4_Test",
+    "fullName": "software.amazon.event.ruler.Machine_builder_0_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Machine_builder_0_0_Test.java",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  }
+}

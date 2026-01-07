@@ -1,0 +1,34 @@
+{
+  "className": "Finder",
+  "methodName": "find",
+  "brief": "private static List<Object> find(final Task task, final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "find(Task, SubRuleContext.Generator)",
+  "sourceCode": "private static List<Object> find(final Task task, final SubRuleContext.Generator subRuleContextGenerator) {\n\n        // bootstrap the machine: Start state, first token\n        NameState startState = task.startState();\n        if (startState == null) {\n            return Collections.emptyList();\n        }\n        moveFrom(null, startState, 0, task, subRuleContextGenerator);\n\n        // each iteration removes a Step and adds zero or more new ones\n        while (task.stepsRemain()) {\n            tryStep(task, subRuleContextGenerator);\n        }\n\n        return task.getMatchedRules();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Task",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Task": [
+      "getMatchedRules()",
+      "stepsRemain()",
+      "startState()"
+    ],
+    "java.util.Collections": [
+      "emptyList()"
+    ],
+    "software.amazon.event.ruler.Finder": [
+      "tryStep(Task, Generator)",
+      "moveFrom(SubRuleContext>, NameState, int, Task, Generator)"
+    ]
+  },
+  "full_method_info": "private static List<Object> find(final Task task, final SubRuleContext.Generator subRuleContextGenerator) {\n    // bootstrap the machine: Start state, first token\n    NameState startState = task.startState();\n    if (startState == null) {\n        return Collections.emptyList();\n    }\n    moveFrom(null, startState, 0, task, subRuleContextGenerator);\n    // each iteration removes a Step and adds zero or more new ones\n    while (task.stepsRemain()) {\n        tryStep(task, subRuleContextGenerator);\n    }\n    return task.getMatchedRules();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "Range",
+  "methodName": "between",
+  "brief": "public static Range between(final byte[] bottom, final boolean openBottom, final byte[] top, final boolean openTop){}",
+  "methodSignature": "between(byte[], boolean, byte[], boolean)",
+  "sourceCode": "public static Range between(final byte[] bottom, final boolean openBottom, final byte[] top, final boolean openTop) {\n        return new Range(bottom, openBottom, top, openTop, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "boolean",
+    "byte[]",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "public static Range between(final byte[] bottom, final boolean openBottom, final byte[] top, final boolean openTop) {\n    return new Range(bottom, openBottom, top, openTop, false);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,49 @@
+{
+  "className": "Event",
+  "methodName": "loadObject",
+  "brief": "private void loadObject(final JsonNode object, final Map<String, List<Value>> fieldMap, final Progress progress){}",
+  "methodSignature": "loadObject(JsonNode, Map, Progress)",
+  "sourceCode": "private void loadObject(final JsonNode object, final Map<String, List<Value>> fieldMap, final Progress progress) {\n        final Iterator<Map.Entry<String, JsonNode>> fields = object.fields();\n        while (fields.hasNext()) {\n            final Map.Entry<String, JsonNode> field = fields.next();\n            final JsonNode val = field.getValue();\n\n            // If we know current step name hasn't been used by any rules, we don't parse into this step.\n            if (!progress.machine.isFieldStepUsed(field.getKey())) {\n                continue;\n            }\n\n            progress.path.push(field.getKey());\n            switch (val.getNodeType()) {\n                case OBJECT:\n                    loadObject(val, fieldMap, progress);\n                    break;\n                case ARRAY:\n                    loadArray(val, fieldMap, progress);\n                    break;\n\n                case STRING:\n                    addField(fieldMap, progress, '\"' + val.asText() + '\"');\n                    break;\n                case NULL:\n                case BOOLEAN:\n                case NUMBER:\n                    addField(fieldMap, progress, val.asText());\n                    break;\n                default:\n                    throw new RuntimeException(\"Unknown JsonNode type for: \" + val.asText());\n            }\n            progress.path.pop();\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "Map<String,List<Value>>",
+    "Progress"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "getNodeType()",
+      "fields()",
+      "asText()"
+    ],
+    "software.amazon.event.ruler.Event.Progress": [],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "isFieldStepUsed(String)"
+    ],
+    "software.amazon.event.ruler.Path": [
+      "pop()",
+      "push(String)"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "addField(Value>>, Progress, String)",
+      "loadArray(JsonNode, Value>>, Progress)",
+      "loadObject(JsonNode, Value>>, Progress)"
+    ]
+  },
+  "full_method_info": "private void loadObject(final JsonNode object, final Map<String, List<Value>> fieldMap, final Progress progress) {\n    final Iterator<Map.Entry<String, JsonNode>> fields = object.fields();\n    while (fields.hasNext()) {\n        final Map.Entry<String, JsonNode> field = fields.next();\n        final JsonNode val = field.getValue();\n        // If we know current step name hasn't been used by any rules, we don't parse into this step.\n        if (!progress.machine.isFieldStepUsed(field.getKey())) {\n            continue;\n        }\n        progress.path.push(field.getKey());\n        switch(val.getNodeType()) {\n            case OBJECT:\n                loadObject(val, fieldMap, progress);\n                break;\n            case ARRAY:\n                loadArray(val, fieldMap, progress);\n                break;\n            case STRING:\n                addField(fieldMap, progress, '\"' + val.asText() + '\"');\n                break;\n            case NULL:\n            case BOOLEAN:\n            case NUMBER:\n                addField(fieldMap, progress, val.asText());\n                break;\n            default:\n                throw new RuntimeException(\"Unknown JsonNode type for: \" + val.asText());\n        }\n        progress.path.pop();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

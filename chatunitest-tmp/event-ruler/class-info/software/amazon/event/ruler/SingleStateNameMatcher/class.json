@@ -1,0 +1,51 @@
+{
+  "fullClassName": "software.amazon.event.ruler.SingleStateNameMatcher",
+  "className": "SingleStateNameMatcher",
+  "index": 68,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[NameMatcher<NameState>]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "public class SingleStateNameMatcher",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import javax.annotation.Nonnull;"
+  ],
+  "fields": [
+    "private NameState nameState;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "NameMatcher"
+  ],
+  "methodSigs": {
+    "isEmpty()": "0",
+    "addPattern(Patterns, NameState)": "1",
+    "deletePattern(Patterns)": "2",
+    "findPattern(Patterns)": "3",
+    "getNextState()": "4"
+  },
+  "methodsBrief": [
+    "@Override\n    public boolean isEmpty(){}",
+    "@Override\n    public NameState addPattern(@Nonnull final Patterns pattern, final NameState nameState){}",
+    "@Override\n    public void deletePattern(@Nonnull final Patterns pattern){}",
+    "@Override\n    public NameState findPattern(@Nonnull final Patterns pattern){}",
+    "@Override\n    public NameState getNextState(){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "getNextState()"
+  ],
+  "getterSetterBrief": [
+    "@Override\n    public NameState getNextState(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport javax.annotation.Nonnull;\n\n/**\n * Implements the { [ \"exists\" : false] } pattern by performing a binary search\n * of the key in the event keys.\n */\npublic class SingleStateNameMatcher implements NameMatcher<NameState> {\n\n    /**\n     * We only have one pattern for name matcher today. Hence, we can just keep\n     * a single state here for simplicity. In the future, when multiple patterns\n     * come here, we need a byte match.\n     */\n    private NameState nameState;\n\n    @Override\n    public boolean isEmpty() {\n        return nameState == null;\n    }\n\n    @Override\n    public NameState addPattern(@Nonnull final Patterns pattern, final NameState nameState) {\n        if (this.nameState == null) {\n            this.nameState = nameState;\n        }\n        return this.nameState;\n    }\n\n    @Override\n    public void deletePattern(@Nonnull final Patterns pattern) {\n        nameState = null;\n    }\n\n    @Override\n    public NameState findPattern(@Nonnull final Patterns pattern) {\n        return nameState;\n    }\n\n    @Override\n    public NameState getNextState() {\n        return nameState;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Implements the { [ \"exists\" : false] } pattern by performing a binary search\n * of the key in the event keys.\n */\npublic class SingleStateNameMatcher implements NameMatcher<NameState> {\n\n    /**\n     * We only have one pattern for name matcher today. Hence, we can just keep\n     * a single state here for simplicity. In the future, when multiple patterns\n     * come here, we need a byte match.\n     */\n    private NameState nameState;\n\n    @Override\n    public boolean isEmpty() {\n        return nameState == null;\n    }\n\n    @Override\n    public NameState addPattern(@Nonnull final Patterns pattern, final NameState nameState) {\n        if (this.nameState == null) {\n            this.nameState = nameState;\n        }\n        return this.nameState;\n    }\n\n    @Override\n    public void deletePattern(@Nonnull final Patterns pattern) {\n        nameState = null;\n    }\n\n    @Override\n    public NameState findPattern(@Nonnull final Patterns pattern) {\n        return nameState;\n    }\n\n    @Override\n    public NameState getNextState() {\n        return nameState;\n    }\n}",
+  "subClasses": []
+}

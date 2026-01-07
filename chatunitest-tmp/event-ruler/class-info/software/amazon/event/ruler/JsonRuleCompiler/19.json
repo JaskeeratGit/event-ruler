@@ -1,0 +1,40 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "parseIntoOrRelationship",
+  "brief": "private static void parseIntoOrRelationship(final List<Map<String, List<Patterns>>> rules,\n                                                final Path path,\n                                                final JsonParser parser,\n                                                final boolean withQuotes,\n                                                final boolean withOverriding) throws IOException{}",
+  "methodSignature": "parseIntoOrRelationship(List, Path, JsonParser, boolean, boolean)",
+  "sourceCode": "private static void parseIntoOrRelationship(final List<Map<String, List<Patterns>>> rules,\n                                                final Path path,\n                                                final JsonParser parser,\n                                                final boolean withQuotes,\n                                                final boolean withOverriding) throws IOException {\n\n        final List<Map<String, List<Patterns>>> currentRules = deepCopyRules(rules);\n        rules.clear();\n\n        JsonToken token = parser.nextToken();\n        if (token != JsonToken.START_ARRAY) {\n            barf(parser, \"It must be an Array followed with \" + Constants.OR_RELATIONSHIP_KEYWORD + \".\");\n        }\n\n        int loopCnt = 0;\n        while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n            loopCnt++;\n            if (token == JsonToken.START_OBJECT) {\n                final List<Map<String, List<Patterns>>> newRules = deepCopyRules(currentRules);\n                if (newRules.isEmpty()) {\n                    newRules.add(new HashMap<>());\n                }\n                parseObjectInsideOrRelationship(newRules, path, parser, withQuotes, withOverriding);\n                rules.addAll(newRules);\n            } else {\n                barf(parser,\n                        \"Only JSON object is allowed in array of \" + Constants.OR_RELATIONSHIP_KEYWORD + \" relationship.\");\n            }\n        }\n        if (loopCnt < 2) {\n            barf(parser, \"There must have at least 2 Objects in \" + Constants.OR_RELATIONSHIP_KEYWORD + \" relationship.\");\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Map<String,List<Patterns>>>",
+    "Path",
+    "JsonParser",
+    "boolean",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Path": [],
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "parseObjectInsideOrRelationship(Patterns>>>, Path, JsonParser, boolean, boolean)",
+      "deepCopyRules(Patterns>>>)",
+      "barf(JsonParser, String)"
+    ],
+    "java.util.List": [
+      "isEmpty()",
+      "addAll(Collection<? extends E>)",
+      "add(E)",
+      "clear()"
+    ]
+  },
+  "full_method_info": "/**\n * This function is to parse the \"$or\" relationship described as an array, each object in the array will be\n * interpreted as \"$or\" relationship, for example:\n * {\n *     \"detail\": {\n *         \"$or\" : [\n *             {\"c-count\": [ { \"numeric\": [ \">\", 0, \"<=\", 5 ] } ]},\n *             {\"d-count\": [ { \"numeric\": [ \"<\", 10 ] } ]},\n *             {\"x-limit\": [ { \"numeric\": [ \"=\", 3.018e2 ] } ]}\n *         ]\n *     }\n * }\n * above rule will be interpreted as or effect: (\"detail.c-count\" || \"detail.d-count\" || detail.x-limit\"),\n * The result will be described as the list of Map, each Map represents a sub rule composed of fields of patterns in\n * that or condition path, for example:\n * [\n *   {detail.c-count=[38D7EA4C68000/38D7EA512CB40:true/false]},\n *   {detail.d-count=[0000000000000/38D7EA55F1680:false/true]},\n *   {detail.x-limit=[VP:38D7EB6C39A40]}\n * ]\n * This List will be added into Ruler with the same rule name to demonstrate the \"or\" effects inside Ruler state\n * machine.\n */\nprivate static void parseIntoOrRelationship(final List<Map<String, List<Patterns>>> rules, final Path path, final JsonParser parser, final boolean withQuotes, final boolean withOverriding) throws IOException {\n    final List<Map<String, List<Patterns>>> currentRules = deepCopyRules(rules);\n    rules.clear();\n    JsonToken token = parser.nextToken();\n    if (token != JsonToken.START_ARRAY) {\n        barf(parser, \"It must be an Array followed with \" + Constants.OR_RELATIONSHIP_KEYWORD + \".\");\n    }\n    int loopCnt = 0;\n    while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n        loopCnt++;\n        if (token == JsonToken.START_OBJECT) {\n            final List<Map<String, List<Patterns>>> newRules = deepCopyRules(currentRules);\n            if (newRules.isEmpty()) {\n                newRules.add(new HashMap<>());\n            }\n            parseObjectInsideOrRelationship(newRules, path, parser, withQuotes, withOverriding);\n            rules.addAll(newRules);\n        } else {\n            barf(parser, \"Only JSON object is allowed in array of \" + Constants.OR_RELATIONSHIP_KEYWORD + \" relationship.\");\n        }\n    }\n    if (loopCnt < 2) {\n        barf(parser, \"There must have at least 2 Objects in \" + Constants.OR_RELATIONSHIP_KEYWORD + \" relationship.\");\n    }\n}",
+  "method_comment": "\n     * This function is to parse the \"$or\" relationship described as an array, each object in the array will be\n     * interpreted as \"$or\" relationship, for example:\n     * {\n     *     \"detail\": {\n     *         \"$or\" : [\n     *             {\"c-count\": [ { \"numeric\": [ \">\", 0, \"<=\", 5 ] } ]},\n     *             {\"d-count\": [ { \"numeric\": [ \"<\", 10 ] } ]},\n     *             {\"x-limit\": [ { \"numeric\": [ \"=\", 3.018e2 ] } ]}\n     *         ]\n     *     }\n     * }\n     * above rule will be interpreted as or effect: (\"detail.c-count\" || \"detail.d-count\" || detail.x-limit\"),\n     * The result will be described as the list of Map, each Map represents a sub rule composed of fields of patterns in\n     * that or condition path, for example:\n     * [\n     *   {detail.c-count=[38D7EA4C68000/38D7EA512CB40:true/false]},\n     *   {detail.d-count=[0000000000000/38D7EA55F1680:false/true]},\n     *   {detail.x-limit=[VP:38D7EB6C39A40]}\n     * ]\n     * This List will be added into Ruler with the same rule name to demonstrate the \"or\" effects inside Ruler state\n     * machine.\n     ",
+  "method_annotation": ""
+}

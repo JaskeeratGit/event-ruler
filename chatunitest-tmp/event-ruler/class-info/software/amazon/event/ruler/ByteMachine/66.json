@@ -1,0 +1,24 @@
+{
+  "className": "ByteMachine",
+  "methodName": "isByte",
+  "brief": "private static boolean isByte(InputCharacter character){}",
+  "methodSignature": "isByte(InputCharacter)",
+  "sourceCode": "private static boolean isByte(InputCharacter character) {\n        return character.getType() == InputCharacterType.BYTE;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [
+      "getType()"
+    ]
+  },
+  "full_method_info": "private static boolean isByte(InputCharacter character) {\n    return character.getType() == InputCharacterType.BYTE;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

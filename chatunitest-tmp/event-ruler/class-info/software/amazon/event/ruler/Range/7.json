@@ -1,0 +1,23 @@
+{
+  "className": "Range",
+  "methodName": "ensureValidRange",
+  "brief": "private static void ensureValidRange(byte[] byteBottom, byte[] byteTops){}",
+  "methodSignature": "ensureValidRange(byte[], byte[])",
+  "sourceCode": "private static void ensureValidRange(byte[] byteBottom, byte[] byteTops) {\n        int equals = 0;\n        for(int i = 0; i < byteBottom.length; i++) {\n            if(byteBottom[i] == byteTops[i]) {\n                equals += 1;\n            } else if(byteBottom[i] > byteTops[i]) {\n                throw new IllegalArgumentException(\"Bottom must be less than top\");\n            } else {\n                break; // found one to be bigger than the other\n            }\n        }\n        if(equals == byteBottom.length) {\n            throw new IllegalArgumentException(\"Bottom must be less than top\");\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * Ensures that the given byte arrays representing the bottom and top of a range\n * are valid, where the bottom array's hex representation is less than the top array.\n *\n * @param byteBottom the byte array representing the bottom of the range\n * @param byteTops   the byte array representing the top of the range\n * @throws IllegalArgumentException if the bottom array is not lexicographically less than the top array\n */\nprivate static void ensureValidRange(byte[] byteBottom, byte[] byteTops) {\n    int equals = 0;\n    for (int i = 0; i < byteBottom.length; i++) {\n        if (byteBottom[i] == byteTops[i]) {\n            equals += 1;\n        } else if (byteBottom[i] > byteTops[i]) {\n            throw new IllegalArgumentException(\"Bottom must be less than top\");\n        } else {\n            // found one to be bigger than the other\n            break;\n        }\n    }\n    if (equals == byteBottom.length) {\n        throw new IllegalArgumentException(\"Bottom must be less than top\");\n    }\n}",
+  "method_comment": "\n     * Ensures that the given byte arrays representing the bottom and top of a range\n     * are valid, where the bottom array's hex representation is less than the top array.\n     *\n     * @param byteBottom the byte array representing the bottom of the range\n     * @param byteTops   the byte array representing the top of the range\n     * @throws IllegalArgumentException if the bottom array is not lexicographically less than the top array\n     ",
+  "method_annotation": ""
+}

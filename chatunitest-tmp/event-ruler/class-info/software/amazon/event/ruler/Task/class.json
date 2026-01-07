@@ -1,0 +1,80 @@
+{
+  "fullClassName": "software.amazon.event.ruler.Task",
+  "className": "Task",
+  "index": 27,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "@ThreadSafe\nclass Task",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import javax.annotation.concurrent.ThreadSafe;",
+    "import java.util.ArrayDeque;",
+    "import java.util.ArrayList;",
+    "import java.util.Arrays;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Queue;",
+    "import java.util.Set;",
+    "import static software.amazon.event.ruler.SetOperations.intersection;"
+  ],
+  "fields": [
+    "public final String[] event;",
+    "private final Set<Object> matchingRules = new HashSet<>();",
+    "private final Queue<Step> stepQueue = new ArrayDeque<>();",
+    "private final Set<Step> seenSteps = new HashSet<>();",
+    "private final GenericMachine<?> machine;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "startState()": "0",
+    "isFieldUsed(String)": "1",
+    "nextStep()": "2",
+    "addStep(Step)": "3",
+    "stepsRemain()": "4",
+    "getMatchedRules()": "5",
+    "collectRules(Set, NameState, Patterns, SubRuleContext.Generator)": "6",
+    "Task(List, GenericMachine)": "7",
+    "Task(String[], GenericMachine)": "8"
+  },
+  "methodsBrief": [
+    "NameState startState(){}",
+    "boolean isFieldUsed(final String field){}",
+    "Step nextStep(){}",
+    "void addStep(final Step step){}",
+    "boolean stepsRemain(){}",
+    "List<Object> getMatchedRules(){}",
+    "void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern,\n                      final SubRuleContext.Generator subRuleContextGenerator){}",
+    "Task(final List<String> event, final GenericMachine<?> machine){}",
+    "Task(final String[] event, final GenericMachine<?> machine){}"
+  ],
+  "constructorSigs": [
+    "Task(List, GenericMachine)",
+    "Task(String[], GenericMachine)"
+  ],
+  "constructorBrief": [
+    "Task(final List<String> event, final GenericMachine<?> machine){}",
+    "Task(final String[] event, final GenericMachine<?> machine){}"
+  ],
+  "getterSetterSigs": [
+    "getMatchedRules()"
+  ],
+  "getterSetterBrief": [
+    "List<Object> getMatchedRules(){}"
+  ],
+  "constructorDeps": {
+    "java.util.List": [
+      "toArray(T[])"
+    ],
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport javax.annotation.concurrent.ThreadSafe;\nimport java.util.ArrayDeque;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Queue;\nimport java.util.Set;\nimport static software.amazon.event.ruler.SetOperations.intersection;\n\n/**\n * Represents the state of a rule-finding project.\n */\n@ThreadSafe\nclass Task {\n\n    // What we're trying to match rules to\n    public final String[] event;\n\n    // the rules that matched the event, if we find any\n    private final Set<Object> matchingRules = new HashSet<>();\n\n    // Steps queued up for processing\n    private final Queue<Step> stepQueue = new ArrayDeque<>();\n\n    // Visiting the same Step multiple times will give the same outcome for all visits,\n    // as we are not mutating the state of Task nor Step nor GenericMachine as part of the visit.\n    // To prevent explosion of complexity we need to prevent queueing up steps that are still\n    // waiting in the stepQueue or we have already ran. We end up holding on to some amount\n    // of memory during Task evaluation to track this, but it has an upper bound that is O(n * m) where\n    // n = number of values in input event\n    // m = number of nodes in the compiled state machine\n    private final Set<Step> seenSteps = new HashSet<>();\n\n    // the state machine\n    private final GenericMachine<?> machine;\n\n    Task(final List<String> event, final GenericMachine<?> machine) {\n        this(event.toArray(new String[0]), machine);\n    }\n\n    Task(final String[] event, final GenericMachine<?> machine) {\n        this.event = event;\n        this.machine = machine;\n    }\n\n    NameState startState() {\n        return machine.getStartState();\n    }\n\n    // The field used means all steps in the field must be all used individually.\n    boolean isFieldUsed(final String field) {\n        if (field.contains(\".\")) {\n            String[] steps = field.split(\"\\\\.\");\n            return Arrays.stream(steps).allMatch(machine::isFieldStepUsed);\n        }\n        return machine.isFieldStepUsed(field);\n    }\n\n    Step nextStep() {\n        return stepQueue.remove();\n    }\n\n    void addStep(final Step step) {\n        // queue it up only if it's the first time we're trying to queue it up\n        // otherwise bad things happen, see comment on seenSteps collection\n        if (seenSteps.add(step)) {\n            stepQueue.add(step);\n        }\n    }\n\n    boolean stepsRemain() {\n        return !stepQueue.isEmpty();\n    }\n\n    List<Object> getMatchedRules() {\n        return new ArrayList<>(matchingRules);\n    }\n\n    void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern, final SubRuleContext.Generator subRuleContextGenerator) {\n        Set<SubRuleContext> terminalSubRuleIds = nameState.getTerminalSubRuleIdsForPattern(pattern);\n        if (terminalSubRuleIds == null) {\n            return;\n        }\n        // If no candidates, that means we're on the first step, so all sub-rules are candidates.\n        if (candidateSubRuleIds == null || candidateSubRuleIds.isEmpty()) {\n            for (SubRuleContext terminalSubRuleId : terminalSubRuleIds) {\n                matchingRules.add(terminalSubRuleId.getRuleName());\n            }\n        } else {\n            intersection(candidateSubRuleIds, terminalSubRuleIds, matchingRules, SubRuleContext::getRuleName);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents the state of a rule-finding project.\n */\n@ThreadSafe\nclass Task {\n\n    // What we're trying to match rules to\n    public final String[] event;\n\n    // the rules that matched the event, if we find any\n    private final Set<Object> matchingRules = new HashSet<>();\n\n    // Steps queued up for processing\n    private final Queue<Step> stepQueue = new ArrayDeque<>();\n\n    // Visiting the same Step multiple times will give the same outcome for all visits,\n    // as we are not mutating the state of Task nor Step nor GenericMachine as part of the visit.\n    // To prevent explosion of complexity we need to prevent queueing up steps that are still\n    // waiting in the stepQueue or we have already ran. We end up holding on to some amount\n    // of memory during Task evaluation to track this, but it has an upper bound that is O(n * m) where\n    // n = number of values in input event\n    // m = number of nodes in the compiled state machine\n    private final Set<Step> seenSteps = new HashSet<>();\n\n    // the state machine\n    private final GenericMachine<?> machine;\n\n    Task(final List<String> event, final GenericMachine<?> machine) {\n        this(event.toArray(new String[0]), machine);\n    }\n\n    Task(final String[] event, final GenericMachine<?> machine) {\n        this.event = event;\n        this.machine = machine;\n    }\n\n    NameState startState() {\n        return machine.getStartState();\n    }\n\n    // The field used means all steps in the field must be all used individually.\n    boolean isFieldUsed(final String field) {\n        if (field.contains(\".\")) {\n            String[] steps = field.split(\"\\\\.\");\n            return Arrays.stream(steps).allMatch(machine::isFieldStepUsed);\n        }\n        return machine.isFieldStepUsed(field);\n    }\n\n    Step nextStep() {\n        return stepQueue.remove();\n    }\n\n    void addStep(final Step step) {\n        // queue it up only if it's the first time we're trying to queue it up\n        // otherwise bad things happen, see comment on seenSteps collection\n        if (seenSteps.add(step)) {\n            stepQueue.add(step);\n        }\n    }\n\n    boolean stepsRemain() {\n        return !stepQueue.isEmpty();\n    }\n\n    List<Object> getMatchedRules() {\n        return new ArrayList<>(matchingRules);\n    }\n\n    void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern, final SubRuleContext.Generator subRuleContextGenerator) {\n        Set<SubRuleContext> terminalSubRuleIds = nameState.getTerminalSubRuleIdsForPattern(pattern);\n        if (terminalSubRuleIds == null) {\n            return;\n        }\n        // If no candidates, that means we're on the first step, so all sub-rules are candidates.\n        if (candidateSubRuleIds == null || candidateSubRuleIds.isEmpty()) {\n            for (SubRuleContext terminalSubRuleId : terminalSubRuleIds) {\n                matchingRules.add(terminalSubRuleId.getRuleName());\n            }\n        } else {\n            intersection(candidateSubRuleIds, terminalSubRuleIds, matchingRules, SubRuleContext::getRuleName);\n        }\n    }\n}",
+  "subClasses": []
+}

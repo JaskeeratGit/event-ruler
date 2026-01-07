@@ -1,0 +1,25 @@
+{
+  "className": "Generator",
+  "methodName": "generate",
+  "brief": "public SubRuleContext generate(Object ruleName){}",
+  "methodSignature": "generate(Object)",
+  "sourceCode": "public SubRuleContext generate(Object ruleName) {\n            SubRuleContext subRuleContext = new SubRuleContext(nextId++, ruleName);\n            nameToContext.computeIfAbsent(ruleName, k -> new HashSet<>()).add(subRuleContext);\n            return subRuleContext;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "java.util.Map": [
+      "computeIfAbsent(K, Function<? super K, ? extends V>)"
+    ]
+  },
+  "full_method_info": "public SubRuleContext generate(Object ruleName) {\n    SubRuleContext subRuleContext = new SubRuleContext(nextId++, ruleName);\n    nameToContext.computeIfAbsent(ruleName, k -> new HashSet<>()).add(subRuleContext);\n    return subRuleContext;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,31 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "deepCopyRules",
+  "brief": "private static List deepCopyRules(final List<Map<String, List<Patterns>>> rules){}",
+  "methodSignature": "deepCopyRules(List)",
+  "sourceCode": "private static List deepCopyRules(final List<Map<String, List<Patterns>>> rules) {\n        return rules.stream().map(rule -> new HashMap(rule)).collect(Collectors.toList());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Map<String,List<Patterns>>>"
+  ],
+  "dependentMethods": {
+    "java.util.stream.Stream": [
+      "collect(Collector<? super T, A, R>)",
+      "map(Function<? super T, ? extends R>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "java.util.stream.Collectors": [
+      "toList()"
+    ]
+  },
+  "full_method_info": "// This is not exactly the real deep copy because here we only need deep copy at List element level,\nprivate static List deepCopyRules(final List<Map<String, List<Patterns>>> rules) {\n    return rules.stream().map(rule -> new HashMap(rule)).collect(Collectors.toList());\n}",
+  "method_comment": " This is not exactly the real deep copy because here we only need deep copy at List element level,",
+  "method_annotation": ""
+}

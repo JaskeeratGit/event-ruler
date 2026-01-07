@@ -1,0 +1,30 @@
+{
+  "className": "GenericMachine",
+  "methodName": "hasValuePatterns",
+  "brief": "private boolean hasValuePatterns(List<Patterns> patterns){}",
+  "methodSignature": "hasValuePatterns(List)",
+  "sourceCode": "private boolean hasValuePatterns(List<Patterns> patterns) {\n        return patterns.stream().anyMatch(p -> !isNamePattern(p));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Patterns>"
+  ],
+  "dependentMethods": {
+    "java.util.stream.Stream": [
+      "anyMatch(Predicate<? super T>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "isNamePattern(Patterns)"
+    ]
+  },
+  "full_method_info": "private boolean hasValuePatterns(List<Patterns> patterns) {\n    return patterns.stream().anyMatch(p -> !isNamePattern(p));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

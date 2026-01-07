@@ -1,0 +1,24 @@
+{
+  "className": "MatchTypeParser",
+  "methodName": "parse",
+  "brief": "InputCharacter[] parse(MatchType type, String value);",
+  "methodSignature": "parse(MatchType, String)",
+  "sourceCode": "InputCharacter[] parse(MatchType type, String value);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MatchType",
+    "String"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.MatchType": [],
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * @param type Match type\n * @param value string value to parse\n * @return processed and parsed Input Character\n */\nInputCharacter[] parse(MatchType type, String value);",
+  "method_comment": "\n   * @param type Match type\n   * @param value string value to parse\n   * @return processed and parsed Input Character\n   ",
+  "method_annotation": ""
+}

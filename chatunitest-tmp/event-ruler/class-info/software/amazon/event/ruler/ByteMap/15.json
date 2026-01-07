@@ -1,0 +1,31 @@
+{
+  "className": "ByteMap",
+  "methodName": "getSingleByteTransitions",
+  "brief": "private Set<SingleByteTransition> getSingleByteTransitions(){}",
+  "methodSignature": "getSingleByteTransitions()",
+  "sourceCode": "private Set<SingleByteTransition> getSingleByteTransitions() {\n        Set<SingleByteTransition> allTransitions = new HashSet<>();\n        for (ByteTransition transition : map.values()) {\n            if (transition != null) {\n                expand(transition).forEach(single -> allTransitions.add(single));\n            }\n        }\n        return allTransitions;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.SortedMap": [
+      "values()"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "expand(ByteTransition)"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Get all transitions contained in this map, with the compound transitions expanded to singular form.\n *\n * @return All transitions contained in this map, with the compound transitions expanded to singular form.\n */\nprivate Set<SingleByteTransition> getSingleByteTransitions() {\n    Set<SingleByteTransition> allTransitions = new HashSet<>();\n    for (ByteTransition transition : map.values()) {\n        if (transition != null) {\n            expand(transition).forEach(single -> allTransitions.add(single));\n        }\n    }\n    return allTransitions;\n}",
+  "method_comment": "\n     * Get all transitions contained in this map, with the compound transitions expanded to singular form.\n     *\n     * @return All transitions contained in this map, with the compound transitions expanded to singular form.\n     ",
+  "method_annotation": ""
+}

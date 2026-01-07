@@ -1,0 +1,25 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "tooManyElements",
+  "brief": "private static void tooManyElements(final JsonParser parser) throws JsonParseException{}",
+  "methodSignature": "tooManyElements(JsonParser)",
+  "sourceCode": "private static void tooManyElements(final JsonParser parser) throws JsonParseException {\n        barf(parser, \"Too many elements in numeric expression\");\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "barf(JsonParser, String)"
+    ]
+  },
+  "full_method_info": "private static void tooManyElements(final JsonParser parser) throws JsonParseException {\n    barf(parser, \"Too many elements in numeric expression\");\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

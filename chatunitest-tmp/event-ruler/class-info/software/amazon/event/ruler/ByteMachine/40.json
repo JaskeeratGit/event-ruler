@@ -1,0 +1,46 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findOrMakeNextByteStateForRangePattern",
+  "brief": "private ByteState findOrMakeNextByteStateForRangePattern(ByteState state, final byte[] utf8bytes,\n                                                             int currentIndex){}",
+  "methodSignature": "findOrMakeNextByteStateForRangePattern(ByteState, byte[], int)",
+  "sourceCode": "private ByteState findOrMakeNextByteStateForRangePattern(ByteState state, final byte[] utf8bytes,\n                                                             int currentIndex) {\n        final InputCharacter character = getParser().parse(utf8bytes[currentIndex]);\n        ByteTransition trans = getTransition(state, character);\n\n        ByteState nextState = trans.getNextByteState();\n        if (nextState == null) {\n            // the next state is null => create a new state, set the transition's next state to the new state\n            nextState = new ByteState();\n            nextState.setIndeterminatePrefix(state.hasIndeterminatePrefix());\n            putTransitionNextState(state, character, trans.expand().iterator().next(), nextState);\n        }\n        return nextState;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "byte[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "setIndeterminatePrefix(boolean)",
+      "hasIndeterminatePrefix()"
+    ],
+    "byte": [],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(byte)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "putTransitionNextState(ByteState, InputCharacter, SingleByteTransition, ByteState)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getNextByteState()"
+    ],
+    "java.util.Iterator": [
+      "next()"
+    ],
+    "java.lang.Iterable": [
+      "iterator()"
+    ]
+  },
+  "full_method_info": "private ByteState findOrMakeNextByteStateForRangePattern(ByteState state, final byte[] utf8bytes, int currentIndex) {\n    final InputCharacter character = getParser().parse(utf8bytes[currentIndex]);\n    ByteTransition trans = getTransition(state, character);\n    ByteState nextState = trans.getNextByteState();\n    if (nextState == null) {\n        // the next state is null => create a new state, set the transition's next state to the new state\n        nextState = new ByteState();\n        nextState.setIndeterminatePrefix(state.hasIndeterminatePrefix());\n        putTransitionNextState(state, character, trans.expand().iterator().next(), nextState);\n    }\n    return nextState;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

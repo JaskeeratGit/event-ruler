@@ -1,0 +1,18 @@
+{
+  "className": "IntIntMap",
+  "methodName": "size",
+  "brief": "int size(){}",
+  "methodSignature": "size()",
+  "sourceCode": "int size() {\n        return size;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns the number of key-value mappings in this map.\n *\n * @return the number of key-value mappings in this map\n */\nint size() {\n    return size;\n}",
+  "method_comment": "\n     * Returns the number of key-value mappings in this map.\n     *\n     * @return the number of key-value mappings in this map\n     ",
+  "method_annotation": ""
+}

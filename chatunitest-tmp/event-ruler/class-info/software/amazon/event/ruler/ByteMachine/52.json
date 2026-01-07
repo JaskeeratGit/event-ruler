@@ -1,0 +1,37 @@
+{
+  "className": "ByteMachine",
+  "methodName": "updateMatchReferences",
+  "brief": "private void updateMatchReferences(ByteMatch match){}",
+  "methodSignature": "updateMatchReferences(ByteMatch)",
+  "sourceCode": "private void updateMatchReferences(ByteMatch match) {\n        Patterns pattern = match.getPattern();\n        switch (pattern.type()) {\n        case EXACT:\n        case PREFIX:\n        case PREFIX_EQUALS_IGNORE_CASE:\n        case EXISTS:\n        case EQUALS_IGNORE_CASE:\n        case WILDCARD:\n            break;\n        case SUFFIX:\n        case SUFFIX_EQUALS_IGNORE_CASE:\n            hasSuffix.decrementAndGet();\n            break;\n        case NUMERIC_EQ:\n            hasNumeric.decrementAndGet();\n            break;\n        case NUMERIC_RANGE:\n            final Range range = (Range) pattern;\n            if (range.isCIDR) {\n                hasIP.decrementAndGet();\n            } else {\n                hasNumeric.decrementAndGet();\n            }\n            break;\n        case ANYTHING_BUT:\n            removeFromAnythingButsMap(anythingButs, match.getNextNameState(), match.getPattern());\n            if (((AnythingBut) pattern).isNumeric()) {\n                hasNumeric.decrementAndGet();\n            }\n            break;\n        case ANYTHING_BUT_PREFIX:\n        case ANYTHING_BUT_IGNORE_CASE:\n        case ANYTHING_BUT_WILDCARD:\n            removeFromAnythingButsMap(anythingButs, match.getNextNameState(), match.getPattern());\n            break;\n        case ANYTHING_BUT_SUFFIX:\n            hasSuffix.decrementAndGet();\n            removeFromAnythingButsMap(anythingButs, match.getNextNameState(), match.getPattern());\n            break;\n        default:\n            throw new AssertionError(\"Not implemented yet\");\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteMatch"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteMatch": [
+      "getPattern()",
+      "getNextNameState()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "java.util.concurrent.atomic.AtomicInteger": [
+      "decrementAndGet()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "removeFromAnythingButsMap(Patterns>>, NameState, Patterns)"
+    ],
+    "software.amazon.event.ruler.AnythingBut": [
+      "isNumeric()"
+    ]
+  },
+  "full_method_info": "private void updateMatchReferences(ByteMatch match) {\n    Patterns pattern = match.getPattern();\n    switch(pattern.type()) {\n        case EXACT:\n        case PREFIX:\n        case PREFIX_EQUALS_IGNORE_CASE:\n        case EXISTS:\n        case EQUALS_IGNORE_CASE:\n        case WILDCARD:\n            break;\n        case SUFFIX:\n        case SUFFIX_EQUALS_IGNORE_CASE:\n            hasSuffix.decrementAndGet();\n            break;\n        case NUMERIC_EQ:\n            hasNumeric.decrementAndGet();\n            break;\n        case NUMERIC_RANGE:\n            final Range range = (Range) pattern;\n            if (range.isCIDR) {\n                hasIP.decrementAndGet();\n            } else {\n                hasNumeric.decrementAndGet();\n            }\n            break;\n        case ANYTHING_BUT:\n            removeFromAnythingButsMap(anythingButs, match.getNextNameState(), match.getPattern());\n            if (((AnythingBut) pattern).isNumeric()) {\n                hasNumeric.decrementAndGet();\n            }\n            break;\n        case ANYTHING_BUT_PREFIX:\n        case ANYTHING_BUT_IGNORE_CASE:\n        case ANYTHING_BUT_WILDCARD:\n            removeFromAnythingButsMap(anythingButs, match.getNextNameState(), match.getPattern());\n            break;\n        case ANYTHING_BUT_SUFFIX:\n            hasSuffix.decrementAndGet();\n            removeFromAnythingButsMap(anythingButs, match.getNextNameState(), match.getPattern());\n            break;\n        default:\n            throw new AssertionError(\"Not implemented yet\");\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "Range",
+  "methodName": "getHexByteIndex",
+  "brief": "private static int getHexByteIndex(byte value){}",
+  "methodSignature": "getHexByteIndex(byte)",
+  "sourceCode": "private static int getHexByteIndex(byte value) {\n        // ['0'-'9'] maps to [0-9] indexes\n        if (value >= '0' && value <= '9') {\n            return value - '0';\n        }\n        // ['A'-'F'] maps to [10-15] indexes\n        return (value - 'A') + HEX_DIGIT_A_DECIMAL_VALUE;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "// quickly find the index of chars within Constants.HEX_DIGITS\nprivate static int getHexByteIndex(byte value) {\n    // ['0'-'9'] maps to [0-9] indexes\n    if (value >= '0' && value <= '9') {\n        return value - '0';\n    }\n    // ['A'-'F'] maps to [10-15] indexes\n    return (value - 'A') + HEX_DIGIT_A_DECIMAL_VALUE;\n}",
+  "method_comment": " quickly find the index of chars within Constants.HEX_DIGITS",
+  "method_annotation": ""
+}

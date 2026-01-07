@@ -1,0 +1,45 @@
+{
+  "className": "ByteMap",
+  "methodName": "mergeAdjacentInMapIfNeeded",
+  "brief": "private static void mergeAdjacentInMapIfNeeded(final NavigableMap<Integer, ByteTransition> inputMap){}",
+  "methodSignature": "mergeAdjacentInMapIfNeeded(NavigableMap)",
+  "sourceCode": "private static void mergeAdjacentInMapIfNeeded(final NavigableMap<Integer, ByteTransition> inputMap) {\n        Iterator<Map.Entry<Integer, ByteTransition>> iterator = inputMap.entrySet().iterator();\n        while (iterator.hasNext()) {\n            Map.Entry<Integer, ByteTransition> next1 = iterator.next();\n            Map.Entry<Integer, ByteTransition> next2 = inputMap.higherEntry(next1.getKey());\n            if (next2 != null && expand(next1.getValue()).equals(expand(next2.getValue()))) {\n                iterator.remove();\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "NavigableMap<Integer,ByteTransition>"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "iterator()"
+    ],
+    "java.util.SortedMap": [
+      "entrySet()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()",
+      "remove()"
+    ],
+    "java.util.NavigableMap": [
+      "higherEntry(K)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.lang.Object": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "expand(ByteTransition)"
+    ]
+  },
+  "full_method_info": "/**\n * Merge adjacent entries with equal transitions in inputMap.\n *\n * @param inputMap The map on which we merge adjacent entries with equal transitions.\n */\nprivate static void mergeAdjacentInMapIfNeeded(final NavigableMap<Integer, ByteTransition> inputMap) {\n    Iterator<Map.Entry<Integer, ByteTransition>> iterator = inputMap.entrySet().iterator();\n    while (iterator.hasNext()) {\n        Map.Entry<Integer, ByteTransition> next1 = iterator.next();\n        Map.Entry<Integer, ByteTransition> next2 = inputMap.higherEntry(next1.getKey());\n        if (next2 != null && expand(next1.getValue()).equals(expand(next2.getValue()))) {\n            iterator.remove();\n        }\n    }\n}",
+  "method_comment": "\n     * Merge adjacent entries with equal transitions in inputMap.\n     *\n     * @param inputMap The map on which we merge adjacent entries with equal transitions.\n     ",
+  "method_annotation": ""
+}

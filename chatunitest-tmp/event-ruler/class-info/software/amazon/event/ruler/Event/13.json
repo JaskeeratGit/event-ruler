@@ -1,0 +1,27 @@
+{
+  "className": "Event",
+  "methodName": "advanceToClosingToken",
+  "brief": "private void advanceToClosingToken(JsonParser jsonParser, JsonToken openingToken, JsonToken closingToken) throws IOException{}",
+  "methodSignature": "advanceToClosingToken(JsonParser, JsonToken, JsonToken)",
+  "sourceCode": "private void advanceToClosingToken(JsonParser jsonParser, JsonToken openingToken, JsonToken closingToken) throws IOException {\n        int count = 1;\n        do {\n            JsonToken currentToken = jsonParser.nextToken();\n            if (currentToken == openingToken) {\n                count++;\n            } else if (currentToken == closingToken) {\n                count--;\n            }\n        } while (count > 0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "JsonToken",
+    "JsonToken"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()"
+    ],
+    "com.fasterxml.jackson.core.JsonToken": []
+  },
+  "full_method_info": "private void advanceToClosingToken(JsonParser jsonParser, JsonToken openingToken, JsonToken closingToken) throws IOException {\n    int count = 1;\n    do {\n        JsonToken currentToken = jsonParser.nextToken();\n        if (currentToken == openingToken) {\n            count++;\n        } else if (currentToken == closingToken) {\n            count--;\n        }\n    } while (count > 0);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

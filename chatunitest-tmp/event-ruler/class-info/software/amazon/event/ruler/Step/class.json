@@ -1,0 +1,52 @@
+{
+  "fullClassName": "software.amazon.event.ruler.Step",
+  "className": "Step",
+  "index": 34,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "@Immutable\n@ThreadSafe\nclass Step",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import javax.annotation.concurrent.Immutable;",
+    "import javax.annotation.concurrent.ThreadSafe;",
+    "import java.util.Objects;",
+    "import java.util.Set;"
+  ],
+  "fields": [
+    "final int keyIndex;",
+    "final NameState nameState;",
+    "final Set<SubRuleContext> candidateSubRuleIds;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "equals(Object)": "0",
+    "hashCode()": "1",
+    "Step(int, NameState, Set)": "2"
+  },
+  "methodsBrief": [
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "Step(final int keyIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds){}"
+  ],
+  "constructorSigs": [
+    "Step(int, NameState, Set)"
+  ],
+  "constructorBrief": [
+    "Step(final int keyIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "software.amazon.event.ruler.NameState": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport javax.annotation.concurrent.Immutable;\nimport javax.annotation.concurrent.ThreadSafe;\nimport java.util.Objects;\nimport java.util.Set;\n\n/**\n * Represents a suggestion of a state/token combo from which there might be a transition.  The event token\n *  indexed is always the key of a key/value combination\n */\n@Immutable\n@ThreadSafe\nclass Step {\n\n    final int keyIndex;\n\n    final NameState nameState;\n\n    final Set<SubRuleContext> candidateSubRuleIds;\n\n    Step(final int keyIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds) {\n        this.keyIndex = keyIndex;\n        this.nameState = nameState;\n        this.candidateSubRuleIds = candidateSubRuleIds;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        Step step = (Step) o;\n        return keyIndex == step.keyIndex && Objects.equals(nameState, step.nameState) && Objects.equals(candidateSubRuleIds, step.candidateSubRuleIds);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(keyIndex, nameState, candidateSubRuleIds);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents a suggestion of a state/token combo from which there might be a transition.  The event token\n *  indexed is always the key of a key/value combination\n */\n@Immutable\n@ThreadSafe\nclass Step {\n\n    final int keyIndex;\n\n    final NameState nameState;\n\n    final Set<SubRuleContext> candidateSubRuleIds;\n\n    Step(final int keyIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds) {\n        this.keyIndex = keyIndex;\n        this.nameState = nameState;\n        this.candidateSubRuleIds = candidateSubRuleIds;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        Step step = (Step) o;\n        return keyIndex == step.keyIndex && Objects.equals(nameState, step.nameState) && Objects.equals(candidateSubRuleIds, step.candidateSubRuleIds);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(keyIndex, nameState, candidateSubRuleIds);\n    }\n}",
+  "subClasses": []
+}

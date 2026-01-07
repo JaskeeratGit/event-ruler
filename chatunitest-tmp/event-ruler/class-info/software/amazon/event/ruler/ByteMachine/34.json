@@ -1,0 +1,43 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findAnythingButValuesSetPattern",
+  "brief": "private NameState findAnythingButValuesSetPattern(AnythingButValuesSet pattern){}",
+  "methodSignature": "findAnythingButValuesSetPattern(AnythingButValuesSet)",
+  "sourceCode": "private NameState findAnythingButValuesSetPattern(AnythingButValuesSet pattern) {\n\n        Set<NameState> nextNameStates = new HashSet<>(pattern.getValues().size());\n        for (String value : pattern.getValues()) {\n            NameState matchPattern = findMatchPattern(getParser().parse(pattern.type(), value), pattern);\n            if (matchPattern != null) {\n                nextNameStates.add(matchPattern);\n            }\n        }\n        if (!nextNameStates.isEmpty()) {\n            assert nextNameStates.size() == 1 : \"nextNameStates.size() == 1\";\n            return nextNameStates.iterator().next();\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "AnythingButValuesSet"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "isEmpty()",
+      "iterator()",
+      "add(E)",
+      "size()"
+    ],
+    "software.amazon.event.ruler.AnythingButValuesSet": [
+      "getValues()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "findMatchPattern(InputCharacter[], Patterns)"
+    ],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(MatchType, String)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "java.util.Iterator": [
+      "next()"
+    ]
+  },
+  "full_method_info": "private NameState findAnythingButValuesSetPattern(AnythingButValuesSet pattern) {\n    Set<NameState> nextNameStates = new HashSet<>(pattern.getValues().size());\n    for (String value : pattern.getValues()) {\n        NameState matchPattern = findMatchPattern(getParser().parse(pattern.type(), value), pattern);\n        if (matchPattern != null) {\n            nextNameStates.add(matchPattern);\n        }\n    }\n    if (!nextNameStates.isEmpty()) {\n        assert nextNameStates.size() == 1 : \"nextNameStates.size() == 1\";\n        return nextNameStates.iterator().next();\n    }\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

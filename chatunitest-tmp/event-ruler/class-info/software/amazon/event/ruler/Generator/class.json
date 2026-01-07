@@ -1,0 +1,43 @@
+{
+  "fullClassName": "software.amazon.event.ruler.Generator",
+  "className": "Generator",
+  "index": 33,
+  "modifier": "[static , final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "static final class Generator",
+  "hasConstructor": false,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.HashSet;",
+    "import java.util.Map;",
+    "import java.util.Set;",
+    "import java.util.concurrent.ConcurrentHashMap;"
+  ],
+  "fields": [
+    "private final Map<Object, Set<SubRuleContext>> nameToContext = new ConcurrentHashMap<>();",
+    "private long nextId;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "generate(Object)": "0",
+    "getIdsGeneratedForName(Object)": "1"
+  },
+  "methodsBrief": [
+    "public SubRuleContext generate(Object ruleName){}",
+    "public Set<SubRuleContext> getIdsGeneratedForName(Object ruleName){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.HashSet;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.concurrent.ConcurrentHashMap;\n\n/**\n * This class stores context regarding a sub-rule.\n *\n * A sub-rule refers to name/value pairs, usually represented by Map of String to List of Patterns, that compose a rule.\n * In the case of $or, one rule will have multiple name/value pairs, and this is why we use the \"sub-rule\" terminology.\n */\npublic final class SubRuleContext {\n\n    private final long id;\n\n    private final Object ruleName;\n\n    SubRuleContext(long id, Object ruleName) {\n        this.id = id;\n        this.ruleName = ruleName;\n    }\n\n    public Object getRuleName() {\n        return ruleName;\n    }\n\n    @Override\n    public boolean equals(Object obj) {\n        if (this == obj) {\n            return true;\n        }\n        if (obj instanceof SubRuleContext) {\n            return id == ((SubRuleContext) obj).id;\n        }\n        return false;\n    }\n\n    @Override\n    public int hashCode() {\n        return Long.hashCode(id);\n    }\n\n    /**\n     * Generator for SubRuleContexts.\n     */\n    static final class Generator {\n\n        private final Map<Object, Set<SubRuleContext>> nameToContext = new ConcurrentHashMap<>();\n\n        private long nextId;\n\n        public SubRuleContext generate(Object ruleName) {\n            SubRuleContext subRuleContext = new SubRuleContext(nextId++, ruleName);\n            nameToContext.computeIfAbsent(ruleName, k -> new HashSet<>()).add(subRuleContext);\n            return subRuleContext;\n        }\n\n        public Set<SubRuleContext> getIdsGeneratedForName(Object ruleName) {\n            return nameToContext.get(ruleName);\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Generator for SubRuleContexts.\n */\nstatic final class Generator {\n\n    private final Map<Object, Set<SubRuleContext>> nameToContext = new ConcurrentHashMap<>();\n\n    private long nextId;\n\n    public SubRuleContext generate(Object ruleName) {\n        SubRuleContext subRuleContext = new SubRuleContext(nextId++, ruleName);\n        nameToContext.computeIfAbsent(ruleName, k -> new HashSet<>()).add(subRuleContext);\n        return subRuleContext;\n    }\n\n    public Set<SubRuleContext> getIdsGeneratedForName(Object ruleName) {\n        return nameToContext.get(ruleName);\n    }\n}",
+  "subClasses": []
+}

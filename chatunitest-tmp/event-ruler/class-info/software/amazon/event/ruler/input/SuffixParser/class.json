@@ -1,0 +1,43 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.SuffixParser",
+  "className": "SuffixParser",
+  "index": 15,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[StringValueParser]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public class SuffixParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.nio.charset.StandardCharsets;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [
+    "StringValueParser"
+  ],
+  "methodSigs": {
+    "parse(String)": "0",
+    "SuffixParser()": "1"
+  },
+  "methodsBrief": [
+    "@Override\n    public InputCharacter[] parse(String value){}",
+    "SuffixParser(){}"
+  ],
+  "constructorSigs": [
+    "SuffixParser()"
+  ],
+  "constructorBrief": [
+    "SuffixParser(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport java.nio.charset.StandardCharsets;\n\n/**\n * A parser to be used specifically for suffix rules.\n *\n * This undoes the `reverse()` from {@code software.amazon.event.ruler.Patterns} intentionally\n * to ensure we can correctly reverse utf-8 characters with 2+ bytes like '大' and '雨'.\n */\npublic class SuffixParser implements StringValueParser {\n\n    SuffixParser() {\n    }\n\n    @Override\n    public InputCharacter[] parse(String value) {\n        final byte[] utf8bytes = new StringBuilder(value).reverse().toString().getBytes(StandardCharsets.UTF_8);\n        final InputCharacter[] result = new InputCharacter[utf8bytes.length];\n        for (int i = 0; i < utf8bytes.length; i++) {\n            byte utf8byte = utf8bytes[utf8bytes.length - i - 1];\n            result[i] = new InputByte(utf8byte);\n        }\n        return result;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A parser to be used specifically for suffix rules.\n *\n * This undoes the `reverse()` from {@code software.amazon.event.ruler.Patterns} intentionally\n * to ensure we can correctly reverse utf-8 characters with 2+ bytes like '大' and '雨'.\n */\npublic class SuffixParser implements StringValueParser {\n\n    SuffixParser() {\n    }\n\n    @Override\n    public InputCharacter[] parse(String value) {\n        final byte[] utf8bytes = new StringBuilder(value).reverse().toString().getBytes(StandardCharsets.UTF_8);\n        final InputCharacter[] result = new InputCharacter[utf8bytes.length];\n        for (int i = 0; i < utf8bytes.length; i++) {\n            byte utf8byte = utf8bytes[utf8bytes.length - i - 1];\n            result[i] = new InputByte(utf8byte);\n        }\n        return result;\n    }\n}",
+  "subClasses": []
+}

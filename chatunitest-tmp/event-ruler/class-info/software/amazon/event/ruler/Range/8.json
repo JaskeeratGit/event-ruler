@@ -1,0 +1,18 @@
+{
+  "className": "Range",
+  "methodName": "maxDigit",
+  "brief": "public byte maxDigit(){}",
+  "methodSignature": "maxDigit()",
+  "sourceCode": "public byte maxDigit() {\n        return isCIDR ? MAX_HEX_DIGIT : MAX_NUM_DIGIT;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public byte maxDigit() {\n    return isCIDR ? MAX_HEX_DIGIT : MAX_NUM_DIGIT;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

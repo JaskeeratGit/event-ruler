@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "hasIndeterminatePrefix",
+  "brief": "boolean hasIndeterminatePrefix(){}",
+  "methodSignature": "hasIndeterminatePrefix()",
+  "sourceCode": "boolean hasIndeterminatePrefix() {\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Indicates if it is possible to traverse from the machine's start state to this transition using more than one\n * possible prefix/character-sequence.\n *\n * @return True if prefix is indeterminate; false otherwise.\n */\nboolean hasIndeterminatePrefix() {\n    return false;\n}",
+  "method_comment": "\n     * Indicates if it is possible to traverse from the machine's start state to this transition using more than one\n     * possible prefix/character-sequence.\n     *\n     * @return True if prefix is indeterminate; false otherwise.\n     ",
+  "method_annotation": ""
+}

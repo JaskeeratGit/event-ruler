@@ -1,0 +1,34 @@
+{
+  "className": "GenericMachine",
+  "methodName": "isFieldStepUsed",
+  "brief": "boolean isFieldStepUsed(final String stepName){}",
+  "methodSignature": "isFieldStepUsed(String)",
+  "sourceCode": "boolean isFieldStepUsed(final String stepName) {\n        if (fieldStepsUsedRefCount.get(stepName) != null) {\n            return true;\n        }\n        // We need split step name further with \".\" to check each sub step individually to cover the case if customer\n        // use the \".\" internally in field of event, e.g. rule: {\"a.b\" : [123]} and {\"a\" : { \"b\" : [123] }} will both\n        // result \"a\" and \"b\" being added into fieldStepsUsedRefCount map in addPatternRule API, at that time, we\n        // cannot distinguish the \".\" is from original event or added by us when we flatten the event, but they are\n        // both possible to match some rules, so we do this check.\n        // The main reason we decided to put \"recordStep\" work in addPatternRule API is this API have been used by many\n        // customer directly already and we want them to get the same performance boost.\n        if (stepName.contains(\".\")) {\n            String[] steps = stepName.split(\"\\\\.\");\n            return Arrays.stream(steps).allMatch(step -> (fieldStepsUsedRefCount.get(step) != null));\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "split(String)",
+      "contains(CharSequence)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "java.util.stream.Stream": [
+      "allMatch(Predicate<? super T>)"
+    ],
+    "java.util.Arrays": [
+      "stream(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * Check to see whether a field step name is actually used in any rule.\n *\n * @param stepName the field step name to check\n * @return true if the field is used in any rule, false otherwise\n */\nboolean isFieldStepUsed(final String stepName) {\n    if (fieldStepsUsedRefCount.get(stepName) != null) {\n        return true;\n    }\n    // We need split step name further with \".\" to check each sub step individually to cover the case if customer\n    // use the \".\" internally in field of event, e.g. rule: {\"a.b\" : [123]} and {\"a\" : { \"b\" : [123] }} will both\n    // result \"a\" and \"b\" being added into fieldStepsUsedRefCount map in addPatternRule API, at that time, we\n    // cannot distinguish the \".\" is from original event or added by us when we flatten the event, but they are\n    // both possible to match some rules, so we do this check.\n    // The main reason we decided to put \"recordStep\" work in addPatternRule API is this API have been used by many\n    // customer directly already and we want them to get the same performance boost.\n    if (stepName.contains(\".\")) {\n        String[] steps = stepName.split(\"\\\\.\");\n        return Arrays.stream(steps).allMatch(step -> (fieldStepsUsedRefCount.get(step) != null));\n    }\n    return false;\n}",
+  "method_comment": "\n     * Check to see whether a field step name is actually used in any rule.\n     *\n     * @param stepName the field step name to check\n     * @return true if the field is used in any rule, false otherwise\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,34 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findMatchForRangePattern",
+  "brief": "private NameState findMatchForRangePattern(byte b, ByteTransition trans, Patterns pattern){}",
+  "methodSignature": "findMatchForRangePattern(byte, ByteTransition, Patterns)",
+  "sourceCode": "private NameState findMatchForRangePattern(byte b, ByteTransition trans, Patterns pattern) {\n        if (trans == null) {\n            return null;\n        }\n\n        ByteTransition nextTrans = getTransition(trans, b);\n\n        ByteMatch match = findMatch(nextTrans.getMatches(), pattern);\n        return match == null ? null : match.getNextNameState();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte",
+    "ByteTransition",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "getMatches()"
+    ],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "getTransition(ByteTransition, byte)",
+      "findMatch(ByteMatch>, Patterns)"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getNextNameState()"
+    ]
+  },
+  "full_method_info": "private NameState findMatchForRangePattern(byte b, ByteTransition trans, Patterns pattern) {\n    if (trans == null) {\n        return null;\n    }\n    ByteTransition nextTrans = getTransition(trans, b);\n    ByteMatch match = findMatch(nextTrans.getMatches(), pattern);\n    return match == null ? null : match.getNextNameState();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

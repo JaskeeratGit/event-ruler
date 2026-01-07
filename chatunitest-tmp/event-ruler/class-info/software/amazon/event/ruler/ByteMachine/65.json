@@ -1,0 +1,28 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findMatch",
+  "brief": "private static ByteMatch findMatch(Iterable<ByteMatch> matches, Patterns pattern){}",
+  "methodSignature": "findMatch(Iterable, Patterns)",
+  "sourceCode": "private static ByteMatch findMatch(Iterable<ByteMatch> matches, Patterns pattern) {\n        for (ByteMatch match : matches) {\n            if (match.getPattern().equals(pattern)) {\n                return match;\n            }\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<ByteMatch>",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getPattern()"
+    ]
+  },
+  "full_method_info": "private static ByteMatch findMatch(Iterable<ByteMatch> matches, Patterns pattern) {\n    for (ByteMatch match : matches) {\n        if (match.getPattern().equals(pattern)) {\n            return match;\n        }\n    }\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

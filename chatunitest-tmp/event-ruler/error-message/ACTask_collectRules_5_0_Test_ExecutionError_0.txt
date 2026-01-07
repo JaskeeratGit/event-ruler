@@ -1,0 +1,150 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+class ACTask_collectRules_5_0_Test {
+
+    /**
+     * Helper to invoke ACTask.collectRules reflectively (method is package-private in source).
+     */
+    private void invokeCollectRules(Object actask, Set<SubRuleContext> candidateSubRuleIds, NameState nameState, Object pattern, Object subRuleContextGenerator) throws Exception {
+        Method target = null;
+        for (Method m : ACTask.class.getDeclaredMethods()) {
+            if ("collectRules".equals(m.getName())) {
+                target = m;
+                break;
+            }
+        }
+        if (target == null) {
+            throw new NoSuchMethodException("collectRules method not found on ACTask");
+        }
+        target.setAccessible(true);
+        // invoke with 4 params as in signature
+        target.invoke(actask, candidateSubRuleIds, nameState, pattern, subRuleContextGenerator);
+    }
+
+    /**
+     * Helper to read private matchingRules field from ACTask instance.
+     */
+    @SuppressWarnings("unchecked")
+    private Set<Object> getMatchingRules(Object actask) throws Exception {
+        Field f = ACTask.class.getDeclaredField("matchingRules");
+        f.setAccessible(true);
+        return (Set<Object>) f.get(actask);
+    }
+
+    /**
+     * Helper to set up the NameState.patternToTerminalSubRuleIds map to return the provided set for a null pattern key.
+     */
+    @SuppressWarnings("unchecked")
+    private void putTerminalSubRuleIdsForNullPattern(NameState nameState, Set<SubRuleContext> terminalSet) throws Exception {
+        Field f = NameState.class.getDeclaredField("patternToTerminalSubRuleIds");
+        f.setAccessible(true);
+        Map<Object, Set<SubRuleContext>> map = (Map<Object, Set<SubRuleContext>>) f.get(nameState);
+        map.put(null, terminalSet);
+    }
+
+    /**
+     * Test when NameState returns null for the given pattern: collectRules should do nothing.
+     */
+    @Test
+    void testCollectRules_whenTerminalSubRuleIdsNull_doesNothing() throws Exception {
+        // create ACTask instance (constructor exists; passing nulls as constructors in provided source are empty)
+        ACTask task = new ACTask(null, null);
+        NameState nameState = new NameState();
+        // Ensure no mapping for null pattern -> getTerminalSubRuleIdsForPattern(null) returns null.
+        // Invoke with candidateSubRuleIds non-null to ensure early-return branch for null terminal set.
+        Set<SubRuleContext> candidates = new HashSet<>();
+        candidates.add(new SubRuleContext(1L, "r1"));
+        invokeCollectRules(task, candidates, nameState, null, null);
+        Set<Object> matching = getMatchingRules(task);
+        assertNotNull(matching);
+        assertTrue(matching.isEmpty(), "matchingRules should remain empty when terminalSubRuleIds is null");
+    }
+
+    /**
+     * Test when candidateSubRuleIds is null: should add all terminal sub-rule rule names to matchingRules.
+     */
+    @Test
+    void testCollectRules_whenCandidatesNull_addsAllTerminalRuleNames() throws Exception {
+        ACTask task = new ACTask(null, null);
+        NameState nameState = new NameState();
+        SubRuleContext s1 = new SubRuleContext(10L, "ruleA");
+        SubRuleContext s2 = new SubRuleContext(11L, "ruleB");
+        Set<SubRuleContext> terminalSet = new HashSet<>();
+        terminalSet.add(s1);
+        terminalSet.add(s2);
+        // put terminalSet into nameState for null pattern
+        putTerminalSubRuleIdsForNullPattern(nameState, terminalSet);
+        // candidateSubRuleIds = null -> treat as first step -> add all terminal rule names
+        invokeCollectRules(task, null, nameState, null, null);
+        Set<Object> matching = getMatchingRules(task);
+        assertNotNull(matching);
+        assertEquals(2, matching.size());
+        assertTrue(matching.contains("ruleA"));
+        assertTrue(matching.contains("ruleB"));
+    }
+
+    /**
+     * Test when candidateSubRuleIds is empty set: should behave like null candidates (add all terminal rule names).
+     */
+    @Test
+    void testCollectRules_whenCandidatesEmpty_addsAllTerminalRuleNames() throws Exception {
+        ACTask task = new ACTask(null, null);
+        NameState nameState = new NameState();
+        SubRuleContext s1 = new SubRuleContext(20L, "ruleX");
+        Set<SubRuleContext> terminalSet = new HashSet<>();
+        terminalSet.add(s1);
+        putTerminalSubRuleIdsForNullPattern(nameState, terminalSet);
+        // empty candidates set
+        Set<SubRuleContext> emptyCandidates = new HashSet<>();
+        invokeCollectRules(task, emptyCandidates, nameState, null, null);
+        Set<Object> matching = getMatchingRules(task);
+        assertNotNull(matching);
+        assertEquals(1, matching.size());
+        assertTrue(matching.contains("ruleX"));
+    }
+
+    /**
+     * Test when both candidateSubRuleIds and terminalSubRuleIds exist: intersection should add only matching rule names.
+     * This constructs shared SubRuleContext instance to ensure intersection by reference works.
+     */
+    @Test
+    void testCollectRules_withCandidates_intersectsAndAddsOnlyCommonRuleNames() throws Exception {
+        ACTask task = new ACTask(null, null);
+        NameState nameState = new NameState();
+        // shared sub-rule context that appears in both sets
+        SubRuleContext shared = new SubRuleContext(100L, "sharedRule");
+        SubRuleContext candidateOnly = new SubRuleContext(101L, "candidateOnlyRule");
+        SubRuleContext terminalOnly = new SubRuleContext(102L, "terminalOnlyRule");
+        Set<SubRuleContext> candidateSet = new HashSet<>();
+        candidateSet.add(shared);
+        candidateSet.add(candidateOnly);
+        Set<SubRuleContext> terminalSet = new HashSet<>();
+        terminalSet.add(shared);
+        terminalSet.add(terminalOnly);
+        putTerminalSubRuleIdsForNullPattern(nameState, terminalSet);
+        invokeCollectRules(task, candidateSet, nameState, null, null);
+        Set<Object> matching = getMatchingRules(task);
+        assertNotNull(matching);
+        assertEquals(1, matching.size(), "Only the shared rule's name should be added");
+        assertTrue(matching.contains("sharedRule"));
+        assertFalse(matching.contains("candidateOnlyRule"));
+        assertFalse(matching.contains("terminalOnlyRule"));
+    }
+}
+
+--------------------------------------------
+Error in testCollectRules_whenCandidatesEmpty_addsAllTerminalRuleNames(): line 102 : java.lang.NullPointerException
+Error in testCollectRules_whenCandidatesNull_addsAllTerminalRuleNames(): line 79 : java.lang.NullPointerException
+Error in testCollectRules_withCandidates_intersectsAndAddsOnlyCommonRuleNames(): line 123 : java.lang.NullPointerException
+Error in testCollectRules_whenTerminalSubRuleIdsNull_doesNothing(): line 62 : java.lang.NullPointerException

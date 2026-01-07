@@ -1,0 +1,42 @@
+{
+  "className": "ByteMap",
+  "methodName": "removeTransitionForAllBytes",
+  "brief": "void removeTransitionForAllBytes(final SingleByteTransition transition){}",
+  "methodSignature": "removeTransitionForAllBytes(SingleByteTransition)",
+  "sourceCode": "void removeTransitionForAllBytes(final SingleByteTransition transition) {\n        NavigableMap<Integer, ByteTransition> newMap = new TreeMap<>(map);\n        for (Map.Entry<Integer, ByteTransition> entry : newMap.entrySet()) {\n            Set<SingleByteTransition> newSingles = new HashSet<>();\n            ByteTransition storedTransition = entry.getValue();\n            expand(storedTransition).forEach(single -> newSingles.add(single));\n            newSingles.remove(transition);\n            entry.setValue(coalesce(newSingles));\n        }\n        map = newMap;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "java.util.SortedMap": [
+      "entrySet()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "setValue(V)"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "expand(ByteTransition)"
+    ],
+    "java.util.Set": [
+      "remove(Object)",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.CompoundByteTransition": [
+      "coalesce(SingleByteTransition>)"
+    ]
+  },
+  "full_method_info": "void removeTransitionForAllBytes(final SingleByteTransition transition) {\n    NavigableMap<Integer, ByteTransition> newMap = new TreeMap<>(map);\n    for (Map.Entry<Integer, ByteTransition> entry : newMap.entrySet()) {\n        Set<SingleByteTransition> newSingles = new HashSet<>();\n        ByteTransition storedTransition = entry.getValue();\n        expand(storedTransition).forEach(single -> newSingles.add(single));\n        newSingles.remove(transition);\n        entry.setValue(coalesce(newSingles));\n    }\n    map = newMap;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

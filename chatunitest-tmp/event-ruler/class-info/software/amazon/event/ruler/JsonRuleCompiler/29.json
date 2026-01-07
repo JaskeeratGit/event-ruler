@@ -1,0 +1,24 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "generateValueBasedOnMatchType",
+  "brief": "private static String generateValueBasedOnMatchType(String text, MatchType matchType){}",
+  "methodSignature": "generateValueBasedOnMatchType(String, MatchType)",
+  "sourceCode": "private static String generateValueBasedOnMatchType(String text, MatchType matchType) {\n        switch (matchType) {\n            case PREFIX:\n            case PREFIX_EQUALS_IGNORE_CASE:\n            case ANYTHING_BUT_PREFIX:\n                return '\"' + text;\n            case SUFFIX:\n            case SUFFIX_EQUALS_IGNORE_CASE:\n            case ANYTHING_BUT_SUFFIX:\n                return text + '\"';\n            default:\n                return '\"' + text + '\"';\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "MatchType"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.MatchType": []
+  },
+  "full_method_info": "private static String generateValueBasedOnMatchType(String text, MatchType matchType) {\n    switch(matchType) {\n        case PREFIX:\n        case PREFIX_EQUALS_IGNORE_CASE:\n        case ANYTHING_BUT_PREFIX:\n            return '\"' + text;\n        case SUFFIX:\n        case SUFFIX_EQUALS_IGNORE_CASE:\n        case ANYTHING_BUT_SUFFIX:\n            return text + '\"';\n        default:\n            return '\"' + text + '\"';\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

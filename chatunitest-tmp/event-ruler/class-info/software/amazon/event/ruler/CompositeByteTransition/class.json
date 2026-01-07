@@ -1,0 +1,85 @@
+{
+  "fullClassName": "software.amazon.event.ruler.CompositeByteTransition",
+  "className": "CompositeByteTransition",
+  "index": 48,
+  "modifier": "[final ]",
+  "extend": "[SingleByteTransition]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "final class CompositeByteTransition",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import javax.annotation.Nonnull;",
+    "import java.util.Collections;",
+    "import java.util.Set;"
+  ],
+  "fields": [
+    "private volatile ByteState nextState;",
+    "private volatile ByteMatch match;"
+  ],
+  "superClasses": [
+    "SingleByteTransition"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getNextByteState()": "0",
+    "setNextByteState(ByteState)": "1",
+    "getTransition(byte)": "2",
+    "getTransitionForAllBytes()": "3",
+    "getTransitions()": "4",
+    "getMatch()": "5",
+    "setMatch(ByteMatch)": "6",
+    "getShortcuts()": "7",
+    "hasIndeterminatePrefix()": "8",
+    "isMatchTrans()": "9",
+    "CompositeByteTransition(ByteState, ByteMatch)": "10"
+  },
+  "methodsBrief": [
+    "@Override\n    public ByteState getNextByteState(){}",
+    "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState){}",
+    "@Override\n    public ByteTransition getTransition(byte utf8byte){}",
+    "@Override\n    public ByteTransition getTransitionForAllBytes(){}",
+    "@Override\n    public Set<ByteTransition> getTransitions(){}",
+    "@Override\n    ByteMatch getMatch(){}",
+    "@Override\n    public SingleByteTransition setMatch(ByteMatch match){}",
+    "@Override\n    public Set<ShortcutTransition> getShortcuts(){}",
+    "@Override\n    boolean hasIndeterminatePrefix(){}",
+    "@Override\n    boolean isMatchTrans(){}",
+    "CompositeByteTransition(@Nonnull ByteState nextState, @Nonnull ByteMatch match){}"
+  ],
+  "constructorSigs": [
+    "CompositeByteTransition(ByteState, ByteMatch)"
+  ],
+  "constructorBrief": [
+    "CompositeByteTransition(@Nonnull ByteState nextState, @Nonnull ByteMatch match){}"
+  ],
+  "getterSetterSigs": [
+    "getNextByteState()",
+    "setNextByteState(ByteState)",
+    "getTransitionForAllBytes()",
+    "getTransitions()",
+    "getMatch()",
+    "setMatch(ByteMatch)",
+    "getShortcuts()"
+  ],
+  "getterSetterBrief": [
+    "@Override\n    public ByteState getNextByteState(){}",
+    "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState){}",
+    "@Override\n    public ByteTransition getTransitionForAllBytes(){}",
+    "@Override\n    public Set<ByteTransition> getTransitions(){}",
+    "@Override\n    ByteMatch getMatch(){}",
+    "@Override\n    public SingleByteTransition setMatch(ByteMatch match){}",
+    "@Override\n    public Set<ShortcutTransition> getShortcuts(){}"
+  ],
+  "constructorDeps": {
+    "software.amazon.event.ruler.ByteState": [],
+    "software.amazon.event.ruler.ByteMatch": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport javax.annotation.Nonnull;\nimport java.util.Collections;\nimport java.util.Set;\n\n/**\n * Represents a composite transition that has a next state and a match.\n */\nfinal class CompositeByteTransition extends SingleByteTransition {\n\n    /**\n     * The state to transfer to.\n     */\n    private volatile ByteState nextState;\n\n    /**\n     * The first match of a linked list of matches that are triggered if this transition is made.\n     */\n    private volatile ByteMatch match;\n\n    CompositeByteTransition(@Nonnull ByteState nextState, @Nonnull ByteMatch match) {\n        this.nextState = nextState;\n        this.match = match;\n    }\n\n    @Override\n    public ByteState getNextByteState() {\n        return nextState;\n    }\n\n    @Override\n    public SingleByteTransition setNextByteState(ByteState nextState) {\n        if (nextState == null) {\n            return match;\n        } else {\n            this.nextState = nextState;\n            return this;\n        }\n    }\n\n    @Override\n    public ByteTransition getTransition(byte utf8byte) {\n        return null;\n    }\n\n    @Override\n    public ByteTransition getTransitionForAllBytes() {\n        return null;\n    }\n\n    @Override\n    public Set<ByteTransition> getTransitions() {\n        return Collections.EMPTY_SET;\n    }\n\n    @Override\n    ByteMatch getMatch() {\n        return match;\n    }\n\n    @Override\n    public SingleByteTransition setMatch(ByteMatch match) {\n        if (match == null) {\n            return nextState;\n        } else {\n            this.match = match;\n            return this;\n        }\n    }\n\n    @Override\n    public Set<ShortcutTransition> getShortcuts() {\n        return Collections.emptySet();\n    }\n\n    @Override\n    boolean hasIndeterminatePrefix() {\n        return nextState != null && nextState.hasIndeterminatePrefix();\n    }\n\n    @Override\n    boolean isMatchTrans() {\n        return true;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents a composite transition that has a next state and a match.\n */\nfinal class CompositeByteTransition extends SingleByteTransition {\n\n    /**\n     * The state to transfer to.\n     */\n    private volatile ByteState nextState;\n\n    /**\n     * The first match of a linked list of matches that are triggered if this transition is made.\n     */\n    private volatile ByteMatch match;\n\n    CompositeByteTransition(@Nonnull ByteState nextState, @Nonnull ByteMatch match) {\n        this.nextState = nextState;\n        this.match = match;\n    }\n\n    @Override\n    public ByteState getNextByteState() {\n        return nextState;\n    }\n\n    @Override\n    public SingleByteTransition setNextByteState(ByteState nextState) {\n        if (nextState == null) {\n            return match;\n        } else {\n            this.nextState = nextState;\n            return this;\n        }\n    }\n\n    @Override\n    public ByteTransition getTransition(byte utf8byte) {\n        return null;\n    }\n\n    @Override\n    public ByteTransition getTransitionForAllBytes() {\n        return null;\n    }\n\n    @Override\n    public Set<ByteTransition> getTransitions() {\n        return Collections.EMPTY_SET;\n    }\n\n    @Override\n    ByteMatch getMatch() {\n        return match;\n    }\n\n    @Override\n    public SingleByteTransition setMatch(ByteMatch match) {\n        if (match == null) {\n            return nextState;\n        } else {\n            this.match = match;\n            return this;\n        }\n    }\n\n    @Override\n    public Set<ShortcutTransition> getShortcuts() {\n        return Collections.emptySet();\n    }\n\n    @Override\n    boolean hasIndeterminatePrefix() {\n        return nextState != null && nextState.hasIndeterminatePrefix();\n    }\n\n    @Override\n    boolean isMatchTrans() {\n        return true;\n    }\n}",
+  "subClasses": []
+}

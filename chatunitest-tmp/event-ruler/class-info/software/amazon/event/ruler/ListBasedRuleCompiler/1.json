@@ -1,0 +1,31 @@
+{
+  "className": "ListBasedRuleCompiler",
+  "methodName": "doFlattenRule",
+  "brief": "private static Map<List<String>, List<Patterns>> doFlattenRule(final JsonParser parser) throws IOException{}",
+  "methodSignature": "doFlattenRule(JsonParser)",
+  "sourceCode": "private static Map<List<String>, List<Patterns>> doFlattenRule(final JsonParser parser) throws IOException {\n            final Deque<String> stack = new ArrayDeque<>();\n            final Map<List<String>, List<Patterns>> rule = new HashMap<>();\n            if (parser.nextToken() != JsonToken.START_OBJECT) {\n                barf(parser, \"Filter is not an object\");\n            }\n            parseRuleObject(rule, stack, parser, true);\n            parser.close();\n            return rule;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()",
+      "close()"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "software.amazon.event.ruler.RuleCompiler.ListBasedRuleCompiler": [
+      "parseRuleObject(Patterns>>, String>, JsonParser, boolean)"
+    ]
+  },
+  "full_method_info": "private static Map<List<String>, List<Patterns>> doFlattenRule(final JsonParser parser) throws IOException {\n    final Deque<String> stack = new ArrayDeque<>();\n    final Map<List<String>, List<Patterns>> rule = new HashMap<>();\n    if (parser.nextToken() != JsonToken.START_OBJECT) {\n        barf(parser, \"Filter is not an object\");\n    }\n    parseRuleObject(rule, stack, parser, true);\n    parser.close();\n    return rule;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

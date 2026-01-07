@@ -1,0 +1,28 @@
+{
+  "className": "Event",
+  "methodName": "flatten",
+  "brief": "static List<String> flatten(@Nonnull final String json) throws IllegalArgumentException{}",
+  "methodSignature": "flatten(String)",
+  "sourceCode": "static List<String> flatten(@Nonnull final String json) throws IllegalArgumentException {\n        try {\n            final JsonNode eventRoot = OBJECT_MAPPER.readTree(json);\n            return doFlatten(eventRoot);\n        } catch (Throwable e) { // should be IOException, but the @Nonnull annotation doesn't work in some scenarios\n                                // catch all throwable exceptions\n            throw new IllegalArgumentException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "com.fasterxml.jackson.databind.ObjectMapper": [
+      "readTree(String)"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "doFlatten(JsonNode)"
+    ]
+  },
+  "full_method_info": "/**\n * Flattens a json String for matching rules in the state machine.\n * @param json the json string\n * @return flattened json event\n */\nstatic List<String> flatten(@Nonnull final String json) throws IllegalArgumentException {\n    try {\n        final JsonNode eventRoot = OBJECT_MAPPER.readTree(json);\n        return doFlatten(eventRoot);\n    } catch (Throwable e) {\n        // should be IOException, but the @Nonnull annotation doesn't work in some scenarios\n        // catch all throwable exceptions\n        throw new IllegalArgumentException(e);\n    }\n}",
+  "method_comment": "\n     * Flattens a json String for matching rules in the state machine.\n     * @param json the json string\n     * @return flattened json event\n     ",
+  "method_annotation": ""
+}

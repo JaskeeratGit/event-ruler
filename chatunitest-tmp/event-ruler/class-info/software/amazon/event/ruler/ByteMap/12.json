@@ -1,0 +1,46 @@
+{
+  "className": "ByteMap",
+  "methodName": "getTransitionForAllBytes",
+  "brief": "ByteTransition getTransitionForAllBytes(){}",
+  "methodSignature": "getTransitionForAllBytes()",
+  "sourceCode": "ByteTransition getTransitionForAllBytes() {\n        Set<SingleByteTransition> candidates = new HashSet<>();\n        Iterator<ByteTransition> iterator = map.values().iterator();\n        ByteTransition firstByteTransition = iterator.next();\n        if (firstByteTransition == null) {\n            return ByteMachine.EmptyByteTransition.INSTANCE;\n        }\n        firstByteTransition.expand().forEach(single -> candidates.add(single));\n\n        while (iterator.hasNext()) {\n            ByteTransition nextByteTransition = iterator.next();\n            if (nextByteTransition == null) {\n                return ByteMachine.EmptyByteTransition.INSTANCE;\n            }\n            Iterable<SingleByteTransition> singles = nextByteTransition.expand();\n            if (singles instanceof Set) {\n                candidates.retainAll((Set) singles);\n            } else if (singles instanceof SingleByteTransition) {\n                SingleByteTransition single = (SingleByteTransition) singles;\n                if (candidates.contains(single)) {\n                    if (candidates.size() > 1) {\n                        candidates.clear();\n                        candidates.add(single);\n                    }\n                } else {\n                    if (!candidates.isEmpty()) {\n                        candidates.clear();\n                    }\n                }\n            } else {\n                // singles should always be a Set or SingleByteTransition. Thus, this \"else\" is expected to be dead code\n                // but it is here for logical correctness if anything changes in the future.\n                Set<SingleByteTransition> set = new HashSet<>();\n                singles.forEach(single -> set.add(single));\n                candidates.retainAll(set);\n            }\n            if (candidates.isEmpty()) {\n                return ByteMachine.EmptyByteTransition.INSTANCE;\n            }\n        }\n\n        return coalesce(candidates);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "iterator()"
+    ],
+    "java.util.SortedMap": [
+      "values()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()"
+    ],
+    "java.util.Set": [
+      "isEmpty()",
+      "retainAll(Object>)",
+      "contains(Object)",
+      "add(E)",
+      "size()",
+      "clear()"
+    ],
+    "software.amazon.event.ruler.CompoundByteTransition": [
+      "coalesce(SingleByteTransition>)"
+    ]
+  },
+  "full_method_info": "/**\n * Get the transition that all bytes lead to. Could be compound if all bytes lead to more than one transition, or\n * could be the empty transition if there are no transitions that all bytes lead to.\n *\n * @return The transition that all bytes lead to.\n */\nByteTransition getTransitionForAllBytes() {\n    Set<SingleByteTransition> candidates = new HashSet<>();\n    Iterator<ByteTransition> iterator = map.values().iterator();\n    ByteTransition firstByteTransition = iterator.next();\n    if (firstByteTransition == null) {\n        return ByteMachine.EmptyByteTransition.INSTANCE;\n    }\n    firstByteTransition.expand().forEach(single -> candidates.add(single));\n    while (iterator.hasNext()) {\n        ByteTransition nextByteTransition = iterator.next();\n        if (nextByteTransition == null) {\n            return ByteMachine.EmptyByteTransition.INSTANCE;\n        }\n        Iterable<SingleByteTransition> singles = nextByteTransition.expand();\n        if (singles instanceof Set) {\n            candidates.retainAll((Set) singles);\n        } else if (singles instanceof SingleByteTransition) {\n            SingleByteTransition single = (SingleByteTransition) singles;\n            if (candidates.contains(single)) {\n                if (candidates.size() > 1) {\n                    candidates.clear();\n                    candidates.add(single);\n                }\n            } else {\n                if (!candidates.isEmpty()) {\n                    candidates.clear();\n                }\n            }\n        } else {\n            // singles should always be a Set or SingleByteTransition. Thus, this \"else\" is expected to be dead code\n            // but it is here for logical correctness if anything changes in the future.\n            Set<SingleByteTransition> set = new HashSet<>();\n            singles.forEach(single -> set.add(single));\n            candidates.retainAll(set);\n        }\n        if (candidates.isEmpty()) {\n            return ByteMachine.EmptyByteTransition.INSTANCE;\n        }\n    }\n    return coalesce(candidates);\n}",
+  "method_comment": "\n     * Get the transition that all bytes lead to. Could be compound if all bytes lead to more than one transition, or\n     * could be the empty transition if there are no transitions that all bytes lead to.\n     *\n     * @return The transition that all bytes lead to.\n     ",
+  "method_annotation": ""
+}

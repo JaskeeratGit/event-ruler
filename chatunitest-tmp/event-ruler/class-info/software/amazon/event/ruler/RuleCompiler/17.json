@@ -1,0 +1,42 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "parseObject",
+  "brief": "private static void parseObject(final Map<String, List<Patterns>> rule,\n                                    final Path path,\n                                    final JsonParser parser,\n                                    final boolean withQuotes,\n                                    final boolean withOverriding) throws IOException{}",
+  "methodSignature": "parseObject(Map, Path, JsonParser, boolean, boolean)",
+  "sourceCode": "private static void parseObject(final Map<String, List<Patterns>> rule,\n                                    final Path path,\n                                    final JsonParser parser,\n                                    final boolean withQuotes,\n                                    final boolean withOverriding) throws IOException {\n\n        boolean fieldsPresent = false;\n        while (parser.nextToken() != JsonToken.END_OBJECT) {\n            fieldsPresent = true;\n\n            // field name\n            final String stepName = parser.getCurrentName();\n\n            switch (parser.nextToken()) {\n            case START_OBJECT:\n                path.push(stepName);\n                parseObject(rule, path, parser, withQuotes, withOverriding);\n                path.pop();\n                break;\n\n            case START_ARRAY:\n                writeRules(rule, path.extendedName(stepName), parser, withQuotes, withOverriding);\n                break;\n\n            default:\n                barf(parser, String.format(\"\\\"%s\\\" must be an object or an array\", stepName));\n            }\n        }\n        if (!fieldsPresent) {\n            barf(parser, \"Empty objects are not allowed\");\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<String,List<Patterns>>",
+    "Path",
+    "JsonParser",
+    "boolean",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Path": [
+      "extendedName(String)",
+      "pop()",
+      "push(String)"
+    ],
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getCurrentName()",
+      "nextToken()"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "parseObject(Patterns>>, Path, JsonParser, boolean, boolean)",
+      "writeRules(Patterns>>, String, JsonParser, boolean, boolean)",
+      "barf(JsonParser, String)"
+    ],
+    "java.lang.String": [
+      "format(String, Object[])"
+    ]
+  },
+  "full_method_info": "private static void parseObject(final Map<String, List<Patterns>> rule, final Path path, final JsonParser parser, final boolean withQuotes, final boolean withOverriding) throws IOException {\n    boolean fieldsPresent = false;\n    while (parser.nextToken() != JsonToken.END_OBJECT) {\n        fieldsPresent = true;\n        // field name\n        final String stepName = parser.getCurrentName();\n        switch(parser.nextToken()) {\n            case START_OBJECT:\n                path.push(stepName);\n                parseObject(rule, path, parser, withQuotes, withOverriding);\n                path.pop();\n                break;\n            case START_ARRAY:\n                writeRules(rule, path.extendedName(stepName), parser, withQuotes, withOverriding);\n                break;\n            default:\n                barf(parser, String.format(\"\\\"%s\\\" must be an object or an array\", stepName));\n        }\n    }\n    if (!fieldsPresent) {\n        barf(parser, \"Empty objects are not allowed\");\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

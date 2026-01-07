@@ -1,0 +1,18 @@
+{
+  "className": "CompoundByteTransition",
+  "methodName": "expand",
+  "brief": "@Override\n    Set<SingleByteTransition> expand(){}",
+  "methodSignature": "expand()",
+  "sourceCode": "@Override\n    Set<SingleByteTransition> expand() {\n        return byteTransitions;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get all transitions represented by this compound transition.\n *\n * @return A set of all transitions represented by this transition.\n */\n@Override\nSet<SingleByteTransition> expand() {\n    return byteTransitions;\n}",
+  "method_comment": "\n     * Get all transitions represented by this compound transition.\n     *\n     * @return A set of all transitions represented by this transition.\n     ",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,26 @@
+{
+  "className": "Finder",
+  "methodName": "rulesForEvent",
+  "brief": "static List<Object> rulesForEvent(final List<String> event, final GenericMachine<?> machine,\n                                      final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "rulesForEvent(List, GenericMachine, SubRuleContext.Generator)",
+  "sourceCode": "static List<Object> rulesForEvent(final List<String> event, final GenericMachine<?> machine,\n                                      final SubRuleContext.Generator subRuleContextGenerator) {\n        return find(new Task(event, machine), subRuleContextGenerator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>",
+    "GenericMachine<?>",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Finder": [
+      "find(Task, Generator)"
+    ]
+  },
+  "full_method_info": "/**\n * Return any rules that match the fields in the event.\n *\n * @param event the fields are those from the JSON expression of the event, sorted by key.\n * @param machine the compiled state machine\n * @param subRuleContextGenerator the sub-rule context generator\n * @return list of rule names that match. The list may be empty but never null.\n */\nstatic List<Object> rulesForEvent(final List<String> event, final GenericMachine<?> machine, final SubRuleContext.Generator subRuleContextGenerator) {\n    return find(new Task(event, machine), subRuleContextGenerator);\n}",
+  "method_comment": "\n     * Return any rules that match the fields in the event.\n     *\n     * @param event the fields are those from the JSON expression of the event, sorted by key.\n     * @param machine the compiled state machine\n     * @param subRuleContextGenerator the sub-rule context generator\n     * @return list of rule names that match. The list may be empty but never null.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "ByteState",
+  "methodName": "setIndeterminatePrefix",
+  "brief": "void setIndeterminatePrefix(boolean hasIndeterminatePrefix){}",
+  "methodSignature": "setIndeterminatePrefix(boolean)",
+  "sourceCode": "void setIndeterminatePrefix(boolean hasIndeterminatePrefix) {\n        this.hasIndeterminatePrefix = hasIndeterminatePrefix;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "void setIndeterminatePrefix(boolean hasIndeterminatePrefix) {\n    this.hasIndeterminatePrefix = hasIndeterminatePrefix;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

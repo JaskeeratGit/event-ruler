@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "AnythingBut_hashCode_4_0_Test",
+    "fullName": "software.amazon.event.ruler.AnythingBut_hashCode_4_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/AnythingBut_hashCode_4_0_Test.java",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt1": {
+    "testClassName": "AnythingBut_hashCode_4_1_Test",
+    "fullName": "software.amazon.event.ruler.AnythingBut_hashCode_4_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/AnythingBut_hashCode_4_0_Test.java",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt2": {
+    "testClassName": "AnythingBut_hashCode_4_2_Test",
+    "fullName": "software.amazon.event.ruler.AnythingBut_hashCode_4_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/AnythingBut_hashCode_4_0_Test.java",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt3": {
+    "testClassName": "AnythingBut_hashCode_4_3_Test",
+    "fullName": "software.amazon.event.ruler.AnythingBut_hashCode_4_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/AnythingBut_hashCode_4_0_Test.java",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt4": {
+    "testClassName": "AnythingBut_hashCode_4_4_Test",
+    "fullName": "software.amazon.event.ruler.AnythingBut_hashCode_4_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/AnythingBut_hashCode_4_0_Test.java",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  }
+}

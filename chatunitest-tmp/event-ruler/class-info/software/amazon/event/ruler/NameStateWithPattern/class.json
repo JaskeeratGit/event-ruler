@@ -1,0 +1,64 @@
+{
+  "fullClassName": "software.amazon.event.ruler.NameStateWithPattern",
+  "className": "NameStateWithPattern",
+  "index": 58,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "public class NameStateWithPattern",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import javax.annotation.Nullable;",
+    "import java.util.Objects;",
+    "import static java.util.Objects.requireNonNull;"
+  ],
+  "fields": [
+    "private final NameState nameState;",
+    "private final Patterns pattern;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getNameState()": "0",
+    "getPattern()": "1",
+    "equals(Object)": "2",
+    "hashCode()": "3",
+    "NameStateWithPattern(NameState, Patterns)": "4"
+  },
+  "methodsBrief": [
+    "public NameState getNameState(){}",
+    "public Patterns getPattern(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "public NameStateWithPattern(NameState nameState, @Nullable Patterns pattern){}"
+  ],
+  "constructorSigs": [
+    "NameStateWithPattern(NameState, Patterns)"
+  ],
+  "constructorBrief": [
+    "public NameStateWithPattern(NameState nameState, @Nullable Patterns pattern){}"
+  ],
+  "getterSetterSigs": [
+    "getNameState()",
+    "getPattern()"
+  ],
+  "getterSetterBrief": [
+    "public NameState getNameState(){}",
+    "public Patterns getPattern(){}"
+  ],
+  "constructorDeps": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "java.util.Objects": [
+      "requireNonNull(T)"
+    ]
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport javax.annotation.Nullable;\nimport java.util.Objects;\nimport static java.util.Objects.requireNonNull;\n\n/**\n * Class that holds a NameState and the Pattern from the match that led to the NameState.\n */\npublic class NameStateWithPattern {\n\n    private final NameState nameState;\n\n    private final Patterns pattern;\n\n    public NameStateWithPattern(NameState nameState, @Nullable Patterns pattern) {\n        this.nameState = requireNonNull(nameState);\n        this.pattern = pattern;\n    }\n\n    public NameState getNameState() {\n        return nameState;\n    }\n\n    public Patterns getPattern() {\n        return pattern;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o instanceof NameStateWithPattern)) {\n            return false;\n        }\n        NameStateWithPattern otherNameStateWithPattern = (NameStateWithPattern) o;\n        return nameState.equals(otherNameStateWithPattern.nameState) && pattern.equals(otherNameStateWithPattern.pattern);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(nameState, pattern);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Class that holds a NameState and the Pattern from the match that led to the NameState.\n */\npublic class NameStateWithPattern {\n\n    private final NameState nameState;\n\n    private final Patterns pattern;\n\n    public NameStateWithPattern(NameState nameState, @Nullable Patterns pattern) {\n        this.nameState = requireNonNull(nameState);\n        this.pattern = pattern;\n    }\n\n    public NameState getNameState() {\n        return nameState;\n    }\n\n    public Patterns getPattern() {\n        return pattern;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o instanceof NameStateWithPattern)) {\n            return false;\n        }\n        NameStateWithPattern otherNameStateWithPattern = (NameStateWithPattern) o;\n        return nameState.equals(otherNameStateWithPattern.nameState) && pattern.equals(otherNameStateWithPattern.pattern);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(nameState, pattern);\n    }\n}",
+  "subClasses": []
+}

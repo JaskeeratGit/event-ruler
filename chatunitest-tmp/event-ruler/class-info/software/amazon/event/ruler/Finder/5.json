@@ -1,0 +1,33 @@
+{
+  "className": "Finder",
+  "methodName": "calculateCandidateSubRuleIdsForNextStep",
+  "brief": "private static Set<SubRuleContext> calculateCandidateSubRuleIdsForNextStep(final Set<SubRuleContext> currentCandidateSubRuleIds,\n                                                                       final NameState fromState,\n                                                                       final Patterns fromPattern){}",
+  "methodSignature": "calculateCandidateSubRuleIdsForNextStep(Set, NameState, Patterns)",
+  "sourceCode": "private static Set<SubRuleContext> calculateCandidateSubRuleIdsForNextStep(final Set<SubRuleContext> currentCandidateSubRuleIds,\n                                                                       final NameState fromState,\n                                                                       final Patterns fromPattern) {\n        // These are all the sub-rules that use the matched pattern to transition to the next NameState. Note that they\n        // are not all candidates as they may have required different values for previously evaluated fields.\n        Set<SubRuleContext> subRuleIds = fromState.getNonTerminalSubRuleIdsForPattern(fromPattern);\n\n        // If no sub-rules used the matched pattern to transition to the next NameState, then there are no matches to be\n        // found by going further.\n        if (subRuleIds == null) {\n            return null;\n        }\n\n        // If there are no candidate sub-rules, this means we are on the first NameState and must initialize the\n        // candidate sub-rules to those that used the matched pattern to transition to the next NameState.\n        if (currentCandidateSubRuleIds == null || currentCandidateSubRuleIds.isEmpty()) {\n            return subRuleIds;\n        }\n\n        // There are candidate sub-rules, so retain only those that used the matched pattern to transition to the next\n        // NameState.\n        Set<SubRuleContext> candidateSubRuleIdsForNextStep = new HashSet<>();\n        intersection(subRuleIds, currentCandidateSubRuleIds, candidateSubRuleIdsForNextStep);\n        return candidateSubRuleIdsForNextStep;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "getNonTerminalSubRuleIdsForPattern(Patterns)"
+    ],
+    "software.amazon.event.ruler.Patterns": [],
+    "java.util.Set": [
+      "isEmpty()"
+    ],
+    "software.amazon.event.ruler.SetOperations": [
+      "intersection(Set<T>, Set<T>, Set<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Calculate the candidate sub-rule IDs for the next step.\n *\n * @param currentCandidateSubRuleIds The candidate sub-rule IDs for the current step. Use null to indicate that we\n *                                   are on first step and so there are not yet any candidate sub-rules.\n * @param fromState The NameState we are transitioning from.\n * @param fromPattern The pattern we used to transition from fromState.\n * @return The set of candidate sub-rule IDs for the next step. Null means there are no candidates and thus, there\n *         is no point to evaluating subsequent steps.\n */\nprivate static Set<SubRuleContext> calculateCandidateSubRuleIdsForNextStep(final Set<SubRuleContext> currentCandidateSubRuleIds, final NameState fromState, final Patterns fromPattern) {\n    // These are all the sub-rules that use the matched pattern to transition to the next NameState. Note that they\n    // are not all candidates as they may have required different values for previously evaluated fields.\n    Set<SubRuleContext> subRuleIds = fromState.getNonTerminalSubRuleIdsForPattern(fromPattern);\n    // If no sub-rules used the matched pattern to transition to the next NameState, then there are no matches to be\n    // found by going further.\n    if (subRuleIds == null) {\n        return null;\n    }\n    // If there are no candidate sub-rules, this means we are on the first NameState and must initialize the\n    // candidate sub-rules to those that used the matched pattern to transition to the next NameState.\n    if (currentCandidateSubRuleIds == null || currentCandidateSubRuleIds.isEmpty()) {\n        return subRuleIds;\n    }\n    // There are candidate sub-rules, so retain only those that used the matched pattern to transition to the next\n    // NameState.\n    Set<SubRuleContext> candidateSubRuleIdsForNextStep = new HashSet<>();\n    intersection(subRuleIds, currentCandidateSubRuleIds, candidateSubRuleIdsForNextStep);\n    return candidateSubRuleIdsForNextStep;\n}",
+  "method_comment": "\n     * Calculate the candidate sub-rule IDs for the next step.\n     *\n     * @param currentCandidateSubRuleIds The candidate sub-rule IDs for the current step. Use null to indicate that we\n     *                                   are on first step and so there are not yet any candidate sub-rules.\n     * @param fromState The NameState we are transitioning from.\n     * @param fromPattern The pattern we used to transition from fromState.\n     * @return The set of candidate sub-rule IDs for the next step. Null means there are no candidates and thus, there\n     *         is no point to evaluating subsequent steps.\n     ",
+  "method_annotation": ""
+}

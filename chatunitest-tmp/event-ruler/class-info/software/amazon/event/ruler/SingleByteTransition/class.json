@@ -1,0 +1,74 @@
+{
+  "fullClassName": "software.amazon.event.ruler.SingleByteTransition",
+  "className": "SingleByteTransition",
+  "index": 35,
+  "modifier": "[abstract ]",
+  "extend": "[ByteTransition]",
+  "implement": "[Iterable]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "abstract class SingleByteTransition",
+  "hasConstructor": false,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.util.Collections;",
+    "import java.util.Iterator;",
+    "import java.util.NoSuchElementException;",
+    "import java.util.Set;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "ByteTransition"
+  ],
+  "implementedTypes": [
+    "Iterable"
+  ],
+  "methodSigs": {
+    "getMatch()": "0",
+    "setMatch(ByteMatch)": "1",
+    "getTransitionForAllBytes()": "2",
+    "getMatches()": "3",
+    "expand()": "4",
+    "iterator()": "5",
+    "getTransitionForNextByteStates()": "6",
+    "gatherObjects(Set, int)": "7"
+  },
+  "methodsBrief": [
+    "abstract ByteMatch getMatch();",
+    "abstract SingleByteTransition setMatch(ByteMatch match);",
+    "abstract ByteTransition getTransitionForAllBytes();",
+    "@Override\n    Iterable<ByteMatch> getMatches(){}",
+    "@Override\n    Iterable<SingleByteTransition> expand(){}",
+    "@Override\n    public Iterator<SingleByteTransition> iterator(){}",
+    "@Override\n    ByteTransition getTransitionForNextByteStates(){}",
+    "public void gatherObjects(Set<Object> objectSet, int maxObjectCount){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "getMatch()",
+    "setMatch(ByteMatch)",
+    "getTransitionForAllBytes()",
+    "getMatches()",
+    "getTransitionForNextByteStates()"
+  ],
+  "getterSetterBrief": [
+    "abstract ByteMatch getMatch();",
+    "abstract SingleByteTransition setMatch(ByteMatch match);",
+    "abstract ByteTransition getTransitionForAllBytes();",
+    "@Override\n    Iterable<ByteMatch> getMatches(){}",
+    "@Override\n    ByteTransition getTransitionForNextByteStates(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.Collections;\nimport java.util.Iterator;\nimport java.util.NoSuchElementException;\nimport java.util.Set;\n\n/**\n * This class represents a singular ByteTransition. This is in contrast to a compound ByteTransition that represents\n * having taken multiple distinct transitions simultaneously (i.e. for NFA traversal).\n */\nabstract class SingleByteTransition extends ByteTransition implements Iterable {\n\n    /**\n     * Returns the match that is triggered if this transition is made.\n     *\n     * @return the match, or {@code null} if this transition does not support matching\n     */\n    abstract ByteMatch getMatch();\n\n    /**\n     * Sets the match. The method returns this or a new transition that contains the given match if the match is not\n     * {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n     * support matching.\n     *\n     * @param match the match\n     * @return this or a new transition that contains the given match if the match is not {@code null}; otherwise,\n     * {@code null} or a new transition that does not support matching\n     */\n    abstract SingleByteTransition setMatch(ByteMatch match);\n\n    /**\n     * Get the transition that all bytes lead to. Could be compound if all bytes lead to more than one single\n     * transition, or could be the empty transition if there are no transitions that all bytes lead to.\n     *\n     * @return The transition that all bytes lead to.\n     */\n    abstract ByteTransition getTransitionForAllBytes();\n\n    @Override\n    Iterable<ByteMatch> getMatches() {\n        ByteMatch match = getMatch();\n        if (match == null) {\n            return Collections.emptySet();\n        }\n        return match;\n    }\n\n    /**\n     * Get all transitions represented by this transition, which is simply this as this is a single byte transition.\n     *\n     * @return An iterable of all transitions represented by this transition.\n     */\n    @Override\n    Iterable<SingleByteTransition> expand() {\n        return this;\n    }\n\n    @Override\n    public Iterator<SingleByteTransition> iterator() {\n        return new Iterator<SingleByteTransition>() {\n\n            private boolean hasNext = true;\n\n            @Override\n            public boolean hasNext() {\n                return hasNext;\n            }\n\n            @Override\n            public SingleByteTransition next() {\n                if (!hasNext) {\n                    throw new NoSuchElementException();\n                }\n                hasNext = false;\n                return SingleByteTransition.this;\n            }\n        };\n    }\n\n    @Override\n    ByteTransition getTransitionForNextByteStates() {\n        return getNextByteState();\n    }\n\n    public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n        if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) {\n            // stops looping\n            objectSet.add(this);\n            final ByteMatch match = getMatch();\n            if (match != null) {\n                match.gatherObjects(objectSet, maxObjectCount);\n            }\n            for (ByteTransition transition : getTransitions()) {\n                transition.gatherObjects(objectSet, maxObjectCount);\n            }\n            final ByteTransition nextByteStates = getTransitionForNextByteStates();\n            if (nextByteStates != null) {\n                nextByteStates.gatherObjects(objectSet, maxObjectCount);\n            }\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * This class represents a singular ByteTransition. This is in contrast to a compound ByteTransition that represents\n * having taken multiple distinct transitions simultaneously (i.e. for NFA traversal).\n */\nabstract class SingleByteTransition extends ByteTransition implements Iterable {\n\n    /**\n     * Returns the match that is triggered if this transition is made.\n     *\n     * @return the match, or {@code null} if this transition does not support matching\n     */\n    abstract ByteMatch getMatch();\n\n    /**\n     * Sets the match. The method returns this or a new transition that contains the given match if the match is not\n     * {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n     * support matching.\n     *\n     * @param match the match\n     * @return this or a new transition that contains the given match if the match is not {@code null}; otherwise,\n     * {@code null} or a new transition that does not support matching\n     */\n    abstract SingleByteTransition setMatch(ByteMatch match);\n\n    /**\n     * Get the transition that all bytes lead to. Could be compound if all bytes lead to more than one single\n     * transition, or could be the empty transition if there are no transitions that all bytes lead to.\n     *\n     * @return The transition that all bytes lead to.\n     */\n    abstract ByteTransition getTransitionForAllBytes();\n\n    @Override\n    Iterable<ByteMatch> getMatches() {\n        ByteMatch match = getMatch();\n        if (match == null) {\n            return Collections.emptySet();\n        }\n        return match;\n    }\n\n    /**\n     * Get all transitions represented by this transition, which is simply this as this is a single byte transition.\n     *\n     * @return An iterable of all transitions represented by this transition.\n     */\n    @Override\n    Iterable<SingleByteTransition> expand() {\n        return this;\n    }\n\n    @Override\n    public Iterator<SingleByteTransition> iterator() {\n        return new Iterator<SingleByteTransition>() {\n\n            private boolean hasNext = true;\n\n            @Override\n            public boolean hasNext() {\n                return hasNext;\n            }\n\n            @Override\n            public SingleByteTransition next() {\n                if (!hasNext) {\n                    throw new NoSuchElementException();\n                }\n                hasNext = false;\n                return SingleByteTransition.this;\n            }\n        };\n    }\n\n    @Override\n    ByteTransition getTransitionForNextByteStates() {\n        return getNextByteState();\n    }\n\n    public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n        if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) {\n            // stops looping\n            objectSet.add(this);\n            final ByteMatch match = getMatch();\n            if (match != null) {\n                match.gatherObjects(objectSet, maxObjectCount);\n            }\n            for (ByteTransition transition : getTransitions()) {\n                transition.gatherObjects(objectSet, maxObjectCount);\n            }\n            final ByteTransition nextByteStates = getTransitionForNextByteStates();\n            if (nextByteStates != null) {\n                nextByteStates.gatherObjects(objectSet, maxObjectCount);\n            }\n        }\n    }\n}",
+  "subClasses": [
+    "software.amazon.event.ruler.ByteMachine.EmptyByteTransition",
+    "software.amazon.event.ruler.ShortcutTransition",
+    "software.amazon.event.ruler.CompositeByteTransition",
+    "software.amazon.event.ruler.ByteState",
+    "software.amazon.event.ruler.ByteMatch"
+  ]
+}

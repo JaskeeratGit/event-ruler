@@ -1,0 +1,22 @@
+{
+  "className": "ByteTransition",
+  "methodName": "setNextByteState",
+  "brief": "abstract SingleByteTransition setNextByteState(ByteState nextState);",
+  "methodSignature": "setNextByteState(ByteState)",
+  "sourceCode": "abstract SingleByteTransition setNextByteState(ByteState nextState);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": []
+  },
+  "full_method_info": "/**\n * Sets the next state. The method returns this or a new transition that contains the given next state if the\n * next state is not {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n * support transfer.\n *\n * @param nextState the next state\n * @return this or a new transition that contains the given next state if the next state is not {@code null};\n * otherwise, the method returns {@code null} or a new transition that does not support transfer\n */\nabstract SingleByteTransition setNextByteState(ByteState nextState);",
+  "method_comment": "\n     * Sets the next state. The method returns this or a new transition that contains the given next state if the\n     * next state is not {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n     * support transfer.\n     *\n     * @param nextState the next state\n     * @return this or a new transition that contains the given next state if the next state is not {@code null};\n     * otherwise, the method returns {@code null} or a new transition that does not support transfer\n     ",
+  "method_annotation": ""
+}

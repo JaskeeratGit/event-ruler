@@ -1,0 +1,40 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "processAnythingButListMatchExpression",
+  "brief": "private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}",
+  "methodSignature": "processAnythingButListMatchExpression(JsonParser)",
+  "sourceCode": "private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException {\n        JsonToken token;\n        Set<String> values = new HashSet<>();\n        boolean hasNumber = false;\n        boolean hasString = false;\n        try {\n            while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n                switch (token) {\n                    case VALUE_STRING:\n                        values.add('\"' + parser.getText() + '\"');\n                        hasString = true;\n                        break;\n                    case VALUE_NUMBER_FLOAT:\n                    case VALUE_NUMBER_INT:\n                        values.add(ComparableNumber.generate(parser.getText()));\n                        hasNumber = true;\n                        break;\n                    default:\n                        barf(parser, \"Inside anything but list, start|null|boolean is not supported.\");\n                }\n            }\n        } catch (IllegalArgumentException | IOException e) {\n            barf(parser, e.getMessage());\n        }\n\n        if ((hasNumber && hasString) || (!hasNumber && !hasString)) {\n            barf(parser, \"Inside anything but list, either all values are number or string, \" +\n                    \"mixed type is not supported\");\n        }\n        return AnythingBut.anythingButMatch(values, hasNumber);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()",
+      "getText()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "generate(String)"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "java.lang.Throwable": [
+      "getMessage()"
+    ],
+    "software.amazon.event.ruler.AnythingBut": [
+      "anythingButMatch(String>, boolean)"
+    ]
+  },
+  "full_method_info": "private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException {\n    JsonToken token;\n    Set<String> values = new HashSet<>();\n    boolean hasNumber = false;\n    boolean hasString = false;\n    try {\n        while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n            switch(token) {\n                case VALUE_STRING:\n                    values.add('\"' + parser.getText() + '\"');\n                    hasString = true;\n                    break;\n                case VALUE_NUMBER_FLOAT:\n                case VALUE_NUMBER_INT:\n                    values.add(ComparableNumber.generate(parser.getText()));\n                    hasNumber = true;\n                    break;\n                default:\n                    barf(parser, \"Inside anything but list, start|null|boolean is not supported.\");\n            }\n        }\n    } catch (IllegalArgumentException | IOException e) {\n        barf(parser, e.getMessage());\n    }\n    if ((hasNumber && hasString) || (!hasNumber && !hasString)) {\n        barf(parser, \"Inside anything but list, either all values are number or string, \" + \"mixed type is not supported\");\n    }\n    return AnythingBut.anythingButMatch(values, hasNumber);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "compile",
+  "brief": "public static List<Map<String, List<Patterns>>> compile(final byte[] source) throws IOException{}",
+  "methodSignature": "compile(byte[])",
+  "sourceCode": "public static List<Map<String, List<Patterns>>> compile(final byte[] source) throws IOException {\n        return compile(source, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "compile(byte[], boolean)"
+    ]
+  },
+  "full_method_info": "public static List<Map<String, List<Patterns>>> compile(final byte[] source) throws IOException {\n    return compile(source, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

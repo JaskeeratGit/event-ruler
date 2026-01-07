@@ -1,0 +1,24 @@
+{
+  "className": "IntIntMap",
+  "methodName": "getStartIndex",
+  "brief": "private int getStartIndex(final int key){}",
+  "methodSignature": "getStartIndex(int)",
+  "sourceCode": "private int getStartIndex(final int key) {\n        return phiMix(key) & mask;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "phiMix(int)"
+    ]
+  },
+  "full_method_info": "private int getStartIndex(final int key) {\n    return phiMix(key) & mask;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

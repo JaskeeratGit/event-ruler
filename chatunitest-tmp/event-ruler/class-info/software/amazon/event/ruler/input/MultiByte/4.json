@@ -1,0 +1,24 @@
+{
+  "className": "MultiByte",
+  "methodName": "isLessThan",
+  "brief": "public boolean isLessThan(MultiByte other){}",
+  "methodSignature": "isLessThan(MultiByte)",
+  "sourceCode": "public boolean isLessThan(MultiByte other) {\n        return isLessThan(other, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MultiByte"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.MultiByte": [
+      "isLessThan(MultiByte, boolean)"
+    ]
+  },
+  "full_method_info": "public boolean isLessThan(MultiByte other) {\n    return isLessThan(other, false);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

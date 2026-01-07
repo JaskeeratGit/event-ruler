@@ -1,0 +1,33 @@
+{
+  "className": "Range",
+  "methodName": "digitSequence",
+  "brief": "private static byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast,\n                                        byte[] digits, Function<Byte, Integer> byteIndexFunc){}",
+  "methodSignature": "digitSequence(byte, byte, boolean, boolean, byte[], Function)",
+  "sourceCode": "private static byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast,\n                                        byte[] digits, Function<Byte, Integer> byteIndexFunc) {\n        final byte maxPossibleDigit = digits[digits.length - 1];\n        final byte minPossibleDigit = digits[0];\n\n        assert first <= last && first <= maxPossibleDigit && first >= minPossibleDigit && last <= maxPossibleDigit;\n        assert !((first == last) && !includeFirst && !includeLast);\n\n        int i = byteIndexFunc.apply(first);\n        int j = byteIndexFunc.apply(last);\n\n        if ((!includeFirst) && (i < (digits.length - 1))) {\n            i++;\n        }\n\n        if (includeLast) {\n            j++;\n        }\n\n        byte[] bytes = new byte[j - i];\n\n        System.arraycopy(digits, i, bytes, 0, j - i);\n\n        return bytes;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte",
+    "byte",
+    "boolean",
+    "boolean",
+    "byte[]",
+    "Function<Byte,Integer>"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "java.util.function.Function": [
+      "apply(T)"
+    ],
+    "java.lang.System": [
+      "arraycopy(Object, int, Object, int, int)"
+    ]
+  },
+  "full_method_info": "private static byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast, byte[] digits, Function<Byte, Integer> byteIndexFunc) {\n    final byte maxPossibleDigit = digits[digits.length - 1];\n    final byte minPossibleDigit = digits[0];\n    assert first <= last && first <= maxPossibleDigit && first >= minPossibleDigit && last <= maxPossibleDigit;\n    assert !((first == last) && !includeFirst && !includeLast);\n    int i = byteIndexFunc.apply(first);\n    int j = byteIndexFunc.apply(last);\n    if ((!includeFirst) && (i < (digits.length - 1))) {\n        i++;\n    }\n    if (includeLast) {\n        j++;\n    }\n    byte[] bytes = new byte[j - i];\n    System.arraycopy(digits, i, bytes, 0, j - i);\n    return bytes;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

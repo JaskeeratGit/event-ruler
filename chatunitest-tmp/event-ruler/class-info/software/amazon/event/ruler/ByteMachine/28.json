@@ -1,0 +1,28 @@
+{
+  "className": "ByteMachine",
+  "methodName": "extractNextJavaCharacterFromInputCharacters",
+  "brief": "private String extractNextJavaCharacterFromInputCharacters(InputCharacter[] characters, int i){}",
+  "methodSignature": "extractNextJavaCharacterFromInputCharacters(InputCharacter[], int)",
+  "sourceCode": "private String extractNextJavaCharacterFromInputCharacters(InputCharacter[] characters, int i) {\n        if (isNextCharacterFirstByteOfMultiByte(characters, i)) {\n            return extractNextJavaCharacterFromInputCharactersForForwardArrays(characters, i);\n        } else {\n            return extractNextJavaCharacterFromInputCharactersForBackwardsArrays(characters, i);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "extractNextJavaCharacterFromInputCharactersForForwardArrays(InputCharacter[], int)",
+      "isNextCharacterFirstByteOfMultiByte(InputCharacter[], int)",
+      "extractNextJavaCharacterFromInputCharactersForBackwardsArrays(InputCharacter[], int)"
+    ]
+  },
+  "full_method_info": "private String extractNextJavaCharacterFromInputCharacters(InputCharacter[] characters, int i) {\n    if (isNextCharacterFirstByteOfMultiByte(characters, i)) {\n        return extractNextJavaCharacterFromInputCharactersForForwardArrays(characters, i);\n    } else {\n        return extractNextJavaCharacterFromInputCharactersForBackwardsArrays(characters, i);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

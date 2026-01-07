@@ -1,0 +1,29 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "compile",
+  "brief": "public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding)\n            throws IOException{}",
+  "methodSignature": "compile(String, boolean)",
+  "sourceCode": "public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding)\n            throws IOException {\n        return doCompile(JSON_FACTORY.createParser(source), withOverriding);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "doCompile(JsonParser, boolean)"
+    ],
+    "com.fasterxml.jackson.core.JsonFactory": [
+      "createParser(String)"
+    ]
+  },
+  "full_method_info": "public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding) throws IOException {\n    return doCompile(JSON_FACTORY.createParser(source), withOverriding);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

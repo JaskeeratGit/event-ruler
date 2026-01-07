@@ -1,0 +1,25 @@
+{
+  "className": "NameState",
+  "methodName": "removeNextNameState",
+  "brief": "void removeNextNameState(String key){}",
+  "methodSignature": "removeNextNameState(String)",
+  "sourceCode": "void removeNextNameState(String key) {\n        keyToNextNameState.remove(key);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "remove(Object)"
+    ]
+  },
+  "full_method_info": "void removeNextNameState(String key) {\n    keyToNextNameState.remove(key);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

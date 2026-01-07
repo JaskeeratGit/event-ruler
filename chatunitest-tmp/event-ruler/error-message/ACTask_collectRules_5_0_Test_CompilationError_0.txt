@@ -1,0 +1,118 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Method;
+import java.util.*;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+class ACTask_collectRules_5_0_Test {
+
+    // A small NameState stub that can be configured to return a specific set for any pattern.
+    static class StubNameState extends NameState {
+
+        private Set<SubRuleContext> terminalSet;
+
+        void setTerminalSubRuleIds(Set<SubRuleContext> set) {
+            this.terminalSet = set;
+        }
+
+        @Override
+        Set<SubRuleContext> getTerminalSubRuleIdsForPattern(Patterns pattern) {
+            return terminalSet;
+        }
+    }
+
+    private Method collectRulesMethod;
+
+    @BeforeEach
+    void setup() throws Exception {
+        // Locate the collectRules method via reflection (avoid needing exact inner-class types).
+        Method found = null;
+        for (Method m : ACTask.class.getDeclaredMethods()) {
+            if ("collectRules".equals(m.getName()) && m.getParameterCount() == 4) {
+                found = m;
+                break;
+            }
+        }
+        if (found == null) {
+            throw new NoSuchMethodException("collectRules method not found");
+        }
+        found.setAccessible(true);
+        collectRulesMethod = found;
+    }
+
+    @Test
+    void whenTerminalSubRuleIdsNull_thenNothingCollected() throws Exception {
+        ACTask task = new ACTask(null, null);
+        StubNameState nameState = new StubNameState();
+        // terminalSubRuleIds == null
+        nameState.setTerminalSubRuleIds(null);
+        // invoke via reflection
+        collectRulesMethod.invoke(task, null, nameState, null, null);
+        List<Object> matched = task.getMatchedRules();
+        assertNotNull(matched);
+        assertTrue(matched.isEmpty(), "No rules should be matched when terminalSubRuleIds is null");
+    }
+
+    @Test
+    void whenCandidatesNull_thenAllTerminalRuleNamesAdded() throws Exception {
+        ACTask task = new ACTask(null, null);
+        StubNameState nameState = new StubNameState();
+        SubRuleContext s1 = new SubRuleContext(1L, "ruleA");
+        SubRuleContext s2 = new SubRuleContext(2L, "ruleB");
+        Set<SubRuleContext> terminal = new HashSet<>(Arrays.asList(s1, s2));
+        nameState.setTerminalSubRuleIds(terminal);
+        // candidateSubRuleIds == null should add all terminal rule names
+        collectRulesMethod.invoke(task, null, nameState, null, null);
+        List<Object> matched = task.getMatchedRules();
+        assertNotNull(matched);
+        assertEquals(2, matched.size());
+        assertTrue(matched.contains("ruleA"));
+        assertTrue(matched.contains("ruleB"));
+    }
+
+    @Test
+    void whenCandidatesEmpty_thenAllTerminalRuleNamesAdded() throws Exception {
+        ACTask task = new ACTask(null, null);
+        StubNameState nameState = new StubNameState();
+        SubRuleContext s1 = new SubRuleContext(3L, "ruleC");
+        Set<SubRuleContext> terminal = new HashSet<>(Collections.singletonList(s1));
+        nameState.setTerminalSubRuleIds(terminal);
+        // candidateSubRuleIds is empty set -> should behave like null and add all terminal names
+        collectRulesMethod.invoke(task, Collections.emptySet(), nameState, null, null);
+        List<Object> matched = task.getMatchedRules();
+        assertNotNull(matched);
+        assertEquals(1, matched.size());
+        assertTrue(matched.contains("ruleC"));
+    }
+
+    @Test
+    void whenCandidatesNonEmpty_thenIntersectionApplied() throws Exception {
+        ACTask task = new ACTask(null, null);
+        StubNameState nameState = new StubNameState();
+        SubRuleContext s1 = new SubRuleContext(4L, "ruleX");
+        SubRuleContext s2 = new SubRuleContext(5L, "ruleY");
+        // candidate contains only s1
+        Set<SubRuleContext> candidate = new HashSet<>(Collections.singletonList(s1));
+        // terminal contains s1 and s2
+        Set<SubRuleContext> terminal = new HashSet<>(Arrays.asList(s1, s2));
+        nameState.setTerminalSubRuleIds(terminal);
+        // Expect intersection by rule name -> only "ruleX" should be added
+        collectRulesMethod.invoke(task, candidate, nameState, null, null);
+        List<Object> matched = task.getMatchedRules();
+        assertNotNull(matched);
+        assertEquals(1, matched.size(), "Only the intersecting rule name should be present");
+        assertTrue(matched.contains("ruleX"));
+    }
+}
+
+--------------------------------------------
+Error in ACTask_collectRules_5_0_Test: line 7 : cannot access org.mockito.Mockito
+  bad class file: /home/jaskeerat/.m2/repository/org/mockito/mockito-core/5.14.1/mockito-core-5.14.1.jar(org/mockito/Mockito.class)
+    class file has wrong version 55.0, should be 52.0
+    Please remove or make sure it appears in the correct subdirectory of the classpath.

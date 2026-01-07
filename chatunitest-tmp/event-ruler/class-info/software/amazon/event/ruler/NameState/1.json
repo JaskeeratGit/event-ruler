@@ -1,0 +1,22 @@
+{
+  "className": "NameState",
+  "methodName": "getTerminalPatterns",
+  "brief": "Set<Patterns> getTerminalPatterns(){}",
+  "methodSignature": "getTerminalPatterns()",
+  "sourceCode": "Set<Patterns> getTerminalPatterns() {\n        return patternToTerminalSubRuleIds.keySet();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "keySet()"
+    ]
+  },
+  "full_method_info": "/**\n * Get all the terminal patterns that have led to this NameState. \"Terminal\" means the pattern was used by the last\n * field of a rule to lead to this NameState, and thus, the rule's matching criteria have been fully satisfied.\n *\n * NOTE: This function returns the raw key set from one of NameState's internal maps. Mutating it will corrupt the\n * state of NameState. Although standard coding practice would warrant returning a copy of the set, or wrapping it\n * to be immutable, we instead return the raw key set as a performance optimization. This avoids creating new data\n * structures and/or copying elements between them.\n *\n * @return Set of all terminal patterns.\n */\nSet<Patterns> getTerminalPatterns() {\n    return patternToTerminalSubRuleIds.keySet();\n}",
+  "method_comment": "\n     * Get all the terminal patterns that have led to this NameState. \"Terminal\" means the pattern was used by the last\n     * field of a rule to lead to this NameState, and thus, the rule's matching criteria have been fully satisfied.\n     *\n     * NOTE: This function returns the raw key set from one of NameState's internal maps. Mutating it will corrupt the\n     * state of NameState. Although standard coding practice would warrant returning a copy of the set, or wrapping it\n     * to be immutable, we instead return the raw key set as a performance optimization. This avoids creating new data\n     * structures and/or copying elements between them.\n     *\n     * @return Set of all terminal patterns.\n     ",
+  "method_annotation": ""
+}

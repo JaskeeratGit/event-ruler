@@ -1,0 +1,22 @@
+{
+  "className": "Patterns",
+  "methodName": "prefixMatch",
+  "brief": "public static ValuePatterns prefixMatch(final String prefix){}",
+  "methodSignature": "prefixMatch(String)",
+  "sourceCode": "public static ValuePatterns prefixMatch(final String prefix) {\n        return new ValuePatterns(MatchType.PREFIX, prefix);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "// prefixes have to be given as strings, which with our semantics means they will be enclosed in \"\n// characters, like so: \"\\\"foo\\\"\".  We need the starting \" preserved, because that's how we pass\n// string field values around. But we have to amputate the last one because it'll break the prefix\n// semantics.\npublic static ValuePatterns prefixMatch(final String prefix) {\n    return new ValuePatterns(MatchType.PREFIX, prefix);\n}",
+  "method_comment": "  semantics.",
+  "method_annotation": ""
+}

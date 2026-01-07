@@ -1,0 +1,22 @@
+{
+  "className": "SingleByteTransition",
+  "methodName": "getTransitionForNextByteStates",
+  "brief": "@Override\n    ByteTransition getTransitionForNextByteStates(){}",
+  "methodSignature": "getTransitionForNextByteStates()",
+  "sourceCode": "@Override\n    ByteTransition getTransitionForNextByteStates() {\n        return getNextByteState();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "getNextByteState()"
+    ]
+  },
+  "full_method_info": "@Override\nByteTransition getTransitionForNextByteStates() {\n    return getNextByteState();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

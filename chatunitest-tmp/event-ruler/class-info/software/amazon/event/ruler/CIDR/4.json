@@ -1,0 +1,30 @@
+{
+  "className": "CIDR",
+  "methodName": "ipToRangeIfPossible",
+  "brief": "static Range ipToRangeIfPossible(final String ip){}",
+  "methodSignature": "ipToRangeIfPossible(String)",
+  "sourceCode": "static Range ipToRangeIfPossible(final String ip) {\n        if (!isIPv4OrIPv6(ip)) {\n            return null;\n        }\n        try {\n            final byte[] digits = toHexDigits(ipToBytes(ip));\n            final byte[] bottom = digits.clone();\n            final byte[] top = digits.clone();\n            boolean openBottom;\n            boolean openTop;\n            byte lastByte = top[top.length - 1];\n\n            if (lastByte == Constants.MAX_HEX_DIGIT) {\n                bottom[top.length - 1] = (byte) (lastByte - 1);\n                openBottom = true;\n                openTop = false;\n            } else {\n                if (lastByte != HEX_DIGITS[9]) { // 9\n                    top[top.length - 1] = (byte) (lastByte + 1);\n                } else {\n                    top[top.length - 1] = HEX_DIGITS[10];\n                }\n                openBottom = false;\n                openTop = true;\n            }\n            return new Range(bottom, openBottom, top, openTop, true);\n        } catch (Exception e) {\n            return null;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.CIDR": [
+      "isIPv4OrIPv6(String)",
+      "ipToBytes(String)",
+      "toHexDigits(byte[])"
+    ],
+    "java.lang.Object": [
+      "clone()"
+    ]
+  },
+  "full_method_info": "/**\n * Converts a string to an IP address literal to isCIDR format Range if this is possible.\n * If not possible, returns null.\n * @param ip String that might be an IP address literal\n * @return Range with isCIDR as true\n */\nstatic Range ipToRangeIfPossible(final String ip) {\n    if (!isIPv4OrIPv6(ip)) {\n        return null;\n    }\n    try {\n        final byte[] digits = toHexDigits(ipToBytes(ip));\n        final byte[] bottom = digits.clone();\n        final byte[] top = digits.clone();\n        boolean openBottom;\n        boolean openTop;\n        byte lastByte = top[top.length - 1];\n        if (lastByte == Constants.MAX_HEX_DIGIT) {\n            bottom[top.length - 1] = (byte) (lastByte - 1);\n            openBottom = true;\n            openTop = false;\n        } else {\n            if (lastByte != HEX_DIGITS[9]) {\n                // 9\n                top[top.length - 1] = (byte) (lastByte + 1);\n            } else {\n                top[top.length - 1] = HEX_DIGITS[10];\n            }\n            openBottom = false;\n            openTop = true;\n        }\n        return new Range(bottom, openBottom, top, openTop, true);\n    } catch (Exception e) {\n        return null;\n    }\n}",
+  "method_comment": "\n     * Converts a string to an IP address literal to isCIDR format Range if this is possible.\n     * If not possible, returns null.\n     * @param ip String that might be an IP address literal\n     * @return Range with isCIDR as true\n     ",
+  "method_annotation": ""
+}

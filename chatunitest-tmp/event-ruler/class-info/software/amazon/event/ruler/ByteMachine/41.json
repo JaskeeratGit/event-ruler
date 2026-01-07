@@ -1,0 +1,42 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findOrMakeNextByteState",
+  "brief": "private ByteState findOrMakeNextByteState(ByteState state, ByteState prevState, final InputCharacter[] characters,\n                                              int currentIndex, Patterns pattern, NameState nameState){}",
+  "methodSignature": "findOrMakeNextByteState(ByteState, ByteState, InputCharacter[], int, Patterns, NameState)",
+  "sourceCode": "private ByteState findOrMakeNextByteState(ByteState state, ByteState prevState, final InputCharacter[] characters,\n                                              int currentIndex, Patterns pattern, NameState nameState) {\n        final InputCharacter character = characters[currentIndex];\n        ByteTransition trans = getTransition(state, character);\n        trans = extendShortcutTransition(state, trans, character, currentIndex);\n\n        ByteState nextState = trans.getNextByteState();\n        if (nextState == null || nextState.hasIndeterminatePrefix() ||\n                (currentIndex == characters.length - 2 && isWildcard(characters[currentIndex + 1]))) {\n            // There are three cases for which we cannot re-use the next state and must add a new next state.\n            // 1. Next state is null (does not exist).\n            // 2. Next state has an indeterminate prefix, so using it would create unintended matches.\n            // 3. We're on second last char and last char is wildcard: next state will be composite with match so empty\n            //    substring satisfies wildcard. The composite will self-reference and would create unintended matches.\n            nextState = new ByteState();\n            nextState.setIndeterminatePrefix(state.hasIndeterminatePrefix());\n            addTransitionNextState(state, character, characters, currentIndex, prevState, pattern, nextState,\n                    nameState);\n        }\n\n        return nextState;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "ByteState",
+    "InputCharacter[]",
+    "int",
+    "Patterns",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "setIndeterminatePrefix(boolean)",
+      "hasIndeterminatePrefix()"
+    ],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "extendShortcutTransition(ByteState, ByteTransition, InputCharacter, int)",
+      "isWildcard(InputCharacter)",
+      "addTransitionNextState(ByteState, InputCharacter, InputCharacter[], int, ByteState, Patterns, ByteState, NameState)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "getNextByteState()"
+    ]
+  },
+  "full_method_info": "// Return the next byte state after transitioning from state using character at currentIndex. Will create it if it\n// doesn't exist.\nprivate ByteState findOrMakeNextByteState(ByteState state, ByteState prevState, final InputCharacter[] characters, int currentIndex, Patterns pattern, NameState nameState) {\n    final InputCharacter character = characters[currentIndex];\n    ByteTransition trans = getTransition(state, character);\n    trans = extendShortcutTransition(state, trans, character, currentIndex);\n    ByteState nextState = trans.getNextByteState();\n    if (nextState == null || nextState.hasIndeterminatePrefix() || (currentIndex == characters.length - 2 && isWildcard(characters[currentIndex + 1]))) {\n        // There are three cases for which we cannot re-use the next state and must add a new next state.\n        // 1. Next state is null (does not exist).\n        // 2. Next state has an indeterminate prefix, so using it would create unintended matches.\n        // 3. We're on second last char and last char is wildcard: next state will be composite with match so empty\n        // substring satisfies wildcard. The composite will self-reference and would create unintended matches.\n        nextState = new ByteState();\n        nextState.setIndeterminatePrefix(state.hasIndeterminatePrefix());\n        addTransitionNextState(state, character, characters, currentIndex, prevState, pattern, nextState, nameState);\n    }\n    return nextState;\n}",
+  "method_comment": "  doesn't exist.",
+  "method_annotation": ""
+}

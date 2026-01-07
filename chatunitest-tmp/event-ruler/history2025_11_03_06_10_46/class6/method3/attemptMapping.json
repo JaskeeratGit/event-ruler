@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "InputWildcard_toString_3_0_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_toString_3_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_toString_3_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt1": {
+    "testClassName": "InputWildcard_toString_3_1_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_toString_3_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_toString_3_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt2": {
+    "testClassName": "InputWildcard_toString_3_2_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_toString_3_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_toString_3_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt3": {
+    "testClassName": "InputWildcard_toString_3_3_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_toString_3_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_toString_3_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt4": {
+    "testClassName": "InputWildcard_toString_3_4_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_toString_3_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_toString_3_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  }
+}

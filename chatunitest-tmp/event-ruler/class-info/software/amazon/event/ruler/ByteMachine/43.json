@@ -1,0 +1,29 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addMatchPattern",
+  "brief": "private NameState addMatchPattern(final ValuePatterns pattern, final NameState nameState){}",
+  "methodSignature": "addMatchPattern(ValuePatterns, NameState)",
+  "sourceCode": "private NameState addMatchPattern(final ValuePatterns pattern, final NameState nameState) {\n        return addMatchValue(pattern, pattern.pattern(), nameState);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ValuePatterns",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ValuePatterns": [
+      "pattern()"
+    ],
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "addMatchValue(Patterns, String, NameState)"
+    ]
+  },
+  "full_method_info": "// add a match type pattern, i.e. anything but a numeric range, to the byte machine.\nprivate NameState addMatchPattern(final ValuePatterns pattern, final NameState nameState) {\n    return addMatchValue(pattern, pattern.pattern(), nameState);\n}",
+  "method_comment": " add a match type pattern, i.e. anything but a numeric range, to the byte machine.",
+  "method_annotation": ""
+}

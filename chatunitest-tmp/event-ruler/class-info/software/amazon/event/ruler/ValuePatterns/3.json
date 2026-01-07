@@ -1,0 +1,26 @@
+{
+  "className": "ValuePatterns",
+  "methodName": "toString",
+  "brief": "@Override\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        if(type() == MatchType.NUMERIC_EQ) {\n            return \"VP:\" + ComparableNumber.toIntVals(pattern) + \" (\" + super.toString() + \")\";\n        } else {\n            return \"VP:\" + pattern + \" (\" + super.toString() + \")\";\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "type()",
+      "toString()"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "toIntVals(String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic String toString() {\n    if (type() == MatchType.NUMERIC_EQ) {\n        return \"VP:\" + ComparableNumber.toIntVals(pattern) + \" (\" + super.toString() + \")\";\n    } else {\n        return \"VP:\" + pattern + \" (\" + super.toString() + \")\";\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,29 @@
+{
+  "className": "ByteMachine",
+  "methodName": "isNextCharacterFirstContinuationByteForSuffixMatch",
+  "brief": "private boolean isNextCharacterFirstContinuationByteForSuffixMatch(InputCharacter[] characters, int i){}",
+  "methodSignature": "isNextCharacterFirstContinuationByteForSuffixMatch(InputCharacter[], int)",
+  "sourceCode": "private boolean isNextCharacterFirstContinuationByteForSuffixMatch(InputCharacter[] characters, int i) {\n        if (hasSuffix.get() <= 0) {\n            return false;\n        }\n        // If the previous byte is a continuation byte, this means that we're in the middle of a multi-byte sequence.\n        return isContinuationByte(characters, i) && !isContinuationByte(characters, i - 1);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "java.util.concurrent.atomic.AtomicInteger": [
+      "get()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isContinuationByte(InputCharacter[], int)"
+    ]
+  },
+  "full_method_info": "private boolean isNextCharacterFirstContinuationByteForSuffixMatch(InputCharacter[] characters, int i) {\n    if (hasSuffix.get() <= 0) {\n        return false;\n    }\n    // If the previous byte is a continuation byte, this means that we're in the middle of a multi-byte sequence.\n    return isContinuationByte(characters, i) && !isContinuationByte(characters, i - 1);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

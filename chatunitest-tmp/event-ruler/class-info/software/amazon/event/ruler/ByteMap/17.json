@@ -1,0 +1,18 @@
+{
+  "className": "ByteMap",
+  "methodName": "getMap",
+  "brief": "NavigableMap<Integer, ByteTransition> getMap(){}",
+  "methodSignature": "getMap()",
+  "sourceCode": "NavigableMap<Integer, ByteTransition> getMap() {\n        return map;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "// for testing\nNavigableMap<Integer, ByteTransition> getMap() {\n    return map;\n}",
+  "method_comment": " for testing",
+  "method_annotation": ""
+}

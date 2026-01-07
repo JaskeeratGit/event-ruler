@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Patterns_anythingButPrefix_16_0_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButPrefix_16_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButPrefix_16_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButPrefix",
+    "methodSig": "anythingButPrefix(Set)"
+  },
+  "attempt1": {
+    "testClassName": "Patterns_anythingButPrefix_16_1_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButPrefix_16_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButPrefix_16_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButPrefix",
+    "methodSig": "anythingButPrefix(Set)"
+  },
+  "attempt2": {
+    "testClassName": "Patterns_anythingButPrefix_16_2_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButPrefix_16_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButPrefix_16_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButPrefix",
+    "methodSig": "anythingButPrefix(Set)"
+  },
+  "attempt3": {
+    "testClassName": "Patterns_anythingButPrefix_16_3_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButPrefix_16_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButPrefix_16_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButPrefix",
+    "methodSig": "anythingButPrefix(Set)"
+  },
+  "attempt4": {
+    "testClassName": "Patterns_anythingButPrefix_16_4_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButPrefix_16_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButPrefix_16_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButPrefix",
+    "methodSig": "anythingButPrefix(Set)"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "fullClassName": "software.amazon.event.ruler.AnythingButValuesSet",
+  "className": "AnythingButValuesSet",
+  "index": 20,
+  "modifier": "[public ]",
+  "extend": "[Patterns]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "public class AnythingButValuesSet",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collections;",
+    "import java.util.Objects;",
+    "import java.util.Set;"
+  ],
+  "fields": [
+    "private final Set<String> values;"
+  ],
+  "superClasses": [
+    "Patterns"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getValues()": "0",
+    "equals(Object)": "1",
+    "hashCode()": "2",
+    "toString()": "3",
+    "AnythingButValuesSet(MatchType, Set)": "4"
+  },
+  "methodsBrief": [
+    "public Set<String> getValues(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "@Override\n    public String toString(){}",
+    "AnythingButValuesSet(final MatchType matchType, final Set<String> values){}"
+  ],
+  "constructorSigs": [
+    "AnythingButValuesSet(MatchType, Set)"
+  ],
+  "constructorBrief": [
+    "AnythingButValuesSet(final MatchType matchType, final Set<String> values){}"
+  ],
+  "getterSetterSigs": [
+    "getValues()"
+  ],
+  "getterSetterBrief": [
+    "public Set<String> getValues(){}"
+  ],
+  "constructorDeps": {
+    "software.amazon.event.ruler.MatchType": [],
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ]
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.Collections;\nimport java.util.Objects;\nimport java.util.Set;\n\n/**\n * Represents denylist like rule: any value matches if it's *not* in the anything-but set.\n * It supports lists whose members must be all strings.\n * This can be used for anything-but-equals-ignore-case, anything-but-prefix, and anything-but-suffix.\n */\npublic class AnythingButValuesSet extends Patterns {\n\n    private final Set<String> values;\n\n    AnythingButValuesSet(final MatchType matchType, final Set<String> values) {\n        super(matchType);\n        this.values = Collections.unmodifiableSet(values);\n    }\n\n    public Set<String> getValues() {\n        return values;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        if (!super.equals(o)) {\n            return false;\n        }\n        AnythingButValuesSet that = (AnythingButValuesSet) o;\n        return (Objects.equals(values, that.values));\n    }\n\n    @Override\n    public int hashCode() {\n        int result = super.hashCode();\n        result = 31 * result + (values != null ? values.hashCode() : 0);\n        return result;\n    }\n\n    @Override\n    public String toString() {\n        return \"ABVS:\" + values + \", (\" + super.toString() + \")\";\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents denylist like rule: any value matches if it's *not* in the anything-but set.\n * It supports lists whose members must be all strings.\n * This can be used for anything-but-equals-ignore-case, anything-but-prefix, and anything-but-suffix.\n */\npublic class AnythingButValuesSet extends Patterns {\n\n    private final Set<String> values;\n\n    AnythingButValuesSet(final MatchType matchType, final Set<String> values) {\n        super(matchType);\n        this.values = Collections.unmodifiableSet(values);\n    }\n\n    public Set<String> getValues() {\n        return values;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        if (!super.equals(o)) {\n            return false;\n        }\n        AnythingButValuesSet that = (AnythingButValuesSet) o;\n        return (Objects.equals(values, that.values));\n    }\n\n    @Override\n    public int hashCode() {\n        int result = super.hashCode();\n        result = 31 * result + (values != null ? values.hashCode() : 0);\n        return result;\n    }\n\n    @Override\n    public String toString() {\n        return \"ABVS:\" + values + \", (\" + super.toString() + \")\";\n    }\n}",
+  "subClasses": []
+}

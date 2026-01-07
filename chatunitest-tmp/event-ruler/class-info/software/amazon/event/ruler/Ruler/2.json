@@ -1,0 +1,34 @@
+{
+  "className": "Ruler",
+  "methodName": "matchesAllFields",
+  "brief": "private static boolean matchesAllFields(final JsonNode event, final Map<List<String>, List<Patterns>> rule){}",
+  "methodSignature": "matchesAllFields(JsonNode, Map)",
+  "sourceCode": "private static boolean matchesAllFields(final JsonNode event, final Map<List<String>, List<Patterns>> rule) {\n        for (Map.Entry<List<String>, List<Patterns>> entry : rule.entrySet()) {\n            final JsonNode fieldValue = tryToRetrievePath(event, entry.getKey());\n            if (!matchesOneOf(fieldValue, entry.getValue())) {\n                return false;\n            }\n        }\n        return true;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "Map<List<String>,List<Patterns>>"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [],
+    "java.util.Map": [
+      "entrySet()"
+    ],
+    "software.amazon.event.ruler.Ruler": [
+      "tryToRetrievePath(JsonNode, String>)",
+      "matchesOneOf(JsonNode, Patterns>)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ]
+  },
+  "full_method_info": "private static boolean matchesAllFields(final JsonNode event, final Map<List<String>, List<Patterns>> rule) {\n    for (Map.Entry<List<String>, List<Patterns>> entry : rule.entrySet()) {\n        final JsonNode fieldValue = tryToRetrievePath(event, entry.getKey());\n        if (!matchesOneOf(fieldValue, entry.getValue())) {\n            return false;\n        }\n    }\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

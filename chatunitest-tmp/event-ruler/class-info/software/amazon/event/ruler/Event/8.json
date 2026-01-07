@@ -1,0 +1,37 @@
+{
+  "className": "Event",
+  "methodName": "flattenArray",
+  "brief": "private static void flattenArray(final JsonNode array, final Map<String, List<String>> map, final Stack<String> path){}",
+  "methodSignature": "flattenArray(JsonNode, Map, Stack)",
+  "sourceCode": "private static void flattenArray(final JsonNode array, final Map<String, List<String>> map, final Stack<String> path) {\n        final Iterator<JsonNode> elements = array.elements();\n        while (elements.hasNext()) {\n            final JsonNode element = elements.next();\n            switch (element.getNodeType()) {\n            case OBJECT:\n                flattenObject(element, map, path);\n                break;\n            case ARRAY:\n                flattenArray(element, map, path);\n                break;\n            case STRING:\n                recordNameVal(map, path, '\"' + element.asText() + '\"');\n                break;\n            case NULL:\n            case BOOLEAN:\n            case NUMBER:\n                recordNameVal(map, path, element.asText());\n                break;\n            default:\n                throw new RuntimeException(\"Unknown JsonNode type for: \" + element.asText());\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "Map<String,List<String>>",
+    "Stack<String>"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "getNodeType()",
+      "elements()",
+      "asText()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "flattenArray(JsonNode, String>>, String>)",
+      "flattenObject(JsonNode, String>>, String>)",
+      "recordNameVal(String>>, String>, String)"
+    ]
+  },
+  "full_method_info": "private static void flattenArray(final JsonNode array, final Map<String, List<String>> map, final Stack<String> path) {\n    final Iterator<JsonNode> elements = array.elements();\n    while (elements.hasNext()) {\n        final JsonNode element = elements.next();\n        switch(element.getNodeType()) {\n            case OBJECT:\n                flattenObject(element, map, path);\n                break;\n            case ARRAY:\n                flattenArray(element, map, path);\n                break;\n            case STRING:\n                recordNameVal(map, path, '\"' + element.asText() + '\"');\n                break;\n            case NULL:\n            case BOOLEAN:\n            case NUMBER:\n                recordNameVal(map, path, element.asText());\n                break;\n            default:\n                throw new RuntimeException(\"Unknown JsonNode type for: \" + element.asText());\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

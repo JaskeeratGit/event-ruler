@@ -1,0 +1,39 @@
+{
+  "className": "ByteMachine",
+  "methodName": "deleteMatch",
+  "brief": "private SingleByteTransition deleteMatch(InputCharacter character, ByteState state, Patterns pattern,\n                                             SingleByteTransition trans){}",
+  "methodSignature": "deleteMatch(InputCharacter, ByteState, Patterns, SingleByteTransition)",
+  "sourceCode": "private SingleByteTransition deleteMatch(InputCharacter character, ByteState state, Patterns pattern,\n                                             SingleByteTransition trans) {\n        if (state == null) {\n            return null;\n        }\n\n        ByteMatch match = trans.getMatch();\n\n        if (match != null && match.getPattern().equals(pattern)) {\n            updateMatchReferences(match);\n            return putTransitionMatch(state, character, trans, null);\n        }\n\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter",
+    "ByteState",
+    "Patterns",
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteState": [],
+    "software.amazon.event.ruler.Patterns": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.SingleByteTransition": [
+      "getMatch()"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getPattern()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "putTransitionMatch(ByteState, InputCharacter, SingleByteTransition, ByteMatch)",
+      "updateMatchReferences(ByteMatch)"
+    ]
+  },
+  "full_method_info": "/**\n * Deletes a match, if it exists, on the given pattern that is accessed from ByteState state using character to\n * transition over SingleByteTransition trans.\n *\n * @param character The character used to transition.\n * @param state The state we are transitioning from.\n * @param pattern The pattern whose match we are attempting to delete.\n * @param trans The transition to the match.\n * @return The updated transition (may or may not be same object as trans) if the match was found. Null otherwise.\n */\nprivate SingleByteTransition deleteMatch(InputCharacter character, ByteState state, Patterns pattern, SingleByteTransition trans) {\n    if (state == null) {\n        return null;\n    }\n    ByteMatch match = trans.getMatch();\n    if (match != null && match.getPattern().equals(pattern)) {\n        updateMatchReferences(match);\n        return putTransitionMatch(state, character, trans, null);\n    }\n    return null;\n}",
+  "method_comment": "\n     * Deletes a match, if it exists, on the given pattern that is accessed from ByteState state using character to\n     * transition over SingleByteTransition trans.\n     *\n     * @param character The character used to transition.\n     * @param state The state we are transitioning from.\n     * @param pattern The pattern whose match we are attempting to delete.\n     * @param trans The transition to the match.\n     * @return The updated transition (may or may not be same object as trans) if the match was found. Null otherwise.\n     ",
+  "method_annotation": ""
+}

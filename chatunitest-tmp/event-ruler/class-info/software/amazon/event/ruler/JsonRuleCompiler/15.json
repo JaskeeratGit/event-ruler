@@ -1,0 +1,25 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "compile",
+  "brief": "public static List<Map<String, List<Patterns>>> compile(final InputStream source) throws IOException{}",
+  "methodSignature": "compile(InputStream)",
+  "sourceCode": "public static List<Map<String, List<Patterns>>> compile(final InputStream source) throws IOException {\n        return compile(source, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "compile(InputStream, boolean)"
+    ]
+  },
+  "full_method_info": "public static List<Map<String, List<Patterns>>> compile(final InputStream source) throws IOException {\n    return compile(source, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

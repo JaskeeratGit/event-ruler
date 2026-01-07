@@ -1,0 +1,30 @@
+{
+  "className": "NameState",
+  "methodName": "containsRule",
+  "brief": "boolean containsRule(final Object rule, final Patterns pattern){}",
+  "methodSignature": "containsRule(Object, Patterns)",
+  "sourceCode": "boolean containsRule(final Object rule, final Patterns pattern) {\n        Set<Object> rules = patternToRules.get(pattern);\n        return rules != null && rules.contains(rule);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Determines whether this NameState contains the provided rule accessible via the provided pattern.\n *\n * @param rule The rule, which may have multiple sub-rules.\n * @param pattern The pattern used by the rule to transition to this NameState.\n * @return True indicates that this NameState the provided rule for the provided pattern.\n */\nboolean containsRule(final Object rule, final Patterns pattern) {\n    Set<Object> rules = patternToRules.get(pattern);\n    return rules != null && rules.contains(rule);\n}",
+  "method_comment": "\n     * Determines whether this NameState contains the provided rule accessible via the provided pattern.\n     *\n     * @param rule The rule, which may have multiple sub-rules.\n     * @param pattern The pattern used by the rule to transition to this NameState.\n     * @return True indicates that this NameState the provided rule for the provided pattern.\n     ",
+  "method_annotation": ""
+}

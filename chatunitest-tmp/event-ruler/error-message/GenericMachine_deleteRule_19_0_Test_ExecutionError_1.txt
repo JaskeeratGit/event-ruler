@@ -1,0 +1,148 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+/*
+ Fixed test: Mockito static mocking wasn't available in the environment.
+ To avoid static mocking, test-time replacement classes JsonRuleCompiler and RuleCompiler
+ (defined below in the same package) provide controllable static methods and state
+ so GenericMachine.deleteRule can be exercised deterministically.
+*/
+public class GenericMachine_deleteRule_19_0_Test {
+
+    @AfterEach
+    public void tearDown() {
+        // reset test helpers state
+        JsonRuleCompiler.throwParse = false;
+        JsonRuleCompiler.toReturn = null;
+        JsonRuleCompiler.lastJson = null;
+        JsonRuleCompiler.lastOverrideParam = null;
+        RuleCompiler.toReturn = null;
+        RuleCompiler.lastJson = null;
+        RuleCompiler.lastOverrideParam = null;
+    }
+
+    @Test
+    public void testDeleteRule_usesJsonRuleCompiler_whenNoParseException() throws IOException {
+        // configuration: ruleOverriding = false (passed to compiler)
+        GenericMachineConfiguration configuration = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(configuration);
+        // Prepare fake compiled rules: two maps to simulate multiple pattern rules returned
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        List<Map<String, List>> fakeCompiledRules = new ArrayList<>();
+        fakeCompiledRules.add(new HashMap<>());
+        fakeCompiledRules.add(new HashMap<>());
+        // Configure test helper compilers
+        JsonRuleCompiler.throwParse = false;
+        JsonRuleCompiler.toReturn = fakeCompiledRules;
+        RuleCompiler.toReturn = null;
+        RuleCompiler.lastJson = null;
+        // Call focal method and assert it doesn't throw
+        assertDoesNotThrow(() -> machine.deleteRule("ruleName", "some-json"));
+        // Verify JsonRuleCompiler was invoked with expected arguments
+        assertEquals("some-json", JsonRuleCompiler.lastJson, "JsonRuleCompiler should have been called with given JSON");
+        assertEquals(Boolean.valueOf(configuration.isRuleOverriding()), JsonRuleCompiler.lastOverrideParam, "JsonRuleCompiler should receive ruleOverriding flag");
+        // Verify RuleCompiler was not invoked (fallback)
+        assertNull(RuleCompiler.lastJson, "RuleCompiler should not have been called when JsonRuleCompiler succeeds");
+    }
+
+    @Test
+    public void testDeleteRule_fallsBackToRuleCompiler_onJsonParseException() throws IOException {
+        GenericMachineConfiguration configuration = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(configuration);
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        Map<String, List> fakeSingleCompiledRule = new HashMap<>();
+        // Configure test helper compilers to simulate JsonParseException and fallback
+        JsonRuleCompiler.throwParse = true;
+        JsonRuleCompiler.toReturn = null;
+        JsonRuleCompiler.lastJson = null;
+        RuleCompiler.toReturn = fakeSingleCompiledRule;
+        RuleCompiler.lastJson = null;
+        // Should not throw; deleteRule should catch JsonParseException and use RuleCompiler
+        assertDoesNotThrow(() -> machine.deleteRule("ruleName", "other-json"));
+        // Verify both helpers were invoked as expected
+        assertEquals("other-json", JsonRuleCompiler.lastJson, "JsonRuleCompiler should have been called and thrown JsonParseException");
+        assertEquals(Boolean.valueOf(configuration.isRuleOverriding()), JsonRuleCompiler.lastOverrideParam, "JsonRuleCompiler should receive ruleOverriding flag");
+        assertEquals("other-json", RuleCompiler.lastJson, "RuleCompiler should have been called as a fallback");
+        assertEquals(Boolean.valueOf(configuration.isRuleOverriding()), RuleCompiler.lastOverrideParam, "RuleCompiler should receive ruleOverriding flag");
+    }
+}
+
+/*
+ Test-time replacement for production JsonRuleCompiler static class.
+ The real project has a JsonRuleCompiler in the same package; test classes are
+ placed earlier on the test classpath so these will be used during tests.
+*/
+class JsonRuleCompiler {
+
+    // controllable test state
+    static volatile boolean throwParse = false;
+
+    static volatile List<Map<String, List>> toReturn = null;
+
+    static volatile String lastJson = null;
+
+    static volatile Boolean lastOverrideParam = null;
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    static List<Map<String, List>> compile(String json, boolean override) throws JsonParseException {
+        lastJson = json;
+        lastOverrideParam = override;
+        if (throwParse) {
+            throw new JsonParseException(null, "simulate parse error");
+        }
+        if (toReturn != null) {
+            return toReturn;
+        }
+        return new ArrayList<>();
+    }
+}
+
+/*
+ Test-time replacement for production RuleCompiler static class.
+*/
+class RuleCompiler {
+
+    static volatile Map<String, List> toReturn = null;
+
+    static volatile String lastJson = null;
+
+    static volatile Boolean lastOverrideParam = null;
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    static Map<String, List> compile(String json, boolean override) {
+        lastJson = json;
+        lastOverrideParam = override;
+        if (toReturn != null) {
+            return toReturn;
+        }
+        return new HashMap<>();
+    }
+}
+
+--------------------------------------------
+Error in testDeleteRule_fallsBackToRuleCompiler_onJsonParseException(): line 79 : java.lang.NoSuchFieldError: throwParse
+Error in testDeleteRule_usesJsonRuleCompiler_whenNoParseException(): line 59 : java.lang.NoSuchFieldError: throwParse

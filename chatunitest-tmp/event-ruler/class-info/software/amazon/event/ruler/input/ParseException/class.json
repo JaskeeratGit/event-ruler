@@ -1,0 +1,41 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.ParseException",
+  "className": "ParseException",
+  "index": 9,
+  "modifier": "[public ]",
+  "extend": "[RuntimeException]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public class ParseException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "RuntimeException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "ParseException(String)": "0"
+  },
+  "methodsBrief": [
+    "public ParseException(String msg){}"
+  ],
+  "constructorSigs": [
+    "ParseException(String)"
+  ],
+  "constructorBrief": [
+    "public ParseException(String msg){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\n/**\n * A RuntimeException that indicates an error parsing a rule's value.\n */\npublic class ParseException extends RuntimeException {\n\n    public ParseException(String msg) {\n        super(msg);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A RuntimeException that indicates an error parsing a rule's value.\n */\npublic class ParseException extends RuntimeException {\n\n    public ParseException(String msg) {\n        super(msg);\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,23 @@
+{
+  "className": "Ruler",
+  "methodName": "compare",
+  "brief": "static int compare(final byte[] a, final byte[] b){}",
+  "methodSignature": "compare(byte[], byte[])",
+  "sourceCode": "static int compare(final byte[] a, final byte[] b) {\n        assert(a.length == b.length);\n        for (int i = 0; i < a.length; i++) {\n            if (a[i] != b[i]) {\n                return a[i] - b[i];\n            }\n        }\n        return 0;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "static int compare(final byte[] a, final byte[] b) {\n    assert (a.length == b.length);\n    for (int i = 0; i < a.length; i++) {\n        if (a[i] != b[i]) {\n            return a[i] - b[i];\n        }\n    }\n    return 0;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

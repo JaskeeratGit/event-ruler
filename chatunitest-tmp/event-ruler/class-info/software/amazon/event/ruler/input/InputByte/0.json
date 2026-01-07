@@ -1,0 +1,22 @@
+{
+  "className": "InputByte",
+  "methodName": "cast",
+  "brief": "public static InputByte cast(InputCharacter character){}",
+  "methodSignature": "cast(InputCharacter)",
+  "sourceCode": "public static InputByte cast(InputCharacter character) {\n        return (InputByte) character;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": []
+  },
+  "full_method_info": "public static InputByte cast(InputCharacter character) {\n    return (InputByte) character;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

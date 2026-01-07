@@ -1,0 +1,28 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButNumberMatch",
+  "brief": "public static AnythingBut anythingButNumberMatch(final String anythingBut){}",
+  "methodSignature": "anythingButNumberMatch(String)",
+  "sourceCode": "public static AnythingBut anythingButNumberMatch(final String anythingBut) {\n        return new AnythingBut(Collections.singleton(ComparableNumber.generate(anythingBut)), true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "singleton(T)"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "generate(String)"
+    ]
+  },
+  "full_method_info": "public static AnythingBut anythingButNumberMatch(final String anythingBut) {\n    return new AnythingBut(Collections.singleton(ComparableNumber.generate(anythingBut)), true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "withAdditionalNameStateReuse",
+  "brief": "public Builder<M,T> withAdditionalNameStateReuse(boolean additionalNameStateReuse){}",
+  "methodSignature": "withAdditionalNameStateReuse(boolean)",
+  "sourceCode": "public Builder<M,T> withAdditionalNameStateReuse(boolean additionalNameStateReuse) {\n            this.additionalNameStateReuse = additionalNameStateReuse;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public Builder<M, T> withAdditionalNameStateReuse(boolean additionalNameStateReuse) {\n    this.additionalNameStateReuse = additionalNameStateReuse;\n    return this;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

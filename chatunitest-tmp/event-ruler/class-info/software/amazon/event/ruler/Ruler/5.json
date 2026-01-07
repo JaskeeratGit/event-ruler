@@ -1,0 +1,26 @@
+{
+  "className": "Ruler",
+  "methodName": "tryToRetrievePath",
+  "brief": "static JsonNode tryToRetrievePath(JsonNode node, final List<String> path){}",
+  "methodSignature": "tryToRetrievePath(JsonNode, List)",
+  "sourceCode": "static JsonNode tryToRetrievePath(JsonNode node, final List<String> path) {\n        for (final String step : path) {\n            if ((node == null) || !node.isObject()) {\n                return null;\n            }\n            node = node.get(step);\n        }\n        return node;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "List<String>"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "isObject()",
+      "get(String)"
+    ]
+  },
+  "full_method_info": "static JsonNode tryToRetrievePath(JsonNode node, final List<String> path) {\n    for (final String step : path) {\n        if ((node == null) || !node.isObject()) {\n            return null;\n        }\n        node = node.get(step);\n    }\n    return node;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

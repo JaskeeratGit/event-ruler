@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "GenericMachine_toString_36_0_Test",
+    "fullName": "software.amazon.event.ruler.GenericMachine_toString_36_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/GenericMachine_toString_36_0_Test.java",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt1": {
+    "testClassName": "GenericMachine_toString_36_1_Test",
+    "fullName": "software.amazon.event.ruler.GenericMachine_toString_36_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/GenericMachine_toString_36_0_Test.java",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt2": {
+    "testClassName": "GenericMachine_toString_36_2_Test",
+    "fullName": "software.amazon.event.ruler.GenericMachine_toString_36_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/GenericMachine_toString_36_0_Test.java",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt3": {
+    "testClassName": "GenericMachine_toString_36_3_Test",
+    "fullName": "software.amazon.event.ruler.GenericMachine_toString_36_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/GenericMachine_toString_36_0_Test.java",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  },
+  "attempt4": {
+    "testClassName": "GenericMachine_toString_36_4_Test",
+    "fullName": "software.amazon.event.ruler.GenericMachine_toString_36_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/GenericMachine_toString_36_0_Test.java",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "toString",
+    "methodSig": "toString()"
+  }
+}

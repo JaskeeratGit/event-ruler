@@ -1,0 +1,25 @@
+{
+  "className": "GenericMachine",
+  "methodName": "isEmpty",
+  "brief": "public boolean isEmpty(){}",
+  "methodSignature": "isEmpty()",
+  "sourceCode": "public boolean isEmpty() {\n        return startState.isEmpty() && fieldStepsUsedRefCount.isEmpty();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "isEmpty()"
+    ],
+    "java.util.Map": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "public boolean isEmpty() {\n    return startState.isEmpty() && fieldStepsUsedRefCount.isEmpty();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

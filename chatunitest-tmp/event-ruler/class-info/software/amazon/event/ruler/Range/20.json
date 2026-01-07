@@ -1,0 +1,25 @@
+{
+  "className": "Range",
+  "methodName": "Range",
+  "brief": "private Range(Range range){}",
+  "methodSignature": "Range(Range)",
+  "sourceCode": "private Range(Range range) {\n        super(MatchType.NUMERIC_RANGE);\n        this.bottom = range.bottom.clone();\n        this.openBottom = range.openBottom;\n        this.top = range.top.clone();\n        this.openTop = range.openTop;\n        this.isCIDR = range.isCIDR;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Range"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Range": [],
+    "java.lang.Object": [
+      "clone()"
+    ]
+  },
+  "full_method_info": "private Range(Range range) {\n    super(MatchType.NUMERIC_RANGE);\n    this.bottom = range.bottom.clone();\n    this.openBottom = range.openBottom;\n    this.top = range.top.clone();\n    this.openTop = range.openTop;\n    this.isCIDR = range.isCIDR;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

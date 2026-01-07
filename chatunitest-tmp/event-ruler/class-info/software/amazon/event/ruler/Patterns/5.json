@@ -1,0 +1,26 @@
+{
+  "className": "Patterns",
+  "methodName": "suffixMatch",
+  "brief": "public static ValuePatterns suffixMatch(final String suffix){}",
+  "methodSignature": "suffixMatch(String)",
+  "sourceCode": "public static ValuePatterns suffixMatch(final String suffix) {\n        return new ValuePatterns(MatchType.SUFFIX, new StringBuilder(suffix).reverse().toString());\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "reverse()"
+    ]
+  },
+  "full_method_info": "public static ValuePatterns suffixMatch(final String suffix) {\n    return new ValuePatterns(MatchType.SUFFIX, new StringBuilder(suffix).reverse().toString());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

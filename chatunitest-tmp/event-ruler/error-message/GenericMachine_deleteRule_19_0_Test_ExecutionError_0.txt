@@ -1,0 +1,89 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+public class GenericMachine_deleteRule_19_0_Test {
+
+    @Test
+    public void testDeleteRule_usesJsonRuleCompiler_whenNoParseException() throws IOException {
+        // configuration: ruleOverriding = false (passed to compiler)
+        GenericMachineConfiguration configuration = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(configuration);
+        // Prepare fake compiled rules: two maps to simulate multiple pattern rules returned
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        List<Map<String, List>> fakeCompiledRules = new ArrayList<>();
+        fakeCompiledRules.add(new HashMap<>());
+        fakeCompiledRules.add(new HashMap<>());
+        try (MockedStatic<JsonRuleCompiler> mockJson = Mockito.mockStatic(JsonRuleCompiler.class);
+            MockedStatic<RuleCompiler> mockRule = Mockito.mockStatic(RuleCompiler.class)) {
+            // JsonRuleCompiler.compile should be invoked and return our fake rules
+            mockJson.when(() -> JsonRuleCompiler.compile("some-json", configuration.isRuleOverriding())).thenReturn((List) fakeCompiledRules);
+            // Ensure RuleCompiler.compile is not called in this scenario
+            // if erroneously called, it would return something harmless
+            // if erroneously called, it would return something harmless
+            mockRule.when(() -> RuleCompiler.compile("some-json", configuration.isRuleOverriding())).thenReturn((Map) new HashMap<>());
+            // Call focal method and assert it doesn't throw
+            assertDoesNotThrow(() -> machine.deleteRule("ruleName", "some-json"));
+            // Verify static interactions
+            mockJson.verify(() -> JsonRuleCompiler.compile("some-json", configuration.isRuleOverriding()), times(1));
+            mockRule.verifyNoInteractions();
+        }
+    }
+
+    @Test
+    public void testDeleteRule_fallsBackToRuleCompiler_onJsonParseException() throws IOException {
+        GenericMachineConfiguration configuration = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(configuration);
+        @SuppressWarnings({ "unchecked", "rawtypes" })
+        Map<String, List> fakeSingleCompiledRule = new HashMap<>();
+        try (MockedStatic<JsonRuleCompiler> mockJson = Mockito.mockStatic(JsonRuleCompiler.class);
+            MockedStatic<RuleCompiler> mockRule = Mockito.mockStatic(RuleCompiler.class)) {
+            // Make JsonRuleCompiler.compile throw JsonParseException to trigger fallback
+            mockJson.when(() -> JsonRuleCompiler.compile("other-json", configuration.isRuleOverriding())).thenThrow(new JsonParseException(null, "simulate parse error"));
+            // Set RuleCompiler.compile to return a single rule map
+            mockRule.when(() -> RuleCompiler.compile("other-json", configuration.isRuleOverriding())).thenReturn((Map) fakeSingleCompiledRule);
+            // Should not throw; deleteRule should catch JsonParseException and use RuleCompiler
+            assertDoesNotThrow(() -> machine.deleteRule("ruleName", "other-json"));
+            // Verify both static calls happened as expected
+            mockJson.verify(() -> JsonRuleCompiler.compile("other-json", configuration.isRuleOverriding()), times(1));
+            mockRule.verify(() -> RuleCompiler.compile("other-json", configuration.isRuleOverriding()), times(1));
+        }
+    }
+}
+
+--------------------------------------------
+Error in testDeleteRule_fallsBackToRuleCompiler_onJsonParseException(): line 62 : org.mockito.exceptions.base.MockitoException: 
+The used MockMaker SubclassByteBuddyMockMaker does not support the creation of static mocks
+
+Mockito's inline mock maker supports static mocks based on the Instrumentation API.
+You can simply enable this mock mode, by placing the 'mockito-inline' artifact where you are currently using 'mockito-core'.
+Note that Mockito's inline mock maker is not supported on Android.
+Error in testDeleteRule_usesJsonRuleCompiler_whenNoParseException(): line 40 : org.mockito.exceptions.base.MockitoException: 
+The used MockMaker SubclassByteBuddyMockMaker does not support the creation of static mocks
+
+Mockito's inline mock maker supports static mocks based on the Instrumentation API.
+You can simply enable this mock mode, by placing the 'mockito-inline' artifact where you are currently using 'mockito-core'.
+Note that Mockito's inline mock maker is not supported on Android.

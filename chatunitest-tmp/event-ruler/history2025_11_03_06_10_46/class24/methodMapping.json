@@ -1,0 +1,32 @@
+{
+  "method0": {
+    "methodName": "pattern",
+    "signature": "pattern()",
+    "className": "ValuePatterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "ValuePatterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "ValuePatterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "ValuePatterns",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "ValuePatterns",
+    "signature": "ValuePatterns(MatchType, String)",
+    "className": "ValuePatterns",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

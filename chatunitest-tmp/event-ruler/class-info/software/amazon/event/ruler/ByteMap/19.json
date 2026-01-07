@@ -1,0 +1,22 @@
+{
+  "className": "ByteMap",
+  "methodName": "ByteMap",
+  "brief": "ByteMap(){}",
+  "methodSignature": "ByteMap()",
+  "sourceCode": "ByteMap() {\n        map.put(256, null);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "ByteMap() {\n    map.put(256, null);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

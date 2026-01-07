@@ -1,0 +1,22 @@
+{
+  "className": "SingleStateNameMatcher",
+  "methodName": "deletePattern",
+  "brief": "@Override\n    public void deletePattern(@Nonnull final Patterns pattern){}",
+  "methodSignature": "deletePattern(Patterns)",
+  "sourceCode": "@Override\n    public void deletePattern(@Nonnull final Patterns pattern) {\n        nameState = null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": []
+  },
+  "full_method_info": "@Override\npublic void deletePattern(@Nonnull final Patterns pattern) {\n    nameState = null;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

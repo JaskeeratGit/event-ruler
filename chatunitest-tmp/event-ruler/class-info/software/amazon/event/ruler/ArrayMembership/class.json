@@ -1,0 +1,65 @@
+{
+  "fullClassName": "software.amazon.event.ruler.ArrayMembership",
+  "className": "ArrayMembership",
+  "index": 38,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "class ArrayMembership",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private static final IntIntMap EMPTY = new IntIntMap();",
+    "private final IntIntMap membership;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "putMembership(int, int)": "0",
+    "deleteMembership(int)": "1",
+    "getMembership(int)": "2",
+    "isEmpty()": "3",
+    "size()": "4",
+    "toString()": "5",
+    "checkArrayConsistency(ArrayMembership, ArrayMembership)": "6",
+    "ArrayMembership()": "7",
+    "ArrayMembership(ArrayMembership)": "8"
+  },
+  "methodsBrief": [
+    "void putMembership(int array, int index){}",
+    "void deleteMembership(int array){}",
+    "int getMembership(int array){}",
+    "boolean isEmpty(){}",
+    "private int size(){}",
+    "public String toString(){}",
+    "static ArrayMembership checkArrayConsistency(final ArrayMembership membershipSoFar, final ArrayMembership fieldMembership){}",
+    "ArrayMembership(){}",
+    "ArrayMembership(final ArrayMembership membership){}"
+  ],
+  "constructorSigs": [
+    "ArrayMembership()",
+    "ArrayMembership(ArrayMembership)"
+  ],
+  "constructorBrief": [
+    "ArrayMembership(){}",
+    "ArrayMembership(final ArrayMembership membership){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "software.amazon.event.ruler.ArrayMembership": [
+      "size()"
+    ],
+    "software.amazon.event.ruler.IntIntMap": [
+      "clone()"
+    ]
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\n/**\n * Represents which JSON arrays within an Event structure a particular field appears within, and at which position.\n *  The arrays are identified using integers.\n */\nclass ArrayMembership {\n\n    private static final IntIntMap EMPTY = new IntIntMap();\n\n    private final IntIntMap membership;\n\n    ArrayMembership() {\n        membership = new IntIntMap();\n    }\n\n    ArrayMembership(final ArrayMembership membership) {\n        if (membership.size() == 0) {\n            this.membership = EMPTY;\n        } else {\n            this.membership = (IntIntMap) membership.membership.clone();\n        }\n    }\n\n    void putMembership(int array, int index) {\n        if (index == IntIntMap.NO_VALUE) {\n            membership.remove(array);\n        } else {\n            membership.put(array, index);\n        }\n    }\n\n    void deleteMembership(int array) {\n        membership.remove(array);\n    }\n\n    int getMembership(int array) {\n        return membership.get(array);\n    }\n\n    boolean isEmpty() {\n        return membership.isEmpty();\n    }\n\n    private int size() {\n        return membership.size();\n    }\n\n    // for debugging\n    public String toString() {\n        StringBuilder sb = new StringBuilder();\n        for (IntIntMap.Entry entry : membership.entries()) {\n            sb.append(entry.getKey()).append('[').append(entry.getValue()).append(\"] \");\n        }\n        return sb.toString();\n    }\n\n    /**\n     * We are stepping through the NameState machine field by field, and have built up data on the array memberships\n     *  observed so far in this map. We need to compare this to the array-membership data of the field we're looking at\n     *  and see if they are consistent.  Either or both memberships might be empty, which simplifies things.\n     * Method returns null if the new field's membership is inconsistent with so-far membership.  If it is compatible,\n     *  returns the possibly-revised array membership of the matching task.\n     *\n     * @param fieldMembership Array membership of the field under consideration\n     * @param membershipSoFar Array membership observed so far in a rule-matching task\n     * @return null or the new matching-task membership so far\n     */\n    static ArrayMembership checkArrayConsistency(final ArrayMembership membershipSoFar, final ArrayMembership fieldMembership) {\n        // no existing memberships, so we'll take the ones from the field, if any\n        if (membershipSoFar.isEmpty()) {\n            return fieldMembership.isEmpty() ? membershipSoFar : new ArrayMembership(fieldMembership);\n        }\n        // any change will come from memberships in the new field we're investigating. For each of its memberships\n        ArrayMembership newMembership = null;\n        for (IntIntMap.Entry arrayEntry : fieldMembership.membership.entries()) {\n            final int array = arrayEntry.getKey();\n            final int indexInThisArrayOfThisField = arrayEntry.getValue();\n            final int indexInThisArrayPreviouslyAppearingInMatch = membershipSoFar.getMembership(array);\n            if (indexInThisArrayPreviouslyAppearingInMatch == IntIntMap.NO_VALUE) {\n                // if there's no membership so far, this is an acceptable delta. Update the new memberships, first\n                // creating it if necessary\n                if (newMembership == null) {\n                    newMembership = new ArrayMembership(membershipSoFar);\n                }\n                newMembership.putMembership(array, indexInThisArrayOfThisField);\n            } else {\n                // This field does appear within an index that has already appeared in the matching task so far.\n                // If it's in the same element, fine, no updates. If it's a different entry, return null to\n                // signal array-inconsistency.\n                if (indexInThisArrayOfThisField != indexInThisArrayPreviouslyAppearingInMatch) {\n                    return null;\n                }\n            }\n        }\n        // we may have scanned all the fields and not added anything, in which case return the input\n        return (newMembership == null) ? membershipSoFar : newMembership;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents which JSON arrays within an Event structure a particular field appears within, and at which position.\n *  The arrays are identified using integers.\n */\nclass ArrayMembership {\n\n    private static final IntIntMap EMPTY = new IntIntMap();\n\n    private final IntIntMap membership;\n\n    ArrayMembership() {\n        membership = new IntIntMap();\n    }\n\n    ArrayMembership(final ArrayMembership membership) {\n        if (membership.size() == 0) {\n            this.membership = EMPTY;\n        } else {\n            this.membership = (IntIntMap) membership.membership.clone();\n        }\n    }\n\n    void putMembership(int array, int index) {\n        if (index == IntIntMap.NO_VALUE) {\n            membership.remove(array);\n        } else {\n            membership.put(array, index);\n        }\n    }\n\n    void deleteMembership(int array) {\n        membership.remove(array);\n    }\n\n    int getMembership(int array) {\n        return membership.get(array);\n    }\n\n    boolean isEmpty() {\n        return membership.isEmpty();\n    }\n\n    private int size() {\n        return membership.size();\n    }\n\n    // for debugging\n    public String toString() {\n        StringBuilder sb = new StringBuilder();\n        for (IntIntMap.Entry entry : membership.entries()) {\n            sb.append(entry.getKey()).append('[').append(entry.getValue()).append(\"] \");\n        }\n        return sb.toString();\n    }\n\n    /**\n     * We are stepping through the NameState machine field by field, and have built up data on the array memberships\n     *  observed so far in this map. We need to compare this to the array-membership data of the field we're looking at\n     *  and see if they are consistent.  Either or both memberships might be empty, which simplifies things.\n     * Method returns null if the new field's membership is inconsistent with so-far membership.  If it is compatible,\n     *  returns the possibly-revised array membership of the matching task.\n     *\n     * @param fieldMembership Array membership of the field under consideration\n     * @param membershipSoFar Array membership observed so far in a rule-matching task\n     * @return null or the new matching-task membership so far\n     */\n    static ArrayMembership checkArrayConsistency(final ArrayMembership membershipSoFar, final ArrayMembership fieldMembership) {\n        // no existing memberships, so we'll take the ones from the field, if any\n        if (membershipSoFar.isEmpty()) {\n            return fieldMembership.isEmpty() ? membershipSoFar : new ArrayMembership(fieldMembership);\n        }\n        // any change will come from memberships in the new field we're investigating. For each of its memberships\n        ArrayMembership newMembership = null;\n        for (IntIntMap.Entry arrayEntry : fieldMembership.membership.entries()) {\n            final int array = arrayEntry.getKey();\n            final int indexInThisArrayOfThisField = arrayEntry.getValue();\n            final int indexInThisArrayPreviouslyAppearingInMatch = membershipSoFar.getMembership(array);\n            if (indexInThisArrayPreviouslyAppearingInMatch == IntIntMap.NO_VALUE) {\n                // if there's no membership so far, this is an acceptable delta. Update the new memberships, first\n                // creating it if necessary\n                if (newMembership == null) {\n                    newMembership = new ArrayMembership(membershipSoFar);\n                }\n                newMembership.putMembership(array, indexInThisArrayOfThisField);\n            } else {\n                // This field does appear within an index that has already appeared in the matching task so far.\n                // If it's in the same element, fine, no updates. If it's a different entry, return null to\n                // signal array-inconsistency.\n                if (indexInThisArrayOfThisField != indexInThisArrayPreviouslyAppearingInMatch) {\n                    return null;\n                }\n            }\n        }\n        // we may have scanned all the fields and not added anything, in which case return the input\n        return (newMembership == null) ? membershipSoFar : newMembership;\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,25 @@
+{
+  "className": "Event",
+  "methodName": "pathName",
+  "brief": "static String pathName(final Stack<String> path){}",
+  "methodSignature": "pathName(Stack)",
+  "sourceCode": "static String pathName(final Stack<String> path) {\n        final StringJoiner joiner = new StringJoiner(\".\");\n        for (String step : path) {\n            joiner.add(step);\n        }\n        return joiner.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Stack<String>"
+  ],
+  "dependentMethods": {
+    "java.util.StringJoiner": [
+      "toString()",
+      "add(CharSequence)"
+    ]
+  },
+  "full_method_info": "static String pathName(final Stack<String> path) {\n    final StringJoiner joiner = new StringJoiner(\".\");\n    for (String step : path) {\n        joiner.add(step);\n    }\n    return joiner.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

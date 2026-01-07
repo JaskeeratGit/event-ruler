@@ -1,0 +1,217 @@
+{
+  "software.amazon.event.ruler.RuleCompiler": [
+    "check(Reader, boolean)",
+    "check(Reader)",
+    "check(String, boolean)",
+    "check(String)",
+    "check(byte[], boolean)",
+    "check(byte[])",
+    "check(InputStream, boolean)",
+    "check(InputStream)",
+    "compile(Reader, boolean)",
+    "compile(Reader)",
+    "compile(String, boolean)",
+    "compile(String)",
+    "compile(byte[], boolean)",
+    "compile(byte[])",
+    "compile(InputStream, boolean)",
+    "compile(InputStream)"
+  ],
+  "software.amazon.event.ruler.Range": [
+    "lessThan(String)",
+    "lessThanOrEqualTo(String)",
+    "greaterThan(String)",
+    "greaterThanOrEqualTo(String)",
+    "between(String, boolean, String, boolean)",
+    "between(byte[], boolean, byte[], boolean)",
+    "maxDigit()",
+    "minDigit()",
+    "clone()",
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.AnythingButValuesSet": [
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.CompoundByteTransition": [
+    "getTransition(byte)",
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.MachineComplexityEvaluator": [],
+  "software.amazon.event.ruler.ListBasedRuleCompiler": [
+    "flattenRule(String)"
+  ],
+  "software.amazon.event.ruler.JsonRuleCompiler": [
+    "check(Reader, boolean)",
+    "check(Reader)",
+    "check(String, boolean)",
+    "check(String)",
+    "check(byte[], boolean)",
+    "check(byte[])",
+    "check(InputStream, boolean)",
+    "check(InputStream)",
+    "compile(Reader, boolean)",
+    "compile(Reader)",
+    "compile(String, boolean)",
+    "compile(String)",
+    "compile(byte[], boolean)",
+    "compile(byte[])",
+    "compile(InputStream, boolean)",
+    "compile(InputStream)"
+  ],
+  "software.amazon.event.ruler.input.MultiByte": [
+    "singular()",
+    "is(byte[])",
+    "isLessThan(MultiByte)",
+    "isLessThanOrEqualTo(MultiByte)",
+    "isGreaterThan(MultiByte)",
+    "isGreaterThanOrEqualTo(MultiByte)",
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.input.SuffixEqualsIgnoreCaseParser": [
+    "parse(String)"
+  ],
+  "software.amazon.event.ruler.input.InputMultiByteSet": [
+    "cast(InputCharacter)",
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.Ruler": [
+    "matchesRule(String, String)",
+    "matches(String, String)"
+  ],
+  "software.amazon.event.ruler.input.SuffixParser": [
+    "parse(String)"
+  ],
+  "software.amazon.event.ruler.AnythingBut": [
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.Builder": [
+    "withAdditionalNameStateReuse(boolean)",
+    "withOverridesForDuplicateRules(boolean)",
+    "build()"
+  ],
+  "software.amazon.event.ruler.SubRuleContext": [
+    "equals(Object)",
+    "hashCode()"
+  ],
+  "software.amazon.event.ruler.input.InputCharacterType": [],
+  "software.amazon.event.ruler.MatchType": [],
+  "software.amazon.event.ruler.GenericMachine": [
+    "rulesForJSONEvent(String)",
+    "rulesForJSONEvent(JsonNode)",
+    "rulesForEvent(String)",
+    "rulesForEvent(List)",
+    "rulesForEvent(JsonNode)",
+    "rulesForEvent(String[])",
+    "addRule(T, Map)",
+    "addPatternRule(T, Map)",
+    "deletePatternRule(T, Map)",
+    "deleteRule(T, Map)",
+    "addRule(T, String)",
+    "addRule(T, Reader)",
+    "addRule(T, InputStream)",
+    "addRule(T, byte[])",
+    "deleteRule(T, String)",
+    "deleteRule(T, Reader)",
+    "deleteRule(T, InputStream)",
+    "evaluateComplexity(MachineComplexityEvaluator)",
+    "approximateObjectCount(int)",
+    "approximateObjectCount()",
+    "toString()",
+    "builder()"
+  ],
+  "software.amazon.event.ruler.ShortcutTransition": [
+    "getTransition(byte)"
+  ],
+  "software.amazon.event.ruler.SingleStateNameMatcher": [
+    "addPattern(Patterns, NameState)",
+    "deletePattern(Patterns)",
+    "findPattern(Patterns)"
+  ],
+  "software.amazon.event.ruler.input.InputWildcard": [
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.input.InputByte": [
+    "cast(InputCharacter)",
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.NameStateWithPattern": [
+    "equals(Object)",
+    "hashCode()"
+  ],
+  "software.amazon.event.ruler.input.EqualsIgnoreCaseParser": [
+    "parse(String)"
+  ],
+  "software.amazon.event.ruler.ValuePatterns": [
+    "pattern()",
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.Machine": [
+    "builder()"
+  ],
+  "software.amazon.event.ruler.input.ParseException": [],
+  "software.amazon.event.ruler.EmptyByteTransition": [
+    "getTransition(byte)",
+    "gatherObjects(Set, int)"
+  ],
+  "software.amazon.event.ruler.CIDR": [
+    "cidr(String)"
+  ],
+  "software.amazon.event.ruler.input.DefaultParser": [
+    "parse(MatchType, String)",
+    "parse(byte)"
+  ],
+  "software.amazon.event.ruler.Patterns": [
+    "pattern()",
+    "type()",
+    "exactMatch(String)",
+    "prefixMatch(String)",
+    "prefixEqualsIgnoreCaseMatch(String)",
+    "suffixMatch(String)",
+    "suffixEqualsIgnoreCaseMatch(String)",
+    "anythingButMatch(String)",
+    "anythingButMatch(double)",
+    "anythingButNumberMatch(String)",
+    "anythingButMatch(Set)",
+    "anythingButIgnoreCaseMatch(String)",
+    "anythingButIgnoreCaseMatch(Set)",
+    "anythingButNumberMatch(Set)",
+    "anythingButNumbersMatch(Set)",
+    "anythingButPrefix(String)",
+    "anythingButPrefix(Set)",
+    "anythingButSuffix(String)",
+    "anythingButSuffix(Set)",
+    "anythingButWildcard(String)",
+    "anythingButWildcard(Set)",
+    "numericEquals(double)",
+    "numericEquals(String)",
+    "existencePatterns()",
+    "absencePatterns()",
+    "equalsIgnoreCaseMatch(String)",
+    "wildcardMatch(String)",
+    "clone()",
+    "equals(Object)",
+    "hashCode()",
+    "toString()"
+  ],
+  "software.amazon.event.ruler.input.WildcardParser": [
+    "parse(String)"
+  ]
+}

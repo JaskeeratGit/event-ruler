@@ -1,0 +1,37 @@
+{
+  "className": "Event",
+  "methodName": "traverseArray",
+  "brief": "private void traverseArray(final JsonParser parser, final TreeMap<String, List<Value>> fieldMap, final Progress progress) throws IOException{}",
+  "methodSignature": "traverseArray(JsonParser, TreeMap, Progress)",
+  "sourceCode": "private void traverseArray(final JsonParser parser, final TreeMap<String, List<Value>> fieldMap, final Progress progress) throws IOException {\n        final int arrayID = progress.arrayCount++;\n\n        JsonToken token;\n        int arrayIndex = 0;\n        while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n            switch (token) {\n                case START_OBJECT:\n                    progress.membership.putMembership(arrayID, arrayIndex);\n                    traverseObject(parser, fieldMap, progress);\n                    progress.membership.deleteMembership(arrayID);\n                    break;\n                case START_ARRAY:\n                    progress.membership.putMembership(arrayID, arrayIndex);\n                    traverseArray(parser, fieldMap, progress);\n                    progress.membership.deleteMembership(arrayID);\n                    break;\n                case VALUE_STRING:\n                    addField(fieldMap, progress, '\"' + parser.getText() + '\"');\n                    break;\n                default:\n                    addField(fieldMap, progress, parser.getText());\n                    break;\n            }\n            arrayIndex++;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "TreeMap<String,List<Value>>",
+    "Progress"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()",
+      "getText()"
+    ],
+    "software.amazon.event.ruler.Event.Progress": [],
+    "software.amazon.event.ruler.ArrayMembership": [
+      "deleteMembership(int)",
+      "putMembership(int, int)"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "addField(Value>>, Progress, String)",
+      "traverseArray(JsonParser, Value>>, Progress)",
+      "traverseObject(JsonParser, Value>>, Progress)"
+    ]
+  },
+  "full_method_info": "private void traverseArray(final JsonParser parser, final TreeMap<String, List<Value>> fieldMap, final Progress progress) throws IOException {\n    final int arrayID = progress.arrayCount++;\n    JsonToken token;\n    int arrayIndex = 0;\n    while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n        switch(token) {\n            case START_OBJECT:\n                progress.membership.putMembership(arrayID, arrayIndex);\n                traverseObject(parser, fieldMap, progress);\n                progress.membership.deleteMembership(arrayID);\n                break;\n            case START_ARRAY:\n                progress.membership.putMembership(arrayID, arrayIndex);\n                traverseArray(parser, fieldMap, progress);\n                progress.membership.deleteMembership(arrayID);\n                break;\n            case VALUE_STRING:\n                addField(fieldMap, progress, '\"' + parser.getText() + '\"');\n                break;\n            default:\n                addField(fieldMap, progress, parser.getText());\n                break;\n        }\n        arrayIndex++;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

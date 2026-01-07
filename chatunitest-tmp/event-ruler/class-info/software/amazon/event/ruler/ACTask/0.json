@@ -1,0 +1,22 @@
+{
+  "className": "ACTask",
+  "methodName": "startState",
+  "brief": "NameState startState(){}",
+  "methodSignature": "startState()",
+  "sourceCode": "NameState startState() {\n        return machine.getStartState();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.GenericMachine": [
+      "getStartState()"
+    ]
+  },
+  "full_method_info": "NameState startState() {\n    return machine.getStartState();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

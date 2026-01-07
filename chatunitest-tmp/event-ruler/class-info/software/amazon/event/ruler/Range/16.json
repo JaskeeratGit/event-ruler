@@ -1,0 +1,25 @@
+{
+  "className": "Range",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        if(isCIDR) {\n            return (new String(bottom, StandardCharsets.UTF_8)) + '/' + (new String(top, StandardCharsets.UTF_8))\n                    + ':' + openBottom + '/' + openTop + ':' + isCIDR + \" (\" + super.toString() + \")\";\n        } else {\n            return \"\" +\n                    ComparableNumber.toIntVals(new String(bottom, StandardCharsets.UTF_8)) + '/' +\n                    ComparableNumber.toIntVals(new String(top, StandardCharsets.UTF_8))\n                    + ':' + openBottom + '/' + openTop + ':' + isCIDR + \" (\" + super.toString() + \")\";\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "toString()"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "toIntVals(String)"
+    ]
+  },
+  "full_method_info": "public String toString() {\n    if (isCIDR) {\n        return (new String(bottom, StandardCharsets.UTF_8)) + '/' + (new String(top, StandardCharsets.UTF_8)) + ':' + openBottom + '/' + openTop + ':' + isCIDR + \" (\" + super.toString() + \")\";\n    } else {\n        return \"\" + ComparableNumber.toIntVals(new String(bottom, StandardCharsets.UTF_8)) + '/' + ComparableNumber.toIntVals(new String(top, StandardCharsets.UTF_8)) + ':' + openBottom + '/' + openTop + ':' + isCIDR + \" (\" + super.toString() + \")\";\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

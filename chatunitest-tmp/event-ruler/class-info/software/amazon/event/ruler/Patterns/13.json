@@ -1,0 +1,37 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButNumberMatch",
+  "brief": "@Deprecated\n    public static AnythingBut anythingButNumberMatch(final Set<Double> anythingButs){}",
+  "methodSignature": "anythingButNumberMatch(Set)",
+  "sourceCode": "@Deprecated\n    public static AnythingBut anythingButNumberMatch(final Set<Double> anythingButs) {\n        final Set<String> anyButsAsStrings = anythingButs.stream().map(d -> Double.toString(d)).collect(Collectors.toSet());\n        return anythingButNumbersMatch(anyButsAsStrings);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<Double>"
+  ],
+  "dependentMethods": {
+    "java.util.stream.Stream": [
+      "collect(Collector<? super T, A, R>)",
+      "map(Function<? super T, ? extends R>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "java.lang.Double": [
+      "toString(double)"
+    ],
+    "java.util.stream.Collectors": [
+      "toSet()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "anythingButNumbersMatch(String>)"
+    ]
+  },
+  "full_method_info": "/**\n * Use anythingButNumbersMatch(Set<String>) that accepts String\n */\n@Deprecated\npublic static AnythingBut anythingButNumberMatch(final Set<Double> anythingButs) {\n    final Set<String> anyButsAsStrings = anythingButs.stream().map(d -> Double.toString(d)).collect(Collectors.toSet());\n    return anythingButNumbersMatch(anyButsAsStrings);\n}",
+  "method_comment": " Use anythingButNumbersMatch(Set<String>) that accepts String ",
+  "method_annotation": "@Deprecated\n"
+}

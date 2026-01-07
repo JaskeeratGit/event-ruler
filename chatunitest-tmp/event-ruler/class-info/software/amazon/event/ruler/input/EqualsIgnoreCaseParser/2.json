@@ -1,0 +1,33 @@
+{
+  "className": "EqualsIgnoreCaseParser",
+  "methodName": "getCharUtfBytes",
+  "brief": "private static byte[] getCharUtfBytes(char c, Function<String, String> stringTransformer, boolean reverseCharBytes){}",
+  "methodSignature": "getCharUtfBytes(char, Function, boolean)",
+  "sourceCode": "private static byte[] getCharUtfBytes(char c, Function<String, String> stringTransformer, boolean reverseCharBytes) {\n        byte[] byteArray = stringTransformer.apply(String.valueOf(c)).getBytes(StandardCharsets.UTF_8);\n        if (reverseCharBytes) {\n            return reverseByteArray(byteArray);\n        }\n        return byteArray;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char",
+    "Function<String,String>",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "valueOf(char)",
+      "getBytes(Charset)"
+    ],
+    "java.util.function.Function": [
+      "apply(T)"
+    ],
+    "software.amazon.event.ruler.input.EqualsIgnoreCaseParser": [
+      "reverseByteArray(byte[])"
+    ]
+  },
+  "full_method_info": "private static byte[] getCharUtfBytes(char c, Function<String, String> stringTransformer, boolean reverseCharBytes) {\n    byte[] byteArray = stringTransformer.apply(String.valueOf(c)).getBytes(StandardCharsets.UTF_8);\n    if (reverseCharBytes) {\n        return reverseByteArray(byteArray);\n    }\n    return byteArray;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

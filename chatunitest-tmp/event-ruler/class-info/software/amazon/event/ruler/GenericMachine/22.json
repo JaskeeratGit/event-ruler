@@ -1,0 +1,45 @@
+{
+  "className": "GenericMachine",
+  "methodName": "addStep",
+  "brief": "private void addStep(final List<String> keys,\n                         final Map<String, List<Patterns>> patterns,\n                         final T ruleName){}",
+  "methodSignature": "addStep(List, Map, T)",
+  "sourceCode": "private void addStep(final List<String> keys,\n                         final Map<String, List<Patterns>> patterns,\n                         final T ruleName) {\n        List<String> addedKeys = new ArrayList<>();\n        Set<NameState>[] nameStates = new Set[keys.size()];\n        if (addStep(getStartState(), keys, 0, patterns, ruleName, addedKeys, nameStates).isEmpty()) {\n            SubRuleContext context = subRuleContextGenerator.generate(ruleName);\n            for (int i = 0; i < keys.size(); i++) {\n                boolean isTerminal = i + 1 == keys.size();\n                for (Patterns pattern : patterns.get(keys.get(i))) {\n                    for (NameState nameState : nameStates[i]) {\n                        nameState.addSubRule(ruleName, context, pattern, isTerminal);\n                    }\n                }\n            }\n        }\n        addIntoUsedFields(addedKeys);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>",
+    "Map<String,List<Patterns>>",
+    "T"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "java.util.List": [
+      "get(int)",
+      "size()"
+    ],
+    "java.util.Set": [
+      "isEmpty()"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "addIntoUsedFields(String>)",
+      "addStep(NameState, String>, int, Patterns>>, T, String>, NameState>[])",
+      "getStartState()"
+    ],
+    "software.amazon.event.ruler.SubRuleContext.Generator": [
+      "generate(Object)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "software.amazon.event.ruler.NameState": [
+      "addSubRule(Object, SubRuleContext, Patterns, boolean)"
+    ]
+  },
+  "full_method_info": "private void addStep(final List<String> keys, final Map<String, List<Patterns>> patterns, final T ruleName) {\n    List<String> addedKeys = new ArrayList<>();\n    Set<NameState>[] nameStates = new Set[keys.size()];\n    if (addStep(getStartState(), keys, 0, patterns, ruleName, addedKeys, nameStates).isEmpty()) {\n        SubRuleContext context = subRuleContextGenerator.generate(ruleName);\n        for (int i = 0; i < keys.size(); i++) {\n            boolean isTerminal = i + 1 == keys.size();\n            for (Patterns pattern : patterns.get(keys.get(i))) {\n                for (NameState nameState : nameStates[i]) {\n                    nameState.addSubRule(ruleName, context, pattern, isTerminal);\n                }\n            }\n        }\n    }\n    addIntoUsedFields(addedKeys);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,40 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "completeNumericRange",
+  "brief": "private static Patterns completeNumericRange(final JsonParser parser,\n                                                 final JsonToken token,\n                                                 final String bottom,\n                                                 final boolean openBottom) throws IOException{}",
+  "methodSignature": "completeNumericRange(JsonParser, JsonToken, String, boolean)",
+  "sourceCode": "private static Patterns completeNumericRange(final JsonParser parser,\n                                                 final JsonToken token,\n                                                 final String bottom,\n                                                 final boolean openBottom) throws IOException {\n        if (token != JsonToken.VALUE_STRING) {\n            barf(parser, \"Bad value in numeric range: \" + parser.getText());\n        }\n        final String operator = parser.getText();\n        boolean openTop = false;\n\n        if (Constants.LT.equals(operator)) {\n            openTop = true;\n        } else if (!Constants.LE.equals(operator)) {\n            barf(parser, \"Bad numeric range operator: \" + operator);\n        }\n        if (!parser.nextToken().isNumeric()) {\n            barf(parser, \"Value of \" + operator + \" must be numeric\");\n        }\n        final String top = parser.getText();\n        if (parser.nextToken() != JsonToken.END_ARRAY) {\n            barf(parser, \"Too many terms in numeric range expression\");\n        }\n        return Range.between(bottom, openBottom, top, openTop);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "JsonToken",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getText()",
+      "nextToken()"
+    ],
+    "com.fasterxml.jackson.core.JsonToken": [
+      "isNumeric()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "software.amazon.event.ruler.Range": [
+      "between(String, boolean, String, boolean)"
+    ]
+  },
+  "full_method_info": "private static Patterns completeNumericRange(final JsonParser parser, final JsonToken token, final String bottom, final boolean openBottom) throws IOException {\n    if (token != JsonToken.VALUE_STRING) {\n        barf(parser, \"Bad value in numeric range: \" + parser.getText());\n    }\n    final String operator = parser.getText();\n    boolean openTop = false;\n    if (Constants.LT.equals(operator)) {\n        openTop = true;\n    } else if (!Constants.LE.equals(operator)) {\n        barf(parser, \"Bad numeric range operator: \" + operator);\n    }\n    if (!parser.nextToken().isNumeric()) {\n        barf(parser, \"Value of \" + operator + \" must be numeric\");\n    }\n    final String top = parser.getText();\n    if (parser.nextToken() != JsonToken.END_ARRAY) {\n        barf(parser, \"Too many terms in numeric range expression\");\n    }\n    return Range.between(bottom, openBottom, top, openTop);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "Range",
+  "methodName": "greaterThanOrEqualTo",
+  "brief": "public static Range greaterThanOrEqualTo(final String val){}",
+  "methodSignature": "greaterThanOrEqualTo(String)",
+  "sourceCode": "public static Range greaterThanOrEqualTo(final String val) {\n        byte[] byteVal = stringToComparableBytes(val);\n        return between(byteVal, false, MAX_RANGE_BYTES, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.Range": [
+      "stringToComparableBytes(String)",
+      "between(byte[], boolean, byte[], boolean)"
+    ]
+  },
+  "full_method_info": "public static Range greaterThanOrEqualTo(final String val) {\n    byte[] byteVal = stringToComparableBytes(val);\n    return between(byteVal, false, MAX_RANGE_BYTES, false);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,33 @@
+{
+  "className": "NameState",
+  "methodName": "addToPatternToSetMap",
+  "brief": "private static boolean addToPatternToSetMap(final Map<Patterns, ?> map, final Patterns pattern,\n                                                final Object setElement){}",
+  "methodSignature": "addToPatternToSetMap(Map, Patterns, Object)",
+  "sourceCode": "private static boolean addToPatternToSetMap(final Map<Patterns, ?> map, final Patterns pattern,\n                                                final Object setElement) {\n        if (!map.containsKey(pattern)) {\n            ((Map<Patterns, Set>) map).put(pattern, new HashSet<>());\n        }\n        return ((Set) map.get(pattern)).add(setElement);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<Patterns,?>",
+    "Patterns",
+    "Object"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [],
+    "java.lang.Object": [],
+    "java.util.Map": [
+      "get(Object)",
+      "put(K, V)",
+      "containsKey(Object)"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "private static boolean addToPatternToSetMap(final Map<Patterns, ?> map, final Patterns pattern, final Object setElement) {\n    if (!map.containsKey(pattern)) {\n        ((Map<Patterns, Set>) map).put(pattern, new HashSet<>());\n    }\n    return ((Set) map.get(pattern)).add(setElement);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

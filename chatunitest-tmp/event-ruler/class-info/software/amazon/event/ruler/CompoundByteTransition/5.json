@@ -1,0 +1,28 @@
+{
+  "className": "CompoundByteTransition",
+  "methodName": "getMatches",
+  "brief": "@Override\n    public Set<ByteMatch> getMatches(){}",
+  "methodSignature": "getMatches()",
+  "sourceCode": "@Override\n    public Set<ByteMatch> getMatches() {\n        Set<ByteMatch> matches = new HashSet<>();\n        for (SingleByteTransition single : matchableTransitions) {\n            single.getMatches().forEach(match -> matches.add(match));\n        }\n        return matches;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.SingleByteTransition": [
+      "getMatches()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Get the matches given all of the transitions that have been simultaneously traversed. Excludes matches from\n * shortcut transitions as these are not actual matches based on the characters seen so far during the current\n * traversal.\n *\n * @return All matches from all of the simultaneously traversed transitions.\n */\n@Override\npublic Set<ByteMatch> getMatches() {\n    Set<ByteMatch> matches = new HashSet<>();\n    for (SingleByteTransition single : matchableTransitions) {\n        single.getMatches().forEach(match -> matches.add(match));\n    }\n    return matches;\n}",
+  "method_comment": "\n     * Get the matches given all of the transitions that have been simultaneously traversed. Excludes matches from\n     * shortcut transitions as these are not actual matches based on the characters seen so far during the current\n     * traversal.\n     *\n     * @return All matches from all of the simultaneously traversed transitions.\n     ",
+  "method_annotation": "@Override\n"
+}

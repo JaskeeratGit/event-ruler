@@ -1,0 +1,36 @@
+{
+  "className": "Finder",
+  "methodName": "moveFromWithPriorCandidates",
+  "brief": "private static void moveFromWithPriorCandidates(final Set<SubRuleContext> candidateSubRuleIds,\n                                                    final NameState fromState, final Patterns fromPattern,\n                                                    final int tokenIndex, final Task task,\n                                                    final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "moveFromWithPriorCandidates(Set, NameState, Patterns, int, Task, SubRuleContext.Generator)",
+  "sourceCode": "private static void moveFromWithPriorCandidates(final Set<SubRuleContext> candidateSubRuleIds,\n                                                    final NameState fromState, final Patterns fromPattern,\n                                                    final int tokenIndex, final Task task,\n                                                    final SubRuleContext.Generator subRuleContextGenerator) {\n        Set<SubRuleContext> candidateSubRuleIdsForNextStep = calculateCandidateSubRuleIdsForNextStep(candidateSubRuleIds,\n                fromState, fromPattern);\n\n        // If there are no more candidate sub-rules, there is no need to proceed further.\n        if (candidateSubRuleIdsForNextStep != null && !candidateSubRuleIdsForNextStep.isEmpty()) {\n            moveFrom(candidateSubRuleIdsForNextStep, fromState, tokenIndex, task, subRuleContextGenerator);\n        }\n\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "Patterns",
+    "int",
+    "Task",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.Task": [],
+    "software.amazon.event.ruler.Finder": [
+      "moveFrom(SubRuleContext>, NameState, int, Task, Generator)",
+      "calculateCandidateSubRuleIdsForNextStep(SubRuleContext>, NameState, Patterns)"
+    ],
+    "java.util.Set": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "private static void moveFromWithPriorCandidates(final Set<SubRuleContext> candidateSubRuleIds, final NameState fromState, final Patterns fromPattern, final int tokenIndex, final Task task, final SubRuleContext.Generator subRuleContextGenerator) {\n    Set<SubRuleContext> candidateSubRuleIdsForNextStep = calculateCandidateSubRuleIdsForNextStep(candidateSubRuleIds, fromState, fromPattern);\n    // If there are no more candidate sub-rules, there is no need to proceed further.\n    if (candidateSubRuleIdsForNextStep != null && !candidateSubRuleIdsForNextStep.isEmpty()) {\n        moveFrom(candidateSubRuleIdsForNextStep, fromState, tokenIndex, task, subRuleContextGenerator);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButIgnoreCaseMatch",
+  "brief": "public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs){}",
+  "methodSignature": "anythingButIgnoreCaseMatch(Set)",
+  "sourceCode": "public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs) {\n        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_IGNORE_CASE, anythingButs);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<String>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs) {\n    return new AnythingButValuesSet(MatchType.ANYTHING_BUT_IGNORE_CASE, anythingButs);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

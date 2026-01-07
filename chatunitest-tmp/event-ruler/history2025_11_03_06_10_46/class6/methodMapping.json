@@ -1,0 +1,32 @@
+{
+  "method0": {
+    "methodName": "getType",
+    "signature": "getType()",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method1": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method2": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method3": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method4": {
+    "methodName": "InputWildcard",
+    "signature": "InputWildcard()",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input"
+  }
+}

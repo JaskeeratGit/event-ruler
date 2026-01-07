@@ -1,0 +1,44 @@
+{
+  "className": "ByteMachine",
+  "methodName": "checkAndDeleteStateAlongTraversedPath",
+  "brief": "private void checkAndDeleteStateAlongTraversedPath(\n            ArrayDeque<AbstractMap.SimpleImmutableEntry<Byte, ByteTransition>> byteStateQueue){}",
+  "methodSignature": "checkAndDeleteStateAlongTraversedPath(ArrayDeque)",
+  "sourceCode": "private void checkAndDeleteStateAlongTraversedPath(\n            ArrayDeque<AbstractMap.SimpleImmutableEntry<Byte, ByteTransition>> byteStateQueue) {\n\n        if (byteStateQueue.isEmpty()) {\n            return;\n        }\n\n        Byte childByteKey = byteStateQueue.pollFirst().getKey();\n        while (!byteStateQueue.isEmpty()) {\n            final AbstractMap.SimpleImmutableEntry<Byte, ByteTransition> parentStatePair = byteStateQueue.pollFirst();\n            final Byte parentByteKey = parentStatePair.getKey();\n            final ByteTransition parentByteTransition = parentStatePair.getValue();\n            for (SingleByteTransition singleParent : parentByteTransition.expand()) {\n\n                // Check all transitions from singleParent using childByteKey. Delete each transition that is a dead-end\n                // (i.e. transition that has no transitions itself).\n                ByteTransition transition = getTransition(singleParent, childByteKey);\n                for (SingleByteTransition eachTrans : transition.expand()) {\n                    ByteState nextState = eachTrans.getNextByteState();\n                    if (nextState != null && nextState.hasNoTransitions()) {\n                        putTransitionNextState(singleParent.getNextByteState(), getParser().parse(childByteKey),\n                                eachTrans, null);\n                    }\n                }\n\n            }\n            childByteKey = parentByteKey;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ArrayDeque<AbstractMap.SimpleImmutableEntry<Byte,ByteTransition>>"
+  ],
+  "dependentMethods": {
+    "java.util.ArrayDeque": [
+      "isEmpty()",
+      "pollFirst()"
+    ],
+    "java.util.AbstractMap.SimpleImmutableEntry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getNextByteState()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "getTransition(ByteTransition, byte)",
+      "putTransitionNextState(ByteState, InputCharacter, SingleByteTransition, ByteState)"
+    ],
+    "software.amazon.event.ruler.ByteState": [
+      "hasNoTransitions()"
+    ],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(byte)"
+    ]
+  },
+  "full_method_info": "private void checkAndDeleteStateAlongTraversedPath(ArrayDeque<AbstractMap.SimpleImmutableEntry<Byte, ByteTransition>> byteStateQueue) {\n    if (byteStateQueue.isEmpty()) {\n        return;\n    }\n    Byte childByteKey = byteStateQueue.pollFirst().getKey();\n    while (!byteStateQueue.isEmpty()) {\n        final AbstractMap.SimpleImmutableEntry<Byte, ByteTransition> parentStatePair = byteStateQueue.pollFirst();\n        final Byte parentByteKey = parentStatePair.getKey();\n        final ByteTransition parentByteTransition = parentStatePair.getValue();\n        for (SingleByteTransition singleParent : parentByteTransition.expand()) {\n            // Check all transitions from singleParent using childByteKey. Delete each transition that is a dead-end\n            // (i.e. transition that has no transitions itself).\n            ByteTransition transition = getTransition(singleParent, childByteKey);\n            for (SingleByteTransition eachTrans : transition.expand()) {\n                ByteState nextState = eachTrans.getNextByteState();\n                if (nextState != null && nextState.hasNoTransitions()) {\n                    putTransitionNextState(singleParent.getNextByteState(), getParser().parse(childByteKey), eachTrans, null);\n                }\n            }\n        }\n        childByteKey = parentByteKey;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "SingleByteTransition",
+  "methodName": "getMatches",
+  "brief": "@Override\n    Iterable<ByteMatch> getMatches(){}",
+  "methodSignature": "getMatches()",
+  "sourceCode": "@Override\n    Iterable<ByteMatch> getMatches() {\n        ByteMatch match = getMatch();\n        if (match == null) {\n            return Collections.emptySet();\n        }\n        return match;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [
+      "getMatch()"
+    ],
+    "java.util.Collections": [
+      "emptySet()"
+    ]
+  },
+  "full_method_info": "@Override\nIterable<ByteMatch> getMatches() {\n    ByteMatch match = getMatch();\n    if (match == null) {\n        return Collections.emptySet();\n    }\n    return match;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

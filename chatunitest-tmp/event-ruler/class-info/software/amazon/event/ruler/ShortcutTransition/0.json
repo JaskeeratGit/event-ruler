@@ -1,0 +1,18 @@
+{
+  "className": "ShortcutTransition",
+  "methodName": "getNextByteState",
+  "brief": "@Override\n    ByteState getNextByteState(){}",
+  "methodSignature": "getNextByteState()",
+  "sourceCode": "@Override\n    ByteState getNextByteState() {\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\nByteState getNextByteState() {\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

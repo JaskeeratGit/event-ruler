@@ -1,0 +1,33 @@
+{
+  "className": "NameState",
+  "methodName": "deleteFromPatternToSetMap",
+  "brief": "private static boolean deleteFromPatternToSetMap(final Map<Patterns, ?> map, final Patterns pattern,\n                                                     final Object setElement){}",
+  "methodSignature": "deleteFromPatternToSetMap(Map, Patterns, Object)",
+  "sourceCode": "private static boolean deleteFromPatternToSetMap(final Map<Patterns, ?> map, final Patterns pattern,\n                                                     final Object setElement) {\n        boolean deleted = false;\n        Set<?> set = (Set<?>) map.get(pattern);\n        if (set != null) {\n            deleted = set.remove(setElement);\n            if (set.isEmpty()) {\n                map.remove(pattern);\n            }\n        }\n        return deleted;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<Patterns,?>",
+    "Patterns",
+    "Object"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [],
+    "java.lang.Object": [],
+    "java.util.Map": [
+      "remove(Object)",
+      "get(Object)"
+    ],
+    "java.util.Set": [
+      "remove(Object)",
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "private static boolean deleteFromPatternToSetMap(final Map<Patterns, ?> map, final Patterns pattern, final Object setElement) {\n    boolean deleted = false;\n    Set<?> set = (Set<?>) map.get(pattern);\n    if (set != null) {\n        deleted = set.remove(setElement);\n        if (set.isEmpty()) {\n            map.remove(pattern);\n        }\n    }\n    return deleted;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

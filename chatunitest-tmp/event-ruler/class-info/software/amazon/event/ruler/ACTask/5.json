@@ -1,0 +1,38 @@
+{
+  "className": "ACTask",
+  "methodName": "collectRules",
+  "brief": "void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern,\n                      final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "collectRules(Set, NameState, Patterns, SubRuleContext.Generator)",
+  "sourceCode": "void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern,\n                      final SubRuleContext.Generator subRuleContextGenerator) {\n        Set<SubRuleContext> terminalSubRuleIds = nameState.getTerminalSubRuleIdsForPattern(pattern);\n        if (terminalSubRuleIds == null) {\n            return;\n        }\n\n        // If no candidates, that means we're on the first step, so all sub-rules are candidates.\n        if (candidateSubRuleIds == null || candidateSubRuleIds.isEmpty()) {\n            for (SubRuleContext terminalSubRuleId : terminalSubRuleIds) {\n                matchingRules.add(terminalSubRuleId.getRuleName());\n            }\n        } else {\n            intersection(candidateSubRuleIds, terminalSubRuleIds, matchingRules,\n                    SubRuleContext::getRuleName);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "Patterns",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "getTerminalSubRuleIdsForPattern(Patterns)"
+    ],
+    "software.amazon.event.ruler.Patterns": [],
+    "java.util.Set": [
+      "isEmpty()",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.SubRuleContext": [
+      "getRuleName()"
+    ],
+    "software.amazon.event.ruler.SetOperations": [
+      "intersection(Set<T>, Set<T>, Set<R>, Function<T, R>)"
+    ]
+  },
+  "full_method_info": "void collectRules(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Patterns pattern, final SubRuleContext.Generator subRuleContextGenerator) {\n    Set<SubRuleContext> terminalSubRuleIds = nameState.getTerminalSubRuleIdsForPattern(pattern);\n    if (terminalSubRuleIds == null) {\n        return;\n    }\n    // If no candidates, that means we're on the first step, so all sub-rules are candidates.\n    if (candidateSubRuleIds == null || candidateSubRuleIds.isEmpty()) {\n        for (SubRuleContext terminalSubRuleId : terminalSubRuleIds) {\n            matchingRules.add(terminalSubRuleId.getRuleName());\n        }\n    } else {\n        intersection(candidateSubRuleIds, terminalSubRuleIds, matchingRules, SubRuleContext::getRuleName);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

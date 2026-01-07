@@ -1,0 +1,26 @@
+{
+  "className": "CIDR",
+  "methodName": "ipToString",
+  "brief": "static String ipToString(final String ip){}",
+  "methodSignature": "ipToString(String)",
+  "sourceCode": "static String ipToString(final String ip) {\n        return new String(toHexDigits(ipToBytes(ip)), StandardCharsets.UTF_8);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.CIDR": [
+      "ipToBytes(String)",
+      "toHexDigits(byte[])"
+    ]
+  },
+  "full_method_info": "/**\n * Converts an IP address literal (v4 or v6) into a hexadecimal string.\n *  Throws an IllegalArgumentException if the alleged ip is not a valid IP address literal.\n * @param ip String alleged to be an IPv4 or IPv6 address literal.\n * @return Hexadecimal form of the address, 4 or 16 bytes.\n */\nstatic String ipToString(final String ip) {\n    return new String(toHexDigits(ipToBytes(ip)), StandardCharsets.UTF_8);\n}",
+  "method_comment": "\n     * Converts an IP address literal (v4 or v6) into a hexadecimal string.\n     *  Throws an IllegalArgumentException if the alleged ip is not a valid IP address literal.\n     * @param ip String alleged to be an IPv4 or IPv6 address literal.\n     * @return Hexadecimal form of the address, 4 or 16 bytes.\n     ",
+  "method_annotation": ""
+}

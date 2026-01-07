@@ -1,0 +1,32 @@
+{
+  "className": "ByteMachine",
+  "methodName": "canReuseNextByteState",
+  "brief": "private boolean canReuseNextByteState(ByteState byteState, ByteState nextByteState, InputCharacter[] characters,\n                                          int i){}",
+  "methodSignature": "canReuseNextByteState(ByteState, ByteState, InputCharacter[], int)",
+  "sourceCode": "private boolean canReuseNextByteState(ByteState byteState, ByteState nextByteState, InputCharacter[] characters,\n                                          int i) {\n        // We cannot re-use nextByteState if it is non-existent (null) or if it is the same as the current byteState,\n        // meaning we are looping on a self-referencing transition.\n        if (nextByteState == null || nextByteState == byteState) {\n            return false;\n        }\n\n        // Case 1: When we have a determinate prefix, we can re-use nextByteState except for the special case where we\n        //         are on the second-last character with a final character wildcard. A composite is required for this\n        //         case, so we will create a new state.\n        //\n        //         Example 1: Take the following machine representing an exact match pattern.\n        //              a        b        c\n        //            -----> A -----> B -----> C\n        //         With a byteState of A, a current char of b, and a next and final char of *, we would be unable to\n        //         re-use B as nextByteState, since we need to create a new self-referencing composite state D.\n        if (!nextByteState.hasIndeterminatePrefix()) {\n            return !(i == characters.length - 2 && isWildcard(characters[i + 1]));\n\n        // Case 2: nextByteState has an indeterminate prefix and current character is not a wildcard. We can re-use\n        //         nextByteState only if byteState does not have at least two transitions, one using the next\n        //         InputCharacter, that eventually converge to a common state.\n        //\n        //         Example 2a: Take the following machine representing a wildcard pattern.\n        //                             ____\n        //              a        *    | *  |\n        //            -----> A -----> B <--\n        //                   | b    b |\n        //                   --> C <--\n        //         With a byteState of A, and a current char of b, we would be unable to re-use C as nextByteState,\n        //         since A has a second transition to B that eventually leads to C as well. But we could re-use B.\n        //\n        //         Example 2b: Take the following machine representing an equals_ignore_case pattern.\n        //              x       Y\n        //            -----> A ------\n        //                   |  y   v\n        //                   -----> B\n        //         With a byteState of A, and a current char of y, we would be unable to re-use B as nextByteState,\n        //         since A has a second transition to B using char Y.\n        } else {\n            return !doMultipleTransitionsConvergeForInputByte(byteState, characters, i);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "ByteState",
+    "InputCharacter[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "hasIndeterminatePrefix()"
+    ],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isWildcard(InputCharacter)",
+      "doMultipleTransitionsConvergeForInputByte(ByteState, InputCharacter[], int)"
+    ]
+  },
+  "full_method_info": "private boolean canReuseNextByteState(ByteState byteState, ByteState nextByteState, InputCharacter[] characters, int i) {\n    // We cannot re-use nextByteState if it is non-existent (null) or if it is the same as the current byteState,\n    // meaning we are looping on a self-referencing transition.\n    if (nextByteState == null || nextByteState == byteState) {\n        return false;\n    }\n    // Case 1: When we have a determinate prefix, we can re-use nextByteState except for the special case where we\n    // are on the second-last character with a final character wildcard. A composite is required for this\n    // case, so we will create a new state.\n    // \n    // Example 1: Take the following machine representing an exact match pattern.\n    // a        b        c\n    // -----> A -----> B -----> C\n    // With a byteState of A, a current char of b, and a next and final char of *, we would be unable to\n    // re-use B as nextByteState, since we need to create a new self-referencing composite state D.\n    if (!nextByteState.hasIndeterminatePrefix()) {\n        return !(i == characters.length - 2 && isWildcard(characters[i + 1]));\n        // Case 2: nextByteState has an indeterminate prefix and current character is not a wildcard. We can re-use\n        // nextByteState only if byteState does not have at least two transitions, one using the next\n        // InputCharacter, that eventually converge to a common state.\n        // \n        // Example 2a: Take the following machine representing a wildcard pattern.\n        // ____\n        // a        *    | *  |\n        // -----> A -----> B <--\n        // | b    b |\n        // --> C <--\n        // With a byteState of A, and a current char of b, we would be unable to re-use C as nextByteState,\n        // since A has a second transition to B that eventually leads to C as well. But we could re-use B.\n        // \n        // Example 2b: Take the following machine representing an equals_ignore_case pattern.\n        // x       Y\n        // -----> A ------\n        // |  y   v\n        // -----> B\n        // With a byteState of A, and a current char of y, we would be unable to re-use B as nextByteState,\n        // since A has a second transition to B using char Y.\n    } else {\n        return !doMultipleTransitionsConvergeForInputByte(byteState, characters, i);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

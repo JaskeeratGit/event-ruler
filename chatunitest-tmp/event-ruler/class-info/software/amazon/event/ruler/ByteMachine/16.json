@@ -1,0 +1,47 @@
+{
+  "className": "ByteMachine",
+  "methodName": "attemptAddShortcutTransitionMatch",
+  "brief": "private boolean attemptAddShortcutTransitionMatch(final ByteTransition transition, final String value,\n            final MatchType expectedMatchType, final Set<NameStateWithPattern> transitionTo){}",
+  "methodSignature": "attemptAddShortcutTransitionMatch(ByteTransition, String, MatchType, Set)",
+  "sourceCode": "private boolean attemptAddShortcutTransitionMatch(final ByteTransition transition, final String value,\n            final MatchType expectedMatchType, final Set<NameStateWithPattern> transitionTo) {\n        for (ShortcutTransition shortcut : transition.getShortcuts()) {\n            ByteMatch match = shortcut.getMatch();\n            assert match != null;\n            if (match.getPattern().type() == expectedMatchType) {\n                ValuePatterns valuePatterns = (ValuePatterns) match.getPattern();\n                if (valuePatterns.pattern().equals(value)) {\n                    // Only one match is possible for shortcut transition\n                    transitionTo.add(new NameStateWithPattern(match.getNextNameState(), match.getPattern()));\n                    return true;\n                }\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteTransition",
+    "String",
+    "MatchType",
+    "Set<NameStateWithPattern>"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "getShortcuts()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.MatchType": [],
+    "software.amazon.event.ruler.ShortcutTransition": [
+      "getMatch()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getPattern()",
+      "getNextNameState()"
+    ],
+    "software.amazon.event.ruler.ValuePatterns": [
+      "pattern()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Evaluates if a provided transition is a shortcut transition with a match having a given match type and value. If\n * so, adds match to transitionTo Set. Used to short-circuit traversal.\n *\n * Note: The adjustment mode can ensure the shortcut transition (if exists) is always at the tail of path. Refer to\n * addEndOfMatch() function for details.\n *\n * @param transition Transition to evaluate.\n * @param value Value desired in match's pattern.\n * @param expectedMatchType Match type expected in match's pattern.\n * @param transitionTo Set that match's next name state will be added to if desired match is found.\n * @return True iff match was added to transitionTo Set.\n */\nprivate boolean attemptAddShortcutTransitionMatch(final ByteTransition transition, final String value, final MatchType expectedMatchType, final Set<NameStateWithPattern> transitionTo) {\n    for (ShortcutTransition shortcut : transition.getShortcuts()) {\n        ByteMatch match = shortcut.getMatch();\n        assert match != null;\n        if (match.getPattern().type() == expectedMatchType) {\n            ValuePatterns valuePatterns = (ValuePatterns) match.getPattern();\n            if (valuePatterns.pattern().equals(value)) {\n                // Only one match is possible for shortcut transition\n                transitionTo.add(new NameStateWithPattern(match.getNextNameState(), match.getPattern()));\n                return true;\n            }\n        }\n    }\n    return false;\n}",
+  "method_comment": "\n     * Evaluates if a provided transition is a shortcut transition with a match having a given match type and value. If\n     * so, adds match to transitionTo Set. Used to short-circuit traversal.\n     *\n     * Note: The adjustment mode can ensure the shortcut transition (if exists) is always at the tail of path. Refer to\n     * addEndOfMatch() function for details.\n     *\n     * @param transition Transition to evaluate.\n     * @param value Value desired in match's pattern.\n     * @param expectedMatchType Match type expected in match's pattern.\n     * @param transitionTo Set that match's next name state will be added to if desired match is found.\n     * @return True iff match was added to transitionTo Set.\n     ",
+  "method_annotation": ""
+}

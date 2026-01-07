@@ -1,0 +1,38 @@
+{
+  "className": "ACFinder",
+  "methodName": "moveFromWithPriorCandidates",
+  "brief": "private static void moveFromWithPriorCandidates(final Set<SubRuleContext> candidateSubRuleIds,\n                                                    final NameState fromState, final Patterns fromPattern,\n                                                    final int fieldIndex, final ACTask task,\n                                                    final ArrayMembership arrayMembership,\n                                                    final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "moveFromWithPriorCandidates(Set, NameState, Patterns, int, ACTask, ArrayMembership, SubRuleContext.Generator)",
+  "sourceCode": "private static void moveFromWithPriorCandidates(final Set<SubRuleContext> candidateSubRuleIds,\n                                                    final NameState fromState, final Patterns fromPattern,\n                                                    final int fieldIndex, final ACTask task,\n                                                    final ArrayMembership arrayMembership,\n                                                    final SubRuleContext.Generator subRuleContextGenerator) {\n        Set<SubRuleContext> candidateSubRuleIdsForNextStep = calculateCandidateSubRuleIdsForNextStep(candidateSubRuleIds,\n                fromState, fromPattern);\n\n        // If there are no more candidate sub-rules, there is no need to proceed further.\n        if (candidateSubRuleIdsForNextStep != null && !candidateSubRuleIdsForNextStep.isEmpty()) {\n            moveFrom(candidateSubRuleIdsForNextStep, fromState, fieldIndex, task, arrayMembership,\n                    subRuleContextGenerator);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "Patterns",
+    "int",
+    "ACTask",
+    "ArrayMembership",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.ACTask": [],
+    "software.amazon.event.ruler.ArrayMembership": [],
+    "software.amazon.event.ruler.ACFinder": [
+      "moveFrom(SubRuleContext>, NameState, int, ACTask, ArrayMembership, Generator)",
+      "calculateCandidateSubRuleIdsForNextStep(SubRuleContext>, NameState, Patterns)"
+    ],
+    "java.util.Set": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "private static void moveFromWithPriorCandidates(final Set<SubRuleContext> candidateSubRuleIds, final NameState fromState, final Patterns fromPattern, final int fieldIndex, final ACTask task, final ArrayMembership arrayMembership, final SubRuleContext.Generator subRuleContextGenerator) {\n    Set<SubRuleContext> candidateSubRuleIdsForNextStep = calculateCandidateSubRuleIdsForNextStep(candidateSubRuleIds, fromState, fromPattern);\n    // If there are no more candidate sub-rules, there is no need to proceed further.\n    if (candidateSubRuleIdsForNextStep != null && !candidateSubRuleIdsForNextStep.isEmpty()) {\n        moveFrom(candidateSubRuleIdsForNextStep, fromState, fieldIndex, task, arrayMembership, subRuleContextGenerator);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

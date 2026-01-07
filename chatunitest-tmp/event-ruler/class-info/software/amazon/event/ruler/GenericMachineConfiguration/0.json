@@ -1,0 +1,18 @@
+{
+  "className": "GenericMachineConfiguration",
+  "methodName": "isAdditionalNameStateReuse",
+  "brief": "boolean isAdditionalNameStateReuse(){}",
+  "methodSignature": "isAdditionalNameStateReuse()",
+  "sourceCode": "boolean isAdditionalNameStateReuse() {\n        return additionalNameStateReuse;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "boolean isAdditionalNameStateReuse() {\n    return additionalNameStateReuse;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,35 @@
+{
+  "className": "NameState",
+  "methodName": "getNameTransitions",
+  "brief": "Set<NameState> getNameTransitions(final String[] event){}",
+  "methodSignature": "getNameTransitions(String[])",
+  "sourceCode": "Set<NameState> getNameTransitions(final String[] event) {\n\n        Set<NameState> nextNameStates = new HashSet<>();\n\n        if (mustNotExistMatchers.isEmpty()) {\n            return nextNameStates;\n        }\n\n        Set<NameMatcher<NameState>> absentValues = new HashSet<>(mustNotExistMatchers.values());\n\n        for (int i = 0; i < event.length; i += 2) {\n\n            NameMatcher<NameState> matcher = mustNotExistMatchers.get(event[i]);\n            if (matcher != null) {\n                absentValues.remove(matcher);\n                if (absentValues.isEmpty()) {\n                    break;\n                }\n            }\n        }\n\n        for (NameMatcher<NameState> nameMatcher: absentValues) {\n            nextNameStates.add(nameMatcher.getNextState());\n        }\n\n        return nextNameStates;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String[]"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "values()",
+      "isEmpty()",
+      "get(Object)"
+    ],
+    "java.util.Set": [
+      "remove(Object)",
+      "isEmpty()",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.NameMatcher": [
+      "getNextState()"
+    ]
+  },
+  "full_method_info": "Set<NameState> getNameTransitions(final String[] event) {\n    Set<NameState> nextNameStates = new HashSet<>();\n    if (mustNotExistMatchers.isEmpty()) {\n        return nextNameStates;\n    }\n    Set<NameMatcher<NameState>> absentValues = new HashSet<>(mustNotExistMatchers.values());\n    for (int i = 0; i < event.length; i += 2) {\n        NameMatcher<NameState> matcher = mustNotExistMatchers.get(event[i]);\n        if (matcher != null) {\n            absentValues.remove(matcher);\n            if (absentValues.isEmpty()) {\n                break;\n            }\n        }\n    }\n    for (NameMatcher<NameState> nameMatcher : absentValues) {\n        nextNameStates.add(nameMatcher.getNextState());\n    }\n    return nextNameStates;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

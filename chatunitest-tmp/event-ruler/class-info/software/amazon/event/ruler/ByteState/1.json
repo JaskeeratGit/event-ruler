@@ -1,0 +1,22 @@
+{
+  "className": "ByteState",
+  "methodName": "setNextByteState",
+  "brief": "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState){}",
+  "methodSignature": "setNextByteState(ByteState)",
+  "sourceCode": "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState) {\n        return nextState;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": []
+  },
+  "full_method_info": "@Override\npublic SingleByteTransition setNextByteState(ByteState nextState) {\n    return nextState;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

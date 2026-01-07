@@ -1,0 +1,18 @@
+{
+  "className": "SingleStateNameMatcher",
+  "methodName": "isEmpty",
+  "brief": "@Override\n    public boolean isEmpty(){}",
+  "methodSignature": "isEmpty()",
+  "sourceCode": "@Override\n    public boolean isEmpty() {\n        return nameState == null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic boolean isEmpty() {\n    return nameState == null;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

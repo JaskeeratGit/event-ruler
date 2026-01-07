@@ -1,0 +1,28 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButNumbersMatch",
+  "brief": "public static AnythingBut anythingButNumbersMatch(final Set<String> anythingButs){}",
+  "methodSignature": "anythingButNumbersMatch(Set)",
+  "sourceCode": "public static AnythingBut anythingButNumbersMatch(final Set<String> anythingButs) {\n        Set<String> normalizedNumbers = new HashSet<>(anythingButs.size());\n        for (String d : anythingButs) {\n            normalizedNumbers.add(ComparableNumber.generate(d));\n        }\n        return new AnythingBut(normalizedNumbers, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<String>"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "add(E)",
+      "size()"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "generate(String)"
+    ]
+  },
+  "full_method_info": "public static AnythingBut anythingButNumbersMatch(final Set<String> anythingButs) {\n    Set<String> normalizedNumbers = new HashSet<>(anythingButs.size());\n    for (String d : anythingButs) {\n        normalizedNumbers.add(ComparableNumber.generate(d));\n    }\n    return new AnythingBut(normalizedNumbers, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

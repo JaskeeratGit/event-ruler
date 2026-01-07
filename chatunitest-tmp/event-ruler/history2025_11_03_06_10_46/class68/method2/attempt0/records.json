@@ -1,0 +1,22 @@
+[
+  {
+    "attempt": 0,
+    "round": 0,
+    "prompt": [
+      {
+        "role": "system",
+        "content": "Please help me generate a whole JUnit test for a focal method in a focal class.\nI will provide the following information of the focal method:\n1. Required dependencies to import.\n2. The focal class signature.\n3. Source code of the focal method.\n4. Signatures of r methods and fields in the class.\nI will provide followotheing brief information if the focal method has dependencies:\n1. Signatures of dependent classes.\n2. Signatures of dependent methods and fields in the dependent classes.\nI need you to create a whole unit test using JUnit 5, ensuring optimal branch and line coverage. Compile without errors, and use reflection to invoke private methods. No additional explanations required."
+      },
+      {
+        "role": "user",
+        "content": "The focal method is `deletePattern(Patterns)` in the focal class `SingleStateNameMatcher`, and their information is\n```software.amazon.event.ruler\nimport javax.annotation.Nonnull;\npublic class SingleStateNameMatcher {\nprivate NameState nameState;\n@Override\n    public void deletePattern(@Nonnull final Patterns pattern) {\n        nameState = null;\n    }\n}```.\n    Signatures of Other methods in the focal class are `@Override\n    public NameState getNextState(){}\n\n`.\n    The brief information of dependent class `software.amazon.event.ruler.Patterns` is\n    ```software.amazon.event.ruler\nimport java.util.Collections;\nimport java.util.HashSet;\nimport java.util.Set;\nimport java.util.stream.Collectors;\npublic class Patterns {\npublic static final String EXISTS_BYTE_STRING = \"N\";\nprivate final MatchType type;\nPatterns(final MatchType type) {\n        this.type = type;\n    }\n\n\n}```.\n"
+      }
+    ],
+    "response": "package software.amazon.event.ruler;\n\nimport org.junit.jupiter.api.Test;\n\nimport java.lang.reflect.Field;\nimport java.lang.reflect.Method;\n\nimport static org.junit.jupiter.api.Assertions.assertNull;\n\npublic class SingleStateNameMatcherTest {\n\n    @Test\n    public void deletePattern_setsNameState_toNull_whenCalled() throws Exception {\n        // Arrange\n        SingleStateNameMatcher matcher = new SingleStateNameMatcher();\n\n        // Act: invoke deletePattern(Patterns) via reflection (Patterns argument not used by method; pass null)\n        Method deleteMethod = SingleStateNameMatcher.class.getDeclaredMethod(\"deletePattern\", Patterns.class);\n        deleteMethod.setAccessible(true);\n        deleteMethod.invoke(matcher, (Object) null);\n\n        // Assert: private field nameState should be null\n        Field nameStateField = SingleStateNameMatcher.class.getDeclaredField(\"nameState\");\n        nameStateField.setAccessible(true);\n        Object nameStateValue = nameStateField.get(matcher);\n        assertNull(nameStateValue, \"nameState should be null after deletePattern is invoked\");\n    }\n}",
+    "promptToken": 340,
+    "responseToken": 1759,
+    "hasCode": true,
+    "code": "package software.amazon.event.ruler;\n\nimport java.lang.reflect.Field;\nimport java.lang.reflect.Method;\nimport org.mockito.*;\nimport org.junit.jupiter.api.*;\nimport static org.mockito.Mockito.*;\nimport static org.junit.jupiter.api.Assertions.*;\nimport org.junit.jupiter.api.extension.ExtendWith;\nimport org.mockito.junit.jupiter.MockitoExtension;\nimport javax.annotation.Nonnull;\n\npublic class SingleStateNameMatcher_deletePattern_2_0_Test {\n\n    @Test\n    public void deletePattern_setsNameState_toNull_whenCalled() throws Exception {\n        // Arrange\n        SingleStateNameMatcher matcher = new SingleStateNameMatcher();\n        // Act: invoke deletePattern(Patterns) via reflection (Patterns argument not used by method; pass null)\n        Method deleteMethod = SingleStateNameMatcher.class.getDeclaredMethod(\"deletePattern\", Patterns.class);\n        deleteMethod.setAccessible(true);\n        deleteMethod.invoke(matcher, (Object) null);\n        // Assert: private field nameState should be null\n        Field nameStateField = SingleStateNameMatcher.class.getDeclaredField(\"nameState\");\n        nameStateField.setAccessible(true);\n        Object nameStateValue = nameStateField.get(matcher);\n        assertNull(nameStateValue, \"nameState should be null after deletePattern is invoked\");\n    }\n}\n",
+    "hasError": false
+  }
+]

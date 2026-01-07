@@ -1,0 +1,22 @@
+{
+  "className": "CIDR",
+  "methodName": "toHexDigits",
+  "brief": "private static byte[] toHexDigits(final byte[] address){}",
+  "methodSignature": "toHexDigits(byte[])",
+  "sourceCode": "private static byte[] toHexDigits(final byte[] address) {\n\n        final byte[] digits = new byte[address.length * 2];\n        int digitInd = 0;\n        for (int ipByte : address) {\n            digits[digitInd++] = HEX_DIGITS[(ipByte >> 4) & 0x0F];\n            digits[digitInd++] = HEX_DIGITS[ipByte & 0x0F];\n        }\n        return digits;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "private static byte[] toHexDigits(final byte[] address) {\n    final byte[] digits = new byte[address.length * 2];\n    int digitInd = 0;\n    for (int ipByte : address) {\n        digits[digitInd++] = HEX_DIGITS[(ipByte >> 4) & 0x0F];\n        digits[digitInd++] = HEX_DIGITS[ipByte & 0x0F];\n    }\n    return digits;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

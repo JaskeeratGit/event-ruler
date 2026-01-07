@@ -1,0 +1,44 @@
+{
+  "fullClassName": "software.amazon.event.ruler.GenericMachineConfiguration",
+  "className": "GenericMachineConfiguration",
+  "index": 37,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "class GenericMachineConfiguration",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private final boolean additionalNameStateReuse;",
+    "private final boolean ruleOverriding;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "isAdditionalNameStateReuse()": "0",
+    "isRuleOverriding()": "1",
+    "GenericMachineConfiguration(boolean, boolean)": "2"
+  },
+  "methodsBrief": [
+    "boolean isAdditionalNameStateReuse(){}",
+    "public boolean isRuleOverriding(){}",
+    "GenericMachineConfiguration(boolean additionalNameStateReuse, boolean ruleOverriding){}"
+  ],
+  "constructorSigs": [
+    "GenericMachineConfiguration(boolean, boolean)"
+  ],
+  "constructorBrief": [
+    "GenericMachineConfiguration(boolean additionalNameStateReuse, boolean ruleOverriding){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\n/**\n * Configuration for a GenericMachine. For descriptions of the options, see GenericMachine.Builder.\n */\nclass GenericMachineConfiguration {\n\n    private final boolean additionalNameStateReuse;\n\n    private final boolean ruleOverriding;\n\n    GenericMachineConfiguration(boolean additionalNameStateReuse, boolean ruleOverriding) {\n        this.additionalNameStateReuse = additionalNameStateReuse;\n        this.ruleOverriding = ruleOverriding;\n    }\n\n    boolean isAdditionalNameStateReuse() {\n        return additionalNameStateReuse;\n    }\n\n    public boolean isRuleOverriding() {\n        return ruleOverriding;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Configuration for a GenericMachine. For descriptions of the options, see GenericMachine.Builder.\n */\nclass GenericMachineConfiguration {\n\n    private final boolean additionalNameStateReuse;\n\n    private final boolean ruleOverriding;\n\n    GenericMachineConfiguration(boolean additionalNameStateReuse, boolean ruleOverriding) {\n        this.additionalNameStateReuse = additionalNameStateReuse;\n        this.ruleOverriding = ruleOverriding;\n    }\n\n    boolean isAdditionalNameStateReuse() {\n        return additionalNameStateReuse;\n    }\n\n    public boolean isRuleOverriding() {\n        return ruleOverriding;\n    }\n}",
+  "subClasses": []
+}

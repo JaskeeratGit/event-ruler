@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "expand",
+  "brief": "abstract Iterable<SingleByteTransition> expand();",
+  "methodSignature": "expand()",
+  "sourceCode": "abstract Iterable<SingleByteTransition> expand();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get all transitions represented by this transition (can be more than one if this is a compound transition).\n *\n * @return An iterable of all transitions represented by this transition.\n */\nabstract Iterable<SingleByteTransition> expand();",
+  "method_comment": "\n     * Get all transitions represented by this transition (can be more than one if this is a compound transition).\n     *\n     * @return An iterable of all transitions represented by this transition.\n     ",
+  "method_annotation": ""
+}

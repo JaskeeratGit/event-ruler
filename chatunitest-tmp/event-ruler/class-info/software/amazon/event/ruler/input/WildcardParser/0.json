@@ -1,0 +1,28 @@
+{
+  "className": "WildcardParser",
+  "methodName": "parse",
+  "brief": "@Override\n    public InputCharacter[] parse(final String value){}",
+  "methodSignature": "parse(String)",
+  "sourceCode": "@Override\n    public InputCharacter[] parse(final String value) {\n        final byte[] utf8Bytes = value.getBytes(StandardCharsets.UTF_8);\n        final List<InputCharacter> result = new ArrayList<>(utf8Bytes.length);\n        for (int i = 0; i < utf8Bytes.length; i++) {\n            byte utf8byte = utf8Bytes[i];\n            if (utf8byte == ASTERISK_BYTE) {\n                if (i + 1 < utf8Bytes.length && utf8Bytes[i + 1] == ASTERISK_BYTE) {\n                    throw new ParseException(\"Consecutive wildcard characters at pos \" + i);\n                }\n                result.add(new InputWildcard());\n            } else if (utf8byte == BACKSLASH_BYTE) {\n                if (i + 1 < utf8Bytes.length) {\n                    byte nextUtf8byte = utf8Bytes[i + 1];\n                    if (nextUtf8byte == ASTERISK_BYTE || nextUtf8byte == BACKSLASH_BYTE) {\n                        result.add(new InputByte(nextUtf8byte));\n                        i++;\n                        continue;\n                    }\n                }\n                throw new ParseException(\"Invalid escape character at pos \" + i);\n            } else {\n                result.add(new InputByte(utf8byte));\n            }\n        }\n        return result.toArray(new InputCharacter[0]);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "getBytes(Charset)"
+    ],
+    "java.util.List": [
+      "toArray(T[])",
+      "add(E)"
+    ]
+  },
+  "full_method_info": "@Override\npublic InputCharacter[] parse(final String value) {\n    final byte[] utf8Bytes = value.getBytes(StandardCharsets.UTF_8);\n    final List<InputCharacter> result = new ArrayList<>(utf8Bytes.length);\n    for (int i = 0; i < utf8Bytes.length; i++) {\n        byte utf8byte = utf8Bytes[i];\n        if (utf8byte == ASTERISK_BYTE) {\n            if (i + 1 < utf8Bytes.length && utf8Bytes[i + 1] == ASTERISK_BYTE) {\n                throw new ParseException(\"Consecutive wildcard characters at pos \" + i);\n            }\n            result.add(new InputWildcard());\n        } else if (utf8byte == BACKSLASH_BYTE) {\n            if (i + 1 < utf8Bytes.length) {\n                byte nextUtf8byte = utf8Bytes[i + 1];\n                if (nextUtf8byte == ASTERISK_BYTE || nextUtf8byte == BACKSLASH_BYTE) {\n                    result.add(new InputByte(nextUtf8byte));\n                    i++;\n                    continue;\n                }\n            }\n            throw new ParseException(\"Invalid escape character at pos \" + i);\n        } else {\n            result.add(new InputByte(utf8byte));\n        }\n    }\n    return result.toArray(new InputCharacter[0]);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

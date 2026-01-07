@@ -1,0 +1,27 @@
+{
+  "className": "Range",
+  "methodName": "doubleToComparableBytes",
+  "brief": "private static byte[] doubleToComparableBytes(double d){}",
+  "methodSignature": "doubleToComparableBytes(double)",
+  "sourceCode": "private static byte[] doubleToComparableBytes(double d) {\n        return stringToComparableBytes(Double.toString(d));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "double"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Range": [
+      "stringToComparableBytes(String)"
+    ],
+    "java.lang.Double": [
+      "toString(double)"
+    ]
+  },
+  "full_method_info": "private static byte[] doubleToComparableBytes(double d) {\n    return stringToComparableBytes(Double.toString(d));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

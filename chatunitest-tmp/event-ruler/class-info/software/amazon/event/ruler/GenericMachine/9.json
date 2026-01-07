@@ -1,0 +1,52 @@
+{
+  "className": "GenericMachine",
+  "methodName": "addPatternRule",
+  "brief": "public void addPatternRule(final T name, final Map<String, List<Patterns>> namevals){}",
+  "methodSignature": "addPatternRule(T, Map)",
+  "sourceCode": "public void addPatternRule(final T name, final Map<String, List<Patterns>> namevals) {\n\n        if (namevals.size() > MAXIMUM_RULE_SIZE) {\n            throw new RuntimeException(\"Size of rule '\" + name + \"' exceeds max value of \" + MAXIMUM_RULE_SIZE);\n        }\n\n        // clone namevals for ruler use.\n        Map<String, List<Patterns>> namePatterns = new HashMap<>();\n        for (final Map.Entry<String, List<Patterns>> nameVal : namevals.entrySet()) {\n            namePatterns.put(nameVal.getKey(), nameVal.getValue().stream().map(p -> (Patterns)(p.clone())).\n                    collect(Collectors.toList()));\n        }\n\n        final ArrayList<String> keys = new ArrayList<>(namePatterns.keySet());\n        Collections.sort(keys);\n        synchronized(this) {\n            addStep(keys, namePatterns, name);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "T",
+    "Map<String,List<Patterns>>"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "java.util.Map": [
+      "entrySet()",
+      "keySet()",
+      "put(K, V)",
+      "size()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.stream.Stream": [
+      "collect(Collector<? super T, A, R>)",
+      "map(Function<? super T, ? extends R>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "clone()"
+    ],
+    "java.util.stream.Collectors": [
+      "toList()"
+    ],
+    "java.util.Collections": [
+      "sort(List<T>)"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "addStep(String>, Patterns>>, T)"
+    ]
+  },
+  "full_method_info": "/**\n * Add a rule to the machine. A rule is a set of names, each of which\n * is associated with one or more value-patterns. These can be simple values (like \"1\", \"a\", \"true\")\n * or more sophisticated (like {anything-but : \"1\", range: { ... } })\n *\n * @param name ARN of the rule4\n * @param namevals names and values which make up the rule\n */\npublic void addPatternRule(final T name, final Map<String, List<Patterns>> namevals) {\n    if (namevals.size() > MAXIMUM_RULE_SIZE) {\n        throw new RuntimeException(\"Size of rule '\" + name + \"' exceeds max value of \" + MAXIMUM_RULE_SIZE);\n    }\n    // clone namevals for ruler use.\n    Map<String, List<Patterns>> namePatterns = new HashMap<>();\n    for (final Map.Entry<String, List<Patterns>> nameVal : namevals.entrySet()) {\n        namePatterns.put(nameVal.getKey(), nameVal.getValue().stream().map(p -> (Patterns) (p.clone())).collect(Collectors.toList()));\n    }\n    final ArrayList<String> keys = new ArrayList<>(namePatterns.keySet());\n    Collections.sort(keys);\n    synchronized (this) {\n        addStep(keys, namePatterns, name);\n    }\n}",
+  "method_comment": "\n     * Add a rule to the machine. A rule is a set of names, each of which\n     * is associated with one or more value-patterns. These can be simple values (like \"1\", \"a\", \"true\")\n     * or more sophisticated (like {anything-but : \"1\", range: { ... } })\n     *\n     * @param name ARN of the rule4\n     * @param namevals names and values which make up the rule\n     ",
+  "method_annotation": ""
+}

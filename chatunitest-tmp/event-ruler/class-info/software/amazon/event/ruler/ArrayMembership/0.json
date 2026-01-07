@@ -1,0 +1,26 @@
+{
+  "className": "ArrayMembership",
+  "methodName": "putMembership",
+  "brief": "void putMembership(int array, int index){}",
+  "methodSignature": "putMembership(int, int)",
+  "sourceCode": "void putMembership(int array, int index) {\n        if (index == IntIntMap.NO_VALUE) {\n            membership.remove(array);\n        } else {\n            membership.put(array, index);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "put(int, int)",
+      "remove(int)"
+    ]
+  },
+  "full_method_info": "void putMembership(int array, int index) {\n    if (index == IntIntMap.NO_VALUE) {\n        membership.remove(array);\n    } else {\n        membership.put(array, index);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

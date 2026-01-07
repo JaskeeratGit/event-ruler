@@ -1,0 +1,18 @@
+{
+  "className": "Patterns",
+  "methodName": "pattern",
+  "brief": "@Deprecated\n    public String pattern(){}",
+  "methodSignature": "pattern()",
+  "sourceCode": "@Deprecated\n    public String pattern() { return null; }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "// This interface is deprecated and we keep it here for backward compatibility only.\n// Note: right now (5/28/2019), only ValuePatterns overrides it.\n@Deprecated\npublic String pattern() {\n    return null;\n}",
+  "method_comment": " Note: right now (5/28/2019), only ValuePatterns overrides it.",
+  "method_annotation": "@Deprecated\n"
+}

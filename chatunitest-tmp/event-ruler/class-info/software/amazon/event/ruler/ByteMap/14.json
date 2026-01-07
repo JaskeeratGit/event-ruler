@@ -1,0 +1,22 @@
+{
+  "className": "ByteMap",
+  "methodName": "getCeilings",
+  "brief": "Set<Integer> getCeilings(){}",
+  "methodSignature": "getCeilings()",
+  "sourceCode": "Set<Integer> getCeilings() {\n        return map.keySet();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.SortedMap": [
+      "keySet()"
+    ]
+  },
+  "full_method_info": "/**\n * Get the ceiling values contained in this map.\n *\n * @return Ceiling values.\n */\nSet<Integer> getCeilings() {\n    return map.keySet();\n}",
+  "method_comment": "\n     * Get the ceiling values contained in this map.\n     *\n     * @return Ceiling values.\n     ",
+  "method_annotation": ""
+}

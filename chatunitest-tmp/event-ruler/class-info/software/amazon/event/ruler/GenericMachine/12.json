@@ -1,0 +1,68 @@
+{
+  "className": "GenericMachine",
+  "methodName": "deleteStep",
+  "brief": "private Set<SubRuleContext> deleteStep(final NameState state,\n                                   final List<String> keys,\n                                   final int keyIndex,\n                                   final Map<String, List<Patterns>> patterns,\n                                   final T ruleName,\n                                   final List<String> deletedKeys,\n                                   final Set<SubRuleContext> candidateSubRuleIds){}",
+  "methodSignature": "deleteStep(NameState, List, int, Map, T, List, Set)",
+  "sourceCode": "private Set<SubRuleContext> deleteStep(final NameState state,\n                                   final List<String> keys,\n                                   final int keyIndex,\n                                   final Map<String, List<Patterns>> patterns,\n                                   final T ruleName,\n                                   final List<String> deletedKeys,\n                                   final Set<SubRuleContext> candidateSubRuleIds) {\n\n        final Set<SubRuleContext> deletedSubRuleIds = new HashSet<>();\n        final String key = keys.get(keyIndex);\n        ByteMachine byteMachine = state.getTransitionOn(key);\n        NameMatcher<NameState> nameMatcher = state.getKeyTransitionOn(key);\n\n        // matchers are null, we have nothing to delete.\n        if (byteMachine == null && nameMatcher == null) {\n            return deletedSubRuleIds;\n        }\n\n        for (Patterns pattern : patterns.get(key)) {\n            NameState nextNameState = null;\n            if (isNamePattern(pattern)) {\n                if (nameMatcher != null) {\n                    nextNameState = nameMatcher.findPattern(pattern);\n                }\n            } else {\n                if (byteMachine != null) {\n                    nextNameState = byteMachine.findPattern(pattern);\n                }\n            }\n\n            if (nextNameState != null) {\n                // If this was the last step, then reaching the last state means the rule matched, and we should delete\n                // the rule from the next NameState.\n                final int nextKeyIndex = keyIndex + 1;\n                boolean isTerminal = nextKeyIndex == keys.size();\n\n                // Trim the candidate sub-rule ID set to contain only the sub-rule IDs present in the next NameState.\n                Set<SubRuleContext> nextNameStateSubRuleIds = isTerminal ?\n                        nextNameState.getTerminalSubRuleIdsForPattern(pattern) :\n                        nextNameState.getNonTerminalSubRuleIdsForPattern(pattern);\n                // If no sub-rule IDs are found for next NameState, then we have no candidates, and will return below\n                // without further recursion through the keys.\n                if (nextNameStateSubRuleIds == null) {\n                    candidateSubRuleIds.clear();\n                    // If candidate set is empty, we are at first NameState, so initialize to next NameState's sub-rule IDs.\n                    // When initializing, ensure that sub-rule IDs match the provided rule name for deletion.\n                } else if (candidateSubRuleIds.isEmpty()) {\n                    for (SubRuleContext nextNameStateSubRuleId : nextNameStateSubRuleIds) {\n                        if (Objects.equals(ruleName,\n                                nextNameStateSubRuleId.getRuleName())) {\n                            candidateSubRuleIds.add(nextNameStateSubRuleId);\n                        }\n                    }\n                    // Have already initialized candidate set. Just retain the candidates present in the next NameState.\n                } else {\n                    candidateSubRuleIds.retainAll(nextNameStateSubRuleIds);\n                }\n\n                if (isTerminal) {\n                    for (SubRuleContext candidateSubRuleId : candidateSubRuleIds) {\n                        if (nextNameState.deleteSubRule(\n                                candidateSubRuleId.getRuleName(), candidateSubRuleId,\n                                pattern, true)) {\n                            deletedSubRuleIds.add(candidateSubRuleId);\n                            // Only delete the pattern if the pattern does not transition to the next NameState.\n                            if (!doesNameStateContainPattern(nextNameState, pattern) &&\n                                    deletePattern(state, key, pattern)) {\n                                deletedKeys.add(key);\n                                state.removeNextNameState(key);\n                            }\n                        }\n                    }\n                } else {\n                    if (candidateSubRuleIds.isEmpty()) {\n                        return deletedSubRuleIds;\n                    }\n                    deletedSubRuleIds.addAll(deleteStep(nextNameState, keys, nextKeyIndex, patterns, ruleName,\n                            deletedKeys, new HashSet<>(candidateSubRuleIds)));\n\n                    for (SubRuleContext deletedSubRuleId : deletedSubRuleIds) {\n                        nextNameState.deleteSubRule(deletedSubRuleId.getRuleName(),\n                                deletedSubRuleId, pattern, false);\n                    }\n\n                    // Unwinding the key recursion, so we aren't on a rule match. Only delete the pattern if the pattern\n                    // does not transition to the next NameState.\n                    if (!doesNameStateContainPattern(nextNameState, pattern) && deletePattern(state, key, pattern)) {\n                        deletedKeys.add(key);\n                        state.removeNextNameState(key);\n                    }\n                }\n            }\n\n        }\n\n        return deletedSubRuleIds;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "NameState",
+    "List<String>",
+    "int",
+    "Map<String,List<Patterns>>",
+    "T",
+    "List<String>",
+    "Set<SubRuleContext>"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "removeNextNameState(String)",
+      "getTerminalSubRuleIdsForPattern(Patterns)",
+      "getNonTerminalSubRuleIdsForPattern(Patterns)",
+      "getTransitionOn(String)",
+      "getKeyTransitionOn(String)",
+      "deleteSubRule(Object, SubRuleContext, Patterns, boolean)"
+    ],
+    "T": [],
+    "java.util.List": [
+      "get(int)",
+      "add(E)",
+      "size()"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "doesNameStateContainPattern(NameState, Patterns)",
+      "isNamePattern(Patterns)",
+      "deleteStep(NameState, String>, int, Patterns>>, T, String>, SubRuleContext>)",
+      "deletePattern(NameState, String, Patterns)"
+    ],
+    "software.amazon.event.ruler.NameMatcher": [
+      "findPattern(Patterns)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "findPattern(Patterns)"
+    ],
+    "java.util.Set": [
+      "isEmpty()",
+      "retainAll(Object>)",
+      "add(E)",
+      "clear()"
+    ],
+    "java.util.Objects": [
+      "equals(Object, Object)"
+    ],
+    "software.amazon.event.ruler.SubRuleContext": [
+      "getRuleName()"
+    ]
+  },
+  "full_method_info": "private Set<SubRuleContext> deleteStep(final NameState state, final List<String> keys, final int keyIndex, final Map<String, List<Patterns>> patterns, final T ruleName, final List<String> deletedKeys, final Set<SubRuleContext> candidateSubRuleIds) {\n    final Set<SubRuleContext> deletedSubRuleIds = new HashSet<>();\n    final String key = keys.get(keyIndex);\n    ByteMachine byteMachine = state.getTransitionOn(key);\n    NameMatcher<NameState> nameMatcher = state.getKeyTransitionOn(key);\n    // matchers are null, we have nothing to delete.\n    if (byteMachine == null && nameMatcher == null) {\n        return deletedSubRuleIds;\n    }\n    for (Patterns pattern : patterns.get(key)) {\n        NameState nextNameState = null;\n        if (isNamePattern(pattern)) {\n            if (nameMatcher != null) {\n                nextNameState = nameMatcher.findPattern(pattern);\n            }\n        } else {\n            if (byteMachine != null) {\n                nextNameState = byteMachine.findPattern(pattern);\n            }\n        }\n        if (nextNameState != null) {\n            // If this was the last step, then reaching the last state means the rule matched, and we should delete\n            // the rule from the next NameState.\n            final int nextKeyIndex = keyIndex + 1;\n            boolean isTerminal = nextKeyIndex == keys.size();\n            // Trim the candidate sub-rule ID set to contain only the sub-rule IDs present in the next NameState.\n            Set<SubRuleContext> nextNameStateSubRuleIds = isTerminal ? nextNameState.getTerminalSubRuleIdsForPattern(pattern) : nextNameState.getNonTerminalSubRuleIdsForPattern(pattern);\n            // If no sub-rule IDs are found for next NameState, then we have no candidates, and will return below\n            // without further recursion through the keys.\n            if (nextNameStateSubRuleIds == null) {\n                candidateSubRuleIds.clear();\n                // If candidate set is empty, we are at first NameState, so initialize to next NameState's sub-rule IDs.\n                // When initializing, ensure that sub-rule IDs match the provided rule name for deletion.\n            } else if (candidateSubRuleIds.isEmpty()) {\n                for (SubRuleContext nextNameStateSubRuleId : nextNameStateSubRuleIds) {\n                    if (Objects.equals(ruleName, nextNameStateSubRuleId.getRuleName())) {\n                        candidateSubRuleIds.add(nextNameStateSubRuleId);\n                    }\n                }\n                // Have already initialized candidate set. Just retain the candidates present in the next NameState.\n            } else {\n                candidateSubRuleIds.retainAll(nextNameStateSubRuleIds);\n            }\n            if (isTerminal) {\n                for (SubRuleContext candidateSubRuleId : candidateSubRuleIds) {\n                    if (nextNameState.deleteSubRule(candidateSubRuleId.getRuleName(), candidateSubRuleId, pattern, true)) {\n                        deletedSubRuleIds.add(candidateSubRuleId);\n                        // Only delete the pattern if the pattern does not transition to the next NameState.\n                        if (!doesNameStateContainPattern(nextNameState, pattern) && deletePattern(state, key, pattern)) {\n                            deletedKeys.add(key);\n                            state.removeNextNameState(key);\n                        }\n                    }\n                }\n            } else {\n                if (candidateSubRuleIds.isEmpty()) {\n                    return deletedSubRuleIds;\n                }\n                deletedSubRuleIds.addAll(deleteStep(nextNameState, keys, nextKeyIndex, patterns, ruleName, deletedKeys, new HashSet<>(candidateSubRuleIds)));\n                for (SubRuleContext deletedSubRuleId : deletedSubRuleIds) {\n                    nextNameState.deleteSubRule(deletedSubRuleId.getRuleName(), deletedSubRuleId, pattern, false);\n                }\n                // Unwinding the key recursion, so we aren't on a rule match. Only delete the pattern if the pattern\n                // does not transition to the next NameState.\n                if (!doesNameStateContainPattern(nextNameState, pattern) && deletePattern(state, key, pattern)) {\n                    deletedKeys.add(key);\n                    state.removeNextNameState(key);\n                }\n            }\n        }\n    }\n    return deletedSubRuleIds;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

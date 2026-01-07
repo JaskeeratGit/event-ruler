@@ -1,0 +1,29 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButSuffix",
+  "brief": "public static AnythingButValuesSet anythingButSuffix(final String suffix){}",
+  "methodSignature": "anythingButSuffix(String)",
+  "sourceCode": "public static AnythingButValuesSet anythingButSuffix(final String suffix) {\n        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_SUFFIX,\n                Collections.singleton(new StringBuilder(suffix).reverse().toString()));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "singleton(T)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "reverse()"
+    ]
+  },
+  "full_method_info": "public static AnythingButValuesSet anythingButSuffix(final String suffix) {\n    return new AnythingButValuesSet(MatchType.ANYTHING_BUT_SUFFIX, Collections.singleton(new StringBuilder(suffix).reverse().toString()));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

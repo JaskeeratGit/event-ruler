@@ -1,0 +1,34 @@
+{
+  "className": "ByteMachine",
+  "methodName": "removeTransitionForMultiByteSet",
+  "brief": "private static void removeTransitionForMultiByteSet(ByteState state, InputMultiByteSet multiByteSet,\n                                                        SingleByteTransition transition){}",
+  "methodSignature": "removeTransitionForMultiByteSet(ByteState, InputMultiByteSet, SingleByteTransition)",
+  "sourceCode": "private static void removeTransitionForMultiByteSet(ByteState state, InputMultiByteSet multiByteSet,\n                                                        SingleByteTransition transition) {\n        for (MultiByte multiByte : multiByteSet.getMultiBytes()) {\n            removeTransitionForBytes(state, multiByte.getBytes(), 0, transition);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "InputMultiByteSet",
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [],
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.input.InputMultiByteSet": [
+      "getMultiBytes()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "removeTransitionForBytes(ByteState, byte[], int, SingleByteTransition)"
+    ],
+    "software.amazon.event.ruler.input.MultiByte": [
+      "getBytes()"
+    ]
+  },
+  "full_method_info": "private static void removeTransitionForMultiByteSet(ByteState state, InputMultiByteSet multiByteSet, SingleByteTransition transition) {\n    for (MultiByte multiByte : multiByteSet.getMultiBytes()) {\n        removeTransitionForBytes(state, multiByte.getBytes(), 0, transition);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

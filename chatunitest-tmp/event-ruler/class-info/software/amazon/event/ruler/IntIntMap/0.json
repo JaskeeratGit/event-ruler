@@ -1,0 +1,25 @@
+{
+  "className": "IntIntMap",
+  "methodName": "get",
+  "brief": "int get(final int key){}",
+  "methodSignature": "get(int)",
+  "sourceCode": "int get(final int key) {\n        int idx = getStartIndex(key);\n        do {\n            long cell = table[idx];\n            if (cell == EMPTY_CELL) {\n                // end of the chain, key does not exist\n                return NO_VALUE;\n            }\n            if (((int) (cell & KEY_MASK)) == key) {\n                // found the key\n                return (int) (cell >> 32);\n            }\n            // continue walking the chain\n            idx = getNextIndex(idx);\n        } while (true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "getNextIndex(int)",
+      "getStartIndex(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the value for {@code key}.\n *\n * @param key\n *            the non-negative key\n * @return the value present at {@code key}, or {@link #NO_VALUE} if none is present.\n */\nint get(final int key) {\n    int idx = getStartIndex(key);\n    do {\n        long cell = table[idx];\n        if (cell == EMPTY_CELL) {\n            // end of the chain, key does not exist\n            return NO_VALUE;\n        }\n        if (((int) (cell & KEY_MASK)) == key) {\n            // found the key\n            return (int) (cell >> 32);\n        }\n        // continue walking the chain\n        idx = getNextIndex(idx);\n    } while (true);\n}",
+  "method_comment": "\n     * Gets the value for {@code key}.\n     *\n     * @param key\n     *            the non-negative key\n     * @return the value present at {@code key}, or {@link #NO_VALUE} if none is present.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "Patterns",
+  "methodName": "equalsIgnoreCaseMatch",
+  "brief": "public static ValuePatterns equalsIgnoreCaseMatch(final String value){}",
+  "methodSignature": "equalsIgnoreCaseMatch(String)",
+  "sourceCode": "public static ValuePatterns equalsIgnoreCaseMatch(final String value) {\n        return new ValuePatterns(MatchType.EQUALS_IGNORE_CASE, value);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "// Implement equals-ignore-case by doing lower-case comparisons\npublic static ValuePatterns equalsIgnoreCaseMatch(final String value) {\n    return new ValuePatterns(MatchType.EQUALS_IGNORE_CASE, value);\n}",
+  "method_comment": " Implement equals-ignore-case by doing lower-case comparisons",
+  "method_annotation": ""
+}

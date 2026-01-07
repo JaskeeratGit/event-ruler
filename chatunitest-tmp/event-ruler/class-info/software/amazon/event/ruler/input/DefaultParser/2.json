@@ -1,0 +1,38 @@
+{
+  "className": "DefaultParser",
+  "methodName": "parse",
+  "brief": "@Override\n    public InputCharacter[] parse(final MatchType type, final String value){}",
+  "methodSignature": "parse(MatchType, String)",
+  "sourceCode": "@Override\n    public InputCharacter[] parse(final MatchType type, final String value) {\n        if (type == WILDCARD || type == ANYTHING_BUT_WILDCARD) {\n            return wildcardParser.parse(value);\n        } else if (type == EQUALS_IGNORE_CASE || type == ANYTHING_BUT_IGNORE_CASE || type == PREFIX_EQUALS_IGNORE_CASE) {\n            return equalsIgnoreCaseParser.parse(value);\n        } else if (type == SUFFIX || type == ANYTHING_BUT_SUFFIX) {\n            return suffixParser.parse(value);\n        } else if (type == SUFFIX_EQUALS_IGNORE_CASE) {\n            return suffixEqualsIgnoreCaseParser.parse(value);\n        }\n\n        final byte[] utf8bytes = value.getBytes(StandardCharsets.UTF_8);\n        final InputCharacter[] result = new InputCharacter[utf8bytes.length];\n        for (int i = 0; i < utf8bytes.length; i++) {\n            byte utf8byte = utf8bytes[i];\n            result[i] = new InputByte(utf8byte);\n        }\n        return result;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MatchType",
+    "String"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.MatchType": [],
+    "java.lang.String": [
+      "getBytes(Charset)"
+    ],
+    "software.amazon.event.ruler.input.WildcardParser": [
+      "parse(String)"
+    ],
+    "software.amazon.event.ruler.input.EqualsIgnoreCaseParser": [
+      "parse(String)"
+    ],
+    "software.amazon.event.ruler.input.SuffixParser": [
+      "parse(String)"
+    ],
+    "software.amazon.event.ruler.input.SuffixEqualsIgnoreCaseParser": [
+      "parse(String)"
+    ]
+  },
+  "full_method_info": "@Override\npublic InputCharacter[] parse(final MatchType type, final String value) {\n    if (type == WILDCARD || type == ANYTHING_BUT_WILDCARD) {\n        return wildcardParser.parse(value);\n    } else if (type == EQUALS_IGNORE_CASE || type == ANYTHING_BUT_IGNORE_CASE || type == PREFIX_EQUALS_IGNORE_CASE) {\n        return equalsIgnoreCaseParser.parse(value);\n    } else if (type == SUFFIX || type == ANYTHING_BUT_SUFFIX) {\n        return suffixParser.parse(value);\n    } else if (type == SUFFIX_EQUALS_IGNORE_CASE) {\n        return suffixEqualsIgnoreCaseParser.parse(value);\n    }\n    final byte[] utf8bytes = value.getBytes(StandardCharsets.UTF_8);\n    final InputCharacter[] result = new InputCharacter[utf8bytes.length];\n    for (int i = 0; i < utf8bytes.length; i++) {\n        byte utf8byte = utf8bytes[i];\n        result[i] = new InputByte(utf8byte);\n    }\n    return result;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

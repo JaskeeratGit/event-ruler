@@ -1,0 +1,18 @@
+{
+  "className": "NameMatcher",
+  "methodName": "getNextState",
+  "brief": "R getNextState();",
+  "methodSignature": "getNextState()",
+  "sourceCode": "R getNextState();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the next state to transition to in case the NameMatcher matches the event.\n */\nR getNextState();",
+  "method_comment": "\n     * Gets the next state to transition to in case the NameMatcher matches the event.\n     ",
+  "method_annotation": ""
+}

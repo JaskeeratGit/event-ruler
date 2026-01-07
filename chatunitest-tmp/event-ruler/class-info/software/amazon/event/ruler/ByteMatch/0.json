@@ -1,0 +1,18 @@
+{
+  "className": "ByteMatch",
+  "methodName": "getNextByteState",
+  "brief": "@Override\n    public ByteState getNextByteState(){}",
+  "methodSignature": "getNextByteState()",
+  "sourceCode": "@Override\n    public ByteState getNextByteState() {\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic ByteState getNextByteState() {\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

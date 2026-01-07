@@ -1,0 +1,29 @@
+{
+  "className": "ACTask",
+  "methodName": "addStep",
+  "brief": "void addStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds,\n                 final ArrayMembership membershipSoFar){}",
+  "methodSignature": "addStep(int, NameState, Set, ArrayMembership)",
+  "sourceCode": "void addStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds,\n                 final ArrayMembership membershipSoFar) {\n        stepQueue.add(new ACStep(fieldIndex, nameState, candidateSubRuleIds, membershipSoFar));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "NameState",
+    "Set<SubRuleContext>",
+    "ArrayMembership"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ArrayMembership": [],
+    "java.util.Queue": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/*\n     *  Add a step to the queue for later consideration\n     */\nvoid addStep(final int fieldIndex, final NameState nameState, final Set<SubRuleContext> candidateSubRuleIds, final ArrayMembership membershipSoFar) {\n    stepQueue.add(new ACStep(fieldIndex, nameState, candidateSubRuleIds, membershipSoFar));\n}",
+  "method_comment": "\n     *  Add a step to the queue for later consideration\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "barf",
+  "brief": "private static void barf(final JsonParser parser, final String message) throws JsonParseException{}",
+  "methodSignature": "barf(JsonParser, String)",
+  "sourceCode": "private static void barf(final JsonParser parser, final String message) throws JsonParseException {\n        throw new JsonParseException(parser, message, parser.getCurrentLocation());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "String"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getCurrentLocation()"
+    ],
+    "java.lang.String": []
+  },
+  "full_method_info": "private static void barf(final JsonParser parser, final String message) throws JsonParseException {\n    throw new JsonParseException(parser, message, parser.getCurrentLocation());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

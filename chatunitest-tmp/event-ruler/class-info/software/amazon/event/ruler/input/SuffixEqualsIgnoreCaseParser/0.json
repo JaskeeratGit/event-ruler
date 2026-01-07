@@ -1,0 +1,25 @@
+{
+  "className": "SuffixEqualsIgnoreCaseParser",
+  "methodName": "parse",
+  "brief": "public InputCharacter[] parse(String value){}",
+  "methodSignature": "parse(String)",
+  "sourceCode": "public InputCharacter[] parse(String value) {\n        // By using EqualsIgnoreCaseParser, we reverse chars in one pass when getting the char bytes for\n        // lower-case and upper-case values.\n        return parse(value, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.input.EqualsIgnoreCaseParser": [
+      "parse(String, boolean)"
+    ]
+  },
+  "full_method_info": "public InputCharacter[] parse(String value) {\n    // By using EqualsIgnoreCaseParser, we reverse chars in one pass when getting the char bytes for\n    // lower-case and upper-case values.\n    return parse(value, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,27 @@
+{
+  "className": "NameState",
+  "methodName": "addNextNameState",
+  "brief": "void addNextNameState(final String key, final NameState nextNameState){}",
+  "methodSignature": "addNextNameState(String, NameState)",
+  "sourceCode": "void addNextNameState(final String key, final NameState nextNameState) {\n        keyToNextNameState.put(key, nextNameState);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.NameState": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "void addNextNameState(final String key, final NameState nextNameState) {\n    keyToNextNameState.put(key, nextNameState);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

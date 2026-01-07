@@ -1,0 +1,22 @@
+{
+  "className": "EntryIterator",
+  "methodName": "next",
+  "brief": "@Override\n        public Entry next(){}",
+  "methodSignature": "next()",
+  "sourceCode": "@Override\n        public Entry next() {\n            if (nextIndex == NO_NEXT_INDEX) {\n                throw new NoSuchElementException();\n            }\n            Entry entry = new Entry((int) (table[nextIndex] & KEY_MASK), (int) (table[nextIndex] >> 32));\n            nextIndex = findNextIndex(nextIndex + 1);\n            return entry;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap.EntryIterator": [
+      "findNextIndex(int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic Entry next() {\n    if (nextIndex == NO_NEXT_INDEX) {\n        throw new NoSuchElementException();\n    }\n    Entry entry = new Entry((int) (table[nextIndex] & KEY_MASK), (int) (table[nextIndex] >> 32));\n    nextIndex = findNextIndex(nextIndex + 1);\n    return entry;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

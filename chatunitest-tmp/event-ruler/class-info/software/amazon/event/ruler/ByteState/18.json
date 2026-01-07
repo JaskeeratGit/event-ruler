@@ -1,0 +1,32 @@
+{
+  "className": "ByteState",
+  "methodName": "getCeilings",
+  "brief": "Set<Integer> getCeilings(){}",
+  "methodSignature": "getCeilings()",
+  "sourceCode": "Set<Integer> getCeilings() {\n        // Saving the value to avoid reading an updated value\n        Object transitionStore = this.transitionStore;\n        if (transitionStore == null) {\n            return Collections.emptySet();\n        } else if (transitionStore instanceof SingleByteTransitionEntry) {\n            SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n            int index = entry.utf8byte & 0xFF;\n            if (index == 0) {\n                return Stream.of(index + 1, 256).collect(Collectors.toSet());\n            } else if (index == 255) {\n                return Stream.of(index, index + 1).collect(Collectors.toSet());\n            } else {\n                return Stream.of(index, index + 1, 256).collect(Collectors.toSet());\n            }\n        }\n        ByteMap map = (ByteMap) transitionStore;\n        return map.getCeilings();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "emptySet()"
+    ],
+    "java.util.stream.Stream": [
+      "collect(Collector<? super T, A, R>)",
+      "of(T[])"
+    ],
+    "java.util.stream.Collectors": [
+      "toSet()"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "getCeilings()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets all the ceiling values contained in the ByteMap or SingleByteTransitionEntry.\n *\n * @return All the ceiling values contained in the ByteMap or SingleByteTransitionEntry.\n */\nSet<Integer> getCeilings() {\n    // Saving the value to avoid reading an updated value\n    Object transitionStore = this.transitionStore;\n    if (transitionStore == null) {\n        return Collections.emptySet();\n    } else if (transitionStore instanceof SingleByteTransitionEntry) {\n        SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n        int index = entry.utf8byte & 0xFF;\n        if (index == 0) {\n            return Stream.of(index + 1, 256).collect(Collectors.toSet());\n        } else if (index == 255) {\n            return Stream.of(index, index + 1).collect(Collectors.toSet());\n        } else {\n            return Stream.of(index, index + 1, 256).collect(Collectors.toSet());\n        }\n    }\n    ByteMap map = (ByteMap) transitionStore;\n    return map.getCeilings();\n}",
+  "method_comment": "\n     * Gets all the ceiling values contained in the ByteMap or SingleByteTransitionEntry.\n     *\n     * @return All the ceiling values contained in the ByteMap or SingleByteTransitionEntry.\n     ",
+  "method_annotation": ""
+}

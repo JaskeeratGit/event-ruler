@@ -1,0 +1,47 @@
+{
+  "fullClassName": "software.amazon.event.ruler.NameMatcher",
+  "className": "NameMatcher",
+  "index": 41,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "public interface NameMatcher",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import javax.annotation.Nonnull;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "isEmpty()": "0",
+    "addPattern(Patterns, NameState)": "1",
+    "deletePattern(Patterns)": "2",
+    "findPattern(Patterns)": "3",
+    "getNextState()": "4"
+  },
+  "methodsBrief": [
+    "boolean isEmpty();",
+    "R addPattern(@Nonnull Patterns pattern, @Nonnull NameState nameState);",
+    "void deletePattern(@Nonnull Patterns pattern);",
+    "R findPattern(@Nonnull Patterns pattern);",
+    "R getNextState();"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "getNextState()"
+  ],
+  "getterSetterBrief": [
+    "R getNextState();"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport javax.annotation.Nonnull;\n\n/**\n * Matches the Keys in the flattened event with the { [ \"exists\" : false ] } pattern.\n * and returns the next state if the <b>key does not exist</b> in the event.\n *\n * In the future, when we support multiple patterns, the matcher will return a set of\n * name states matched instead of a single name state.\n *\n * @param <R> generic state type\n */\npublic interface NameMatcher<R> {\n\n    /**\n     * Returns {@code true} if this name matcher contains no patterns.\n     */\n    boolean isEmpty();\n\n    /**\n     * Adds the given pattern to this name matcher and associate it with the existing or new match result.\n     *\n     * @param pattern   the pattern to be added\n     * @param nameState the namestate\n     * @return the match result with which the added pattern is associated\n     */\n    R addPattern(@Nonnull Patterns pattern, @Nonnull NameState nameState);\n\n    /**\n     * Removes the given pattern from this name matcher.\n     *\n     * @param pattern the pattern to be deleted\n     */\n    void deletePattern(@Nonnull Patterns pattern);\n\n    /**\n     * Looks up for the given pattern.\n     *\n     * @param pattern the pattern to be looked up for\n     * @return the match result that is associated with the given pattern if the pattern exists; otherwise {@code null}\n     */\n    R findPattern(@Nonnull Patterns pattern);\n\n    /**\n     * Gets the next state to transition to in case the NameMatcher matches the event.\n     */\n    R getNextState();\n}\n",
+  "classDeclarationCode": "/**\n * Matches the Keys in the flattened event with the { [ \"exists\" : false ] } pattern.\n * and returns the next state if the <b>key does not exist</b> in the event.\n *\n * In the future, when we support multiple patterns, the matcher will return a set of\n * name states matched instead of a single name state.\n *\n * @param <R> generic state type\n */\npublic interface NameMatcher<R> {\n\n    /**\n     * Returns {@code true} if this name matcher contains no patterns.\n     */\n    boolean isEmpty();\n\n    /**\n     * Adds the given pattern to this name matcher and associate it with the existing or new match result.\n     *\n     * @param pattern   the pattern to be added\n     * @param nameState the namestate\n     * @return the match result with which the added pattern is associated\n     */\n    R addPattern(@Nonnull Patterns pattern, @Nonnull NameState nameState);\n\n    /**\n     * Removes the given pattern from this name matcher.\n     *\n     * @param pattern the pattern to be deleted\n     */\n    void deletePattern(@Nonnull Patterns pattern);\n\n    /**\n     * Looks up for the given pattern.\n     *\n     * @param pattern the pattern to be looked up for\n     * @return the match result that is associated with the given pattern if the pattern exists; otherwise {@code null}\n     */\n    R findPattern(@Nonnull Patterns pattern);\n\n    /**\n     * Gets the next state to transition to in case the NameMatcher matches the event.\n     */\n    R getNextState();\n}",
+  "subClasses": []
+}

@@ -1,0 +1,26 @@
+{
+  "className": "IntIntMap",
+  "methodName": "remove",
+  "brief": "int remove(final int key){}",
+  "methodSignature": "remove(int)",
+  "sourceCode": "int remove(final int key) {\n        int idx = getStartIndex(key);\n        do {\n            long cell = table[idx];\n            if (cell == EMPTY_CELL) {\n                // end of the chain, key does not exist\n                return NO_VALUE;\n            }\n            if (((int) (cell & KEY_MASK)) == key) {\n                // found the key\n                size--;\n                shiftKeys(idx);\n                return (int) (cell >> 32);\n            }\n            // continue walking the chain\n            idx = getNextIndex(idx);\n        } while (true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "getNextIndex(int)",
+      "shiftKeys(int)",
+      "getStartIndex(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Removes {@code key}.\n *\n * @param key\n *            the non-negative key\n * @return the removed value, or {@link #NO_VALUE} if none was present.\n * @throws IllegalArgumentException\n *             if {@code key} is negative\n */\nint remove(final int key) {\n    int idx = getStartIndex(key);\n    do {\n        long cell = table[idx];\n        if (cell == EMPTY_CELL) {\n            // end of the chain, key does not exist\n            return NO_VALUE;\n        }\n        if (((int) (cell & KEY_MASK)) == key) {\n            // found the key\n            size--;\n            shiftKeys(idx);\n            return (int) (cell >> 32);\n        }\n        // continue walking the chain\n        idx = getNextIndex(idx);\n    } while (true);\n}",
+  "method_comment": "\n     * Removes {@code key}.\n     *\n     * @param key\n     *            the non-negative key\n     * @return the removed value, or {@link #NO_VALUE} if none was present.\n     * @throws IllegalArgumentException\n     *             if {@code key} is negative\n     ",
+  "method_annotation": ""
+}

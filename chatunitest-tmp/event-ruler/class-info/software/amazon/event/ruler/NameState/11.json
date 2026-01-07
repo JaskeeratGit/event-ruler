@@ -1,0 +1,33 @@
+{
+  "className": "NameState",
+  "methodName": "addSubRule",
+  "brief": "void addSubRule(final Object rule, final SubRuleContext subRuleId, final Patterns pattern, final boolean isTerminal){}",
+  "methodSignature": "addSubRule(Object, SubRuleContext, Patterns, boolean)",
+  "sourceCode": "void addSubRule(final Object rule, final SubRuleContext subRuleId, final Patterns pattern, final boolean isTerminal) {\n        addToPatternToSetMap(patternToRules, pattern, rule);\n        Map<Patterns, ?> patternToSubRules = isTerminal ? patternToTerminalSubRuleIds : patternToNonTerminalSubRuleIds;\n        if (addToPatternToSetMap(patternToSubRules, pattern, subRuleId)) {\n            subRuleIdToCount.compute(subRuleId, (k, count) -> count == null ? 1 : count + 1);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object",
+    "SubRuleContext",
+    "Patterns",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "software.amazon.event.ruler.SubRuleContext": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": [
+      "addToPatternToSetMap(Patterns, ?>, Patterns, Object)"
+    ],
+    "java.util.Map": [
+      "compute(K, BiFunction<? super K, ? super V, ? extends V>)"
+    ]
+  },
+  "full_method_info": "/**\n * Add a sub-rule to indicate that it transitions to this NameState using the provided pattern.\n *\n * @param rule The rule, which may have multiple sub-rules.\n * @param subRuleId The ID of the sub-rule.\n * @param pattern The pattern used by the sub-rule to transition to this NameState.\n * @param isTerminal True indicates that the sub-rule is using pattern to match on the final event field.\n */\nvoid addSubRule(final Object rule, final SubRuleContext subRuleId, final Patterns pattern, final boolean isTerminal) {\n    addToPatternToSetMap(patternToRules, pattern, rule);\n    Map<Patterns, ?> patternToSubRules = isTerminal ? patternToTerminalSubRuleIds : patternToNonTerminalSubRuleIds;\n    if (addToPatternToSetMap(patternToSubRules, pattern, subRuleId)) {\n        subRuleIdToCount.compute(subRuleId, (k, count) -> count == null ? 1 : count + 1);\n    }\n}",
+  "method_comment": "\n     * Add a sub-rule to indicate that it transitions to this NameState using the provided pattern.\n     *\n     * @param rule The rule, which may have multiple sub-rules.\n     * @param subRuleId The ID of the sub-rule.\n     * @param pattern The pattern used by the sub-rule to transition to this NameState.\n     * @param isTerminal True indicates that the sub-rule is using pattern to match on the final event field.\n     ",
+  "method_annotation": ""
+}

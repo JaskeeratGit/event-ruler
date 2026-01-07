@@ -1,0 +1,24 @@
+{
+  "className": "ByteMachine",
+  "methodName": "isMultiByteSet",
+  "brief": "private static boolean isMultiByteSet(InputCharacter character){}",
+  "methodSignature": "isMultiByteSet(InputCharacter)",
+  "sourceCode": "private static boolean isMultiByteSet(InputCharacter character) {\n        return character.getType() == InputCharacterType.MULTI_BYTE_SET;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [
+      "getType()"
+    ]
+  },
+  "full_method_info": "private static boolean isMultiByteSet(InputCharacter character) {\n    return character.getType() == InputCharacterType.MULTI_BYTE_SET;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

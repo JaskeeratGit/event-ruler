@@ -1,0 +1,31 @@
+{
+  "className": "Ruler",
+  "methodName": "matchesOneOf",
+  "brief": "private static boolean matchesOneOf(final JsonNode val, final List<Patterns> patterns){}",
+  "methodSignature": "matchesOneOf(JsonNode, List)",
+  "sourceCode": "private static boolean matchesOneOf(final JsonNode val, final List<Patterns> patterns) {\n        for (Patterns pattern : patterns) {\n            if (val == null) {\n                // a non existent value matches the absent pattern,\n                if (pattern.type() == MatchType.ABSENT) {\n                    return true;\n                }\n            }\n            else if (val.isArray()) {\n                for (final JsonNode element : val) {\n                    if (matches(element, pattern)) {\n                        return true;\n                    }\n                }\n            } else {\n                if (matches(val, pattern)) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "List<Patterns>"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "isArray()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "software.amazon.event.ruler.Ruler": [
+      "matches(JsonNode, Patterns)"
+    ]
+  },
+  "full_method_info": "// TODO: Improve unit-test coverage\nprivate static boolean matchesOneOf(final JsonNode val, final List<Patterns> patterns) {\n    for (Patterns pattern : patterns) {\n        if (val == null) {\n            // a non existent value matches the absent pattern,\n            if (pattern.type() == MatchType.ABSENT) {\n                return true;\n            }\n        } else if (val.isArray()) {\n            for (final JsonNode element : val) {\n                if (matches(element, pattern)) {\n                    return true;\n                }\n            }\n        } else {\n            if (matches(val, pattern)) {\n                return true;\n            }\n        }\n    }\n    return false;\n}",
+  "method_comment": " TODO: Improve unit-test coverage",
+  "method_annotation": ""
+}

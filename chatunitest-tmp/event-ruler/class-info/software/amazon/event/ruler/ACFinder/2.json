@@ -1,0 +1,45 @@
+{
+  "className": "ACFinder",
+  "methodName": "tryStep",
+  "brief": "private static void tryStep(final ACTask task, final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "tryStep(ACTask, SubRuleContext.Generator)",
+  "sourceCode": "private static void tryStep(final ACTask task, final SubRuleContext.Generator subRuleContextGenerator) {\n        final ACStep step = task.nextStep();\n        final Field field = task.event.fields.get(step.fieldIndex);\n\n        // if we can step from where we are to the new field without violating array consistency\n        final ArrayMembership newMembership = ArrayMembership.checkArrayConsistency(step.membershipSoFar, field.arrayMembership);\n        if (newMembership != null) {\n\n            // if there are some possible value pattern matches for this key\n            final ByteMachine valueMatcher = step.nameState.getTransitionOn(field.name);\n            if (valueMatcher != null) {\n\n                // loop through the value pattern matches, if any\n                final int nextFieldIndex = step.fieldIndex + 1;\n                for (NameStateWithPattern nextNameStateWithPattern : valueMatcher.transitionOn(field.val)) {\n\n                    // we have moved to a new NameState\n                    // this NameState might imply a rule match\n                    task.collectRules(step.candidateSubRuleIds, nextNameStateWithPattern.getNameState(),\n                            nextNameStateWithPattern.getPattern(), subRuleContextGenerator);\n\n                    // set up for attempting to move on from the new state\n                    moveFromWithPriorCandidates(step.candidateSubRuleIds, nextNameStateWithPattern.getNameState(),\n                            nextNameStateWithPattern.getPattern(), nextFieldIndex, task, newMembership,\n                            subRuleContextGenerator);\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ACTask",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ACTask": [
+      "nextStep()",
+      "collectRules(SubRuleContext>, NameState, Patterns, Generator)"
+    ],
+    "java.util.List": [
+      "get(int)"
+    ],
+    "software.amazon.event.ruler.ArrayMembership": [
+      "checkArrayConsistency(ArrayMembership, ArrayMembership)"
+    ],
+    "software.amazon.event.ruler.NameState": [
+      "getTransitionOn(String)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "transitionOn(String)"
+    ],
+    "software.amazon.event.ruler.NameStateWithPattern": [
+      "getPattern()",
+      "getNameState()"
+    ],
+    "software.amazon.event.ruler.ACFinder": [
+      "moveFromWithPriorCandidates(SubRuleContext>, NameState, Patterns, int, ACTask, ArrayMembership, Generator)"
+    ]
+  },
+  "full_method_info": "// remove a step from the work queue and see if there's a transition\nprivate static void tryStep(final ACTask task, final SubRuleContext.Generator subRuleContextGenerator) {\n    final ACStep step = task.nextStep();\n    final Field field = task.event.fields.get(step.fieldIndex);\n    // if we can step from where we are to the new field without violating array consistency\n    final ArrayMembership newMembership = ArrayMembership.checkArrayConsistency(step.membershipSoFar, field.arrayMembership);\n    if (newMembership != null) {\n        // if there are some possible value pattern matches for this key\n        final ByteMachine valueMatcher = step.nameState.getTransitionOn(field.name);\n        if (valueMatcher != null) {\n            // loop through the value pattern matches, if any\n            final int nextFieldIndex = step.fieldIndex + 1;\n            for (NameStateWithPattern nextNameStateWithPattern : valueMatcher.transitionOn(field.val)) {\n                // we have moved to a new NameState\n                // this NameState might imply a rule match\n                task.collectRules(step.candidateSubRuleIds, nextNameStateWithPattern.getNameState(), nextNameStateWithPattern.getPattern(), subRuleContextGenerator);\n                // set up for attempting to move on from the new state\n                moveFromWithPriorCandidates(step.candidateSubRuleIds, nextNameStateWithPattern.getNameState(), nextNameStateWithPattern.getPattern(), nextFieldIndex, task, newMembership, subRuleContextGenerator);\n            }\n        }\n    }\n}",
+  "method_comment": " remove a step from the work queue and see if there's a transition",
+  "method_annotation": ""
+}

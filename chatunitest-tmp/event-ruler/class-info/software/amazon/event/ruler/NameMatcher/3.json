@@ -1,0 +1,22 @@
+{
+  "className": "NameMatcher",
+  "methodName": "findPattern",
+  "brief": "R findPattern(@Nonnull Patterns pattern);",
+  "methodSignature": "findPattern(Patterns)",
+  "sourceCode": "R findPattern(@Nonnull Patterns pattern);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": []
+  },
+  "full_method_info": "/**\n * Looks up for the given pattern.\n *\n * @param pattern the pattern to be looked up for\n * @return the match result that is associated with the given pattern if the pattern exists; otherwise {@code null}\n */\nR findPattern(@Nonnull Patterns pattern);",
+  "method_comment": "\n     * Looks up for the given pattern.\n     *\n     * @param pattern the pattern to be looked up for\n     * @return the match result that is associated with the given pattern if the pattern exists; otherwise {@code null}\n     ",
+  "method_annotation": ""
+}

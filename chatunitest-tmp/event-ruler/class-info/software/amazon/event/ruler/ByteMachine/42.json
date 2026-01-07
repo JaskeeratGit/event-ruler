@@ -1,0 +1,28 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findNextByteStateForRangePattern",
+  "brief": "private ByteTransition findNextByteStateForRangePattern(ByteTransition trans, final byte b){}",
+  "methodSignature": "findNextByteStateForRangePattern(ByteTransition, byte)",
+  "sourceCode": "private ByteTransition findNextByteStateForRangePattern(ByteTransition trans, final byte b) {\n        if (trans == null) {\n            return null;\n        }\n\n        ByteTransition nextTrans = getTransition(trans, b);\n        return nextTrans.getTransitionForNextByteStates();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteTransition",
+    "byte"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "getTransitionForNextByteStates()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "getTransition(ByteTransition, byte)"
+    ]
+  },
+  "full_method_info": "private ByteTransition findNextByteStateForRangePattern(ByteTransition trans, final byte b) {\n    if (trans == null) {\n        return null;\n    }\n    ByteTransition nextTrans = getTransition(trans, b);\n    return nextTrans.getTransitionForNextByteStates();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

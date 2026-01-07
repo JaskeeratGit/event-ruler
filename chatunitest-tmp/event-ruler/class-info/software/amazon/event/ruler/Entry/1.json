@@ -1,0 +1,18 @@
+{
+  "className": "Entry",
+  "methodName": "getValue",
+  "brief": "public int getValue(){}",
+  "methodSignature": "getValue()",
+  "sourceCode": "public int getValue() {\n            return value;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public int getValue() {\n    return value;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

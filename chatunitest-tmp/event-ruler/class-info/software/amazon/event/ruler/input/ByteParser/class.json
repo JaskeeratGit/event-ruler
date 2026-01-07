@@ -1,0 +1,33 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.ByteParser",
+  "className": "ByteParser",
+  "index": 11,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public interface ByteParser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "parse(byte)": "0"
+  },
+  "methodsBrief": [
+    "InputCharacter parse(byte utf8byte);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\n/**\n * Transforms UTF-8 formatted bytes into InputCharacter\n *\n * @see InputCharacter\n */\npublic interface ByteParser {\n\n    /**\n     * @param utf8byte byte that represent in UTF-8 encoding\n     * @return processed and parsed Input Character\n     */\n    InputCharacter parse(byte utf8byte);\n}\n",
+  "classDeclarationCode": "/**\n * Transforms UTF-8 formatted bytes into InputCharacter\n *\n * @see InputCharacter\n */\npublic interface ByteParser {\n\n    /**\n     * @param utf8byte byte that represent in UTF-8 encoding\n     * @return processed and parsed Input Character\n     */\n    InputCharacter parse(byte utf8byte);\n}",
+  "subClasses": []
+}

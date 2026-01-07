@@ -1,0 +1,32 @@
+{
+  "className": "Ruler",
+  "methodName": "matches",
+  "brief": "@Deprecated\n    public static boolean matches(final String event, final String rule) throws IOException{}",
+  "methodSignature": "matches(String, String)",
+  "sourceCode": "@Deprecated\n    public static boolean matches(final String event, final String rule) throws IOException {\n        final JsonNode eventRoot = OBJECT_MAPPER.readTree(event);\n        final Map<List<String>, List<Patterns>> ruleMap = RuleCompiler.ListBasedRuleCompiler.flattenRule(rule);\n        return matchesAllFields(eventRoot, ruleMap);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "com.fasterxml.jackson.databind.ObjectMapper": [
+      "readTree(String)"
+    ],
+    "software.amazon.event.ruler.RuleCompiler.ListBasedRuleCompiler": [
+      "flattenRule(String)"
+    ],
+    "software.amazon.event.ruler.Ruler": [
+      "matchesAllFields(JsonNode, Patterns>>)"
+    ]
+  },
+  "full_method_info": "/**\n * Return true if an event matches the provided rule.\n * <p>\n * This method is deprecated. You should use `Ruler.match` instead in all but one cases:\n * this method will return false for ` {\"detail\" : { \"state\": { \"state\": \"running\" } } }` with\n * `{ \"detail\" : { \"state.state\": \"running\" } }` while `Ruler.matchesRule(...)` will return true. When this gap\n * has been addressed, we will remove this method as it doesn't handle many of the new matchers\n * and is not able to perform array consistency checks like rest of Ruler. This method also is\n * slower.\n *\n * @param event The event, in JSON form\n * @param rule The rule, in JSON form\n * @return true or false depending on whether the rule matches the event\n */\n@Deprecated\npublic static boolean matches(final String event, final String rule) throws IOException {\n    final JsonNode eventRoot = OBJECT_MAPPER.readTree(event);\n    final Map<List<String>, List<Patterns>> ruleMap = RuleCompiler.ListBasedRuleCompiler.flattenRule(rule);\n    return matchesAllFields(eventRoot, ruleMap);\n}",
+  "method_comment": "\n     * Return true if an event matches the provided rule.\n     * <p>\n     * This method is deprecated. You should use `Ruler.match` instead in all but one cases:\n     * this method will return false for ` {\"detail\" : { \"state\": { \"state\": \"running\" } } }` with\n     * `{ \"detail\" : { \"state.state\": \"running\" } }` while `Ruler.matchesRule(...)` will return true. When this gap\n     * has been addressed, we will remove this method as it doesn't handle many of the new matchers\n     * and is not able to perform array consistency checks like rest of Ruler. This method also is\n     * slower.\n     *\n     * @param event The event, in JSON form\n     * @param rule The rule, in JSON form\n     * @return true or false depending on whether the rule matches the event\n     ",
+  "method_annotation": "@Deprecated\n"
+}

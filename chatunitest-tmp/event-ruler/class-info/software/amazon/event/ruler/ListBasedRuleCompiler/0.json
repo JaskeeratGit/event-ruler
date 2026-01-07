@@ -1,0 +1,28 @@
+{
+  "className": "ListBasedRuleCompiler",
+  "methodName": "flattenRule",
+  "brief": "public static Map<List<String>, List<Patterns>> flattenRule(final String source) throws IOException{}",
+  "methodSignature": "flattenRule(String)",
+  "sourceCode": "public static Map<List<String>, List<Patterns>> flattenRule(final String source) throws IOException {\n            return doFlattenRule(JSON_FACTORY.createParser(source));\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.RuleCompiler.ListBasedRuleCompiler": [
+      "doFlattenRule(JsonParser)"
+    ],
+    "com.fasterxml.jackson.core.JsonFactory": [
+      "createParser(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Compile a rule from its JSON form to a Map suitable for use by events.ruler.Ruler\n *\n * @param source rule, as a String\n * @return Map form of rule\n * @throws IOException if the rule isn't syntactically valid\n */\npublic static Map<List<String>, List<Patterns>> flattenRule(final String source) throws IOException {\n    return doFlattenRule(JSON_FACTORY.createParser(source));\n}",
+  "method_comment": "\n         * Compile a rule from its JSON form to a Map suitable for use by events.ruler.Ruler\n         *\n         * @param source rule, as a String\n         * @return Map form of rule\n         * @throws IOException if the rule isn't syntactically valid\n         ",
+  "method_annotation": ""
+}

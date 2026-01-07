@@ -1,0 +1,25 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addPattern",
+  "brief": "NameState addPattern(final Patterns pattern){}",
+  "methodSignature": "addPattern(Patterns)",
+  "sourceCode": "NameState addPattern(final Patterns pattern) {\n        return addPattern(pattern, null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "addPattern(Patterns, NameState)"
+    ]
+  },
+  "full_method_info": "NameState addPattern(final Patterns pattern) {\n    return addPattern(pattern, null);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

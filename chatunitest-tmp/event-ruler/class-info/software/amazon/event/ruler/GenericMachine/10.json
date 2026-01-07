@@ -1,0 +1,35 @@
+{
+  "className": "GenericMachine",
+  "methodName": "deletePatternRule",
+  "brief": "public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals){}",
+  "methodSignature": "deletePatternRule(T, Map)",
+  "sourceCode": "public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals) {\n        if (namevals.size() > MAXIMUM_RULE_SIZE) {\n            throw new RuntimeException(\"Size of rule '\" + name + \"' exceeds max value of \" + MAXIMUM_RULE_SIZE);\n        }\n        final List<String> keys = new ArrayList<>(namevals.keySet());\n        Collections.sort(keys);\n        synchronized(this) {\n            final List<String> deletedKeys =  new ArrayList<>();\n            final Set<SubRuleContext> candidateSubRuleIds = new HashSet<>();\n            deleteStep(getStartState(), keys, 0, namevals, name, deletedKeys, candidateSubRuleIds);\n            // check and delete the key from filedUsed ...\n            checkAndDeleteUsedFields(deletedKeys);\n        }\n\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "T",
+    "Map<String,List<Patterns>>"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "java.util.Map": [
+      "keySet()",
+      "size()"
+    ],
+    "java.util.Collections": [
+      "sort(List<T>)"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "checkAndDeleteUsedFields(String>)",
+      "deleteStep(NameState, String>, int, Patterns>>, T, String>, SubRuleContext>)",
+      "getStartState()"
+    ]
+  },
+  "full_method_info": "/**\n * Delete rule from the machine.  The rule is a set of name/values.\n * \"synchronized\" here is to ensure that only one thread is updating the machine at any point in time.\n * This method relies on the caller not changing the arguments while it is exiting - but once it has completed,\n *  this library has no dependence on those structures.\n * As with addRule, multiple name/val patterns attached to a rule name may be removed all at once or\n *  one by one.\n * Machine will only remove a rule which both matches the name/vals and the provided rule name:\n *  - if name/vals provided have not reached any rules, return;\n *  - if name/vals provided have reached any rules, only rule which matched the input rule name will be removed.\n *\n * Note: this API will only probe rule which is able to be approached by input namevalues,\n *  it doesn't remove all rules associated with rule name unless the input rule expression have covered all rules\n *  associated with rule name. For example:\n *  r1 {a, [1,2]} was added into machine, you could call deleteRule with r1 {a, [1]}, machine in this case will\n *  delete r1 {a, [1]} only, so event like a=1 will not match r1 any more.\n *  if caller calls deleteRule again with input r1 {a, [2]}, machine will remove another rule of r1.\n *  The eventual result will be same as one time deleteRule call with r1 {a, [1,2]}.\n *  So, caller is expected to save its rule expression if want to entirely remove the rule unless deliberately\n *  want to remove partial rule from rule name.\n *\n * @param name ARN of the rule\n * @param namevals names and values which make up the rule\n */\npublic void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals) {\n    if (namevals.size() > MAXIMUM_RULE_SIZE) {\n        throw new RuntimeException(\"Size of rule '\" + name + \"' exceeds max value of \" + MAXIMUM_RULE_SIZE);\n    }\n    final List<String> keys = new ArrayList<>(namevals.keySet());\n    Collections.sort(keys);\n    synchronized (this) {\n        final List<String> deletedKeys = new ArrayList<>();\n        final Set<SubRuleContext> candidateSubRuleIds = new HashSet<>();\n        deleteStep(getStartState(), keys, 0, namevals, name, deletedKeys, candidateSubRuleIds);\n        // check and delete the key from filedUsed ...\n        checkAndDeleteUsedFields(deletedKeys);\n    }\n}",
+  "method_comment": "\n     * Delete rule from the machine.  The rule is a set of name/values.\n     * \"synchronized\" here is to ensure that only one thread is updating the machine at any point in time.\n     * This method relies on the caller not changing the arguments while it is exiting - but once it has completed,\n     *  this library has no dependence on those structures.\n     * As with addRule, multiple name/val patterns attached to a rule name may be removed all at once or\n     *  one by one.\n     * Machine will only remove a rule which both matches the name/vals and the provided rule name:\n     *  - if name/vals provided have not reached any rules, return;\n     *  - if name/vals provided have reached any rules, only rule which matched the input rule name will be removed.\n     *\n     * Note: this API will only probe rule which is able to be approached by input namevalues,\n     *  it doesn't remove all rules associated with rule name unless the input rule expression have covered all rules\n     *  associated with rule name. For example:\n     *  r1 {a, [1,2]} was added into machine, you could call deleteRule with r1 {a, [1]}, machine in this case will\n     *  delete r1 {a, [1]} only, so event like a=1 will not match r1 any more.\n     *  if caller calls deleteRule again with input r1 {a, [2]}, machine will remove another rule of r1.\n     *  The eventual result will be same as one time deleteRule call with r1 {a, [1,2]}.\n     *  So, caller is expected to save its rule expression if want to entirely remove the rule unless deliberately\n     *  want to remove partial rule from rule name.\n     *\n     * @param name ARN of the rule\n     * @param namevals names and values which make up the rule\n     ",
+  "method_annotation": ""
+}

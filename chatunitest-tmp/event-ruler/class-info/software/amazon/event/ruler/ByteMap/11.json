@@ -1,0 +1,27 @@
+{
+  "className": "ByteMap",
+  "methodName": "getTransition",
+  "brief": "ByteTransition getTransition(final byte utf8byte){}",
+  "methodSignature": "getTransition(byte)",
+  "sourceCode": "ByteTransition getTransition(final byte utf8byte) {\n        return map.higherEntry(utf8byte & 0xFF).getValue();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {
+    "java.util.Map.Entry": [
+      "getValue()"
+    ],
+    "java.util.NavigableMap": [
+      "higherEntry(K)"
+    ]
+  },
+  "full_method_info": "ByteTransition getTransition(final byte utf8byte) {\n    return map.higherEntry(utf8byte & 0xFF).getValue();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,42 @@
+{
+  "className": "GenericMachine",
+  "methodName": "deletePattern",
+  "brief": "private boolean deletePattern(final NameState parentNameState, final String key, Patterns pattern){}",
+  "methodSignature": "deletePattern(NameState, String, Patterns)",
+  "sourceCode": "private boolean deletePattern(final NameState parentNameState, final String key, Patterns pattern) {\n        if (isNamePattern(pattern)) {\n            NameMatcher<NameState> nameMatcher = parentNameState.getKeyTransitionOn(key);\n            nameMatcher.deletePattern(pattern);\n            if (nameMatcher.isEmpty()) {\n                parentNameState.removeKeyTransition(key);\n                return true;\n            }\n        } else {\n            ByteMachine byteMachine = parentNameState.getTransitionOn(key);\n            byteMachine.deletePattern(pattern);\n            if (byteMachine.isEmpty()) {\n                parentNameState.removeTransition(key);\n                return true;\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "NameState",
+    "String",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "getKeyTransitionOn(String)",
+      "getTransitionOn(String)",
+      "removeTransition(String)",
+      "removeKeyTransition(String)"
+    ],
+    "java.lang.String": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.GenericMachine": [
+      "isNamePattern(Patterns)"
+    ],
+    "software.amazon.event.ruler.NameMatcher": [
+      "isEmpty()",
+      "deletePattern(Patterns)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isEmpty()",
+      "deletePattern(Patterns)"
+    ]
+  },
+  "full_method_info": "/**\n * Delete given pattern from either NameMatcher or ByteMachine. Remove the parent NameState's transition to\n * NameMatcher or ByteMachine if empty after pattern deletion.\n *\n * @param parentNameState The NameState transitioning to the NameMatcher or ByteMachine.\n * @param key The key we transition on.\n * @param pattern The pattern to delete.\n * @return True if and only if transition from parent NameState was removed.\n */\nprivate boolean deletePattern(final NameState parentNameState, final String key, Patterns pattern) {\n    if (isNamePattern(pattern)) {\n        NameMatcher<NameState> nameMatcher = parentNameState.getKeyTransitionOn(key);\n        nameMatcher.deletePattern(pattern);\n        if (nameMatcher.isEmpty()) {\n            parentNameState.removeKeyTransition(key);\n            return true;\n        }\n    } else {\n        ByteMachine byteMachine = parentNameState.getTransitionOn(key);\n        byteMachine.deletePattern(pattern);\n        if (byteMachine.isEmpty()) {\n            parentNameState.removeTransition(key);\n            return true;\n        }\n    }\n    return false;\n}",
+  "method_comment": "\n     * Delete given pattern from either NameMatcher or ByteMachine. Remove the parent NameState's transition to\n     * NameMatcher or ByteMachine if empty after pattern deletion.\n     *\n     * @param parentNameState The NameState transitioning to the NameMatcher or ByteMachine.\n     * @param key The key we transition on.\n     * @param pattern The pattern to delete.\n     * @return True if and only if transition from parent NameState was removed.\n     ",
+  "method_annotation": ""
+}

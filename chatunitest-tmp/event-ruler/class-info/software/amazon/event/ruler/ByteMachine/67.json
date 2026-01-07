@@ -1,0 +1,24 @@
+{
+  "className": "ByteMachine",
+  "methodName": "isWildcard",
+  "brief": "private static boolean isWildcard(InputCharacter character){}",
+  "methodSignature": "isWildcard(InputCharacter)",
+  "sourceCode": "private static boolean isWildcard(InputCharacter character) {\n        return character.getType() == InputCharacterType.WILDCARD;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [
+      "getType()"
+    ]
+  },
+  "full_method_info": "private static boolean isWildcard(InputCharacter character) {\n    return character.getType() == InputCharacterType.WILDCARD;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

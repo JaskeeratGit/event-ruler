@@ -1,0 +1,33 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.StringValueParser",
+  "className": "StringValueParser",
+  "index": 3,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public interface StringValueParser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "parse(String)": "0"
+  },
+  "methodsBrief": [
+    "InputCharacter[] parse(String value);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\npublic interface StringValueParser {\n\n    /**\n     * @param value string value to parse\n     * @return processed and parsed Input Character\n     */\n    InputCharacter[] parse(String value);\n}\n",
+  "classDeclarationCode": "public interface StringValueParser {\n\n    /**\n     * @param value string value to parse\n     * @return processed and parsed Input Character\n     */\n    InputCharacter[] parse(String value);\n}",
+  "subClasses": []
+}

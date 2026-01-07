@@ -1,0 +1,27 @@
+{
+  "className": "Path",
+  "methodName": "name",
+  "brief": "String name(){}",
+  "methodSignature": "name()",
+  "sourceCode": "String name() {\n        if (memo == null) {\n            final Object[] steps = path.toArray();\n            if (steps.length == 0) {\n                memo = \"\";\n            } else {\n                final StringBuilder sb = new StringBuilder();\n                sb.append(steps[0]);\n                for (int i = 1; i < steps.length; i++) {\n                    sb.append(SEPARATOR).append(steps[i]);\n                }\n                memo = sb.toString();\n            }\n        }\n\n        return memo;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "toArray()"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * return the pathname as a .-separated string.\n * This turns out to be a performance bottleneck so it's memoized and uses StringBuilder rather than StringJoiner.\n * @return the pathname\n */\nString name() {\n    if (memo == null) {\n        final Object[] steps = path.toArray();\n        if (steps.length == 0) {\n            memo = \"\";\n        } else {\n            final StringBuilder sb = new StringBuilder();\n            sb.append(steps[0]);\n            for (int i = 1; i < steps.length; i++) {\n                sb.append(SEPARATOR).append(steps[i]);\n            }\n            memo = sb.toString();\n        }\n    }\n    return memo;\n}",
+  "method_comment": "\n     * return the pathname as a .-separated string.\n     * This turns out to be a performance bottleneck so it's memoized and uses StringBuilder rather than StringJoiner.\n     * @return the pathname\n     ",
+  "method_annotation": ""
+}

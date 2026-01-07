@@ -1,0 +1,44 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findMatchPattern",
+  "brief": "private NameState findMatchPattern(final InputCharacter[] characters, final Patterns pattern){}",
+  "methodSignature": "findMatchPattern(InputCharacter[], Patterns)",
+  "sourceCode": "private NameState findMatchPattern(final InputCharacter[] characters, final Patterns pattern) {\n        Set<SingleByteTransition> transitionsToProcess = new HashSet<>();\n        transitionsToProcess.add(startState);\n        ByteTransition shortcutTrans = null;\n\n        // Iterate down all possible paths in machine that match characters.\n        outerLoop: for (int i = 0; i < characters.length - 1; i++) {\n            Set<SingleByteTransition> nextTransitionsToProcess = new HashSet<>();\n            for (SingleByteTransition trans : transitionsToProcess) {\n                ByteTransition nextTrans = getTransition(trans, characters[i]);\n                for (SingleByteTransition eachTrans : nextTrans.expand()) {\n\n                    // Shortcut and stop outer character loop\n                    if (SHORTCUT_MATCH_TYPES.contains(pattern.type()) && eachTrans.isShortcutTrans()) {\n                        shortcutTrans = eachTrans;\n                        break outerLoop;\n                    }\n\n                    SingleByteTransition nextByteState = eachTrans.getNextByteState();\n                    if (nextByteState == null) {\n                        continue;\n                    }\n\n                    // We are interested in the first state that hasn't simply led back to trans\n                    if (trans != nextByteState) {\n                        nextTransitionsToProcess.add(nextByteState);\n                    }\n                }\n            }\n            transitionsToProcess = nextTransitionsToProcess;\n        }\n\n        // Get all possible transitions for final character.\n        Set<ByteTransition> finalTransitionsToProcess = new HashSet<>();\n        if (shortcutTrans != null) {\n            finalTransitionsToProcess.add(shortcutTrans);\n        } else {\n            for (SingleByteTransition trans : transitionsToProcess) {\n                finalTransitionsToProcess.add(getTransition(trans, characters[characters.length - 1]));\n            }\n        }\n\n        // Check matches for all possible final transitions until we find the pattern we are looking for.\n        for (ByteTransition nextTrans : finalTransitionsToProcess) {\n            for (ByteMatch match : nextTrans.getMatches()) {\n                if (match.getPattern().equals(pattern)) {\n                    return match.getNextNameState();\n                }\n            }\n        }\n        return null;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter[]",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.Patterns": [
+      "equals(Object)",
+      "type()"
+    ],
+    "java.util.Set": [
+      "contains(Object)",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getMatches()",
+      "isShortcutTrans()",
+      "getNextByteState()"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getPattern()",
+      "getNextNameState()"
+    ]
+  },
+  "full_method_info": "private NameState findMatchPattern(final InputCharacter[] characters, final Patterns pattern) {\n    Set<SingleByteTransition> transitionsToProcess = new HashSet<>();\n    transitionsToProcess.add(startState);\n    ByteTransition shortcutTrans = null;\n    // Iterate down all possible paths in machine that match characters.\n    outerLoop: for (int i = 0; i < characters.length - 1; i++) {\n        Set<SingleByteTransition> nextTransitionsToProcess = new HashSet<>();\n        for (SingleByteTransition trans : transitionsToProcess) {\n            ByteTransition nextTrans = getTransition(trans, characters[i]);\n            for (SingleByteTransition eachTrans : nextTrans.expand()) {\n                // Shortcut and stop outer character loop\n                if (SHORTCUT_MATCH_TYPES.contains(pattern.type()) && eachTrans.isShortcutTrans()) {\n                    shortcutTrans = eachTrans;\n                    break outerLoop;\n                }\n                SingleByteTransition nextByteState = eachTrans.getNextByteState();\n                if (nextByteState == null) {\n                    continue;\n                }\n                // We are interested in the first state that hasn't simply led back to trans\n                if (trans != nextByteState) {\n                    nextTransitionsToProcess.add(nextByteState);\n                }\n            }\n        }\n        transitionsToProcess = nextTransitionsToProcess;\n    }\n    // Get all possible transitions for final character.\n    Set<ByteTransition> finalTransitionsToProcess = new HashSet<>();\n    if (shortcutTrans != null) {\n        finalTransitionsToProcess.add(shortcutTrans);\n    } else {\n        for (SingleByteTransition trans : transitionsToProcess) {\n            finalTransitionsToProcess.add(getTransition(trans, characters[characters.length - 1]));\n        }\n    }\n    // Check matches for all possible final transitions until we find the pattern we are looking for.\n    for (ByteTransition nextTrans : finalTransitionsToProcess) {\n        for (ByteMatch match : nextTrans.getMatches()) {\n            if (match.getPattern().equals(pattern)) {\n                return match.getNextNameState();\n            }\n        }\n    }\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

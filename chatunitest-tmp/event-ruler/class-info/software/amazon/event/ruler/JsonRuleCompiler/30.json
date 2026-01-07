@@ -1,0 +1,48 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "processNumericMatchExpression",
+  "brief": "private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}",
+  "methodSignature": "processNumericMatchExpression(JsonParser)",
+  "sourceCode": "private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException {\n        JsonToken token = parser.nextToken();\n        if (token != JsonToken.VALUE_STRING) {\n            barf(parser, \"Invalid member in numeric match: \" + parser.getText());\n        }\n        String operator = parser.getText();\n        token = parser.nextToken();\n        try {\n            if (Constants.EQ.equals(operator)) {\n                if (!token.isNumeric()) {\n                    barf(parser, \"Value of equals must be numeric\");\n                }\n                final String val = parser.getText();\n                if (parser.nextToken() != JsonToken.END_ARRAY) {\n                    tooManyElements(parser);\n                }\n                return Patterns.numericEquals(val);\n            } else if (Constants.GE.equals(operator)) {\n                if (!token.isNumeric()) {\n                    barf(parser, \"Value of >= must be numeric\");\n                }\n                final String val = parser.getText();\n                token = parser.nextToken();\n                if (token == JsonToken.END_ARRAY) {\n                    return Range.greaterThanOrEqualTo(val);\n                }\n                return completeNumericRange(parser, token, val, false);\n\n            } else if (Constants.GT.equals(operator)) {\n                if (!token.isNumeric()) {\n                    barf(parser, \"Value of > must be numeric\");\n                }\n                final String val = parser.getText();\n                token = parser.nextToken();\n                if (token == JsonToken.END_ARRAY) {\n                    return Range.greaterThan(val);\n                }\n                return completeNumericRange(parser, token, val, true);\n\n            } else if (Constants.LE.equals(operator)) {\n                if (!token.isNumeric()) {\n                    barf(parser, \"Value of <= must be numeric\");\n                }\n                final String top = parser.getText();\n                if (parser.nextToken() != JsonToken.END_ARRAY) {\n                    tooManyElements(parser);\n                }\n                return Range.lessThanOrEqualTo(top);\n\n            } else if (Constants.LT.equals(operator)) {\n                if (!token.isNumeric()) {\n                    barf(parser, \"Value of < must be numeric\");\n                }\n                final String top = parser.getText();\n                if (parser.nextToken() != JsonToken.END_ARRAY) {\n                    tooManyElements(parser);\n                }\n                return Range.lessThan(top);\n            } else {\n                barf(parser, \"Unrecognized numeric range operator: \" + operator);\n            }\n        } catch (IllegalArgumentException e) {\n            barf(parser, e.getMessage());\n        }\n\n        barf(parser, \"Reached a line which is supposed completely unreachable.\");\n        return null;  // completely unreachable\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()",
+      "getText()"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "tooManyElements(JsonParser)",
+      "barf(JsonParser, String)",
+      "completeNumericRange(JsonParser, JsonToken, String, boolean)"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "com.fasterxml.jackson.core.JsonToken": [
+      "isNumeric()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "numericEquals(String)"
+    ],
+    "software.amazon.event.ruler.Range": [
+      "lessThanOrEqualTo(String)",
+      "greaterThan(String)",
+      "greaterThanOrEqualTo(String)",
+      "lessThan(String)"
+    ],
+    "java.lang.Throwable": [
+      "getMessage()"
+    ]
+  },
+  "full_method_info": "private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException {\n    JsonToken token = parser.nextToken();\n    if (token != JsonToken.VALUE_STRING) {\n        barf(parser, \"Invalid member in numeric match: \" + parser.getText());\n    }\n    String operator = parser.getText();\n    token = parser.nextToken();\n    try {\n        if (Constants.EQ.equals(operator)) {\n            if (!token.isNumeric()) {\n                barf(parser, \"Value of equals must be numeric\");\n            }\n            final String val = parser.getText();\n            if (parser.nextToken() != JsonToken.END_ARRAY) {\n                tooManyElements(parser);\n            }\n            return Patterns.numericEquals(val);\n        } else if (Constants.GE.equals(operator)) {\n            if (!token.isNumeric()) {\n                barf(parser, \"Value of >= must be numeric\");\n            }\n            final String val = parser.getText();\n            token = parser.nextToken();\n            if (token == JsonToken.END_ARRAY) {\n                return Range.greaterThanOrEqualTo(val);\n            }\n            return completeNumericRange(parser, token, val, false);\n        } else if (Constants.GT.equals(operator)) {\n            if (!token.isNumeric()) {\n                barf(parser, \"Value of > must be numeric\");\n            }\n            final String val = parser.getText();\n            token = parser.nextToken();\n            if (token == JsonToken.END_ARRAY) {\n                return Range.greaterThan(val);\n            }\n            return completeNumericRange(parser, token, val, true);\n        } else if (Constants.LE.equals(operator)) {\n            if (!token.isNumeric()) {\n                barf(parser, \"Value of <= must be numeric\");\n            }\n            final String top = parser.getText();\n            if (parser.nextToken() != JsonToken.END_ARRAY) {\n                tooManyElements(parser);\n            }\n            return Range.lessThanOrEqualTo(top);\n        } else if (Constants.LT.equals(operator)) {\n            if (!token.isNumeric()) {\n                barf(parser, \"Value of < must be numeric\");\n            }\n            final String top = parser.getText();\n            if (parser.nextToken() != JsonToken.END_ARRAY) {\n                tooManyElements(parser);\n            }\n            return Range.lessThan(top);\n        } else {\n            barf(parser, \"Unrecognized numeric range operator: \" + operator);\n        }\n    } catch (IllegalArgumentException e) {\n        barf(parser, e.getMessage());\n    }\n    barf(parser, \"Reached a line which is supposed completely unreachable.\");\n    // completely unreachable\n    return null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

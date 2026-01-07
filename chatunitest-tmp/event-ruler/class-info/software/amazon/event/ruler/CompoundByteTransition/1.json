@@ -1,0 +1,26 @@
+{
+  "className": "CompoundByteTransition",
+  "methodName": "getNextByteState",
+  "brief": "@Override\n    @Nullable\n    ByteState getNextByteState(){}",
+  "methodSignature": "getNextByteState()",
+  "sourceCode": "@Override\n    @Nullable\n    ByteState getNextByteState() {\n        ByteState firstNonNull = null;\n        for (ByteTransition trans : byteTransitions) {\n            for (SingleByteTransition single : trans.expand()) {\n                ByteState nextByteState = single.getNextByteState();\n                if (nextByteState != null) {\n                    if (!nextByteState.hasIndeterminatePrefix()) {\n                        return nextByteState;\n                    }\n                    if (firstNonNull == null) {\n                        firstNonNull = nextByteState;\n                    }\n                }\n            }\n        }\n        return firstNonNull;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getNextByteState()"
+    ],
+    "software.amazon.event.ruler.ByteState": [
+      "hasIndeterminatePrefix()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the nextByteState from all byteTransitions with a preference to states that have determinate prefixes.\n * These states are re-usable when adding rules to the machine.\n *\n * @return First byte state with a preference to re-usable states.\n */\n@Override\n@Nullable\nByteState getNextByteState() {\n    ByteState firstNonNull = null;\n    for (ByteTransition trans : byteTransitions) {\n        for (SingleByteTransition single : trans.expand()) {\n            ByteState nextByteState = single.getNextByteState();\n            if (nextByteState != null) {\n                if (!nextByteState.hasIndeterminatePrefix()) {\n                    return nextByteState;\n                }\n                if (firstNonNull == null) {\n                    firstNonNull = nextByteState;\n                }\n            }\n        }\n    }\n    return firstNonNull;\n}",
+  "method_comment": "\n     * Returns the nextByteState from all byteTransitions with a preference to states that have determinate prefixes.\n     * These states are re-usable when adding rules to the machine.\n     *\n     * @return First byte state with a preference to re-usable states.\n     ",
+  "method_annotation": "@Override\n@Nullable\n"
+}

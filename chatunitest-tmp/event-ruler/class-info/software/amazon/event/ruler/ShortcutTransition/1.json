@@ -1,0 +1,22 @@
+{
+  "className": "ShortcutTransition",
+  "methodName": "setNextByteState",
+  "brief": "@Override\n    SingleByteTransition setNextByteState(ByteState nextState){}",
+  "methodSignature": "setNextByteState(ByteState)",
+  "sourceCode": "@Override\n    SingleByteTransition setNextByteState(ByteState nextState) {\n        return nextState;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": []
+  },
+  "full_method_info": "@Override\nSingleByteTransition setNextByteState(ByteState nextState) {\n    return nextState;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

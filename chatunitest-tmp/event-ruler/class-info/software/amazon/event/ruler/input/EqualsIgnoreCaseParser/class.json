@@ -1,0 +1,56 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.EqualsIgnoreCaseParser",
+  "className": "EqualsIgnoreCaseParser",
+  "index": 8,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public class EqualsIgnoreCaseParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.nio.charset.StandardCharsets;",
+    "import java.util.ArrayList;",
+    "import java.util.Arrays;",
+    "import java.util.HashSet;",
+    "import java.util.List;",
+    "import java.util.Locale;",
+    "import java.util.Set;",
+    "import java.util.function.Function;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "parse(String)": "0",
+    "parse(String, boolean)": "1",
+    "getCharUtfBytes(char, Function, boolean)": "2",
+    "reverseByteArray(byte[])": "3",
+    "EqualsIgnoreCaseParser()": "4"
+  },
+  "methodsBrief": [
+    "public InputCharacter[] parse(String value){}",
+    "protected InputCharacter[] parse(String value, boolean reverseCharBytes){}",
+    "private static byte[] getCharUtfBytes(char c, Function<String, String> stringTransformer, boolean reverseCharBytes){}",
+    "private static byte[] reverseByteArray(byte[] byteArray){}",
+    "EqualsIgnoreCaseParser(){}"
+  ],
+  "constructorSigs": [
+    "EqualsIgnoreCaseParser()"
+  ],
+  "constructorBrief": [
+    "EqualsIgnoreCaseParser(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport java.nio.charset.StandardCharsets;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.HashSet;\nimport java.util.List;\nimport java.util.Locale;\nimport java.util.Set;\nimport java.util.function.Function;\n\n/**\n * A parser to be used specifically for equals-ignore-case rules. For Java characters where lower and upper case UTF-8\n * representations do not differ, we will parse into InputBytes. Otherwise, we will use InputMultiByteSet.\n *\n * Note that there are actually characters whose upper-case/lower-case UTF-8 representations differ in number of bytes.\n * One example where length differs by 1: ⱥ, Ⱥ\n * One example where length differs by 4: ΰ, Ϋ́\n * InputMultiByteSet handles differing byte lengths per Java character.\n */\npublic class EqualsIgnoreCaseParser {\n\n    EqualsIgnoreCaseParser() {\n    }\n\n    public InputCharacter[] parse(String value) {\n        return parse(value, false);\n    }\n\n    protected InputCharacter[] parse(String value, boolean reverseCharBytes) {\n        List<InputCharacter> result = new ArrayList<>(value.length());\n        for (char c : value.toCharArray()) {\n            byte[] lowerCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toLowerCase(Locale.ROOT), reverseCharBytes);\n            byte[] upperCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toUpperCase(Locale.ROOT), reverseCharBytes);\n            if (Arrays.equals(lowerCaseUtf8bytes, upperCaseUtf8bytes)) {\n                for (int i = 0; i < lowerCaseUtf8bytes.length; i++) {\n                    result.add(new InputByte(lowerCaseUtf8bytes[i]));\n                }\n            } else {\n                Set<MultiByte> multiBytes = new HashSet<>();\n                multiBytes.add(new MultiByte(lowerCaseUtf8bytes));\n                multiBytes.add(new MultiByte(upperCaseUtf8bytes));\n                result.add(new InputMultiByteSet(multiBytes));\n            }\n        }\n        return result.toArray(new InputCharacter[0]);\n    }\n\n    private static byte[] getCharUtfBytes(char c, Function<String, String> stringTransformer, boolean reverseCharBytes) {\n        byte[] byteArray = stringTransformer.apply(String.valueOf(c)).getBytes(StandardCharsets.UTF_8);\n        if (reverseCharBytes) {\n            return reverseByteArray(byteArray);\n        }\n        return byteArray;\n    }\n\n    private static byte[] reverseByteArray(byte[] byteArray) {\n        byte[] reversedByteArray = new byte[byteArray.length];\n        for (int i = 0; i < byteArray.length; i++) {\n            reversedByteArray[i] = byteArray[byteArray.length - i - 1];\n        }\n        return reversedByteArray;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A parser to be used specifically for equals-ignore-case rules. For Java characters where lower and upper case UTF-8\n * representations do not differ, we will parse into InputBytes. Otherwise, we will use InputMultiByteSet.\n *\n * Note that there are actually characters whose upper-case/lower-case UTF-8 representations differ in number of bytes.\n * One example where length differs by 1: ⱥ, Ⱥ\n * One example where length differs by 4: ΰ, Ϋ́\n * InputMultiByteSet handles differing byte lengths per Java character.\n */\npublic class EqualsIgnoreCaseParser {\n\n    EqualsIgnoreCaseParser() {\n    }\n\n    public InputCharacter[] parse(String value) {\n        return parse(value, false);\n    }\n\n    protected InputCharacter[] parse(String value, boolean reverseCharBytes) {\n        List<InputCharacter> result = new ArrayList<>(value.length());\n        for (char c : value.toCharArray()) {\n            byte[] lowerCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toLowerCase(Locale.ROOT), reverseCharBytes);\n            byte[] upperCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toUpperCase(Locale.ROOT), reverseCharBytes);\n            if (Arrays.equals(lowerCaseUtf8bytes, upperCaseUtf8bytes)) {\n                for (int i = 0; i < lowerCaseUtf8bytes.length; i++) {\n                    result.add(new InputByte(lowerCaseUtf8bytes[i]));\n                }\n            } else {\n                Set<MultiByte> multiBytes = new HashSet<>();\n                multiBytes.add(new MultiByte(lowerCaseUtf8bytes));\n                multiBytes.add(new MultiByte(upperCaseUtf8bytes));\n                result.add(new InputMultiByteSet(multiBytes));\n            }\n        }\n        return result.toArray(new InputCharacter[0]);\n    }\n\n    private static byte[] getCharUtfBytes(char c, Function<String, String> stringTransformer, boolean reverseCharBytes) {\n        byte[] byteArray = stringTransformer.apply(String.valueOf(c)).getBytes(StandardCharsets.UTF_8);\n        if (reverseCharBytes) {\n            return reverseByteArray(byteArray);\n        }\n        return byteArray;\n    }\n\n    private static byte[] reverseByteArray(byte[] byteArray) {\n        byte[] reversedByteArray = new byte[byteArray.length];\n        for (int i = 0; i < byteArray.length; i++) {\n            reversedByteArray[i] = byteArray[byteArray.length - i - 1];\n        }\n        return reversedByteArray;\n    }\n}",
+  "subClasses": [
+    "software.amazon.event.ruler.input.SuffixEqualsIgnoreCaseParser"
+  ]
+}

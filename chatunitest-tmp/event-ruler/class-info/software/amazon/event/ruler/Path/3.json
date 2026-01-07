@@ -1,0 +1,27 @@
+{
+  "className": "Path",
+  "methodName": "extendedName",
+  "brief": "String extendedName(final String lastStep){}",
+  "methodSignature": "extendedName(String)",
+  "sourceCode": "String extendedName(final String lastStep) {\n        String base = name();\n        if (!base.isEmpty()) {\n            base += SEPARATOR;\n        }\n        return base + lastStep;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ],
+    "software.amazon.event.ruler.Path": [
+      "name()"
+    ]
+  },
+  "full_method_info": "/**\n * return the pathname as a segmented-string with the indicated separator\n * @param lastStep The next step, which we want to use but not to push on to the path\n * @return the pathname\n */\nString extendedName(final String lastStep) {\n    String base = name();\n    if (!base.isEmpty()) {\n        base += SEPARATOR;\n    }\n    return base + lastStep;\n}",
+  "method_comment": "\n     * return the pathname as a segmented-string with the indicated separator\n     * @param lastStep The next step, which we want to use but not to push on to the path\n     * @return the pathname\n     ",
+  "method_annotation": ""
+}

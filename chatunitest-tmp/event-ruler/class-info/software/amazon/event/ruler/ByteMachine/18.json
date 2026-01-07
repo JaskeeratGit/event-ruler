@@ -1,0 +1,33 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addPattern",
+  "brief": "NameState addPattern(final Patterns pattern, final NameState nameState){}",
+  "methodSignature": "addPattern(Patterns, NameState)",
+  "sourceCode": "NameState addPattern(final Patterns pattern, final NameState nameState) {\n        switch (pattern.type()) {\n            case NUMERIC_RANGE:\n                assert pattern instanceof Range;\n                return addRangePattern((Range) pattern, nameState);\n            case ANYTHING_BUT:\n                assert pattern instanceof AnythingBut;\n                return addAnythingButPattern((AnythingBut) pattern, nameState);\n            case ANYTHING_BUT_IGNORE_CASE:\n            case ANYTHING_BUT_SUFFIX:\n            case ANYTHING_BUT_PREFIX:\n            case ANYTHING_BUT_WILDCARD:\n                assert pattern instanceof AnythingButValuesSet;\n                return addAnythingButValuesSetPattern((AnythingButValuesSet) pattern, nameState);\n\n            case EXACT:\n            case NUMERIC_EQ:\n            case PREFIX:\n            case PREFIX_EQUALS_IGNORE_CASE:\n            case SUFFIX:\n            case SUFFIX_EQUALS_IGNORE_CASE:\n            case EQUALS_IGNORE_CASE:\n            case WILDCARD:\n                assert pattern instanceof ValuePatterns;\n                return addMatchPattern((ValuePatterns) pattern, nameState);\n\n            case EXISTS:\n                return addExistencePattern(pattern, nameState);\n            default:\n                throw new AssertionError(pattern + \" is not implemented yet\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "addAnythingButValuesSetPattern(AnythingButValuesSet, NameState)",
+      "addMatchPattern(ValuePatterns, NameState)",
+      "addRangePattern(Range, NameState)",
+      "addExistencePattern(Patterns, NameState)",
+      "addAnythingButPattern(AnythingBut, NameState)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds one pattern to a byte machine.\n *\n * @param pattern The pattern to add.\n * @param nameState If non-null, attempt to transition to this NameState from the ByteMatch. May be ignored if the\n *                  ByteMatch already exists with its own NameState.\n * @return NameState transitioned to from ByteMatch. May or may not equal provided NameState if it wasn't null.\n */\nNameState addPattern(final Patterns pattern, final NameState nameState) {\n    switch(pattern.type()) {\n        case NUMERIC_RANGE:\n            assert pattern instanceof Range;\n            return addRangePattern((Range) pattern, nameState);\n        case ANYTHING_BUT:\n            assert pattern instanceof AnythingBut;\n            return addAnythingButPattern((AnythingBut) pattern, nameState);\n        case ANYTHING_BUT_IGNORE_CASE:\n        case ANYTHING_BUT_SUFFIX:\n        case ANYTHING_BUT_PREFIX:\n        case ANYTHING_BUT_WILDCARD:\n            assert pattern instanceof AnythingButValuesSet;\n            return addAnythingButValuesSetPattern((AnythingButValuesSet) pattern, nameState);\n        case EXACT:\n        case NUMERIC_EQ:\n        case PREFIX:\n        case PREFIX_EQUALS_IGNORE_CASE:\n        case SUFFIX:\n        case SUFFIX_EQUALS_IGNORE_CASE:\n        case EQUALS_IGNORE_CASE:\n        case WILDCARD:\n            assert pattern instanceof ValuePatterns;\n            return addMatchPattern((ValuePatterns) pattern, nameState);\n        case EXISTS:\n            return addExistencePattern(pattern, nameState);\n        default:\n            throw new AssertionError(pattern + \" is not implemented yet\");\n    }\n}",
+  "method_comment": "\n     * Adds one pattern to a byte machine.\n     *\n     * @param pattern The pattern to add.\n     * @param nameState If non-null, attempt to transition to this NameState from the ByteMatch. May be ignored if the\n     *                  ByteMatch already exists with its own NameState.\n     * @return NameState transitioned to from ByteMatch. May or may not equal provided NameState if it wasn't null.\n     ",
+  "method_annotation": ""
+}

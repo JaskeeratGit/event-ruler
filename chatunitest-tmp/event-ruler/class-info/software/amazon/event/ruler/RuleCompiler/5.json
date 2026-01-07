@@ -1,0 +1,25 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "check",
+  "brief": "public static String check(final byte[] source){}",
+  "methodSignature": "check(byte[])",
+  "sourceCode": "public static String check(final byte[] source) {\n        return check(source, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "check(byte[], boolean)"
+    ]
+  },
+  "full_method_info": "public static String check(final byte[] source) {\n    return check(source, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,32 @@
+{
+  "className": "CompoundByteTransition",
+  "methodName": "coalesce",
+  "brief": "static <T extends ByteTransition> T coalesce(Iterable<SingleByteTransition> singles){}",
+  "methodSignature": "coalesce(Iterable)",
+  "sourceCode": "static <T extends ByteTransition> T coalesce(Iterable<SingleByteTransition> singles) {\n        Iterator<SingleByteTransition> iterator = singles.iterator();\n        if (!iterator.hasNext()) {\n            return null;\n        }\n\n        SingleByteTransition firstElement = iterator.next();\n        if (!iterator.hasNext()) {\n            return (T) firstElement;\n        } else if (singles instanceof Set) {\n            return (T) new CompoundByteTransition((Set) singles);\n        } else {\n            // We expect Iterables with more than one element to always be Sets, so this should be dead code, but adding\n            // it here for future-proofing.\n            Set<SingleByteTransition> set = new HashSet();\n            singles.forEach(single -> set.add(single));\n            return (T) new CompoundByteTransition(set);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<SingleByteTransition>"
+  ],
+  "dependentMethods": {
+    "java.lang.Iterable": [
+      "iterator()",
+      "forEach(Consumer<? super T>)"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "static <T extends ByteTransition> T coalesce(Iterable<SingleByteTransition> singles) {\n    Iterator<SingleByteTransition> iterator = singles.iterator();\n    if (!iterator.hasNext()) {\n        return null;\n    }\n    SingleByteTransition firstElement = iterator.next();\n    if (!iterator.hasNext()) {\n        return (T) firstElement;\n    } else if (singles instanceof Set) {\n        return (T) new CompoundByteTransition((Set) singles);\n    } else {\n        // We expect Iterables with more than one element to always be Sets, so this should be dead code, but adding\n        // it here for future-proofing.\n        Set<SingleByteTransition> set = new HashSet();\n        singles.forEach(single -> set.add(single));\n        return (T) new CompoundByteTransition(set);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

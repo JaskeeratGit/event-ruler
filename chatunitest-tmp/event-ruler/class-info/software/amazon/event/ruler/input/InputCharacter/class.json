@@ -1,0 +1,41 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.InputCharacter",
+  "className": "InputCharacter",
+  "index": 10,
+  "modifier": "[public , abstract ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public abstract class InputCharacter",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getType()": "0"
+  },
+  "methodsBrief": [
+    "public abstract InputCharacterType getType();"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "getType()"
+  ],
+  "getterSetterBrief": [
+    "public abstract InputCharacterType getType();"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\npublic abstract class InputCharacter {\n\n    public abstract InputCharacterType getType();\n}\n",
+  "classDeclarationCode": "public abstract class InputCharacter {\n\n    public abstract InputCharacterType getType();\n}",
+  "subClasses": [
+    "software.amazon.event.ruler.input.InputMultiByteSet",
+    "software.amazon.event.ruler.input.InputWildcard",
+    "software.amazon.event.ruler.input.InputByte"
+  ]
+}

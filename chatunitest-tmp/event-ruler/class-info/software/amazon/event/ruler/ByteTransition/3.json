@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "getTransitions",
+  "brief": "abstract Iterable<ByteTransition> getTransitions();",
+  "methodSignature": "getTransitions()",
+  "sourceCode": "abstract Iterable<ByteTransition> getTransitions();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get all the unique transitions (single or compound) reachable from this transition by any UTF-8 byte value.\n *\n * @return Iterable of all transitions reachable from this transition.\n */\nabstract Iterable<ByteTransition> getTransitions();",
+  "method_comment": "\n     * Get all the unique transitions (single or compound) reachable from this transition by any UTF-8 byte value.\n     *\n     * @return Iterable of all transitions reachable from this transition.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "StringValueParser",
+  "methodName": "parse",
+  "brief": "InputCharacter[] parse(String value);",
+  "methodSignature": "parse(String)",
+  "sourceCode": "InputCharacter[] parse(String value);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * @param value string value to parse\n * @return processed and parsed Input Character\n */\nInputCharacter[] parse(String value);",
+  "method_comment": "\n   * @param value string value to parse\n   * @return processed and parsed Input Character\n   ",
+  "method_annotation": ""
+}

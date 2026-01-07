@@ -1,0 +1,24 @@
+{
+  "className": "MultiByte",
+  "methodName": "is",
+  "brief": "public boolean is(byte ... bytes){}",
+  "methodSignature": "is(byte[])",
+  "sourceCode": "public boolean is(byte ... bytes) {\n        return Arrays.equals(this.bytes, bytes);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {
+    "java.util.Arrays": [
+      "equals(byte[], byte[])"
+    ]
+  },
+  "full_method_info": "public boolean is(byte... bytes) {\n    return Arrays.equals(this.bytes, bytes);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

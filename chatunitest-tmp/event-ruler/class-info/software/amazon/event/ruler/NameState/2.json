@@ -1,0 +1,22 @@
+{
+  "className": "NameState",
+  "methodName": "getNonTerminalPatterns",
+  "brief": "Set<Patterns> getNonTerminalPatterns(){}",
+  "methodSignature": "getNonTerminalPatterns()",
+  "sourceCode": "Set<Patterns> getNonTerminalPatterns() {\n        return patternToNonTerminalSubRuleIds.keySet();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "keySet()"
+    ]
+  },
+  "full_method_info": "/**\n * Get all the non-terminal patterns that have led to this NameState. \"Terminal\" means the pattern was used by the\n * last field of a rule to lead to this NameState, and thus, the rule's matching criteria have been fully satisfied.\n *\n * NOTE: This function returns the raw key set from one of NameState's internal maps. Mutating it will corrupt the\n * state of NameState. Although standard coding practice would warrant returning a copy of the set, or wrapping it\n * to be immutable, we instead return the raw key set as a performance optimization. This avoids creating new data\n * structures and/or copying elements between them.\n *\n * @return Set of all non-terminal patterns.\n */\nSet<Patterns> getNonTerminalPatterns() {\n    return patternToNonTerminalSubRuleIds.keySet();\n}",
+  "method_comment": "\n     * Get all the non-terminal patterns that have led to this NameState. \"Terminal\" means the pattern was used by the\n     * last field of a rule to lead to this NameState, and thus, the rule's matching criteria have been fully satisfied.\n     *\n     * NOTE: This function returns the raw key set from one of NameState's internal maps. Mutating it will corrupt the\n     * state of NameState. Although standard coding practice would warrant returning a copy of the set, or wrapping it\n     * to be immutable, we instead return the raw key set as a performance optimization. This avoids creating new data\n     * structures and/or copying elements between them.\n     *\n     * @return Set of all non-terminal patterns.\n     ",
+  "method_annotation": ""
+}

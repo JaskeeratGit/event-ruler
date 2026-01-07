@@ -1,0 +1,20 @@
+{
+  "className": "ByteParser",
+  "methodName": "parse",
+  "brief": "InputCharacter parse(byte utf8byte);",
+  "methodSignature": "parse(byte)",
+  "sourceCode": "InputCharacter parse(byte utf8byte);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * @param utf8byte byte that represent in UTF-8 encoding\n * @return processed and parsed Input Character\n */\nInputCharacter parse(byte utf8byte);",
+  "method_comment": "\n   * @param utf8byte byte that represent in UTF-8 encoding\n   * @return processed and parsed Input Character\n   ",
+  "method_annotation": ""
+}

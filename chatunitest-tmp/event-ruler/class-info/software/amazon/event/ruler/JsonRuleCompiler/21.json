@@ -1,0 +1,51 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "writeRules",
+  "brief": "private static void writeRules(final List<Map<String, List<Patterns>>> rules,\n                                   final String name,\n                                   final JsonParser parser,\n                                   final boolean withQuotes,\n                                   final boolean withOverriding) throws IOException{}",
+  "methodSignature": "writeRules(List, String, JsonParser, boolean, boolean)",
+  "sourceCode": "private static void writeRules(final List<Map<String, List<Patterns>>> rules,\n                                   final String name,\n                                   final JsonParser parser,\n                                   final boolean withQuotes,\n                                   final boolean withOverriding) throws IOException {\n\n        JsonToken token;\n        final List<Patterns> values = new ArrayList<>();\n\n        while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n            switch (token) {\n            case START_OBJECT:\n                values.add(processMatchExpression(parser));\n                break;\n\n            case VALUE_STRING:\n                final String toMatch = parser.getText();\n\n                final Range ipRange = CIDR.ipToRangeIfPossible(toMatch);\n                if (ipRange != null) {\n                    values.add(ipRange);\n                } else if (withQuotes) {\n                    values.add(Patterns.exactMatch('\"' + toMatch + '\"'));\n                } else {\n                    values.add(Patterns.exactMatch(toMatch));\n                }\n                break;\n\n            case VALUE_NUMBER_FLOAT:\n            case VALUE_NUMBER_INT:\n                /*\n                 * If the rule specifies a match to a number, we'll insert matchers for both the\n                 *  literal expression and the ComparableNumber form. But the number might not\n                 *  be representable as a ComparableNumber, for example an AWS account number,\n                 *  so make that condition survivable.\n                 */\n                try {\n                    values.add(Patterns.numericEquals(parser.getText()));\n                } catch (Exception e) {\n                    // no-op\n                }\n                values.add(Patterns.exactMatch(parser.getText()));\n                break;\n\n            case VALUE_NULL:\n            case VALUE_TRUE:\n            case VALUE_FALSE:\n                values.add(Patterns.exactMatch(parser.getText()));\n                break;\n\n            default:\n                barf(parser, \"Match value must be String, number, true, false, or null\");\n            }\n        }\n        if (values.isEmpty()) {\n            barf(parser, \"Empty arrays are not allowed\");\n        }\n\n        // If the rules list is empty, add the first rule\n        if (rules.isEmpty()) {\n            rules.add(new HashMap<>());\n        }\n        for (Map<String, List<Patterns>> rule : rules) {\n            if (!withOverriding && rule.containsKey(name)) {\n                barf(parser, String.format(\"Path `%s` cannot be allowed multiple times\", name));\n            }\n            rule.put(name, values);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Map<String,List<Patterns>>>",
+    "String",
+    "JsonParser",
+    "boolean",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "format(String, Object[])"
+    ],
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()",
+      "getText()"
+    ],
+    "java.util.List": [
+      "isEmpty()",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "barf(JsonParser, String)",
+      "processMatchExpression(JsonParser)"
+    ],
+    "software.amazon.event.ruler.CIDR": [
+      "ipToRangeIfPossible(String)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "numericEquals(String)",
+      "exactMatch(String)"
+    ],
+    "java.util.Map": [
+      "put(K, V)",
+      "containsKey(Object)"
+    ]
+  },
+  "full_method_info": "private static void writeRules(final List<Map<String, List<Patterns>>> rules, final String name, final JsonParser parser, final boolean withQuotes, final boolean withOverriding) throws IOException {\n    JsonToken token;\n    final List<Patterns> values = new ArrayList<>();\n    while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n        switch(token) {\n            case START_OBJECT:\n                values.add(processMatchExpression(parser));\n                break;\n            case VALUE_STRING:\n                final String toMatch = parser.getText();\n                final Range ipRange = CIDR.ipToRangeIfPossible(toMatch);\n                if (ipRange != null) {\n                    values.add(ipRange);\n                } else if (withQuotes) {\n                    values.add(Patterns.exactMatch('\"' + toMatch + '\"'));\n                } else {\n                    values.add(Patterns.exactMatch(toMatch));\n                }\n                break;\n            case VALUE_NUMBER_FLOAT:\n            case VALUE_NUMBER_INT:\n                /*\n                 * If the rule specifies a match to a number, we'll insert matchers for both the\n                 *  literal expression and the ComparableNumber form. But the number might not\n                 *  be representable as a ComparableNumber, for example an AWS account number,\n                 *  so make that condition survivable.\n                 */\n                try {\n                    values.add(Patterns.numericEquals(parser.getText()));\n                } catch (Exception e) {\n                    // no-op\n                }\n                values.add(Patterns.exactMatch(parser.getText()));\n                break;\n            case VALUE_NULL:\n            case VALUE_TRUE:\n            case VALUE_FALSE:\n                values.add(Patterns.exactMatch(parser.getText()));\n                break;\n            default:\n                barf(parser, \"Match value must be String, number, true, false, or null\");\n        }\n    }\n    if (values.isEmpty()) {\n        barf(parser, \"Empty arrays are not allowed\");\n    }\n    // If the rules list is empty, add the first rule\n    if (rules.isEmpty()) {\n        rules.add(new HashMap<>());\n    }\n    for (Map<String, List<Patterns>> rule : rules) {\n        if (!withOverriding && rule.containsKey(name)) {\n            barf(parser, String.format(\"Path `%s` cannot be allowed multiple times\", name));\n        }\n        rule.put(name, values);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "ByteTransition",
+  "methodName": "getTransition",
+  "brief": "abstract ByteTransition getTransition(byte utf8byte);",
+  "methodSignature": "getTransition(byte)",
+  "sourceCode": "abstract ByteTransition getTransition(byte utf8byte);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get a subsequent transition from this transition for the given UTF-8 byte.\n *\n * @param utf8byte The byte to transition on\n * @return The next transition given the byte, or {@code null} if there is not a next transition\n */\nabstract ByteTransition getTransition(byte utf8byte);",
+  "method_comment": "\n     * Get a subsequent transition from this transition for the given UTF-8 byte.\n     *\n     * @param utf8byte The byte to transition on\n     * @return The next transition given the byte, or {@code null} if there is not a next transition\n     ",
+  "method_annotation": ""
+}

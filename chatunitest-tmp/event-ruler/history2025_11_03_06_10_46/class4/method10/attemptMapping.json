@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "MultiByte_hashCode_10_0_Test",
+    "fullName": "software.amazon.event.ruler.input.MultiByte_hashCode_10_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/MultiByte_hashCode_10_0_Test.java",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt1": {
+    "testClassName": "MultiByte_hashCode_10_1_Test",
+    "fullName": "software.amazon.event.ruler.input.MultiByte_hashCode_10_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/MultiByte_hashCode_10_0_Test.java",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt2": {
+    "testClassName": "MultiByte_hashCode_10_2_Test",
+    "fullName": "software.amazon.event.ruler.input.MultiByte_hashCode_10_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/MultiByte_hashCode_10_0_Test.java",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt3": {
+    "testClassName": "MultiByte_hashCode_10_3_Test",
+    "fullName": "software.amazon.event.ruler.input.MultiByte_hashCode_10_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/MultiByte_hashCode_10_0_Test.java",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt4": {
+    "testClassName": "MultiByte_hashCode_10_4_Test",
+    "fullName": "software.amazon.event.ruler.input.MultiByte_hashCode_10_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/MultiByte_hashCode_10_0_Test.java",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  }
+}

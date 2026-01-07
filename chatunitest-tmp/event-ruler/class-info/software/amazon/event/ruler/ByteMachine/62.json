@@ -1,0 +1,39 @@
+{
+  "className": "ByteMachine",
+  "methodName": "removeTransitionForBytes",
+  "brief": "private static void removeTransitionForBytes(ByteState state, byte[] bytes, int index,\n                                                 SingleByteTransition transition){}",
+  "methodSignature": "removeTransitionForBytes(ByteState, byte[], int, SingleByteTransition)",
+  "sourceCode": "private static void removeTransitionForBytes(ByteState state, byte[] bytes, int index,\n                                                 SingleByteTransition transition) {\n        if (index == bytes.length - 1) {\n            state.removeTransition(bytes[index], transition);\n        } else {\n            for (SingleByteTransition single : getTransition(state, bytes[index]).expand()) {\n                ByteState nextState = single.getNextByteState();\n                if (nextState != null) {\n                    removeTransitionForBytes(nextState, bytes, index + 1, transition);\n                    if (nextState.hasNoTransitions() || nextState.hasOnlySelfReferentialTransition()) {\n                        state.removeTransition(bytes[index], single);\n                    }\n                }\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "byte[]",
+    "int",
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "hasNoTransitions()",
+      "removeTransition(byte, SingleByteTransition)",
+      "hasOnlySelfReferentialTransition()"
+    ],
+    "byte": [],
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getNextByteState()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "getTransition(ByteTransition, byte)",
+      "removeTransitionForBytes(ByteState, byte[], int, SingleByteTransition)"
+    ]
+  },
+  "full_method_info": "private static void removeTransitionForBytes(ByteState state, byte[] bytes, int index, SingleByteTransition transition) {\n    if (index == bytes.length - 1) {\n        state.removeTransition(bytes[index], transition);\n    } else {\n        for (SingleByteTransition single : getTransition(state, bytes[index]).expand()) {\n            ByteState nextState = single.getNextByteState();\n            if (nextState != null) {\n                removeTransitionForBytes(nextState, bytes, index + 1, transition);\n                if (nextState.hasNoTransitions() || nextState.hasOnlySelfReferentialTransition()) {\n                    state.removeTransition(bytes[index], single);\n                }\n            }\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

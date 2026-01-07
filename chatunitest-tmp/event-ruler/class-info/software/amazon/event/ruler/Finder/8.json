@@ -1,0 +1,33 @@
+{
+  "className": "Finder",
+  "methodName": "tryNameMatching",
+  "brief": "private static void tryNameMatching(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState,\n                                        final Task task, final int keyIndex,\n                                        final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "tryNameMatching(Set, NameState, Task, int, SubRuleContext.Generator)",
+  "sourceCode": "private static void tryNameMatching(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState,\n                                        final Task task, final int keyIndex,\n                                        final SubRuleContext.Generator subRuleContextGenerator) {\n        if (!nameState.hasKeyTransitions()) {\n            return;\n        }\n\n        for (NameState nextNameState : nameState.getNameTransitions(task.event)) {\n            if (nextNameState != null) {\n                addNameState(candidateSubRuleIds, nextNameState, ABSENCE_PATTERN, task, keyIndex,\n                        subRuleContextGenerator);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "Task",
+    "int",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "getNameTransitions(String[])",
+      "hasKeyTransitions()"
+    ],
+    "software.amazon.event.ruler.Task": [],
+    "software.amazon.event.ruler.Finder": [
+      "addNameState(SubRuleContext>, NameState, Patterns, Task, int, Generator)"
+    ]
+  },
+  "full_method_info": "private static void tryNameMatching(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final Task task, final int keyIndex, final SubRuleContext.Generator subRuleContextGenerator) {\n    if (!nameState.hasKeyTransitions()) {\n        return;\n    }\n    for (NameState nextNameState : nameState.getNameTransitions(task.event)) {\n        if (nextNameState != null) {\n            addNameState(candidateSubRuleIds, nextNameState, ABSENCE_PATTERN, task, keyIndex, subRuleContextGenerator);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

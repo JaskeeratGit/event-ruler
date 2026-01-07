@@ -1,0 +1,44 @@
+{
+  "fullClassName": "software.amazon.event.ruler.Field",
+  "className": "Field",
+  "index": 66,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "class Field",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "final String name;",
+    "final String val;",
+    "final ArrayMembership arrayMembership;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "Field(String, String, ArrayMembership)": "0"
+  },
+  "methodsBrief": [
+    "Field(final String name, final String val, final ArrayMembership arrayMembership){}"
+  ],
+  "constructorSigs": [
+    "Field(String, String, ArrayMembership)"
+  ],
+  "constructorBrief": [
+    "Field(final String name, final String val, final ArrayMembership arrayMembership){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.ArrayMembership": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\n/**\n * Represents the name and value of a data field in an event that Ruler will match.\n *\n * Both name and value are represented as strings.  Also provided for each field is information about its position\n *  in any arrays the event may contain. This is used to guard against a rule matching a set of fields which are in\n *  peer elements of an array, a situation which it turns out is perceived by users as a bug.\n */\nclass Field {\n\n    final String name;\n\n    final String val;\n\n    final ArrayMembership arrayMembership;\n\n    Field(final String name, final String val, final ArrayMembership arrayMembership) {\n        this.name = name;\n        this.val = val;\n        this.arrayMembership = arrayMembership;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents the name and value of a data field in an event that Ruler will match.\n *\n * Both name and value are represented as strings.  Also provided for each field is information about its position\n *  in any arrays the event may contain. This is used to guard against a rule matching a set of fields which are in\n *  peer elements of an array, a situation which it turns out is perceived by users as a bug.\n */\nclass Field {\n\n    final String name;\n\n    final String val;\n\n    final ArrayMembership arrayMembership;\n\n    Field(final String name, final String val, final ArrayMembership arrayMembership) {\n        this.name = name;\n        this.val = val;\n        this.arrayMembership = arrayMembership;\n    }\n}",
+  "subClasses": []
+}

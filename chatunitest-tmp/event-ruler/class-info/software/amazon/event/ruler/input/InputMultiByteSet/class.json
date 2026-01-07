@@ -1,0 +1,68 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.InputMultiByteSet",
+  "className": "InputMultiByteSet",
+  "index": 2,
+  "modifier": "[public ]",
+  "extend": "[InputCharacter]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public class InputMultiByteSet",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collections;",
+    "import java.util.Objects;",
+    "import java.util.Set;",
+    "import static software.amazon.event.ruler.input.InputCharacterType.MULTI_BYTE_SET;"
+  ],
+  "fields": [
+    "private final Set<MultiByte> multiBytes;"
+  ],
+  "superClasses": [
+    "InputCharacter"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "cast(InputCharacter)": "0",
+    "getMultiBytes()": "1",
+    "getType()": "2",
+    "equals(Object)": "3",
+    "hashCode()": "4",
+    "toString()": "5",
+    "InputMultiByteSet(Set)": "6"
+  },
+  "methodsBrief": [
+    "public static InputMultiByteSet cast(InputCharacter character){}",
+    "public Set<MultiByte> getMultiBytes(){}",
+    "@Override\n    public InputCharacterType getType(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "@Override\n    public String toString(){}",
+    "InputMultiByteSet(Set<MultiByte> multiBytes){}"
+  ],
+  "constructorSigs": [
+    "InputMultiByteSet(Set)"
+  ],
+  "constructorBrief": [
+    "InputMultiByteSet(Set<MultiByte> multiBytes){}"
+  ],
+  "getterSetterSigs": [
+    "getMultiBytes()",
+    "getType()"
+  ],
+  "getterSetterBrief": [
+    "public Set<MultiByte> getMultiBytes(){}",
+    "@Override\n    public InputCharacterType getType(){}"
+  ],
+  "constructorDeps": {
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ]
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport java.util.Collections;\nimport java.util.Objects;\nimport java.util.Set;\nimport static software.amazon.event.ruler.input.InputCharacterType.MULTI_BYTE_SET;\n\n/**\n * An InputCharacter that represents a set of MultiBytes.\n */\npublic class InputMultiByteSet extends InputCharacter {\n\n    private final Set<MultiByte> multiBytes;\n\n    InputMultiByteSet(Set<MultiByte> multiBytes) {\n        this.multiBytes = Collections.unmodifiableSet(multiBytes);\n    }\n\n    public static InputMultiByteSet cast(InputCharacter character) {\n        return (InputMultiByteSet) character;\n    }\n\n    public Set<MultiByte> getMultiBytes() {\n        return multiBytes;\n    }\n\n    @Override\n    public InputCharacterType getType() {\n        return MULTI_BYTE_SET;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o.getClass() == getClass())) {\n            return false;\n        }\n        return ((InputMultiByteSet) o).getMultiBytes().equals(getMultiBytes());\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(getMultiBytes());\n    }\n\n    @Override\n    public String toString() {\n        return getMultiBytes().toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * An InputCharacter that represents a set of MultiBytes.\n */\npublic class InputMultiByteSet extends InputCharacter {\n\n    private final Set<MultiByte> multiBytes;\n\n    InputMultiByteSet(Set<MultiByte> multiBytes) {\n        this.multiBytes = Collections.unmodifiableSet(multiBytes);\n    }\n\n    public static InputMultiByteSet cast(InputCharacter character) {\n        return (InputMultiByteSet) character;\n    }\n\n    public Set<MultiByte> getMultiBytes() {\n        return multiBytes;\n    }\n\n    @Override\n    public InputCharacterType getType() {\n        return MULTI_BYTE_SET;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o.getClass() == getClass())) {\n            return false;\n        }\n        return ((InputMultiByteSet) o).getMultiBytes().equals(getMultiBytes());\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(getMultiBytes());\n    }\n\n    @Override\n    public String toString() {\n        return getMultiBytes().toString();\n    }\n}",
+  "subClasses": []
+}

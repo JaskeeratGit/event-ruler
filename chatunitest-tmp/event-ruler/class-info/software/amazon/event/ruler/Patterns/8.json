@@ -1,0 +1,27 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButMatch",
+  "brief": "@Deprecated\n    public static AnythingBut anythingButMatch(final double anythingBut){}",
+  "methodSignature": "anythingButMatch(double)",
+  "sourceCode": "@Deprecated\n    public static AnythingBut anythingButMatch(final double anythingBut) {\n        return anythingButNumberMatch(Double.toString(anythingBut));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "double"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "anythingButNumberMatch(String)"
+    ],
+    "java.lang.Double": [
+      "toString(double)"
+    ]
+  },
+  "full_method_info": "/**\n * use anythingButMatch(String) instead\n */\n@Deprecated\npublic static AnythingBut anythingButMatch(final double anythingBut) {\n    return anythingButNumberMatch(Double.toString(anythingBut));\n}",
+  "method_comment": " use anythingButMatch(String) instead ",
+  "method_annotation": "@Deprecated\n"
+}

@@ -1,0 +1,53 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.InputWildcard",
+  "className": "InputWildcard",
+  "index": 6,
+  "modifier": "[public ]",
+  "extend": "[InputCharacter]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public class InputWildcard",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import static software.amazon.event.ruler.input.InputCharacterType.WILDCARD;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "InputCharacter"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getType()": "0",
+    "equals(Object)": "1",
+    "hashCode()": "2",
+    "toString()": "3",
+    "InputWildcard()": "4"
+  },
+  "methodsBrief": [
+    "@Override\n    public InputCharacterType getType(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "@Override\n    public String toString(){}",
+    "InputWildcard(){}"
+  ],
+  "constructorSigs": [
+    "InputWildcard()"
+  ],
+  "constructorBrief": [
+    "InputWildcard(){}"
+  ],
+  "getterSetterSigs": [
+    "getType()"
+  ],
+  "getterSetterBrief": [
+    "@Override\n    public InputCharacterType getType(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport static software.amazon.event.ruler.input.InputCharacterType.WILDCARD;\n\n/**\n * An InputCharacter that represents a wildcard.\n */\npublic class InputWildcard extends InputCharacter {\n\n    InputWildcard() {\n    }\n\n    @Override\n    public InputCharacterType getType() {\n        return WILDCARD;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        return o != null && o.getClass() == getClass();\n    }\n\n    @Override\n    public int hashCode() {\n        return InputWildcard.class.hashCode();\n    }\n\n    @Override\n    public String toString() {\n        return \"Wildcard\";\n    }\n}\n",
+  "classDeclarationCode": "/**\n * An InputCharacter that represents a wildcard.\n */\npublic class InputWildcard extends InputCharacter {\n\n    InputWildcard() {\n    }\n\n    @Override\n    public InputCharacterType getType() {\n        return WILDCARD;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        return o != null && o.getClass() == getClass();\n    }\n\n    @Override\n    public int hashCode() {\n        return InputWildcard.class.hashCode();\n    }\n\n    @Override\n    public String toString() {\n        return \"Wildcard\";\n    }\n}",
+  "subClasses": []
+}

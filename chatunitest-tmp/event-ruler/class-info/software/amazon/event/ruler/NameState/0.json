@@ -1,0 +1,25 @@
+{
+  "className": "NameState",
+  "methodName": "getTransitionOn",
+  "brief": "ByteMachine getTransitionOn(final String token){}",
+  "methodSignature": "getTransitionOn(String)",
+  "sourceCode": "ByteMachine getTransitionOn(final String token) {\n        return valueTransitions.get(token);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "ByteMachine getTransitionOn(final String token) {\n    return valueTransitions.get(token);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

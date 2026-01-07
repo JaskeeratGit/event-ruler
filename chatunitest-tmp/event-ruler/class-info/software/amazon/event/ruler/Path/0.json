@@ -1,0 +1,25 @@
+{
+  "className": "Path",
+  "methodName": "push",
+  "brief": "void push(final String s){}",
+  "methodSignature": "push(String)",
+  "sourceCode": "void push(final String s) {\n        memo = null;\n        path.add(s);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Deque": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "void push(final String s) {\n    memo = null;\n    path.add(s);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

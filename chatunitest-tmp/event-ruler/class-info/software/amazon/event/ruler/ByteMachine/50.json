@@ -1,0 +1,33 @@
+{
+  "className": "ByteMachine",
+  "methodName": "deleteMatches",
+  "brief": "private void deleteMatches(InputCharacter character, ByteTransition transition, Patterns pattern){}",
+  "methodSignature": "deleteMatches(InputCharacter, ByteTransition, Patterns)",
+  "sourceCode": "private void deleteMatches(InputCharacter character, ByteTransition transition, Patterns pattern) {\n        if (transition == null) {\n            return;\n        }\n\n        for (SingleByteTransition single : transition.expand()) {\n            ByteTransition trans = getTransition(single, character);\n            for (SingleByteTransition eachTrans : trans.expand()) {\n                deleteMatch(character, single.getNextByteState(), pattern, eachTrans);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter",
+    "ByteTransition",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getNextByteState()"
+    ],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "deleteMatch(InputCharacter, ByteState, Patterns, SingleByteTransition)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ]
+  },
+  "full_method_info": "/**\n * Deletes any matches that exist on the given pattern that are accessed from ByteTransition transition using\n * character.\n *\n * @param character The character used to transition.\n * @param transition The transition we are transitioning from to look for matches.\n * @param pattern The pattern whose match we are attempting to delete.\n */\nprivate void deleteMatches(InputCharacter character, ByteTransition transition, Patterns pattern) {\n    if (transition == null) {\n        return;\n    }\n    for (SingleByteTransition single : transition.expand()) {\n        ByteTransition trans = getTransition(single, character);\n        for (SingleByteTransition eachTrans : trans.expand()) {\n            deleteMatch(character, single.getNextByteState(), pattern, eachTrans);\n        }\n    }\n}",
+  "method_comment": "\n     * Deletes any matches that exist on the given pattern that are accessed from ByteTransition transition using\n     * character.\n     *\n     * @param character The character used to transition.\n     * @param transition The transition we are transitioning from to look for matches.\n     * @param pattern The pattern whose match we are attempting to delete.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "ByteState",
+  "methodName": "getTransitionForAllBytes",
+  "brief": "@Override\n    ByteTransition getTransitionForAllBytes(){}",
+  "methodSignature": "getTransitionForAllBytes()",
+  "sourceCode": "@Override\n    ByteTransition getTransitionForAllBytes() {\n        // Saving the value to avoid reading an updated value\n        Object transitionStore = this.transitionStore;\n        if (transitionStore == null || transitionStore instanceof SingleByteTransitionEntry) {\n            return ByteMachine.EmptyByteTransition.INSTANCE;\n        }\n        ByteMap map = (ByteMap) transitionStore;\n        return map.getTransitionForAllBytes();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteMap": [
+      "getTransitionForAllBytes()"
+    ]
+  },
+  "full_method_info": "@Override\nByteTransition getTransitionForAllBytes() {\n    // Saving the value to avoid reading an updated value\n    Object transitionStore = this.transitionStore;\n    if (transitionStore == null || transitionStore instanceof SingleByteTransitionEntry) {\n        return ByteMachine.EmptyByteTransition.INSTANCE;\n    }\n    ByteMap map = (ByteMap) transitionStore;\n    return map.getTransitionForAllBytes();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

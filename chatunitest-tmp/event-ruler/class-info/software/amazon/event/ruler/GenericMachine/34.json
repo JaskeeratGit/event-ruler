@@ -1,0 +1,30 @@
+{
+  "className": "GenericMachine",
+  "methodName": "approximateObjectCount",
+  "brief": "public int approximateObjectCount(int maxObjectCount){}",
+  "methodSignature": "approximateObjectCount(int)",
+  "sourceCode": "public int approximateObjectCount(int maxObjectCount) {\n        final HashSet<Object> objectSet = new HashSet<>();\n        startState.gatherObjects(objectSet, maxObjectCount);\n        return Math.min(objectSet.size(), maxObjectCount);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "gatherObjects(Object>, int)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.util.HashSet": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Gives roughly the number of objects within the machine. This is useful to identify large rule-machines\n * that potentially require loads of memory. The method performs all of its calculation at runtime to avoid\n * taking up memory and making the impact of large rule-machines worse. When calculating this value; we\n * consider any transitions, states, byte-machines, and rules. There's are also a checks to ensure we're\n * not stuck in endless loops (that's possible for wildcard matches) or taking a long time for numeric range\n * matchers.\n *\n * NOTEs:\n * 1. As this method is dependent on number of internal objects, as ruler evolves this will also\n * give different results.\n * 2. It will also give you different results based on the order in which you add or remove rules as in\n * some-cases Ruler takes short-cuts for exact matches (see ShortcutTransition for more details).\n * 3. This method isn't thread safe, and so is prefixed with approximate.\n *\n * @param maxObjectCount Caps evaluation of object at this threshold.\n */\npublic int approximateObjectCount(int maxObjectCount) {\n    final HashSet<Object> objectSet = new HashSet<>();\n    startState.gatherObjects(objectSet, maxObjectCount);\n    return Math.min(objectSet.size(), maxObjectCount);\n}",
+  "method_comment": "\n     * Gives roughly the number of objects within the machine. This is useful to identify large rule-machines\n     * that potentially require loads of memory. The method performs all of its calculation at runtime to avoid\n     * taking up memory and making the impact of large rule-machines worse. When calculating this value; we\n     * consider any transitions, states, byte-machines, and rules. There's are also a checks to ensure we're\n     * not stuck in endless loops (that's possible for wildcard matches) or taking a long time for numeric range\n     * matchers.\n     *\n     * NOTEs:\n     * 1. As this method is dependent on number of internal objects, as ruler evolves this will also\n     * give different results.\n     * 2. It will also give you different results based on the order in which you add or remove rules as in\n     * some-cases Ruler takes short-cuts for exact matches (see ShortcutTransition for more details).\n     * 3. This method isn't thread safe, and so is prefixed with approximate.\n     *\n     * @param maxObjectCount Caps evaluation of object at this threshold.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "ByteTransition",
+  "methodName": "isEmpty",
+  "brief": "boolean isEmpty(){}",
+  "methodSignature": "isEmpty()",
+  "sourceCode": "boolean isEmpty() {\n        return !getMatches().iterator().hasNext() && getNextByteState() == null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Iterator": [
+      "hasNext()"
+    ],
+    "java.lang.Iterable": [
+      "iterator()"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "getMatches()",
+      "getNextByteState()"
+    ]
+  },
+  "full_method_info": "/**\n * Tell if current transition is empty which means doesn't has match nor next state.\n * @return boolean\n */\nboolean isEmpty() {\n    return !getMatches().iterator().hasNext() && getNextByteState() == null;\n}",
+  "method_comment": "\n     * Tell if current transition is empty which means doesn't has match nor next state.\n     * @return boolean\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,35 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "processSuffixEqualsIgnoreCaseExpression",
+  "brief": "private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}",
+  "methodSignature": "processSuffixEqualsIgnoreCaseExpression(JsonParser)",
+  "sourceCode": "private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException {\n        final JsonToken suffixObject = parser.nextToken();\n        if (suffixObject != JsonToken.FIELD_NAME) {\n            barf(parser, \"Suffix expression name not found\");\n        }\n\n        final String suffixObjectOp = parser.getCurrentName();\n        if (!Constants.EQUALS_IGNORE_CASE.equals(suffixObjectOp)) {\n            barf(parser, \"Unsupported suffix pattern: \" + suffixObjectOp);\n        }\n\n        final JsonToken suffixEqualsIgnoreCase = parser.nextToken();\n        if (suffixEqualsIgnoreCase != JsonToken.VALUE_STRING) {\n            barf(parser, \"equals-ignore-case match pattern must be a string\");\n        }\n        final Patterns pattern = Patterns.suffixEqualsIgnoreCaseMatch(parser.getText() + '\"');\n        if (parser.nextToken() != JsonToken.END_OBJECT) {\n            barf(parser, \"Only one key allowed in match expression\");\n        }\n        if (parser.nextToken() != JsonToken.END_OBJECT) {\n            barf(parser, \"Only one key allowed in match expression\");\n        }\n        return pattern;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getCurrentName()",
+      "nextToken()",
+      "getText()"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "suffixEqualsIgnoreCaseMatch(String)"
+    ]
+  },
+  "full_method_info": "private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException {\n    final JsonToken suffixObject = parser.nextToken();\n    if (suffixObject != JsonToken.FIELD_NAME) {\n        barf(parser, \"Suffix expression name not found\");\n    }\n    final String suffixObjectOp = parser.getCurrentName();\n    if (!Constants.EQUALS_IGNORE_CASE.equals(suffixObjectOp)) {\n        barf(parser, \"Unsupported suffix pattern: \" + suffixObjectOp);\n    }\n    final JsonToken suffixEqualsIgnoreCase = parser.nextToken();\n    if (suffixEqualsIgnoreCase != JsonToken.VALUE_STRING) {\n        barf(parser, \"equals-ignore-case match pattern must be a string\");\n    }\n    final Patterns pattern = Patterns.suffixEqualsIgnoreCaseMatch(parser.getText() + '\"');\n    if (parser.nextToken() != JsonToken.END_OBJECT) {\n        barf(parser, \"Only one key allowed in match expression\");\n    }\n    if (parser.nextToken() != JsonToken.END_OBJECT) {\n        barf(parser, \"Only one key allowed in match expression\");\n    }\n    return pattern;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

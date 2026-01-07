@@ -1,0 +1,44 @@
+{
+  "className": "GenericMachine",
+  "methodName": "addRule",
+  "brief": "public void addRule(final T name, final Map<String, List<String>> namevals){}",
+  "methodSignature": "addRule(T, Map)",
+  "sourceCode": "public void addRule(final T name, final Map<String, List<String>> namevals) {\n        final Map<String, List<Patterns>> patternMap = new HashMap<>();\n        for (final Map.Entry<String, List<String>> nameVal : namevals.entrySet()) {\n            patternMap.put(nameVal.getKey(), nameVal.getValue().stream().map(Patterns::exactMatch).\n                    collect(Collectors.toList()));\n        }\n        addPatternRule(name, patternMap);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "T",
+    "Map<String,List<String>>"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "java.util.Map": [
+      "entrySet()",
+      "put(K, V)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.stream.Stream": [
+      "collect(Collector<? super T, A, R>)",
+      "map(Function<? super T, ? extends R>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "java.util.stream.Collectors": [
+      "toList()"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "addPatternRule(T, Patterns>>)"
+    ]
+  },
+  "full_method_info": "/**\n * Add a rule to the machine.  A rule is a set of names, each of which is associated with one or more values.\n *\n * \"synchronized\" here is to ensure that only one thread is updating the machine at any point in time.\n * This method relies on the caller not changing the arguments while it is exiting - but once it has completed,\n *  this library has no dependence on those structures.\n * Multiple rules with the same name may be incrementally added, producing an \"or\" relationship with\n *  relationship with previous namevals added for that name. E.g.\n *   addRule r1  with namevalue {a,[1]}, then call again with r1 {a,[2]}, it will have same effect call addRule with\n *   r1 {a, [1,2]}\n *\n * @param name ARN of the rule\n * @param namevals names and values which make up the rule\n */\npublic void addRule(final T name, final Map<String, List<String>> namevals) {\n    final Map<String, List<Patterns>> patternMap = new HashMap<>();\n    for (final Map.Entry<String, List<String>> nameVal : namevals.entrySet()) {\n        patternMap.put(nameVal.getKey(), nameVal.getValue().stream().map(Patterns::exactMatch).collect(Collectors.toList()));\n    }\n    addPatternRule(name, patternMap);\n}",
+  "method_comment": "\n     * Add a rule to the machine.  A rule is a set of names, each of which is associated with one or more values.\n     *\n     * \"synchronized\" here is to ensure that only one thread is updating the machine at any point in time.\n     * This method relies on the caller not changing the arguments while it is exiting - but once it has completed,\n     *  this library has no dependence on those structures.\n     * Multiple rules with the same name may be incrementally added, producing an \"or\" relationship with\n     *  relationship with previous namevals added for that name. E.g.\n     *   addRule r1  with namevalue {a,[1]}, then call again with r1 {a,[2]}, it will have same effect call addRule with\n     *   r1 {a, [1,2]}\n     *\n     * @param name ARN of the rule\n     * @param namevals names and values which make up the rule\n     ",
+  "method_annotation": ""
+}

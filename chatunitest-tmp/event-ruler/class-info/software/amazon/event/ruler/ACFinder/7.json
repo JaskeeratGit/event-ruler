@@ -1,0 +1,36 @@
+{
+  "className": "ACFinder",
+  "methodName": "addNameState",
+  "brief": "private static void addNameState(Set<SubRuleContext> candidateSubRuleIds, NameState nameState, Patterns pattern,\n                                     ACTask task, int nextKeyIndex, final ArrayMembership arrayMembership,\n                                     final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "addNameState(Set, NameState, Patterns, ACTask, int, ArrayMembership, SubRuleContext.Generator)",
+  "sourceCode": "private static void addNameState(Set<SubRuleContext> candidateSubRuleIds, NameState nameState, Patterns pattern,\n                                     ACTask task, int nextKeyIndex, final ArrayMembership arrayMembership,\n                                     final SubRuleContext.Generator subRuleContextGenerator) {\n        // one of the matches might imply a rule match\n        task.collectRules(candidateSubRuleIds, nameState, pattern, subRuleContextGenerator);\n\n        moveFromWithPriorCandidates(candidateSubRuleIds, nameState, pattern, nextKeyIndex, task, arrayMembership,\n                subRuleContextGenerator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "Patterns",
+    "ACTask",
+    "int",
+    "ArrayMembership",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.ACTask": [
+      "collectRules(SubRuleContext>, NameState, Patterns, Generator)"
+    ],
+    "software.amazon.event.ruler.ArrayMembership": [],
+    "software.amazon.event.ruler.ACFinder": [
+      "moveFromWithPriorCandidates(SubRuleContext>, NameState, Patterns, int, ACTask, ArrayMembership, Generator)"
+    ]
+  },
+  "full_method_info": "private static void addNameState(Set<SubRuleContext> candidateSubRuleIds, NameState nameState, Patterns pattern, ACTask task, int nextKeyIndex, final ArrayMembership arrayMembership, final SubRuleContext.Generator subRuleContextGenerator) {\n    // one of the matches might imply a rule match\n    task.collectRules(candidateSubRuleIds, nameState, pattern, subRuleContextGenerator);\n    moveFromWithPriorCandidates(candidateSubRuleIds, nameState, pattern, nextKeyIndex, task, arrayMembership, subRuleContextGenerator);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

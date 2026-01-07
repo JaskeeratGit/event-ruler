@@ -1,0 +1,31 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "processExistsExpression",
+  "brief": "private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}",
+  "methodSignature": "processExistsExpression(JsonParser)",
+  "sourceCode": "private static Patterns processExistsExpression(final JsonParser parser) throws IOException {\n        final JsonToken existsToken = parser.nextToken();\n        Patterns existsPattern;\n\n        if (existsToken == JsonToken.VALUE_TRUE) {\n            existsPattern = Patterns.existencePatterns();\n        } else if (existsToken == JsonToken.VALUE_FALSE) {\n            existsPattern = Patterns.absencePatterns();\n        } else {\n            barf(parser, \"exists match pattern must be either true or false.\");\n            return null;\n        }\n\n        if (parser.nextToken() != JsonToken.END_OBJECT) {\n            barf(parser, \"Only one key allowed in match expression\");\n            return null;\n        }\n        return existsPattern;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "existencePatterns()",
+      "absencePatterns()"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "barf(JsonParser, String)"
+    ]
+  },
+  "full_method_info": "private static Patterns processExistsExpression(final JsonParser parser) throws IOException {\n    final JsonToken existsToken = parser.nextToken();\n    Patterns existsPattern;\n    if (existsToken == JsonToken.VALUE_TRUE) {\n        existsPattern = Patterns.existencePatterns();\n    } else if (existsToken == JsonToken.VALUE_FALSE) {\n        existsPattern = Patterns.absencePatterns();\n    } else {\n        barf(parser, \"exists match pattern must be either true or false.\");\n        return null;\n    }\n    if (parser.nextToken() != JsonToken.END_OBJECT) {\n        barf(parser, \"Only one key allowed in match expression\");\n        return null;\n    }\n    return existsPattern;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

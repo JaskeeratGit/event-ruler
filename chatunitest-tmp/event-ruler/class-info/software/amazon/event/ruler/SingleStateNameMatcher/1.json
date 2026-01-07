@@ -1,0 +1,24 @@
+{
+  "className": "SingleStateNameMatcher",
+  "methodName": "addPattern",
+  "brief": "@Override\n    public NameState addPattern(@Nonnull final Patterns pattern, final NameState nameState){}",
+  "methodSignature": "addPattern(Patterns, NameState)",
+  "sourceCode": "@Override\n    public NameState addPattern(@Nonnull final Patterns pattern, final NameState nameState) {\n        if (this.nameState == null) {\n            this.nameState = nameState;\n        }\n\n        return this.nameState;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": []
+  },
+  "full_method_info": "@Override\npublic NameState addPattern(@Nonnull final Patterns pattern, final NameState nameState) {\n    if (this.nameState == null) {\n        this.nameState = nameState;\n    }\n    return this.nameState;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

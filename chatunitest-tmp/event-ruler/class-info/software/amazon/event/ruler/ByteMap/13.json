@@ -1,0 +1,28 @@
+{
+  "className": "ByteMap",
+  "methodName": "getTransitions",
+  "brief": "Set<ByteTransition> getTransitions(){}",
+  "methodSignature": "getTransitions()",
+  "sourceCode": "Set<ByteTransition> getTransitions() {\n        Set<ByteTransition> result = new HashSet<>(map.values().size());\n        for (ByteTransition transition : map.values()) {\n            if (transition != null) {\n                result.add(transition);\n            }\n        }\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "size()"
+    ],
+    "java.util.SortedMap": [
+      "values()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Get all transitions contained in this map, whether they are single or compound transitions.\n *\n * @return All transitions contained in this map.\n */\nSet<ByteTransition> getTransitions() {\n    Set<ByteTransition> result = new HashSet<>(map.values().size());\n    for (ByteTransition transition : map.values()) {\n        if (transition != null) {\n            result.add(transition);\n        }\n    }\n    return result;\n}",
+  "method_comment": "\n     * Get all transitions contained in this map, whether they are single or compound transitions.\n     *\n     * @return All transitions contained in this map.\n     ",
+  "method_annotation": ""
+}

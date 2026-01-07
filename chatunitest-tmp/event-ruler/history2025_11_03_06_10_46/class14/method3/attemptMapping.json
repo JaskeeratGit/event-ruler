@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "InputByte_equals_3_0_Test",
+    "fullName": "software.amazon.event.ruler.input.InputByte_equals_3_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputByte_equals_3_0_Test.java",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "equals",
+    "methodSig": "equals(Object)"
+  },
+  "attempt1": {
+    "testClassName": "InputByte_equals_3_1_Test",
+    "fullName": "software.amazon.event.ruler.input.InputByte_equals_3_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputByte_equals_3_0_Test.java",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "equals",
+    "methodSig": "equals(Object)"
+  },
+  "attempt2": {
+    "testClassName": "InputByte_equals_3_2_Test",
+    "fullName": "software.amazon.event.ruler.input.InputByte_equals_3_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputByte_equals_3_0_Test.java",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "equals",
+    "methodSig": "equals(Object)"
+  },
+  "attempt3": {
+    "testClassName": "InputByte_equals_3_3_Test",
+    "fullName": "software.amazon.event.ruler.input.InputByte_equals_3_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputByte_equals_3_0_Test.java",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "equals",
+    "methodSig": "equals(Object)"
+  },
+  "attempt4": {
+    "testClassName": "InputByte_equals_3_4_Test",
+    "fullName": "software.amazon.event.ruler.input.InputByte_equals_3_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputByte_equals_3_0_Test.java",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "equals",
+    "methodSig": "equals(Object)"
+  }
+}

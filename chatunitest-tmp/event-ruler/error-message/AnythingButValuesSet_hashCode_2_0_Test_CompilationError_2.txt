@@ -1,0 +1,107 @@
+package software.amazon.event.ruler;
+
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.Collections;
+import java.util.Objects;
+
+public class AnythingButValuesSet_hashCode_2_0_Test {
+
+    private AnythingButValuesSet createInstance(Set<String> values) throws Exception {
+        // Obtain MatchType class and a non-null instance if possible
+        Class<?> matchTypeClass = Class.forName("software.amazon.event.ruler.MatchType");
+        Object matchTypeInstance = null;
+        if (matchTypeClass.isEnum()) {
+            Object[] constants = matchTypeClass.getEnumConstants();
+            if (constants != null && constants.length > 0) {
+                matchTypeInstance = constants[0];
+            }
+        }
+        if (matchTypeInstance == null) {
+            try {
+                matchTypeInstance = matchTypeClass.getDeclaredConstructor().newInstance();
+            } catch (NoSuchMethodException ignored) {
+                // leave null if no accessible constructor
+            }
+        }
+        Constructor<?> ctor = AnythingButValuesSet.class.getDeclaredConstructor(matchTypeClass, Set.class);
+        ctor.setAccessible(true);
+        return (AnythingButValuesSet) ctor.newInstance(matchTypeInstance, values);
+    }
+
+    private int getSuperHash(Object instance) {
+        // Try to call Object.hashCode() as a special (super) method. If not possible, fall back to System.identityHashCode.
+        try {
+            MethodHandles.Lookup lookup = MethodHandles.privateLookupIn(AnythingButValuesSet.class, MethodHandles.lookup());
+            MethodHandle mh = lookup.findSpecial(Object.class, "hashCode", MethodType.methodType(int.class), AnythingButValuesSet.class);
+            return (int) mh.invoke(instance);
+        } catch (Throwable t) {
+            return System.identityHashCode(instance);
+        }
+    }
+
+    @Test
+    public void hashCode_whenValuesIsNull_usesSuperAndZeroForValues() throws Exception {
+        // Create instance with a non-null set first to avoid possible constructor null checks, then set field to null
+        Set<String> placeholder = new HashSet<>();
+        AnythingButValuesSet instance = createInstance(placeholder);
+        // Set the private 'values' field to null to simulate the null case
+        Field valuesField = AnythingButValuesSet.class.getDeclaredField("values");
+        valuesField.setAccessible(true);
+        valuesField.set(instance, null);
+        Method hashCodeMethod = AnythingButValuesSet.class.getDeclaredMethod("hashCode");
+        hashCodeMethod.setAccessible(true);
+        int actual = (Integer) hashCodeMethod.invoke(instance);
+        int valuesHash = 0;
+        int superHash = getSuperHash(instance);
+        int expected = 31 * superHash + valuesHash;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void hashCode_whenValuesIsNonNull_includesValuesHash() throws Exception {
+        Set<String> supplied = new HashSet<>(Arrays.asList("alpha", "beta", "gamma"));
+        AnythingButValuesSet instance = createInstance(supplied);
+        Method hashCodeMethod = AnythingButValuesSet.class.getDeclaredMethod("hashCode");
+        hashCodeMethod.setAccessible(true);
+        int actual = (Integer) hashCodeMethod.invoke(instance);
+        // Use public getter to obtain internal set (as specified)
+        Set<String> internalValues = instance.getValues();
+        int valuesHash = internalValues != null ? internalValues.hashCode() : 0;
+        int superHash = getSuperHash(instance);
+        int expected = 31 * superHash + valuesHash;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void hashCode_withEmptyValues_setHashIsUsed() throws Exception {
+        Set<String> empty = new HashSet<>();
+        AnythingButValuesSet instance = createInstance(empty);
+        Method hashCodeMethod = AnythingButValuesSet.class.getDeclaredMethod("hashCode");
+        hashCodeMethod.setAccessible(true);
+        int actual = (Integer) hashCodeMethod.invoke(instance);
+        Set<String> internalValues = instance.getValues();
+        int valuesHash = internalValues != null ? internalValues.hashCode() : 0;
+        int superHash = getSuperHash(instance);
+        int expected = 31 * superHash + valuesHash;
+        assertEquals(expected, actual);
+    }
+}
+
+--------------------------------------------
+Error in AnythingButValuesSet_hashCode_2_0_Test: line 48 : cannot find symbol
+  symbol:   method privateLookupIn(java.lang.Class<software.amazon.event.ruler.AnythingButValuesSet>,java.lang.invoke.MethodHandles.Lookup)
+  location: class java.lang.invoke.MethodHandles

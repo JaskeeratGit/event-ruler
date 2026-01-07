@@ -1,0 +1,25 @@
+{
+  "className": "ByteMachine",
+  "methodName": "reverseBytesList",
+  "brief": "private byte[] reverseBytesList(List<Byte> bytesList){}",
+  "methodSignature": "reverseBytesList(List)",
+  "sourceCode": "private byte[] reverseBytesList(List<Byte> bytesList) {\n        byte[] byteArray = new byte[bytesList.size()];\n        for (int i = 0; i < bytesList.size(); i++) {\n            byteArray[bytesList.size() - i - 1] = bytesList.get(i);\n        }\n        return byteArray;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Byte>"
+  ],
+  "dependentMethods": {
+    "java.util.List": [
+      "get(int)",
+      "size()"
+    ]
+  },
+  "full_method_info": "private byte[] reverseBytesList(List<Byte> bytesList) {\n    byte[] byteArray = new byte[bytesList.size()];\n    for (int i = 0; i < bytesList.size(); i++) {\n        byteArray[bytesList.size() - i - 1] = bytesList.get(i);\n    }\n    return byteArray;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

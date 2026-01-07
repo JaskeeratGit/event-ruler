@@ -1,0 +1,38 @@
+{
+  "className": "ComparableNumber",
+  "methodName": "generate",
+  "brief": "static String generate(final String str){}",
+  "methodSignature": "generate(String)",
+  "sourceCode": "static String generate(final String str) {\n        final BigDecimal bigDecimal = JavaBigDecimalParser.parseBigDecimal(str);\n        final double doubleValue = bigDecimal.doubleValue();\n\n        // make sure we have the comparable numbers and haven't eaten up decimals values\n        if(Double.isNaN(doubleValue) || Double.isInfinite(doubleValue) ||\n                BigDecimal.valueOf(doubleValue).compareTo(bigDecimal) != 0) {\n            throw new IllegalArgumentException(\"Cannot compare number : \" + str);\n        }\n        final long bits = Double.doubleToRawLongBits(doubleValue);\n\n        // https://github.com/aws/event-ruler/pull/188/files#r1769199522\n        // https://mastodon.online/@raph/113071041069390831\n        // if high bit is 0, we want to xor with sign bit 1 << 63, else negate (xor with ^0). Meaning,\n        // bits >= 0, mask = 1000000000000000000000000000000000000000000000000000000000000000\n        // bits < 0,  mask = 1111111111111111111111111111111111111111111111111111111111111111\n        final  long mask = (bits >> 63) | (1L  << 63);\n        return numbits(bits ^ mask );\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "ch.randelshofer.fastdoubleparser.JavaBigDecimalParser": [
+      "parseBigDecimal(CharSequence)"
+    ],
+    "java.math.BigDecimal": [
+      "doubleValue()",
+      "compareTo(BigDecimal)",
+      "valueOf(double)"
+    ],
+    "java.lang.Double": [
+      "doubleToRawLongBits(double)",
+      "isInfinite(double)",
+      "isNaN(double)"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "numbits(long)"
+    ]
+  },
+  "full_method_info": "/**\n * Generates a comparable number string from a given string representation\n * using numbits representation.\n *\n * @param str the string representation of the number\n * @return the comparable number string\n * @throws NumberFormatException if the input isn't a number\n * @throws IllegalArgumentException if the input isn't a number we can compare\n */\nstatic String generate(final String str) {\n    final BigDecimal bigDecimal = JavaBigDecimalParser.parseBigDecimal(str);\n    final double doubleValue = bigDecimal.doubleValue();\n    // make sure we have the comparable numbers and haven't eaten up decimals values\n    if (Double.isNaN(doubleValue) || Double.isInfinite(doubleValue) || BigDecimal.valueOf(doubleValue).compareTo(bigDecimal) != 0) {\n        throw new IllegalArgumentException(\"Cannot compare number : \" + str);\n    }\n    final long bits = Double.doubleToRawLongBits(doubleValue);\n    // https://github.com/aws/event-ruler/pull/188/files#r1769199522\n    // https://mastodon.online/@raph/113071041069390831\n    // if high bit is 0, we want to xor with sign bit 1 << 63, else negate (xor with ^0). Meaning,\n    // bits >= 0, mask = 1000000000000000000000000000000000000000000000000000000000000000\n    // bits < 0,  mask = 1111111111111111111111111111111111111111111111111111111111111111\n    final long mask = (bits >> 63) | (1L << 63);\n    return numbits(bits ^ mask);\n}",
+  "method_comment": "\n     * Generates a comparable number string from a given string representation\n     * using numbits representation.\n     *\n     * @param str the string representation of the number\n     * @return the comparable number string\n     * @throws NumberFormatException if the input isn't a number\n     * @throws IllegalArgumentException if the input isn't a number we can compare\n     ",
+  "method_annotation": ""
+}

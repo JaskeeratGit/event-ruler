@@ -1,0 +1,30 @@
+{
+  "className": "Ruler",
+  "methodName": "matchesRule",
+  "brief": "public static boolean matchesRule(final String event, final String rule) throws Exception{}",
+  "methodSignature": "matchesRule(String, String)",
+  "sourceCode": "public static boolean matchesRule(final String event, final String rule) throws Exception {\n        Machine machine = new Machine();\n        machine.addRule(\"rule\", rule);\n        return !machine.rulesForJSONEvent(event).isEmpty();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.GenericMachine": [
+      "addRule(T, String)",
+      "rulesForJSONEvent(String)"
+    ],
+    "java.util.List": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "/**\n * Return true if an event matches the provided rule. This is a thin wrapper around\n * rule machine and `rulesForJSONEvent` method.\n *\n * @param event The event, in JSON form\n * @param rule The rule, in JSON form\n * @return true or false depending on whether the rule matches the event\n */\npublic static boolean matchesRule(final String event, final String rule) throws Exception {\n    Machine machine = new Machine();\n    machine.addRule(\"rule\", rule);\n    return !machine.rulesForJSONEvent(event).isEmpty();\n}",
+  "method_comment": "\n     * Return true if an event matches the provided rule. This is a thin wrapper around\n     * rule machine and `rulesForJSONEvent` method.\n     *\n     * @param event The event, in JSON form\n     * @param rule The rule, in JSON form\n     * @return true or false depending on whether the rule matches the event\n     ",
+  "method_annotation": ""
+}

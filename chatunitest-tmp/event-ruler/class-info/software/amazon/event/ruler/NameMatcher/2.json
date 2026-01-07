@@ -1,0 +1,22 @@
+{
+  "className": "NameMatcher",
+  "methodName": "deletePattern",
+  "brief": "void deletePattern(@Nonnull Patterns pattern);",
+  "methodSignature": "deletePattern(Patterns)",
+  "sourceCode": "void deletePattern(@Nonnull Patterns pattern);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": []
+  },
+  "full_method_info": "/**\n * Removes the given pattern from this name matcher.\n *\n * @param pattern the pattern to be deleted\n */\nvoid deletePattern(@Nonnull Patterns pattern);",
+  "method_comment": "\n     * Removes the given pattern from this name matcher.\n     *\n     * @param pattern the pattern to be deleted\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,42 @@
+{
+  "className": "ByteMachine",
+  "methodName": "deleteMatchStep",
+  "brief": "private void deleteMatchStep(ByteState byteState, int charIndex, Patterns pattern,\n                                 final InputCharacter[] characters){}",
+  "methodSignature": "deleteMatchStep(ByteState, int, Patterns, InputCharacter[])",
+  "sourceCode": "private void deleteMatchStep(ByteState byteState, int charIndex, Patterns pattern,\n                                 final InputCharacter[] characters) {\n        final InputCharacter currentChar = characters[charIndex];\n        final ByteTransition trans = getTransition(byteState, currentChar);\n\n        for (SingleByteTransition eachTrans : trans.expand()) {\n            if (charIndex < characters.length - 1) {\n                // if it is shortcut trans, we delete it directly.\n                if (eachTrans.isShortcutTrans()) {\n                    deleteMatch(currentChar, byteState, pattern, eachTrans);\n                } else {\n                    ByteState nextByteState = eachTrans.getNextByteState();\n                    if (nextByteState != null && nextByteState != byteState) {\n                        deleteMatchStep(nextByteState, charIndex + 1, pattern, characters);\n                    }\n\n                    // Perform handling for certain wildcard cases.\n                    eachTrans = deleteMatchStepForWildcard(byteState, charIndex, pattern, characters, eachTrans,\n                            nextByteState);\n\n                    if (nextByteState != null &&\n                            (nextByteState.hasNoTransitions() || nextByteState.hasOnlySelfReferentialTransition())) {\n                        // The transition's next state has no meaningful transitions, so compact the transition.\n                        putTransitionNextState(byteState, currentChar, eachTrans, null);\n                    }\n                }\n            } else {\n                deleteMatch(currentChar, byteState, pattern, eachTrans);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "int",
+    "Patterns",
+    "InputCharacter[]"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "hasNoTransitions()",
+      "hasOnlySelfReferentialTransition()"
+    ],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "putTransitionNextState(ByteState, InputCharacter, SingleByteTransition, ByteState)",
+      "deleteMatchStepForWildcard(ByteState, int, Patterns, InputCharacter[], SingleByteTransition, ByteState)",
+      "deleteMatch(InputCharacter, ByteState, Patterns, SingleByteTransition)",
+      "deleteMatchStep(ByteState, int, Patterns, InputCharacter[])",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "isShortcutTrans()",
+      "getNextByteState()"
+    ]
+  },
+  "full_method_info": "private void deleteMatchStep(ByteState byteState, int charIndex, Patterns pattern, final InputCharacter[] characters) {\n    final InputCharacter currentChar = characters[charIndex];\n    final ByteTransition trans = getTransition(byteState, currentChar);\n    for (SingleByteTransition eachTrans : trans.expand()) {\n        if (charIndex < characters.length - 1) {\n            // if it is shortcut trans, we delete it directly.\n            if (eachTrans.isShortcutTrans()) {\n                deleteMatch(currentChar, byteState, pattern, eachTrans);\n            } else {\n                ByteState nextByteState = eachTrans.getNextByteState();\n                if (nextByteState != null && nextByteState != byteState) {\n                    deleteMatchStep(nextByteState, charIndex + 1, pattern, characters);\n                }\n                // Perform handling for certain wildcard cases.\n                eachTrans = deleteMatchStepForWildcard(byteState, charIndex, pattern, characters, eachTrans, nextByteState);\n                if (nextByteState != null && (nextByteState.hasNoTransitions() || nextByteState.hasOnlySelfReferentialTransition())) {\n                    // The transition's next state has no meaningful transitions, so compact the transition.\n                    putTransitionNextState(byteState, currentChar, eachTrans, null);\n                }\n            }\n        } else {\n            deleteMatch(currentChar, byteState, pattern, eachTrans);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "Range",
+  "methodName": "between",
+  "brief": "public static Range between(final String bottom, final boolean openBottom, final String top, final boolean openTop){}",
+  "methodSignature": "between(String, boolean, String, boolean)",
+  "sourceCode": "public static Range between(final String bottom, final boolean openBottom, final String top, final boolean openTop) {\n        byte[] byteBottom = stringToComparableBytes(bottom);\n        byte[] byteTops = stringToComparableBytes(top);\n        ensureValidRange(byteBottom, byteTops);\n        return new Range(byteBottom, openBottom, byteTops, openTop, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.Range": [
+      "stringToComparableBytes(String)",
+      "ensureValidRange(byte[], byte[])"
+    ]
+  },
+  "full_method_info": "public static Range between(final String bottom, final boolean openBottom, final String top, final boolean openTop) {\n    byte[] byteBottom = stringToComparableBytes(bottom);\n    byte[] byteTops = stringToComparableBytes(top);\n    ensureValidRange(byteBottom, byteTops);\n    return new Range(byteBottom, openBottom, byteTops, openTop, false);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

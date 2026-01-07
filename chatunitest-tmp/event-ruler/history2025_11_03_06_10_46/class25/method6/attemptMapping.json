@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "CIDR_cidr_6_0_Test",
+    "fullName": "software.amazon.event.ruler.CIDR_cidr_6_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/CIDR_cidr_6_0_Test.java",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "cidr",
+    "methodSig": "cidr(String)"
+  },
+  "attempt1": {
+    "testClassName": "CIDR_cidr_6_1_Test",
+    "fullName": "software.amazon.event.ruler.CIDR_cidr_6_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/CIDR_cidr_6_0_Test.java",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "cidr",
+    "methodSig": "cidr(String)"
+  },
+  "attempt2": {
+    "testClassName": "CIDR_cidr_6_2_Test",
+    "fullName": "software.amazon.event.ruler.CIDR_cidr_6_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/CIDR_cidr_6_0_Test.java",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "cidr",
+    "methodSig": "cidr(String)"
+  },
+  "attempt3": {
+    "testClassName": "CIDR_cidr_6_3_Test",
+    "fullName": "software.amazon.event.ruler.CIDR_cidr_6_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/CIDR_cidr_6_0_Test.java",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "cidr",
+    "methodSig": "cidr(String)"
+  },
+  "attempt4": {
+    "testClassName": "CIDR_cidr_6_4_Test",
+    "fullName": "software.amazon.event.ruler.CIDR_cidr_6_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/CIDR_cidr_6_0_Test.java",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "cidr",
+    "methodSig": "cidr(String)"
+  }
+}

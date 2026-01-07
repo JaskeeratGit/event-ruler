@@ -1,0 +1,34 @@
+{
+  "className": "CompoundByteTransition",
+  "methodName": "getTransition",
+  "brief": "@Override\n    public ByteTransition getTransition(byte utf8byte){}",
+  "methodSignature": "getTransition(byte)",
+  "sourceCode": "@Override\n    public ByteTransition getTransition(byte utf8byte) {\n        Set<SingleByteTransition> singles = new HashSet<>();\n        for (SingleByteTransition transition : this.byteTransitions) {\n            ByteTransition nextTransition = transition.getTransition(utf8byte);\n            if (nextTransition != null) {\n                nextTransition.expand().forEach(t -> singles.add(t));\n            }\n        }\n        return coalesce(singles);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getTransition(byte)"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.CompoundByteTransition": [
+      "coalesce(SingleByteTransition>)"
+    ]
+  },
+  "full_method_info": "/**\n * Get the next transition for a UTF-8 byte given all of the transitions that have been simultaneously traversed.\n *\n * @param utf8byte The byte to transition on\n * @return Null if there are no transitions, the actual transition if 1, or a CompoundByteTransition if 2+\n */\n@Override\npublic ByteTransition getTransition(byte utf8byte) {\n    Set<SingleByteTransition> singles = new HashSet<>();\n    for (SingleByteTransition transition : this.byteTransitions) {\n        ByteTransition nextTransition = transition.getTransition(utf8byte);\n        if (nextTransition != null) {\n            nextTransition.expand().forEach(t -> singles.add(t));\n        }\n    }\n    return coalesce(singles);\n}",
+  "method_comment": "\n     * Get the next transition for a UTF-8 byte given all of the transitions that have been simultaneously traversed.\n     *\n     * @param utf8byte The byte to transition on\n     * @return Null if there are no transitions, the actual transition if 1, or a CompoundByteTransition if 2+\n     ",
+  "method_annotation": "@Override\n"
+}

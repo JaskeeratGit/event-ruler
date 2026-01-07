@@ -1,0 +1,25 @@
+{
+  "className": "EqualsIgnoreCaseParser",
+  "methodName": "parse",
+  "brief": "public InputCharacter[] parse(String value){}",
+  "methodSignature": "parse(String)",
+  "sourceCode": "public InputCharacter[] parse(String value) {\n        return parse(value, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.input.EqualsIgnoreCaseParser": [
+      "parse(String, boolean)"
+    ]
+  },
+  "full_method_info": "public InputCharacter[] parse(String value) {\n    return parse(value, false);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

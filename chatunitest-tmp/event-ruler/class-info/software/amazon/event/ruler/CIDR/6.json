@@ -1,0 +1,34 @@
+{
+  "className": "CIDR",
+  "methodName": "cidr",
+  "brief": "public static Range cidr(String cidr) throws IllegalArgumentException{}",
+  "methodSignature": "cidr(String)",
+  "sourceCode": "public static Range cidr(String cidr) throws IllegalArgumentException {\n\n        String[] slashed = cidr.split(\"/\");\n        if (slashed.length != 2) {\n            barf(\"Malformed CIDR, one '/' required\");\n        }\n        int maskBits = -1;\n        try {\n            maskBits = Integer.parseInt(slashed[1]);\n        } catch (NumberFormatException e) {\n            barf(\"Malformed CIDR, mask bits must be an integer\");\n        }\n        if (maskBits < 0) {\n            barf(\"Malformed CIDR, mask bits must not be negative\");\n        }\n\n        byte[] providedIp = ipToBytes(slashed[0]);\n        if (providedIp.length == 4) {\n            if (maskBits > 31) {\n                barf(\"IPv4 mask bits must be < 32\");\n            }\n        } else {\n            if (maskBits > 127) {\n                barf(\"IPv6 mask bits must be < 128\");\n            }\n        }\n\n        byte[] minBytes = computeBottomBytes(providedIp, maskBits);\n        byte[] maxBytes = computeTopBytes(providedIp, maskBits);\n        return new Range(toHexDigits(minBytes), false, toHexDigits(maxBytes), false, true);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "split(String)"
+    ],
+    "software.amazon.event.ruler.CIDR": [
+      "computeTopBytes(byte[], int)",
+      "ipToBytes(String)",
+      "barf(String)",
+      "computeBottomBytes(byte[], int)",
+      "toHexDigits(byte[])"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String)"
+    ]
+  },
+  "full_method_info": "public static Range cidr(String cidr) throws IllegalArgumentException {\n    String[] slashed = cidr.split(\"/\");\n    if (slashed.length != 2) {\n        barf(\"Malformed CIDR, one '/' required\");\n    }\n    int maskBits = -1;\n    try {\n        maskBits = Integer.parseInt(slashed[1]);\n    } catch (NumberFormatException e) {\n        barf(\"Malformed CIDR, mask bits must be an integer\");\n    }\n    if (maskBits < 0) {\n        barf(\"Malformed CIDR, mask bits must not be negative\");\n    }\n    byte[] providedIp = ipToBytes(slashed[0]);\n    if (providedIp.length == 4) {\n        if (maskBits > 31) {\n            barf(\"IPv4 mask bits must be < 32\");\n        }\n    } else {\n        if (maskBits > 127) {\n            barf(\"IPv6 mask bits must be < 128\");\n        }\n    }\n    byte[] minBytes = computeBottomBytes(providedIp, maskBits);\n    byte[] maxBytes = computeTopBytes(providedIp, maskBits);\n    return new Range(toHexDigits(minBytes), false, toHexDigits(maxBytes), false, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

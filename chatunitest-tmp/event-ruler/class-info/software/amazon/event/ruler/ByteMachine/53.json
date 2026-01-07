@@ -1,0 +1,25 @@
+{
+  "className": "ByteMachine",
+  "methodName": "getTransition",
+  "brief": "private static ByteTransition getTransition(ByteTransition trans, byte b){}",
+  "methodSignature": "getTransition(ByteTransition, byte)",
+  "sourceCode": "private static ByteTransition getTransition(ByteTransition trans, byte b) {\n        ByteTransition nextTrans = trans.getTransition(b);\n        return nextTrans == null ? EmptyByteTransition.INSTANCE : nextTrans;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteTransition",
+    "byte"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "getTransition(byte)"
+    ]
+  },
+  "full_method_info": "private static ByteTransition getTransition(ByteTransition trans, byte b) {\n    ByteTransition nextTrans = trans.getTransition(b);\n    return nextTrans == null ? EmptyByteTransition.INSTANCE : nextTrans;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

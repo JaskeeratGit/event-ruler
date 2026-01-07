@@ -1,0 +1,128 @@
+{
+  "method0": {
+    "methodName": "lessThan",
+    "signature": "lessThan(String)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "lessThanOrEqualTo",
+    "signature": "lessThanOrEqualTo(String)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method10": {
+    "methodName": "digitSequence",
+    "signature": "digitSequence(byte, byte, boolean, boolean, boolean)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method11": {
+    "methodName": "digitSequence",
+    "signature": "digitSequence(byte, byte, boolean, boolean, byte[], Function)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method12": {
+    "methodName": "getHexByteIndex",
+    "signature": "getHexByteIndex(byte)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method13": {
+    "methodName": "clone",
+    "signature": "clone()",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method14": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method15": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method16": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method17": {
+    "methodName": "doubleToComparableBytes",
+    "signature": "doubleToComparableBytes(double)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method18": {
+    "methodName": "stringToComparableBytes",
+    "signature": "stringToComparableBytes(String)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method19": {
+    "methodName": "Range",
+    "signature": "Range(byte[], boolean, byte[], boolean, boolean)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "greaterThan",
+    "signature": "greaterThan(String)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method20": {
+    "methodName": "Range",
+    "signature": "Range(Range)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "greaterThanOrEqualTo",
+    "signature": "greaterThanOrEqualTo(String)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "between",
+    "signature": "between(String, boolean, String, boolean)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method5": {
+    "methodName": "between",
+    "signature": "between(byte[], boolean, byte[], boolean)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method6": {
+    "methodName": "deepCopy",
+    "signature": "deepCopy(Range)",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method7": {
+    "methodName": "ensureValidRange",
+    "signature": "ensureValidRange(byte[], byte[])",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method8": {
+    "methodName": "maxDigit",
+    "signature": "maxDigit()",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method9": {
+    "methodName": "minDigit",
+    "signature": "minDigit()",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

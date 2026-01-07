@@ -1,0 +1,33 @@
+{
+  "className": "Event",
+  "methodName": "recordNameVal",
+  "brief": "static void recordNameVal(final Map<String, List<String>> map, final Stack<String> path, final String val){}",
+  "methodSignature": "recordNameVal(Map, Stack, String)",
+  "sourceCode": "static void recordNameVal(final Map<String, List<String>> map, final Stack<String> path, final String val) {\n        final String key = pathName(path);\n        List<String> vals = map.computeIfAbsent(key, k -> new ArrayList<>());\n\n        vals.add(val);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<String,List<String>>",
+    "Stack<String>",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.Event": [
+      "pathName(String>)"
+    ],
+    "java.util.Map": [
+      "computeIfAbsent(K, Function<? super K, ? extends V>)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "static void recordNameVal(final Map<String, List<String>> map, final Stack<String> path, final String val) {\n    final String key = pathName(path);\n    List<String> vals = map.computeIfAbsent(key, k -> new ArrayList<>());\n    vals.add(val);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

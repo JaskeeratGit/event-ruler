@@ -1,0 +1,55 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "processAnythingButValuesSetSingleValueMatchExpression",
+  "brief": "private static Patterns processAnythingButValuesSetSingleValueMatchExpression(JsonParser parser,\n                JsonToken anythingButExpressionToken, MatchType matchType) throws IOException{}",
+  "methodSignature": "processAnythingButValuesSetSingleValueMatchExpression(JsonParser, JsonToken, MatchType)",
+  "sourceCode": "private static Patterns processAnythingButValuesSetSingleValueMatchExpression(JsonParser parser,\n                JsonToken anythingButExpressionToken, MatchType matchType) throws IOException {\n        Set<String> values = new HashSet<>();\n        switch (anythingButExpressionToken) {\n            case VALUE_STRING:\n                String text = parser.getText();\n                if ((matchType == MatchType.ANYTHING_BUT_PREFIX || matchType ==  MatchType.ANYTHING_BUT_SUFFIX)\n                        && text.isEmpty()) {\n                    barf(parser, \"Null prefix/suffix not allowed\");\n                }\n                values.add(generateValueBasedOnMatchType(text, matchType));\n                break;\n            default:\n                if (matchType == MatchType.ANYTHING_BUT_IGNORE_CASE) {\n                    barf(parser, \"Inside anything-but/equals-ignore-case list, number|start|null|boolean is not supported.\");\n                } else if (matchType == MatchType.ANYTHING_BUT_WILDCARD) {\n                    barf(parser, \"wildcard match pattern must be a string\");\n                } else {\n                    barf(parser, \"prefix/suffix match pattern must be a string\");\n                }\n        }\n\n        switch (matchType) {\n            case ANYTHING_BUT_IGNORE_CASE: return Patterns.anythingButIgnoreCaseMatch(values);\n            case ANYTHING_BUT_PREFIX: return Patterns.anythingButPrefix(values);\n            case ANYTHING_BUT_SUFFIX: return Patterns.anythingButSuffix(values);\n            case ANYTHING_BUT_WILDCARD:\n                try {\n                    getParser().parse(MatchType.ANYTHING_BUT_WILDCARD, values.iterator().next());\n                } catch (ParseException e) {\n                    barf(parser, e.getLocalizedMessage());\n                }\n                return Patterns.anythingButWildcard(values);\n            // Not barfing as this is a code bug rather than bad JSON.\n            default: throw new IllegalArgumentException(\"processAnythingButValuesSetSingleValueMatchExpression received invalid matchType of \" + matchType);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "JsonToken",
+    "MatchType"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getText()"
+    ],
+    "com.fasterxml.jackson.core.JsonToken": [],
+    "software.amazon.event.ruler.MatchType": [],
+    "java.lang.String": [
+      "isEmpty()"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "generateValueBasedOnMatchType(String, MatchType)",
+      "barf(JsonParser, String)"
+    ],
+    "java.util.Set": [
+      "iterator()",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "anythingButIgnoreCaseMatch(String>)",
+      "anythingButPrefix(String>)",
+      "anythingButWildcard(String>)",
+      "anythingButSuffix(String>)"
+    ],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(MatchType, String)"
+    ],
+    "java.util.Iterator": [
+      "next()"
+    ],
+    "java.lang.Throwable": [
+      "getLocalizedMessage()"
+    ]
+  },
+  "full_method_info": "private static Patterns processAnythingButValuesSetSingleValueMatchExpression(JsonParser parser, JsonToken anythingButExpressionToken, MatchType matchType) throws IOException {\n    Set<String> values = new HashSet<>();\n    switch(anythingButExpressionToken) {\n        case VALUE_STRING:\n            String text = parser.getText();\n            if ((matchType == MatchType.ANYTHING_BUT_PREFIX || matchType == MatchType.ANYTHING_BUT_SUFFIX) && text.isEmpty()) {\n                barf(parser, \"Null prefix/suffix not allowed\");\n            }\n            values.add(generateValueBasedOnMatchType(text, matchType));\n            break;\n        default:\n            if (matchType == MatchType.ANYTHING_BUT_IGNORE_CASE) {\n                barf(parser, \"Inside anything-but/equals-ignore-case list, number|start|null|boolean is not supported.\");\n            } else if (matchType == MatchType.ANYTHING_BUT_WILDCARD) {\n                barf(parser, \"wildcard match pattern must be a string\");\n            } else {\n                barf(parser, \"prefix/suffix match pattern must be a string\");\n            }\n    }\n    switch(matchType) {\n        case ANYTHING_BUT_IGNORE_CASE:\n            return Patterns.anythingButIgnoreCaseMatch(values);\n        case ANYTHING_BUT_PREFIX:\n            return Patterns.anythingButPrefix(values);\n        case ANYTHING_BUT_SUFFIX:\n            return Patterns.anythingButSuffix(values);\n        case ANYTHING_BUT_WILDCARD:\n            try {\n                getParser().parse(MatchType.ANYTHING_BUT_WILDCARD, values.iterator().next());\n            } catch (ParseException e) {\n                barf(parser, e.getLocalizedMessage());\n            }\n            return Patterns.anythingButWildcard(values);\n        // Not barfing as this is a code bug rather than bad JSON.\n        default:\n            throw new IllegalArgumentException(\"processAnythingButValuesSetSingleValueMatchExpression received invalid matchType of \" + matchType);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Patterns_anythingButIgnoreCaseMatch_11_0_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButIgnoreCaseMatch_11_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButIgnoreCaseMatch_11_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButIgnoreCaseMatch",
+    "methodSig": "anythingButIgnoreCaseMatch(String)"
+  },
+  "attempt1": {
+    "testClassName": "Patterns_anythingButIgnoreCaseMatch_11_1_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButIgnoreCaseMatch_11_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButIgnoreCaseMatch_11_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButIgnoreCaseMatch",
+    "methodSig": "anythingButIgnoreCaseMatch(String)"
+  },
+  "attempt2": {
+    "testClassName": "Patterns_anythingButIgnoreCaseMatch_11_2_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButIgnoreCaseMatch_11_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButIgnoreCaseMatch_11_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButIgnoreCaseMatch",
+    "methodSig": "anythingButIgnoreCaseMatch(String)"
+  },
+  "attempt3": {
+    "testClassName": "Patterns_anythingButIgnoreCaseMatch_11_3_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButIgnoreCaseMatch_11_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButIgnoreCaseMatch_11_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButIgnoreCaseMatch",
+    "methodSig": "anythingButIgnoreCaseMatch(String)"
+  },
+  "attempt4": {
+    "testClassName": "Patterns_anythingButIgnoreCaseMatch_11_4_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_anythingButIgnoreCaseMatch_11_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_anythingButIgnoreCaseMatch_11_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "anythingButIgnoreCaseMatch",
+    "methodSig": "anythingButIgnoreCaseMatch(String)"
+  }
+}

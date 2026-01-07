@@ -1,0 +1,24 @@
+{
+  "className": "IntIntMap",
+  "methodName": "makeTable",
+  "brief": "private static long[] makeTable(final int capacity){}",
+  "methodSignature": "makeTable(int)",
+  "sourceCode": "private static long[] makeTable(final int capacity) {\n        long[] result = new long[capacity];\n        Arrays.fill(result, EMPTY_CELL);\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.util.Arrays": [
+      "fill(long[], long)"
+    ]
+  },
+  "full_method_info": "private static long[] makeTable(final int capacity) {\n    long[] result = new long[capacity];\n    Arrays.fill(result, EMPTY_CELL);\n    return result;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

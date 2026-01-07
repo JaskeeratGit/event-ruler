@@ -1,0 +1,35 @@
+{
+  "className": "NameState",
+  "methodName": "deleteSubRule",
+  "brief": "boolean deleteSubRule(final Object rule, final SubRuleContext subRuleId, final Patterns pattern, final boolean isTerminal){}",
+  "methodSignature": "deleteSubRule(Object, SubRuleContext, Patterns, boolean)",
+  "sourceCode": "boolean deleteSubRule(final Object rule, final SubRuleContext subRuleId, final Patterns pattern, final boolean isTerminal) {\n        deleteFromPatternToSetMap(patternToRules, pattern, rule);\n        Map<Patterns, ?> patternToSubRules = isTerminal ? patternToTerminalSubRuleIds : patternToNonTerminalSubRuleIds;\n        boolean deleted = deleteFromPatternToSetMap(patternToSubRules, pattern, subRuleId);\n        if (deleted) {\n            Integer count = subRuleIdToCount.get(subRuleId);\n            if (count == 1) {\n                subRuleIdToCount.remove(subRuleId);\n            } else {\n                subRuleIdToCount.put(subRuleId, count - 1);\n            }\n        }\n        return deleted;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object",
+    "SubRuleContext",
+    "Patterns",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "software.amazon.event.ruler.SubRuleContext": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": [
+      "deleteFromPatternToSetMap(Patterns, ?>, Patterns, Object)"
+    ],
+    "java.util.Map": [
+      "remove(Object)",
+      "get(Object)",
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Delete a sub-rule to indicate that it no longer transitions to this NameState using the provided pattern.\n *\n * @param rule The rule, which may have multiple sub-rules.\n * @param subRuleId The ID of the sub-rule.\n * @param pattern The pattern used by the sub-rule to transition to this NameState.\n * @param isTerminal True indicates that the sub-rule is using pattern to match on the final event field.\n * @return True if and only if the sub-rule was found and deleted.\n */\nboolean deleteSubRule(final Object rule, final SubRuleContext subRuleId, final Patterns pattern, final boolean isTerminal) {\n    deleteFromPatternToSetMap(patternToRules, pattern, rule);\n    Map<Patterns, ?> patternToSubRules = isTerminal ? patternToTerminalSubRuleIds : patternToNonTerminalSubRuleIds;\n    boolean deleted = deleteFromPatternToSetMap(patternToSubRules, pattern, subRuleId);\n    if (deleted) {\n        Integer count = subRuleIdToCount.get(subRuleId);\n        if (count == 1) {\n            subRuleIdToCount.remove(subRuleId);\n        } else {\n            subRuleIdToCount.put(subRuleId, count - 1);\n        }\n    }\n    return deleted;\n}",
+  "method_comment": "\n     * Delete a sub-rule to indicate that it no longer transitions to this NameState using the provided pattern.\n     *\n     * @param rule The rule, which may have multiple sub-rules.\n     * @param subRuleId The ID of the sub-rule.\n     * @param pattern The pattern used by the sub-rule to transition to this NameState.\n     * @param isTerminal True indicates that the sub-rule is using pattern to match on the final event field.\n     * @return True if and only if the sub-rule was found and deleted.\n     ",
+  "method_annotation": ""
+}

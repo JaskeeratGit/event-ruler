@@ -1,0 +1,24 @@
+{
+  "className": "GenericMachine",
+  "methodName": "addIntoUsedFields",
+  "brief": "private void addIntoUsedFields(List<String> keys){}",
+  "methodSignature": "addIntoUsedFields(List)",
+  "sourceCode": "private void addIntoUsedFields(List<String> keys) {\n        for (String key : keys) {\n            recordFieldStep(key);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.GenericMachine": [
+      "recordFieldStep(String)"
+    ]
+  },
+  "full_method_info": "private void addIntoUsedFields(List<String> keys) {\n    for (String key : keys) {\n        recordFieldStep(key);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

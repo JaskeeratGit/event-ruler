@@ -1,0 +1,18 @@
+{
+  "className": "IntIntMap",
+  "methodName": "entries",
+  "brief": "public Iterable<Entry> entries(){}",
+  "methodSignature": "entries()",
+  "sourceCode": "public Iterable<Entry> entries() {\n        return new Iterable<Entry> () {\n\n            @Override\n            public Iterator<Entry> iterator() {\n                return new EntryIterator();\n            }\n\n        };\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public Iterable<Entry> entries() {\n    return new Iterable<Entry>() {\n\n        @Override\n        public Iterator<Entry> iterator() {\n            return new EntryIterator();\n        }\n    };\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

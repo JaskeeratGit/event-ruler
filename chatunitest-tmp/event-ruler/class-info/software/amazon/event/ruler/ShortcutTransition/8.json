@@ -1,0 +1,18 @@
+{
+  "className": "ShortcutTransition",
+  "methodName": "isShortcutTrans",
+  "brief": "@Override\n    boolean isShortcutTrans(){}",
+  "methodSignature": "isShortcutTrans()",
+  "sourceCode": "@Override\n    boolean isShortcutTrans() {\n        return true ;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\nboolean isShortcutTrans() {\n    return true;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

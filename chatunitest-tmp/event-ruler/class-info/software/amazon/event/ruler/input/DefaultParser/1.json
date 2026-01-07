@@ -1,0 +1,28 @@
+{
+  "className": "DefaultParser",
+  "methodName": "getNonSingletonParserForTesting",
+  "brief": "static DefaultParser getNonSingletonParserForTesting(WildcardParser wildcardParser, EqualsIgnoreCaseParser equalsIgnoreCaseParser,\n                                          SuffixParser suffixParser, SuffixEqualsIgnoreCaseParser suffixEqualsIgnoreCaseParser){}",
+  "methodSignature": "getNonSingletonParserForTesting(WildcardParser, EqualsIgnoreCaseParser, SuffixParser, SuffixEqualsIgnoreCaseParser)",
+  "sourceCode": "static DefaultParser getNonSingletonParserForTesting(WildcardParser wildcardParser, EqualsIgnoreCaseParser equalsIgnoreCaseParser,\n                                          SuffixParser suffixParser, SuffixEqualsIgnoreCaseParser suffixEqualsIgnoreCaseParser) {\n        return new DefaultParser(wildcardParser, equalsIgnoreCaseParser, suffixParser, suffixEqualsIgnoreCaseParser);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "WildcardParser",
+    "EqualsIgnoreCaseParser",
+    "SuffixParser",
+    "SuffixEqualsIgnoreCaseParser"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.WildcardParser": [],
+    "software.amazon.event.ruler.input.EqualsIgnoreCaseParser": [],
+    "software.amazon.event.ruler.input.SuffixParser": [],
+    "software.amazon.event.ruler.input.SuffixEqualsIgnoreCaseParser": []
+  },
+  "full_method_info": "static DefaultParser getNonSingletonParserForTesting(WildcardParser wildcardParser, EqualsIgnoreCaseParser equalsIgnoreCaseParser, SuffixParser suffixParser, SuffixEqualsIgnoreCaseParser suffixEqualsIgnoreCaseParser) {\n    return new DefaultParser(wildcardParser, equalsIgnoreCaseParser, suffixParser, suffixEqualsIgnoreCaseParser);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

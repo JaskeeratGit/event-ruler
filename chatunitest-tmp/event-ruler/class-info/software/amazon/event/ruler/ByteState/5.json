@@ -1,0 +1,18 @@
+{
+  "className": "ByteState",
+  "methodName": "hasNoTransitions",
+  "brief": "boolean hasNoTransitions(){}",
+  "methodSignature": "hasNoTransitions()",
+  "sourceCode": "boolean hasNoTransitions() {\n        return transitionStore == null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns {@code true} if this state contains no transitions.\n *\n * @return {@code true} if this state contains no transitions\n */\nboolean hasNoTransitions() {\n    return transitionStore == null;\n}",
+  "method_comment": "\n     * Returns {@code true} if this state contains no transitions.\n     *\n     * @return {@code true} if this state contains no transitions\n     ",
+  "method_annotation": ""
+}

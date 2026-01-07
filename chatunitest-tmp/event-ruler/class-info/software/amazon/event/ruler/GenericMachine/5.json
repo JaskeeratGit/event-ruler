@@ -1,0 +1,25 @@
+{
+  "className": "GenericMachine",
+  "methodName": "rulesForEvent",
+  "brief": "@SuppressWarnings(\"unchecked\")\n    public List<T> rulesForEvent(final String[] event){}",
+  "methodSignature": "rulesForEvent(String[])",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public List<T> rulesForEvent(final String[] event) {\n        return (List<T>) Finder.rulesForEvent(event, this, subRuleContextGenerator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String[]"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.Finder": [
+      "rulesForEvent(String[], GenericMachine<?>, Generator)"
+    ]
+  },
+  "full_method_info": "/**\n * Return any rules that match the fields in the event.\n *\n * @param event the fields are those from the JSON expression of the event, sorted by key.\n * @return list of rule names that match. The list may be empty but never null.\n */\n@SuppressWarnings(\"unchecked\")\npublic List<T> rulesForEvent(final String[] event) {\n    return (List<T>) Finder.rulesForEvent(event, this, subRuleContextGenerator);\n}",
+  "method_comment": "\n     * Return any rules that match the fields in the event.\n     *\n     * @param event the fields are those from the JSON expression of the event, sorted by key.\n     * @return list of rule names that match. The list may be empty but never null.\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

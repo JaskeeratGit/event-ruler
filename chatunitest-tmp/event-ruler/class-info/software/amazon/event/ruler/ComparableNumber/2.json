@@ -1,0 +1,28 @@
+{
+  "className": "ComparableNumber",
+  "methodName": "toIntVals",
+  "brief": "static List<Integer> toIntVals(String s){}",
+  "methodSignature": "toIntVals(String)",
+  "sourceCode": "static List<Integer> toIntVals(String s) {\n        Integer[] arr = new Integer[s.length()];\n        for (int i=0; i<s.length(); i++) {\n            arr[i] = (int)s.charAt(i);\n        }\n        return Arrays.asList(arr);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()",
+      "charAt(int)"
+    ],
+    "java.util.Arrays": [
+      "asList(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * This is a utility function for debugging and tests.\n * Converts a given string into a list of integers, where each integer represents\n * the ASCII value of the corresponding character in the string.\n */\nstatic List<Integer> toIntVals(String s) {\n    Integer[] arr = new Integer[s.length()];\n    for (int i = 0; i < s.length(); i++) {\n        arr[i] = (int) s.charAt(i);\n    }\n    return Arrays.asList(arr);\n}",
+  "method_comment": "\n     * This is a utility function for debugging and tests.\n     * Converts a given string into a list of integers, where each integer represents\n     * the ASCII value of the corresponding character in the string.\n     ",
+  "method_annotation": ""
+}

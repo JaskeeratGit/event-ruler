@@ -1,0 +1,62 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.InputByte",
+  "className": "InputByte",
+  "index": 14,
+  "modifier": "[public ]",
+  "extend": "[InputCharacter]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public class InputByte",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.nio.charset.StandardCharsets;",
+    "import static software.amazon.event.ruler.input.InputCharacterType.BYTE;"
+  ],
+  "fields": [
+    "private final byte b;"
+  ],
+  "superClasses": [
+    "InputCharacter"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "cast(InputCharacter)": "0",
+    "getByte()": "1",
+    "getType()": "2",
+    "equals(Object)": "3",
+    "hashCode()": "4",
+    "toString()": "5",
+    "InputByte(byte)": "6"
+  },
+  "methodsBrief": [
+    "public static InputByte cast(InputCharacter character){}",
+    "public byte getByte(){}",
+    "@Override\n    public InputCharacterType getType(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "@Override\n    public String toString(){}",
+    "InputByte(final byte b){}"
+  ],
+  "constructorSigs": [
+    "InputByte(byte)"
+  ],
+  "constructorBrief": [
+    "InputByte(final byte b){}"
+  ],
+  "getterSetterSigs": [
+    "getByte()",
+    "getType()"
+  ],
+  "getterSetterBrief": [
+    "public byte getByte(){}",
+    "@Override\n    public InputCharacterType getType(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport java.nio.charset.StandardCharsets;\nimport static software.amazon.event.ruler.input.InputCharacterType.BYTE;\n\n/**\n * An InputCharacter that represents a single byte.\n */\npublic class InputByte extends InputCharacter {\n\n    private final byte b;\n\n    InputByte(final byte b) {\n        this.b = b;\n    }\n\n    public static InputByte cast(InputCharacter character) {\n        return (InputByte) character;\n    }\n\n    public byte getByte() {\n        return b;\n    }\n\n    @Override\n    public InputCharacterType getType() {\n        return BYTE;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o.getClass() == getClass())) {\n            return false;\n        }\n        return ((InputByte) o).getByte() == getByte();\n    }\n\n    @Override\n    public int hashCode() {\n        return Byte.valueOf(b).hashCode();\n    }\n\n    @Override\n    public String toString() {\n        return new String(new byte[] { getByte() }, StandardCharsets.UTF_8);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * An InputCharacter that represents a single byte.\n */\npublic class InputByte extends InputCharacter {\n\n    private final byte b;\n\n    InputByte(final byte b) {\n        this.b = b;\n    }\n\n    public static InputByte cast(InputCharacter character) {\n        return (InputByte) character;\n    }\n\n    public byte getByte() {\n        return b;\n    }\n\n    @Override\n    public InputCharacterType getType() {\n        return BYTE;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o.getClass() == getClass())) {\n            return false;\n        }\n        return ((InputByte) o).getByte() == getByte();\n    }\n\n    @Override\n    public int hashCode() {\n        return Byte.valueOf(b).hashCode();\n    }\n\n    @Override\n    public String toString() {\n        return new String(new byte[] { getByte() }, StandardCharsets.UTF_8);\n    }\n}",
+  "subClasses": []
+}

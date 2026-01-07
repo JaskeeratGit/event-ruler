@@ -1,0 +1,28 @@
+{
+  "className": "SingleByteTransitionEntry",
+  "methodName": "toString",
+  "brief": "@Override\n        public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n        public String toString() {\n            ByteState next = transition.getNextByteState();\n            String nextLabel = (next == null) ? \"null\" : Integer.toString(next.hashCode());\n            return \"SBTE: \" + (char) utf8byte + \"=>\" + nextLabel;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "getNextByteState()"
+    ],
+    "java.lang.Integer": [
+      "toString(int)"
+    ],
+    "java.lang.Object": [
+      "hashCode()"
+    ]
+  },
+  "full_method_info": "@Override\npublic String toString() {\n    ByteState next = transition.getNextByteState();\n    String nextLabel = (next == null) ? \"null\" : Integer.toString(next.hashCode());\n    return \"SBTE: \" + (char) utf8byte + \"=>\" + nextLabel;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,27 @@
+{
+  "className": "IntIntMap",
+  "methodName": "put",
+  "brief": "int put(final int key, final int value){}",
+  "methodSignature": "put(int, int)",
+  "sourceCode": "int put(final int key, final int value) {\n        if (key < 0) {\n            throw new IllegalArgumentException(\"key cannot be negative\");\n        }\n        if (value < 0) {\n            throw new IllegalArgumentException(\"value cannot be negative\");\n        }\n        long cellToPut = (((long) key) & KEY_MASK) | (((long) value) << 32);\n        int idx = getStartIndex(key);\n        do {\n            long cell = table[idx];\n            if (cell == EMPTY_CELL) {\n                // found an empty cell\n                table[idx] = cellToPut;\n                if (size >= threshold) {\n                    rehash(table.length * 2);\n                    // 'size' is set inside rehash()\n                } else {\n                    size++;\n                }\n                return NO_VALUE;\n            }\n            if (((int) (cell & KEY_MASK)) == key) {\n                // found a non-empty cell with a key matching the one we're writing, so overwrite it\n                table[idx] = cellToPut;\n                return (int) (cell >> 32);\n            }\n            // continue walking the chain\n            idx = getNextIndex(idx);\n        } while (true);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "getNextIndex(int)",
+      "rehash(int)",
+      "getStartIndex(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Puts {@code value} in {@code key}. {@code key} is restricted to positive integers to avoid an\n * unresolvable collision with {@link #EMPTY_CELL}, while {@code value} is restricted to\n * positive integers to avoid an unresolvable collision with {@link #NO_VALUE}.\n *\n * @param key\n *            the non-negative key\n * @param value\n *            the non-negative value\n * @return the value that was previously set for {@code key}, or {@link #NO_VALUE} if none was\n *         present.\n * @throws IllegalArgumentException\n *             if {@code key} is negative\n */\nint put(final int key, final int value) {\n    if (key < 0) {\n        throw new IllegalArgumentException(\"key cannot be negative\");\n    }\n    if (value < 0) {\n        throw new IllegalArgumentException(\"value cannot be negative\");\n    }\n    long cellToPut = (((long) key) & KEY_MASK) | (((long) value) << 32);\n    int idx = getStartIndex(key);\n    do {\n        long cell = table[idx];\n        if (cell == EMPTY_CELL) {\n            // found an empty cell\n            table[idx] = cellToPut;\n            if (size >= threshold) {\n                rehash(table.length * 2);\n                // 'size' is set inside rehash()\n            } else {\n                size++;\n            }\n            return NO_VALUE;\n        }\n        if (((int) (cell & KEY_MASK)) == key) {\n            // found a non-empty cell with a key matching the one we're writing, so overwrite it\n            table[idx] = cellToPut;\n            return (int) (cell >> 32);\n        }\n        // continue walking the chain\n        idx = getNextIndex(idx);\n    } while (true);\n}",
+  "method_comment": "\n     * Puts {@code value} in {@code key}. {@code key} is restricted to positive integers to avoid an\n     * unresolvable collision with {@link #EMPTY_CELL}, while {@code value} is restricted to\n     * positive integers to avoid an unresolvable collision with {@link #NO_VALUE}.\n     *\n     * @param key\n     *            the non-negative key\n     * @param value\n     *            the non-negative value\n     * @return the value that was previously set for {@code key}, or {@link #NO_VALUE} if none was\n     *         present.\n     * @throws IllegalArgumentException\n     *             if {@code key} is negative\n     ",
+  "method_annotation": ""
+}

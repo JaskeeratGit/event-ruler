@@ -1,0 +1,44 @@
+{
+  "method0": {
+    "methodName": "cast",
+    "signature": "cast(InputCharacter)",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method1": {
+    "methodName": "getByte",
+    "signature": "getByte()",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method2": {
+    "methodName": "getType",
+    "signature": "getType()",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method3": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method4": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method5": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method6": {
+    "methodName": "InputByte",
+    "signature": "InputByte(byte)",
+    "className": "InputByte",
+    "packageName": "software.amazon.event.ruler.input"
+  }
+}

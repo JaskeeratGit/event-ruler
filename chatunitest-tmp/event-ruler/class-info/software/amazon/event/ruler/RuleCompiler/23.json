@@ -1,0 +1,37 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "processAnythingButEqualsIgnoreCaseListMatchExpression",
+  "brief": "private static Patterns processAnythingButEqualsIgnoreCaseListMatchExpression(JsonParser parser) throws JsonParseException{}",
+  "methodSignature": "processAnythingButEqualsIgnoreCaseListMatchExpression(JsonParser)",
+  "sourceCode": "private static Patterns processAnythingButEqualsIgnoreCaseListMatchExpression(JsonParser parser) throws JsonParseException {\n        JsonToken token;\n        Set<String> values = new HashSet<>();\n        boolean hasNumber = false;\n        try {\n            while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n                switch (token) {\n                    case VALUE_STRING:\n                        values.add('\"' + parser.getText() + '\"');\n                        break;\n                    default:\n                        barf(parser, \"Inside anything-but/ignore-case list, number|start|null|boolean is not supported.\");\n                }\n            }\n        } catch (IllegalArgumentException | IOException e) {\n            barf(parser, e.getMessage());\n        }\n\n        return AnythingButValuesSet.anythingButIgnoreCaseMatch(values);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()",
+      "getText()"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "java.lang.Throwable": [
+      "getMessage()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "anythingButIgnoreCaseMatch(String>)"
+    ]
+  },
+  "full_method_info": "private static Patterns processAnythingButEqualsIgnoreCaseListMatchExpression(JsonParser parser) throws JsonParseException {\n    JsonToken token;\n    Set<String> values = new HashSet<>();\n    boolean hasNumber = false;\n    try {\n        while ((token = parser.nextToken()) != JsonToken.END_ARRAY) {\n            switch(token) {\n                case VALUE_STRING:\n                    values.add('\"' + parser.getText() + '\"');\n                    break;\n                default:\n                    barf(parser, \"Inside anything-but/ignore-case list, number|start|null|boolean is not supported.\");\n            }\n        }\n    } catch (IllegalArgumentException | IOException e) {\n        barf(parser, e.getMessage());\n    }\n    return AnythingButValuesSet.anythingButIgnoreCaseMatch(values);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "check",
+  "brief": "public static String check(final InputStream source){}",
+  "methodSignature": "check(InputStream)",
+  "sourceCode": "public static String check(final InputStream source) {\n        return check(source, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputStream"
+  ],
+  "dependentMethods": {
+    "java.io.InputStream": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "check(InputStream, boolean)"
+    ]
+  },
+  "full_method_info": "public static String check(final InputStream source) {\n    return check(source, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "InputCharacter",
+  "methodName": "getType",
+  "brief": "public abstract InputCharacterType getType();",
+  "methodSignature": "getType()",
+  "sourceCode": "public abstract InputCharacterType getType();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public abstract InputCharacterType getType();",
+  "method_comment": "",
+  "method_annotation": ""
+}

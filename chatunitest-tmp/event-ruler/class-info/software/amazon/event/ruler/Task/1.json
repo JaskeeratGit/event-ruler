@@ -1,0 +1,34 @@
+{
+  "className": "Task",
+  "methodName": "isFieldUsed",
+  "brief": "boolean isFieldUsed(final String field){}",
+  "methodSignature": "isFieldUsed(String)",
+  "sourceCode": "boolean isFieldUsed(final String field) {\n        if (field.contains(\".\")) {\n            String[] steps = field.split(\"\\\\.\");\n            return Arrays.stream(steps).allMatch(machine::isFieldStepUsed);\n        }\n        return machine.isFieldStepUsed(field);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "split(String)",
+      "contains(CharSequence)"
+    ],
+    "java.util.stream.Stream": [
+      "allMatch(Predicate<? super T>)"
+    ],
+    "java.util.Arrays": [
+      "stream(T[])"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "isFieldStepUsed(String)"
+    ]
+  },
+  "full_method_info": "// The field used means all steps in the field must be all used individually.\nboolean isFieldUsed(final String field) {\n    if (field.contains(\".\")) {\n        String[] steps = field.split(\"\\\\.\");\n        return Arrays.stream(steps).allMatch(machine::isFieldStepUsed);\n    }\n    return machine.isFieldStepUsed(field);\n}",
+  "method_comment": " The field used means all steps in the field must be all used individually.",
+  "method_annotation": ""
+}

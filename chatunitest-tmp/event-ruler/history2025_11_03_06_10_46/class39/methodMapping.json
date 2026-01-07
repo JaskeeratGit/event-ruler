@@ -1,0 +1,20 @@
+{
+  "method0": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "Machine",
+    "signature": "Machine()",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "Machine",
+    "signature": "Machine(GenericMachineConfiguration)",
+    "className": "Machine",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

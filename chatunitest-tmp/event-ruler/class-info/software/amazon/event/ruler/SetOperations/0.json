@@ -1,0 +1,26 @@
+{
+  "className": "SetOperations",
+  "methodName": "intersection",
+  "brief": "public static <T> void intersection(final Set<T> set1, final Set<T> set2, final Set<T> addTo){}",
+  "methodSignature": "intersection(Set, Set, Set)",
+  "sourceCode": "public static <T> void intersection(final Set<T> set1, final Set<T> set2, final Set<T> addTo) {\n        intersection(set1, set2, addTo, t -> t);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<T>",
+    "Set<T>",
+    "Set<T>"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SetOperations": [
+      "intersection(Set<T>, Set<T>, Set<R>, Function<T, R>)"
+    ]
+  },
+  "full_method_info": "/**\n * Add each element of the intersection of two sets to a third set. This is optimized for performance as it iterates\n * through the smaller set.\n *\n * @param set1 First set involved in intersection.\n * @param set2 Second set involved in intersection.\n * @param addTo Add intersection to this set.\n * @param <T> Type of all three sets.\n */\npublic static <T> void intersection(final Set<T> set1, final Set<T> set2, final Set<T> addTo) {\n    intersection(set1, set2, addTo, t -> t);\n}",
+  "method_comment": "\n     * Add each element of the intersection of two sets to a third set. This is optimized for performance as it iterates\n     * through the smaller set.\n     *\n     * @param set1 First set involved in intersection.\n     * @param set2 Second set involved in intersection.\n     * @param addTo Add intersection to this set.\n     * @param <T> Type of all three sets.\n     ",
+  "method_annotation": ""
+}

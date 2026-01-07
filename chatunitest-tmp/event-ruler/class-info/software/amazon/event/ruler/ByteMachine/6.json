@@ -1,0 +1,35 @@
+{
+  "className": "ByteMachine",
+  "methodName": "deleteMatchPattern",
+  "brief": "private void deleteMatchPattern(ValuePatterns pattern){}",
+  "methodSignature": "deleteMatchPattern(ValuePatterns)",
+  "sourceCode": "private void deleteMatchPattern(ValuePatterns pattern) {\n        final InputCharacter[] characters = getParser().parse(pattern.type(), pattern.pattern());\n\n        if (characters.length == 1 && isWildcard(characters[0])) {\n            // Only character is wildcard. Remove the start state match.\n            startStateMatch = null;\n            return;\n        }\n\n        deleteMatchStep(startState, 0, pattern, characters);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ValuePatterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ValuePatterns": [
+      "pattern()"
+    ],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(MatchType, String)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isWildcard(InputCharacter)",
+      "deleteMatchStep(ByteState, int, Patterns, InputCharacter[])"
+    ]
+  },
+  "full_method_info": "private void deleteMatchPattern(ValuePatterns pattern) {\n    final InputCharacter[] characters = getParser().parse(pattern.type(), pattern.pattern());\n    if (characters.length == 1 && isWildcard(characters[0])) {\n        // Only character is wildcard. Remove the start state match.\n        startStateMatch = null;\n        return;\n    }\n    deleteMatchStep(startState, 0, pattern, characters);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

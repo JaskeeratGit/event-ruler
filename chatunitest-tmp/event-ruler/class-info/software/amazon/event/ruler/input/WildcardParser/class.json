@@ -1,0 +1,47 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.WildcardParser",
+  "className": "WildcardParser",
+  "index": 13,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[StringValueParser]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public class WildcardParser",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.nio.charset.StandardCharsets;",
+    "import java.util.ArrayList;",
+    "import java.util.List;",
+    "import static software.amazon.event.ruler.input.DefaultParser.ASTERISK_BYTE;",
+    "import static software.amazon.event.ruler.input.DefaultParser.BACKSLASH_BYTE;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [
+    "StringValueParser"
+  ],
+  "methodSigs": {
+    "parse(String)": "0",
+    "WildcardParser()": "1"
+  },
+  "methodsBrief": [
+    "@Override\n    public InputCharacter[] parse(final String value){}",
+    "WildcardParser(){}"
+  ],
+  "constructorSigs": [
+    "WildcardParser()"
+  ],
+  "constructorBrief": [
+    "WildcardParser(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport java.nio.charset.StandardCharsets;\nimport java.util.ArrayList;\nimport java.util.List;\nimport static software.amazon.event.ruler.input.DefaultParser.ASTERISK_BYTE;\nimport static software.amazon.event.ruler.input.DefaultParser.BACKSLASH_BYTE;\n\n/**\n * A parser to be used specifically for wildcard rules.\n */\npublic class WildcardParser implements StringValueParser {\n\n    WildcardParser() {\n    }\n\n    @Override\n    public InputCharacter[] parse(final String value) {\n        final byte[] utf8Bytes = value.getBytes(StandardCharsets.UTF_8);\n        final List<InputCharacter> result = new ArrayList<>(utf8Bytes.length);\n        for (int i = 0; i < utf8Bytes.length; i++) {\n            byte utf8byte = utf8Bytes[i];\n            if (utf8byte == ASTERISK_BYTE) {\n                if (i + 1 < utf8Bytes.length && utf8Bytes[i + 1] == ASTERISK_BYTE) {\n                    throw new ParseException(\"Consecutive wildcard characters at pos \" + i);\n                }\n                result.add(new InputWildcard());\n            } else if (utf8byte == BACKSLASH_BYTE) {\n                if (i + 1 < utf8Bytes.length) {\n                    byte nextUtf8byte = utf8Bytes[i + 1];\n                    if (nextUtf8byte == ASTERISK_BYTE || nextUtf8byte == BACKSLASH_BYTE) {\n                        result.add(new InputByte(nextUtf8byte));\n                        i++;\n                        continue;\n                    }\n                }\n                throw new ParseException(\"Invalid escape character at pos \" + i);\n            } else {\n                result.add(new InputByte(utf8byte));\n            }\n        }\n        return result.toArray(new InputCharacter[0]);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A parser to be used specifically for wildcard rules.\n */\npublic class WildcardParser implements StringValueParser {\n\n    WildcardParser() {\n    }\n\n    @Override\n    public InputCharacter[] parse(final String value) {\n        final byte[] utf8Bytes = value.getBytes(StandardCharsets.UTF_8);\n        final List<InputCharacter> result = new ArrayList<>(utf8Bytes.length);\n        for (int i = 0; i < utf8Bytes.length; i++) {\n            byte utf8byte = utf8Bytes[i];\n            if (utf8byte == ASTERISK_BYTE) {\n                if (i + 1 < utf8Bytes.length && utf8Bytes[i + 1] == ASTERISK_BYTE) {\n                    throw new ParseException(\"Consecutive wildcard characters at pos \" + i);\n                }\n                result.add(new InputWildcard());\n            } else if (utf8byte == BACKSLASH_BYTE) {\n                if (i + 1 < utf8Bytes.length) {\n                    byte nextUtf8byte = utf8Bytes[i + 1];\n                    if (nextUtf8byte == ASTERISK_BYTE || nextUtf8byte == BACKSLASH_BYTE) {\n                        result.add(new InputByte(nextUtf8byte));\n                        i++;\n                        continue;\n                    }\n                }\n                throw new ParseException(\"Invalid escape character at pos \" + i);\n            } else {\n                result.add(new InputByte(utf8byte));\n            }\n        }\n        return result.toArray(new InputCharacter[0]);\n    }\n}",
+  "subClasses": []
+}

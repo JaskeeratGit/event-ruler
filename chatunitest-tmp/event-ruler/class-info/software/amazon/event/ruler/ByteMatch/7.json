@@ -1,0 +1,22 @@
+{
+  "className": "ByteMatch",
+  "methodName": "getShortcuts",
+  "brief": "@Override\n    public Set<ShortcutTransition> getShortcuts(){}",
+  "methodSignature": "getShortcuts()",
+  "sourceCode": "@Override\n    public Set<ShortcutTransition> getShortcuts() {\n        return Collections.emptySet();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "emptySet()"
+    ]
+  },
+  "full_method_info": "@Override\npublic Set<ShortcutTransition> getShortcuts() {\n    return Collections.emptySet();\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

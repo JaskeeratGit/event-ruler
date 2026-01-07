@@ -1,0 +1,26 @@
+{
+  "className": "CIDR",
+  "methodName": "ipToStringIfPossible",
+  "brief": "static String ipToStringIfPossible(final String ip){}",
+  "methodSignature": "ipToStringIfPossible(String)",
+  "sourceCode": "static String ipToStringIfPossible(final String ip) {\n        if (!isIPv4OrIPv6(ip)) {\n            return ip;\n        }\n        try {\n            return ipToString(ip);\n        } catch (Exception e){\n            return ip;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.CIDR": [
+      "isIPv4OrIPv6(String)",
+      "ipToString(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Converts a string to an IP address literal if this is possible.  If not\n *  possible, returns the original string.\n * @param ip String that might be an IP address literal\n * @return Hexadecimal form of the input if it was an IP address literal.\n */\nstatic String ipToStringIfPossible(final String ip) {\n    if (!isIPv4OrIPv6(ip)) {\n        return ip;\n    }\n    try {\n        return ipToString(ip);\n    } catch (Exception e) {\n        return ip;\n    }\n}",
+  "method_comment": "\n     * Converts a string to an IP address literal if this is possible.  If not\n     *  possible, returns the original string.\n     * @param ip String that might be an IP address literal\n     * @return Hexadecimal form of the input if it was an IP address literal.\n     ",
+  "method_annotation": ""
+}

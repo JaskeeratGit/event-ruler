@@ -1,0 +1,22 @@
+{
+  "className": "Path",
+  "methodName": "pop",
+  "brief": "String pop(){}",
+  "methodSignature": "pop()",
+  "sourceCode": "String pop() {\n        memo = null;\n\n        // in principle could remove null\n        return path.removeLast();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Deque": [
+      "removeLast()"
+    ]
+  },
+  "full_method_info": "String pop() {\n    memo = null;\n    // in principle could remove null\n    return path.removeLast();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

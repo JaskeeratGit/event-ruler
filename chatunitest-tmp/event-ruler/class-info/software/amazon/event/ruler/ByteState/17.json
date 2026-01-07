@@ -1,0 +1,26 @@
+{
+  "className": "ByteState",
+  "methodName": "hasOnlySelfReferentialTransition",
+  "brief": "boolean hasOnlySelfReferentialTransition(){}",
+  "methodSignature": "hasOnlySelfReferentialTransition()",
+  "sourceCode": "boolean hasOnlySelfReferentialTransition() {\n        // Saving the value to avoid reading an updated value\n        Object transitionStore = this.transitionStore;\n        if (transitionStore == null) {\n            return false;\n        } else if (transitionStore instanceof SingleByteTransitionEntry) {\n            SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n            return this.equals(entry.transition);\n        }\n        ByteMap map = (ByteMap) transitionStore;\n        return map.numberOfTransitions() == 1 && map.hasTransition(this);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Object": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "hasTransition(ByteTransition)",
+      "numberOfTransitions()"
+    ]
+  },
+  "full_method_info": "/**\n * Return true if this state has a self-referential transition and no others.\n *\n * @return True if this state has a self-referential transition and no others, false otherwise.\n */\nboolean hasOnlySelfReferentialTransition() {\n    // Saving the value to avoid reading an updated value\n    Object transitionStore = this.transitionStore;\n    if (transitionStore == null) {\n        return false;\n    } else if (transitionStore instanceof SingleByteTransitionEntry) {\n        SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n        return this.equals(entry.transition);\n    }\n    ByteMap map = (ByteMap) transitionStore;\n    return map.numberOfTransitions() == 1 && map.hasTransition(this);\n}",
+  "method_comment": "\n     * Return true if this state has a self-referential transition and no others.\n     *\n     * @return True if this state has a self-referential transition and no others, false otherwise.\n     ",
+  "method_annotation": ""
+}

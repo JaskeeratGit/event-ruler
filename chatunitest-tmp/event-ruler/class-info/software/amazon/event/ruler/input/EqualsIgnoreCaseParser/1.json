@@ -1,0 +1,41 @@
+{
+  "className": "EqualsIgnoreCaseParser",
+  "methodName": "parse",
+  "brief": "protected InputCharacter[] parse(String value, boolean reverseCharBytes){}",
+  "methodSignature": "parse(String, boolean)",
+  "sourceCode": "protected InputCharacter[] parse(String value, boolean reverseCharBytes) {\n        List<InputCharacter> result = new ArrayList<>(value.length());\n        for (char c : value.toCharArray()) {\n            byte[] lowerCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toLowerCase(Locale.ROOT), reverseCharBytes);\n            byte[] upperCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toUpperCase(Locale.ROOT), reverseCharBytes);\n            if (Arrays.equals(lowerCaseUtf8bytes, upperCaseUtf8bytes)) {\n                for (int i = 0; i < lowerCaseUtf8bytes.length; i++) {\n                    result.add(new InputByte(lowerCaseUtf8bytes[i]));\n                }\n            } else {\n                Set<MultiByte> multiBytes = new HashSet<>();\n                multiBytes.add(new MultiByte(lowerCaseUtf8bytes));\n                multiBytes.add(new MultiByte(upperCaseUtf8bytes));\n                result.add(new InputMultiByteSet(multiBytes));\n            }\n        }\n        return result.toArray(new InputCharacter[0]);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "toUpperCase(Locale)",
+      "toCharArray()",
+      "length()",
+      "toLowerCase(Locale)"
+    ],
+    "software.amazon.event.ruler.input.EqualsIgnoreCaseParser": [
+      "getCharUtfBytes(char, String>, boolean)"
+    ],
+    "java.util.Arrays": [
+      "equals(byte[], byte[])"
+    ],
+    "java.util.List": [
+      "toArray(T[])",
+      "add(E)"
+    ],
+    "java.util.Set": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "protected InputCharacter[] parse(String value, boolean reverseCharBytes) {\n    List<InputCharacter> result = new ArrayList<>(value.length());\n    for (char c : value.toCharArray()) {\n        byte[] lowerCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toLowerCase(Locale.ROOT), reverseCharBytes);\n        byte[] upperCaseUtf8bytes = getCharUtfBytes(c, (ch) -> ch.toUpperCase(Locale.ROOT), reverseCharBytes);\n        if (Arrays.equals(lowerCaseUtf8bytes, upperCaseUtf8bytes)) {\n            for (int i = 0; i < lowerCaseUtf8bytes.length; i++) {\n                result.add(new InputByte(lowerCaseUtf8bytes[i]));\n            }\n        } else {\n            Set<MultiByte> multiBytes = new HashSet<>();\n            multiBytes.add(new MultiByte(lowerCaseUtf8bytes));\n            multiBytes.add(new MultiByte(upperCaseUtf8bytes));\n            result.add(new InputMultiByteSet(multiBytes));\n        }\n    }\n    return result.toArray(new InputCharacter[0]);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

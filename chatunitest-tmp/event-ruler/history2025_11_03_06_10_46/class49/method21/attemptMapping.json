@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Patterns_numericEquals_21_0_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_numericEquals_21_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_numericEquals_21_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "numericEquals",
+    "methodSig": "numericEquals(double)"
+  },
+  "attempt1": {
+    "testClassName": "Patterns_numericEquals_21_1_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_numericEquals_21_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_numericEquals_21_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "numericEquals",
+    "methodSig": "numericEquals(double)"
+  },
+  "attempt2": {
+    "testClassName": "Patterns_numericEquals_21_2_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_numericEquals_21_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_numericEquals_21_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "numericEquals",
+    "methodSig": "numericEquals(double)"
+  },
+  "attempt3": {
+    "testClassName": "Patterns_numericEquals_21_3_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_numericEquals_21_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_numericEquals_21_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "numericEquals",
+    "methodSig": "numericEquals(double)"
+  },
+  "attempt4": {
+    "testClassName": "Patterns_numericEquals_21_4_Test",
+    "fullName": "software.amazon.event.ruler.Patterns_numericEquals_21_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Patterns_numericEquals_21_0_Test.java",
+    "className": "Patterns",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "numericEquals",
+    "methodSig": "numericEquals(double)"
+  }
+}

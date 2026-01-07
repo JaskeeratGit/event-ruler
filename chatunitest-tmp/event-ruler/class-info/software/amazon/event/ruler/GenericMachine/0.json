@@ -1,0 +1,25 @@
+{
+  "className": "GenericMachine",
+  "methodName": "rulesForJSONEvent",
+  "brief": "@SuppressWarnings(\"unchecked\")\n    public List<T> rulesForJSONEvent(final String jsonEvent) throws Exception{}",
+  "methodSignature": "rulesForJSONEvent(String)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public List<T> rulesForJSONEvent(final String jsonEvent) throws Exception {\n        final Event event = new Event(jsonEvent, this);\n        return (List<T>) ACFinder.matchRules(event, this, subRuleContextGenerator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.ACFinder": [
+      "matchRules(Event, GenericMachine<?>, Generator)"
+    ]
+  },
+  "full_method_info": "/**\n * Return any rules that match the fields in the event in a way that is Array-Consistent (thus trailing \"AC\" on\n *  names of implementing classes). Array-Consistent means that we reject matches where fields which are members\n *  of different elements of the same JSON array in the event are matched.\n * @param jsonEvent The JSON representation of the event\n * @return list of rule names that match. The list may be empty but never null.\n */\n@SuppressWarnings(\"unchecked\")\npublic List<T> rulesForJSONEvent(final String jsonEvent) throws Exception {\n    final Event event = new Event(jsonEvent, this);\n    return (List<T>) ACFinder.matchRules(event, this, subRuleContextGenerator);\n}",
+  "method_comment": "\n     * Return any rules that match the fields in the event in a way that is Array-Consistent (thus trailing \"AC\" on\n     *  names of implementing classes). Array-Consistent means that we reject matches where fields which are members\n     *  of different elements of the same JSON array in the event are matched.\n     * @param jsonEvent The JSON representation of the event\n     * @return list of rule names that match. The list may be empty but never null.\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

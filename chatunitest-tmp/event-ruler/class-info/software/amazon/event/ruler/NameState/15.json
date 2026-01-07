@@ -1,0 +1,26 @@
+{
+  "className": "NameState",
+  "methodName": "addKeyTransition",
+  "brief": "void addKeyTransition(final String key, final NameMatcher<NameState> to){}",
+  "methodSignature": "addKeyTransition(String, NameMatcher)",
+  "sourceCode": "void addKeyTransition(final String key, final NameMatcher<NameState> to) {\n        mustNotExistMatchers.put(key, to);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "NameMatcher<NameState>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "void addKeyTransition(final String key, final NameMatcher<NameState> to) {\n    mustNotExistMatchers.put(key, to);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

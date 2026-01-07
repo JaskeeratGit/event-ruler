@@ -1,0 +1,23 @@
+{
+  "className": "CIDR",
+  "methodName": "computeVariableBits",
+  "brief": "private static int computeVariableBits(final byte[] baseBytes, final int maskBits){}",
+  "methodSignature": "computeVariableBits(byte[], int)",
+  "sourceCode": "private static int computeVariableBits(final byte[] baseBytes, final int maskBits) {\n        return (baseBytes.length == 4 ? 32 : 128) - maskBits;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": []
+  },
+  "full_method_info": "/**\n * The maskBits in a provided CIDR refer to the number of leading bits in the binary representation of the IP\n * address component that are fixed. Thus, variableBits refers to the number of remaining (trailing) bits.\n *\n * @param baseBytes The byte representation of the IP address (left-of-slash) component of the provided CIDR.\n * @param maskBits The integer (right-of-slash) of the provided CIDR.\n * @return The number of variable (trailing) bits after the fixed maskBits bits.\n */\nprivate static int computeVariableBits(final byte[] baseBytes, final int maskBits) {\n    return (baseBytes.length == 4 ? 32 : 128) - maskBits;\n}",
+  "method_comment": "\n     * The maskBits in a provided CIDR refer to the number of leading bits in the binary representation of the IP\n     * address component that are fixed. Thus, variableBits refers to the number of remaining (trailing) bits.\n     *\n     * @param baseBytes The byte representation of the IP address (left-of-slash) component of the provided CIDR.\n     * @param maskBits The integer (right-of-slash) of the provided CIDR.\n     * @return The number of variable (trailing) bits after the fixed maskBits bits.\n     ",
+  "method_annotation": ""
+}

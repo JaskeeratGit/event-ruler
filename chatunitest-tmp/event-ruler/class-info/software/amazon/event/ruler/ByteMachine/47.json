@@ -1,0 +1,32 @@
+{
+  "className": "ByteMachine",
+  "methodName": "getTransitionHavingNextByteState",
+  "brief": "private static SingleByteTransition getTransitionHavingNextByteState(SingleByteTransition origin,\n            SingleByteTransition toFind, InputCharacter character){}",
+  "methodSignature": "getTransitionHavingNextByteState(SingleByteTransition, SingleByteTransition, InputCharacter)",
+  "sourceCode": "private static SingleByteTransition getTransitionHavingNextByteState(SingleByteTransition origin,\n            SingleByteTransition toFind, InputCharacter character) {\n        for (SingleByteTransition eachTrans : getTransition(origin, character).expand()) {\n            if (eachTrans.getNextByteState() == toFind) {\n                return eachTrans;\n            }\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition",
+    "SingleByteTransition",
+    "InputCharacter"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getNextByteState()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the first transition originating from origin on character that has a next byte state of toFind.\n *\n * @param origin The origin transition that we will explore transitions from.\n * @param toFind The state that we are looking for from origin's transitions.\n * @param character The character to retrieve transitions from origin.\n * @return Origin's first transition on character that has a next byte state of toFind, or null if not found.\n */\nprivate static SingleByteTransition getTransitionHavingNextByteState(SingleByteTransition origin, SingleByteTransition toFind, InputCharacter character) {\n    for (SingleByteTransition eachTrans : getTransition(origin, character).expand()) {\n        if (eachTrans.getNextByteState() == toFind) {\n            return eachTrans;\n        }\n    }\n    return null;\n}",
+  "method_comment": "\n     * Gets the first transition originating from origin on character that has a next byte state of toFind.\n     *\n     * @param origin The origin transition that we will explore transitions from.\n     * @param toFind The state that we are looking for from origin's transitions.\n     * @param character The character to retrieve transitions from origin.\n     * @return Origin's first transition on character that has a next byte state of toFind, or null if not found.\n     ",
+  "method_annotation": ""
+}

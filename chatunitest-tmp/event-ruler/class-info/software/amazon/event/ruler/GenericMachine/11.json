@@ -1,0 +1,44 @@
+{
+  "className": "GenericMachine",
+  "methodName": "deleteRule",
+  "brief": "public void deleteRule(final T name, final Map<String, List<String>> namevals){}",
+  "methodSignature": "deleteRule(T, Map)",
+  "sourceCode": "public void deleteRule(final T name, final Map<String, List<String>> namevals) {\n        final Map<String, List<Patterns>> patternMap = new HashMap<>();\n        for (final Map.Entry<String, List<String>> nameVal : namevals.entrySet()) {\n            patternMap.put(nameVal.getKey(), nameVal.getValue().stream().map(Patterns::exactMatch)\n                    .collect(Collectors.toList()));\n        }\n        deletePatternRule(name, patternMap);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "T",
+    "Map<String,List<String>>"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "java.util.Map": [
+      "entrySet()",
+      "put(K, V)"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.stream.Stream": [
+      "collect(Collector<? super T, A, R>)",
+      "map(Function<? super T, ? extends R>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "java.util.stream.Collectors": [
+      "toList()"
+    ],
+    "software.amazon.event.ruler.GenericMachine": [
+      "deletePatternRule(T, Patterns>>)"
+    ]
+  },
+  "full_method_info": "public void deleteRule(final T name, final Map<String, List<String>> namevals) {\n    final Map<String, List<Patterns>> patternMap = new HashMap<>();\n    for (final Map.Entry<String, List<String>> nameVal : namevals.entrySet()) {\n        patternMap.put(nameVal.getKey(), nameVal.getValue().stream().map(Patterns::exactMatch).collect(Collectors.toList()));\n    }\n    deletePatternRule(name, patternMap);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

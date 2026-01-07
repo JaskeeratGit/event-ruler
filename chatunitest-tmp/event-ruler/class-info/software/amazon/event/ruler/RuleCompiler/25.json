@@ -1,0 +1,35 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "processAnythingButEqualsIgnoreCaseMatchExpression",
+  "brief": "private static Patterns processAnythingButEqualsIgnoreCaseMatchExpression(JsonParser parser,\n                                                              JsonToken anythingButExpressionToken) throws IOException{}",
+  "methodSignature": "processAnythingButEqualsIgnoreCaseMatchExpression(JsonParser, JsonToken)",
+  "sourceCode": "private static Patterns processAnythingButEqualsIgnoreCaseMatchExpression(JsonParser parser,\n                                                              JsonToken anythingButExpressionToken) throws IOException {\n        Set<String> values = new HashSet<>();\n        switch (anythingButExpressionToken) {\n            case VALUE_STRING:\n                values.add('\"' + parser.getText() + '\"');\n                break;\n            default:\n                barf(parser, \"Inside anything-but/ignore-case list, number|start|null|boolean is not supported.\");\n        }\n        return AnythingButValuesSet.anythingButIgnoreCaseMatch(values);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "JsonToken"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getText()"
+    ],
+    "com.fasterxml.jackson.core.JsonToken": [],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "anythingButIgnoreCaseMatch(String>)"
+    ]
+  },
+  "full_method_info": "private static Patterns processAnythingButEqualsIgnoreCaseMatchExpression(JsonParser parser, JsonToken anythingButExpressionToken) throws IOException {\n    Set<String> values = new HashSet<>();\n    switch(anythingButExpressionToken) {\n        case VALUE_STRING:\n            values.add('\"' + parser.getText() + '\"');\n            break;\n        default:\n            barf(parser, \"Inside anything-but/ignore-case list, number|start|null|boolean is not supported.\");\n    }\n    return AnythingButValuesSet.anythingButIgnoreCaseMatch(values);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

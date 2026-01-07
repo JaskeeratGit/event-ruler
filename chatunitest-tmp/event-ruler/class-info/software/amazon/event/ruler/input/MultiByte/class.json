@@ -1,0 +1,78 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.MultiByte",
+  "className": "MultiByte",
+  "index": 4,
+  "modifier": "[public , final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public final class MultiByte",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Arrays;",
+    "import static software.amazon.event.ruler.input.DefaultParser.NINE_BYTE;",
+    "import static software.amazon.event.ruler.input.DefaultParser.ZERO_BYTE;"
+  ],
+  "fields": [
+    "public static final byte MIN_FIRST_BYTE_FOR_ONE_BYTE_CHAR = (byte) 0x00;",
+    "public static final byte MAX_FIRST_BYTE_FOR_ONE_BYTE_CHAR = (byte) 0x7F;",
+    "public static final byte MIN_FIRST_BYTE_FOR_TWO_BYTE_CHAR = (byte) 0xC2;",
+    "public static final byte MAX_FIRST_BYTE_FOR_TWO_BYTE_CHAR = (byte) 0xDF;",
+    "public static final byte MIN_CONTINUATION_BYTE = (byte) 0x80;",
+    "public static final byte MAX_CONTINUATION_BYTE = (byte) 0xBF;",
+    "public static final byte MAX_NON_FIRST_BYTE = (byte) 0xBF;",
+    "private final byte[] bytes;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "getBytes()": "0",
+    "singular()": "1",
+    "is(byte[])": "2",
+    "isNumeric()": "3",
+    "isLessThan(MultiByte)": "4",
+    "isLessThanOrEqualTo(MultiByte)": "5",
+    "isGreaterThan(MultiByte)": "6",
+    "isGreaterThanOrEqualTo(MultiByte)": "7",
+    "isLessThan(MultiByte, boolean)": "8",
+    "equals(Object)": "9",
+    "hashCode()": "10",
+    "toString()": "11",
+    "MultiByte(byte[])": "12"
+  },
+  "methodsBrief": [
+    "public byte[] getBytes(){}",
+    "public byte singular(){}",
+    "public boolean is(byte ... bytes){}",
+    "public boolean isNumeric(){}",
+    "public boolean isLessThan(MultiByte other){}",
+    "public boolean isLessThanOrEqualTo(MultiByte other){}",
+    "public boolean isGreaterThan(MultiByte other){}",
+    "public boolean isGreaterThanOrEqualTo(MultiByte other){}",
+    "private boolean isLessThan(MultiByte other, boolean orEqualTo){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "@Override\n    public String toString(){}",
+    "MultiByte(byte ... bytes){}"
+  ],
+  "constructorSigs": [
+    "MultiByte(byte[])"
+  ],
+  "constructorBrief": [
+    "MultiByte(byte ... bytes){}"
+  ],
+  "getterSetterSigs": [
+    "getBytes()"
+  ],
+  "getterSetterBrief": [
+    "public byte[] getBytes(){}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport java.util.Arrays;\nimport static software.amazon.event.ruler.input.DefaultParser.NINE_BYTE;\nimport static software.amazon.event.ruler.input.DefaultParser.ZERO_BYTE;\n\n/**\n * A grouping of multiple bytes. This can be used to represent a character that has a UTF-8 representation requiring\n * multiple bytes.\n */\npublic final class MultiByte {\n\n    public static final byte MIN_FIRST_BYTE_FOR_ONE_BYTE_CHAR = (byte) 0x00;\n\n    public static final byte MAX_FIRST_BYTE_FOR_ONE_BYTE_CHAR = (byte) 0x7F;\n\n    public static final byte MIN_FIRST_BYTE_FOR_TWO_BYTE_CHAR = (byte) 0xC2;\n\n    public static final byte MAX_FIRST_BYTE_FOR_TWO_BYTE_CHAR = (byte) 0xDF;\n\n    /**\n     * A continuation byte is a byte that is not the first UTF-8 byte in a multibyte character.\n     */\n    public static final byte MIN_CONTINUATION_BYTE = (byte) 0x80;\n\n    public static final byte MAX_CONTINUATION_BYTE = (byte) 0xBF;\n\n    public static final byte MAX_NON_FIRST_BYTE = (byte) 0xBF;\n\n    private final byte[] bytes;\n\n    MultiByte(byte... bytes) {\n        if (bytes.length == 0) {\n            throw new IllegalArgumentException(\"Must provide at least one byte\");\n        }\n        this.bytes = bytes;\n    }\n\n    public byte[] getBytes() {\n        return Arrays.copyOf(bytes, bytes.length);\n    }\n\n    public byte singular() {\n        if (bytes.length != 1) {\n            throw new IllegalStateException(\"Must be a singular byte\");\n        }\n        return bytes[0];\n    }\n\n    public boolean is(byte... bytes) {\n        return Arrays.equals(this.bytes, bytes);\n    }\n\n    public boolean isNumeric() {\n        return bytes.length == 1 && bytes[0] >= ZERO_BYTE && bytes[0] <= NINE_BYTE;\n    }\n\n    public boolean isLessThan(MultiByte other) {\n        return isLessThan(other, false);\n    }\n\n    public boolean isLessThanOrEqualTo(MultiByte other) {\n        return isLessThan(other, true);\n    }\n\n    public boolean isGreaterThan(MultiByte other) {\n        return !isLessThanOrEqualTo(other);\n    }\n\n    public boolean isGreaterThanOrEqualTo(MultiByte other) {\n        return !isLessThan(other);\n    }\n\n    private boolean isLessThan(MultiByte other, boolean orEqualTo) {\n        byte[] otherBytes = other.getBytes();\n        for (int i = 0; i < bytes.length; i++) {\n            if (i == otherBytes.length) {\n                // otherBytes is a prefix of bytes. Thus, bytes is larger than otherBytes.\n                return false;\n            }\n            if (bytes[i] != otherBytes[i]) {\n                // Most significant differing byte - return if it is less for bytes than otherBytes.\n                return (0xFF & bytes[i]) < (0xFF & otherBytes[i]);\n            }\n        }\n        // bytes is equal to (return true if orEqualTo) or a prefix of (return true) otherBytes.\n        return orEqualTo || (0xFF & bytes.length) < (0xFF & otherBytes.length);\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o.getClass() == getClass())) {\n            return false;\n        }\n        return Arrays.equals(((MultiByte) o).getBytes(), getBytes());\n    }\n\n    @Override\n    public int hashCode() {\n        return Arrays.hashCode(getBytes());\n    }\n\n    @Override\n    public String toString() {\n        return Arrays.toString(getBytes());\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A grouping of multiple bytes. This can be used to represent a character that has a UTF-8 representation requiring\n * multiple bytes.\n */\npublic final class MultiByte {\n\n    public static final byte MIN_FIRST_BYTE_FOR_ONE_BYTE_CHAR = (byte) 0x00;\n\n    public static final byte MAX_FIRST_BYTE_FOR_ONE_BYTE_CHAR = (byte) 0x7F;\n\n    public static final byte MIN_FIRST_BYTE_FOR_TWO_BYTE_CHAR = (byte) 0xC2;\n\n    public static final byte MAX_FIRST_BYTE_FOR_TWO_BYTE_CHAR = (byte) 0xDF;\n\n    /**\n     * A continuation byte is a byte that is not the first UTF-8 byte in a multibyte character.\n     */\n    public static final byte MIN_CONTINUATION_BYTE = (byte) 0x80;\n\n    public static final byte MAX_CONTINUATION_BYTE = (byte) 0xBF;\n\n    public static final byte MAX_NON_FIRST_BYTE = (byte) 0xBF;\n\n    private final byte[] bytes;\n\n    MultiByte(byte... bytes) {\n        if (bytes.length == 0) {\n            throw new IllegalArgumentException(\"Must provide at least one byte\");\n        }\n        this.bytes = bytes;\n    }\n\n    public byte[] getBytes() {\n        return Arrays.copyOf(bytes, bytes.length);\n    }\n\n    public byte singular() {\n        if (bytes.length != 1) {\n            throw new IllegalStateException(\"Must be a singular byte\");\n        }\n        return bytes[0];\n    }\n\n    public boolean is(byte... bytes) {\n        return Arrays.equals(this.bytes, bytes);\n    }\n\n    public boolean isNumeric() {\n        return bytes.length == 1 && bytes[0] >= ZERO_BYTE && bytes[0] <= NINE_BYTE;\n    }\n\n    public boolean isLessThan(MultiByte other) {\n        return isLessThan(other, false);\n    }\n\n    public boolean isLessThanOrEqualTo(MultiByte other) {\n        return isLessThan(other, true);\n    }\n\n    public boolean isGreaterThan(MultiByte other) {\n        return !isLessThanOrEqualTo(other);\n    }\n\n    public boolean isGreaterThanOrEqualTo(MultiByte other) {\n        return !isLessThan(other);\n    }\n\n    private boolean isLessThan(MultiByte other, boolean orEqualTo) {\n        byte[] otherBytes = other.getBytes();\n        for (int i = 0; i < bytes.length; i++) {\n            if (i == otherBytes.length) {\n                // otherBytes is a prefix of bytes. Thus, bytes is larger than otherBytes.\n                return false;\n            }\n            if (bytes[i] != otherBytes[i]) {\n                // Most significant differing byte - return if it is less for bytes than otherBytes.\n                return (0xFF & bytes[i]) < (0xFF & otherBytes[i]);\n            }\n        }\n        // bytes is equal to (return true if orEqualTo) or a prefix of (return true) otherBytes.\n        return orEqualTo || (0xFF & bytes.length) < (0xFF & otherBytes.length);\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || !(o.getClass() == getClass())) {\n            return false;\n        }\n        return Arrays.equals(((MultiByte) o).getBytes(), getBytes());\n    }\n\n    @Override\n    public int hashCode() {\n        return Arrays.hashCode(getBytes());\n    }\n\n    @Override\n    public String toString() {\n        return Arrays.toString(getBytes());\n    }\n}",
+  "subClasses": []
+}

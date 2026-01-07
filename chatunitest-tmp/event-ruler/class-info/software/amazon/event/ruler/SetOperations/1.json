@@ -1,0 +1,32 @@
+{
+  "className": "SetOperations",
+  "methodName": "intersection",
+  "brief": "public static <T, R> void intersection(final Set<T> set1, final Set<T> set2, final Set<R> addTo,\n                                           final Function<T, R> transform){}",
+  "methodSignature": "intersection(Set, Set, Set, Function)",
+  "sourceCode": "public static <T, R> void intersection(final Set<T> set1, final Set<T> set2, final Set<R> addTo,\n                                           final Function<T, R> transform) {\n        Set<T> smaller = set1.size() <= set2.size() ? set1 : set2;\n        Set<T> larger = set1.size() <= set2.size() ? set2 : set1;\n        for (T element : smaller) {\n            if (larger.contains(element)) {\n                addTo.add(transform.apply(element));\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<T>",
+    "Set<T>",
+    "Set<R>",
+    "Function<T,R>"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "contains(Object)",
+      "add(E)",
+      "size()"
+    ],
+    "java.util.function.Function": [
+      "apply(T)"
+    ]
+  },
+  "full_method_info": "/**\n * Add the transformation of each element of the intersection of two sets to a third set. This is optimized for\n * performance as it iterates through the smaller set.\n *\n * @param set1 First set involved in intersection.\n * @param set2 Second set involved in intersection.\n * @param addTo Add intersection to this set.\n * @param transform Transform each element of intersection into an element of the third set.\n * @param <T> Type of first two sets.\n * @param <R> Type of addTo set.\n */\npublic static <T, R> void intersection(final Set<T> set1, final Set<T> set2, final Set<R> addTo, final Function<T, R> transform) {\n    Set<T> smaller = set1.size() <= set2.size() ? set1 : set2;\n    Set<T> larger = set1.size() <= set2.size() ? set2 : set1;\n    for (T element : smaller) {\n        if (larger.contains(element)) {\n            addTo.add(transform.apply(element));\n        }\n    }\n}",
+  "method_comment": "\n     * Add the transformation of each element of the intersection of two sets to a third set. This is optimized for\n     * performance as it iterates through the smaller set.\n     *\n     * @param set1 First set involved in intersection.\n     * @param set2 Second set involved in intersection.\n     * @param addTo Add intersection to this set.\n     * @param transform Transform each element of intersection into an element of the third set.\n     * @param <T> Type of first two sets.\n     * @param <R> Type of addTo set.\n     ",
+  "method_annotation": ""
+}

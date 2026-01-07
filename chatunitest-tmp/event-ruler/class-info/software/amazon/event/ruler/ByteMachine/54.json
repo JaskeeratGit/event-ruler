@@ -1,0 +1,40 @@
+{
+  "className": "ByteMachine",
+  "methodName": "getTransition",
+  "brief": "private static ByteTransition getTransition(SingleByteTransition trans, InputCharacter character){}",
+  "methodSignature": "getTransition(SingleByteTransition, InputCharacter)",
+  "sourceCode": "private static ByteTransition getTransition(SingleByteTransition trans, InputCharacter character) {\n        switch (character.getType()) {\n            case WILDCARD:\n                return trans.getTransitionForAllBytes();\n            case MULTI_BYTE_SET:\n                return getTransitionForMultiBytes(trans, InputMultiByteSet.cast(character).getMultiBytes());\n            case BYTE:\n                return getTransition(trans, InputByte.cast(character).getByte());\n            default:\n                throw new AssertionError(\"Not implemented yet\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition",
+    "InputCharacter"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [
+      "getTransitionForAllBytes()"
+    ],
+    "software.amazon.event.ruler.input.InputCharacter": [
+      "getType()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "getTransition(ByteTransition, byte)",
+      "getTransitionForMultiBytes(SingleByteTransition, MultiByte>)"
+    ],
+    "software.amazon.event.ruler.input.InputMultiByteSet": [
+      "cast(InputCharacter)",
+      "getMultiBytes()"
+    ],
+    "software.amazon.event.ruler.input.InputByte": [
+      "cast(InputCharacter)",
+      "getByte()"
+    ]
+  },
+  "full_method_info": "private static ByteTransition getTransition(SingleByteTransition trans, InputCharacter character) {\n    switch(character.getType()) {\n        case WILDCARD:\n            return trans.getTransitionForAllBytes();\n        case MULTI_BYTE_SET:\n            return getTransitionForMultiBytes(trans, InputMultiByteSet.cast(character).getMultiBytes());\n        case BYTE:\n            return getTransition(trans, InputByte.cast(character).getByte());\n        default:\n            throw new AssertionError(\"Not implemented yet\");\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "Event",
+  "methodName": "flatten",
+  "brief": "static List<String> flatten(@Nonnull final JsonNode eventRoot) throws IllegalArgumentException{}",
+  "methodSignature": "flatten(JsonNode)",
+  "sourceCode": "static List<String> flatten(@Nonnull final JsonNode eventRoot) throws IllegalArgumentException {\n        try {\n            return doFlatten(eventRoot);\n        } catch (Throwable e) { // should be IOException, but the @Nonnull annotation doesn't work in some scenarios\n                                // catch all throwable exceptions\n            throw new IllegalArgumentException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [],
+    "software.amazon.event.ruler.Event": [
+      "doFlatten(JsonNode)"
+    ]
+  },
+  "full_method_info": "/**\n * Flattens a parsed json for matching rules in the state machine.\n * @param eventRoot root node for the parsed json\n * @return flattened json event\n */\nstatic List<String> flatten(@Nonnull final JsonNode eventRoot) throws IllegalArgumentException {\n    try {\n        return doFlatten(eventRoot);\n    } catch (Throwable e) {\n        // should be IOException, but the @Nonnull annotation doesn't work in some scenarios\n        // catch all throwable exceptions\n        throw new IllegalArgumentException(e);\n    }\n}",
+  "method_comment": "\n     * Flattens a parsed json for matching rules in the state machine.\n     * @param eventRoot root node for the parsed json\n     * @return flattened json event\n     ",
+  "method_annotation": ""
+}

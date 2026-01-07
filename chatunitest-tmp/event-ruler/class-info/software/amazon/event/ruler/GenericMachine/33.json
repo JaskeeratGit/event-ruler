@@ -1,0 +1,25 @@
+{
+  "className": "GenericMachine",
+  "methodName": "evaluateComplexity",
+  "brief": "public int evaluateComplexity(MachineComplexityEvaluator evaluator){}",
+  "methodSignature": "evaluateComplexity(MachineComplexityEvaluator)",
+  "sourceCode": "public int evaluateComplexity(MachineComplexityEvaluator evaluator) {\n        return startState.evaluateComplexity(evaluator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MachineComplexityEvaluator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.MachineComplexityEvaluator": [],
+    "software.amazon.event.ruler.NameState": [
+      "evaluateComplexity(MachineComplexityEvaluator)"
+    ]
+  },
+  "full_method_info": "public int evaluateComplexity(MachineComplexityEvaluator evaluator) {\n    return startState.evaluateComplexity(evaluator);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

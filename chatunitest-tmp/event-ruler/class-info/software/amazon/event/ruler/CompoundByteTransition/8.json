@@ -1,0 +1,37 @@
+{
+  "className": "CompoundByteTransition",
+  "methodName": "getTransitions",
+  "brief": "@Override\n    public Set<ByteTransition> getTransitions(){}",
+  "methodSignature": "getTransitions()",
+  "sourceCode": "@Override\n    public Set<ByteTransition> getTransitions() {\n        // Determine all unique ceilings held in the ByteMaps of all nextByteStates.\n        Set<Integer> allCeilings = new TreeSet<>();\n        for (SingleByteTransition transition : byteTransitions) {\n            ByteState nextByteState = transition.getNextByteState();\n            if (nextByteState != null) {\n                allCeilings.addAll(nextByteState.getCeilings());\n            }\n        }\n\n        // For each unique ceiling, determine all singular transitions accessible for that byte value, then add\n        // coalesced version to final result.\n        Set<ByteTransition> result = new HashSet<>();\n        for (Integer ceiling : allCeilings) {\n            Set<SingleByteTransition> singles = new HashSet<>();\n            for (SingleByteTransition transition : byteTransitions) {\n                ByteTransition nextTransition = transition.getTransition((byte) (ceiling - 1));\n                if (nextTransition != null) {\n                    nextTransition.expand().forEach(t -> singles.add(t));\n                }\n            }\n\n            ByteTransition coalesced = coalesce(singles);\n            if (coalesced != null) {\n                result.add(coalesced);\n            }\n        }\n\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getTransition(byte)",
+      "getNextByteState()"
+    ],
+    "java.util.Set": [
+      "addAll(Collection<? extends E>)",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.ByteState": [
+      "getCeilings()"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.CompoundByteTransition": [
+      "coalesce(SingleByteTransition>)"
+    ]
+  },
+  "full_method_info": "@Override\npublic Set<ByteTransition> getTransitions() {\n    // Determine all unique ceilings held in the ByteMaps of all nextByteStates.\n    Set<Integer> allCeilings = new TreeSet<>();\n    for (SingleByteTransition transition : byteTransitions) {\n        ByteState nextByteState = transition.getNextByteState();\n        if (nextByteState != null) {\n            allCeilings.addAll(nextByteState.getCeilings());\n        }\n    }\n    // For each unique ceiling, determine all singular transitions accessible for that byte value, then add\n    // coalesced version to final result.\n    Set<ByteTransition> result = new HashSet<>();\n    for (Integer ceiling : allCeilings) {\n        Set<SingleByteTransition> singles = new HashSet<>();\n        for (SingleByteTransition transition : byteTransitions) {\n            ByteTransition nextTransition = transition.getTransition((byte) (ceiling - 1));\n            if (nextTransition != null) {\n                nextTransition.expand().forEach(t -> singles.add(t));\n            }\n        }\n        ByteTransition coalesced = coalesce(singles);\n        if (coalesced != null) {\n            result.add(coalesced);\n        }\n    }\n    return result;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

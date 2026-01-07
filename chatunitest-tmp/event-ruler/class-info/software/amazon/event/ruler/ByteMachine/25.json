@@ -1,0 +1,27 @@
+{
+  "className": "ByteMachine",
+  "methodName": "isNextCharacterFirstByteOfMultiByte",
+  "brief": "private boolean isNextCharacterFirstByteOfMultiByte(InputCharacter[] characters, int i){}",
+  "methodSignature": "isNextCharacterFirstByteOfMultiByte(InputCharacter[], int)",
+  "sourceCode": "private boolean isNextCharacterFirstByteOfMultiByte(InputCharacter[] characters, int i) {\n        byte firstByte = InputByte.cast(characters[i]).getByte();\n        // Since MIN_NON_FIRST_BYTE is (byte) 0x80 = -128 = Byte.MIN_VALUE, we can simply compare against\n        // MAX_NON_FIRST_BYTE to see if this is a first byte or not.\n        return firstByte > MAX_NON_FIRST_BYTE;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "InputCharacter[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.input.InputByte": [
+      "cast(InputCharacter)",
+      "getByte()"
+    ]
+  },
+  "full_method_info": "private boolean isNextCharacterFirstByteOfMultiByte(InputCharacter[] characters, int i) {\n    byte firstByte = InputByte.cast(characters[i]).getByte();\n    // Since MIN_NON_FIRST_BYTE is (byte) 0x80 = -128 = Byte.MIN_VALUE, we can simply compare against\n    // MAX_NON_FIRST_BYTE to see if this is a first byte or not.\n    return firstByte > MAX_NON_FIRST_BYTE;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

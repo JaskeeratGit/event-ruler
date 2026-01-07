@@ -1,0 +1,46 @@
+{
+  "fullClassName": "software.amazon.event.ruler.Path",
+  "className": "Path",
+  "index": 62,
+  "modifier": "[]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "class Path",
+  "hasConstructor": false,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.ArrayDeque;",
+    "import java.util.Deque;"
+  ],
+  "fields": [
+    "private final static char SEPARATOR = '.';",
+    "private final Deque<String> path = new ArrayDeque<>();",
+    "private String memo = null;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "push(String)": "0",
+    "pop()": "1",
+    "name()": "2",
+    "extendedName(String)": "3"
+  },
+  "methodsBrief": [
+    "void push(final String s){}",
+    "String pop(){}",
+    "String name(){}",
+    "String extendedName(final String lastStep){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.ArrayDeque;\nimport java.util.Deque;\n\n/**\n * Represents the current location in a traversal of a JSON object.\n * Both rules and events need to be flattened into name/value pairs, where the name represents the path to the\n *  object.\n */\nclass Path {\n\n    private final static char SEPARATOR = '.';\n\n    private final Deque<String> path = new ArrayDeque<>();\n\n    // memo-ize\n    private String memo = null;\n\n    void push(final String s) {\n        memo = null;\n        path.add(s);\n    }\n\n    String pop() {\n        memo = null;\n        // in principle could remove null\n        return path.removeLast();\n    }\n\n    /**\n     * return the pathname as a .-separated string.\n     * This turns out to be a performance bottleneck so it's memoized and uses StringBuilder rather than StringJoiner.\n     * @return the pathname\n     */\n    String name() {\n        if (memo == null) {\n            final Object[] steps = path.toArray();\n            if (steps.length == 0) {\n                memo = \"\";\n            } else {\n                final StringBuilder sb = new StringBuilder();\n                sb.append(steps[0]);\n                for (int i = 1; i < steps.length; i++) {\n                    sb.append(SEPARATOR).append(steps[i]);\n                }\n                memo = sb.toString();\n            }\n        }\n        return memo;\n    }\n\n    /**\n     * return the pathname as a segmented-string with the indicated separator\n     * @param lastStep The next step, which we want to use but not to push on to the path\n     * @return the pathname\n     */\n    String extendedName(final String lastStep) {\n        String base = name();\n        if (!base.isEmpty()) {\n            base += SEPARATOR;\n        }\n        return base + lastStep;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents the current location in a traversal of a JSON object.\n * Both rules and events need to be flattened into name/value pairs, where the name represents the path to the\n *  object.\n */\nclass Path {\n\n    private final static char SEPARATOR = '.';\n\n    private final Deque<String> path = new ArrayDeque<>();\n\n    // memo-ize\n    private String memo = null;\n\n    void push(final String s) {\n        memo = null;\n        path.add(s);\n    }\n\n    String pop() {\n        memo = null;\n        // in principle could remove null\n        return path.removeLast();\n    }\n\n    /**\n     * return the pathname as a .-separated string.\n     * This turns out to be a performance bottleneck so it's memoized and uses StringBuilder rather than StringJoiner.\n     * @return the pathname\n     */\n    String name() {\n        if (memo == null) {\n            final Object[] steps = path.toArray();\n            if (steps.length == 0) {\n                memo = \"\";\n            } else {\n                final StringBuilder sb = new StringBuilder();\n                sb.append(steps[0]);\n                for (int i = 1; i < steps.length; i++) {\n                    sb.append(SEPARATOR).append(steps[i]);\n                }\n                memo = sb.toString();\n            }\n        }\n        return memo;\n    }\n\n    /**\n     * return the pathname as a segmented-string with the indicated separator\n     * @param lastStep The next step, which we want to use but not to push on to the path\n     * @return the pathname\n     */\n    String extendedName(final String lastStep) {\n        String base = name();\n        if (!base.isEmpty()) {\n            base += SEPARATOR;\n        }\n        return base + lastStep;\n    }\n}",
+  "subClasses": []
+}

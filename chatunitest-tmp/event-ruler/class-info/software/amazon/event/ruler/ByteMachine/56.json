@@ -1,0 +1,41 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addTransitionNextState",
+  "brief": "private void addTransitionNextState(ByteState state, InputCharacter character, InputCharacter[] characters,\n                                               int currentIndex, ByteState prevState, Patterns pattern,\n                                               ByteState nextState, NameState nameState){}",
+  "methodSignature": "addTransitionNextState(ByteState, InputCharacter, InputCharacter[], int, ByteState, Patterns, ByteState, NameState)",
+  "sourceCode": "private void addTransitionNextState(ByteState state, InputCharacter character, InputCharacter[] characters,\n                                               int currentIndex, ByteState prevState, Patterns pattern,\n                                               ByteState nextState, NameState nameState) {\n        if (isWildcard(character)) {\n            addTransitionNextStateForWildcard(state, nextState);\n        } else {\n            // If the last character is the wildcard character, and we're on the second last character, set a match on\n            // the transition (turning it into a composite) before adding transitions from state and prevState.\n            SingleByteTransition single = nextState;\n            if (isWildcard(characters[characters.length - 1]) && currentIndex == characters.length - 2) {\n                ByteMatch match = new ByteMatch(pattern, nameState);\n                single = nextState.setMatch(match);\n                nextState.setIndeterminatePrefix(true);\n            } else if (isMultiByteSet(character)) {\n                nextState.setIndeterminatePrefix(true);\n            }\n\n            addTransition(state, character, single);\n\n            // If there was a previous state and it transitioned using the wildcard character, we need to add a\n            // transition from the previous state to allow wildcard match on empty substring.\n            if (prevState != null && isWildcard(characters[currentIndex - 1])) {\n                addTransition(prevState, character, single);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "InputCharacter",
+    "InputCharacter[]",
+    "int",
+    "ByteState",
+    "Patterns",
+    "ByteState",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "setIndeterminatePrefix(boolean)",
+      "setMatch(ByteMatch)"
+    ],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isMultiByteSet(InputCharacter)",
+      "addTransitionNextStateForWildcard(ByteState, ByteState)",
+      "isWildcard(InputCharacter)",
+      "addTransition(ByteState, InputCharacter, SingleByteTransition)"
+    ]
+  },
+  "full_method_info": "private void addTransitionNextState(ByteState state, InputCharacter character, InputCharacter[] characters, int currentIndex, ByteState prevState, Patterns pattern, ByteState nextState, NameState nameState) {\n    if (isWildcard(character)) {\n        addTransitionNextStateForWildcard(state, nextState);\n    } else {\n        // If the last character is the wildcard character, and we're on the second last character, set a match on\n        // the transition (turning it into a composite) before adding transitions from state and prevState.\n        SingleByteTransition single = nextState;\n        if (isWildcard(characters[characters.length - 1]) && currentIndex == characters.length - 2) {\n            ByteMatch match = new ByteMatch(pattern, nameState);\n            single = nextState.setMatch(match);\n            nextState.setIndeterminatePrefix(true);\n        } else if (isMultiByteSet(character)) {\n            nextState.setIndeterminatePrefix(true);\n        }\n        addTransition(state, character, single);\n        // If there was a previous state and it transitioned using the wildcard character, we need to add a\n        // transition from the previous state to allow wildcard match on empty substring.\n        if (prevState != null && isWildcard(characters[currentIndex - 1])) {\n            addTransition(prevState, character, single);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

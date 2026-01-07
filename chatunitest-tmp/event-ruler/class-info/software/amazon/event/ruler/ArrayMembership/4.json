@@ -1,0 +1,22 @@
+{
+  "className": "ArrayMembership",
+  "methodName": "size",
+  "brief": "private int size(){}",
+  "methodSignature": "size()",
+  "sourceCode": "private int size() {\n        return membership.size();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "size()"
+    ]
+  },
+  "full_method_info": "private int size() {\n    return membership.size();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

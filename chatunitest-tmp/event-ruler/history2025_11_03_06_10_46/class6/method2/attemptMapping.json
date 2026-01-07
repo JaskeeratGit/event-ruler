@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "InputWildcard_hashCode_2_0_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_hashCode_2_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_hashCode_2_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt1": {
+    "testClassName": "InputWildcard_hashCode_2_1_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_hashCode_2_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_hashCode_2_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt2": {
+    "testClassName": "InputWildcard_hashCode_2_2_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_hashCode_2_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_hashCode_2_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt3": {
+    "testClassName": "InputWildcard_hashCode_2_3_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_hashCode_2_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_hashCode_2_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  },
+  "attempt4": {
+    "testClassName": "InputWildcard_hashCode_2_4_Test",
+    "fullName": "software.amazon.event.ruler.input.InputWildcard_hashCode_2_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/input/InputWildcard_hashCode_2_0_Test.java",
+    "className": "InputWildcard",
+    "packageName": "software.amazon.event.ruler.input",
+    "methodName": "hashCode",
+    "methodSig": "hashCode()"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "className": "Patterns",
+  "methodName": "existencePatterns",
+  "brief": "public static Patterns existencePatterns(){}",
+  "methodSignature": "existencePatterns()",
+  "sourceCode": "public static Patterns existencePatterns() {\n        return new Patterns(MatchType.EXISTS);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public static Patterns existencePatterns() {\n    return new Patterns(MatchType.EXISTS);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

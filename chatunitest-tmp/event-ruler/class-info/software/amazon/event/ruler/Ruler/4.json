@@ -1,0 +1,68 @@
+{
+  "className": "Ruler",
+  "methodName": "matches",
+  "brief": "private static boolean matches(final JsonNode val, final Patterns pattern){}",
+  "methodSignature": "matches(JsonNode, Patterns)",
+  "sourceCode": "private static boolean matches(final JsonNode val, final Patterns pattern) {\n        switch (pattern.type()) {\n            case EXACT:\n                ValuePatterns valuePattern = (ValuePatterns) pattern;\n                // if it's a string we match the \"-quoted form, otherwise (true, false, null) as-is.\n                final String compareTo = (val.isTextual()) ? '\"' + val.asText() + '\"' : val.asText();\n                return compareTo.equals(valuePattern.pattern());\n\n            case PREFIX:\n                valuePattern = (ValuePatterns) pattern;\n                return val.isTextual() && ('\"' + val.asText()).startsWith(valuePattern.pattern());\n\n            case PREFIX_EQUALS_IGNORE_CASE:\n                valuePattern = (ValuePatterns) pattern;\n                return val.isTextual() && ('\"' + val.asText().toLowerCase(Locale.ROOT))\n                        .startsWith(valuePattern.pattern().toLowerCase(Locale.ROOT));\n            case SUFFIX:\n                valuePattern = (ValuePatterns) pattern;\n                // Undoes the reverse on the pattern value to match against the provided value\n                return val.isTextual() && (val.asText() + '\"')\n                        .endsWith(new StringBuilder(valuePattern.pattern()).reverse().toString());\n\n            case SUFFIX_EQUALS_IGNORE_CASE:\n                valuePattern = (ValuePatterns) pattern;\n                // Undoes the reverse on the pattern value to match against the provided value\n                return val.isTextual() && (val.asText().toLowerCase(Locale.ROOT) + '\"')\n                        .endsWith(new StringBuilder(valuePattern.pattern().toLowerCase(Locale.ROOT)).reverse().toString());\n\n            case ANYTHING_BUT:\n                assert (pattern instanceof AnythingBut);\n                AnythingBut anythingButPattern = (AnythingBut) pattern;\n                if (val.isTextual()) {\n                    return anythingButPattern.getValues().stream().noneMatch(v -> v.equals('\"' + val.asText() + '\"'));\n                } else if (val.isNumber()) {\n                    return anythingButPattern.getValues().stream()\n                            .noneMatch(v -> v.equals(ComparableNumber.generate(val.asText())));\n                }\n                return false;\n            case ANYTHING_BUT_IGNORE_CASE:\n                assert (pattern instanceof AnythingButValuesSet);\n                AnythingButValuesSet anythingButIgnoreCasePattern = (AnythingButValuesSet) pattern;\n                if (val.isTextual()) {\n                    return anythingButIgnoreCasePattern.getValues().stream().noneMatch(v -> v.equalsIgnoreCase('\"' + val.asText() + '\"'));\n                }\n                return false;\n\n            case ANYTHING_BUT_SUFFIX:\n                AnythingButValuesSet anythingButSuffixPattern = (AnythingButValuesSet) pattern;\n                String valueForSuffix = val.asText() + '\"';\n                if (val.isTextual()) {\n                    return anythingButSuffixPattern.getValues().stream().noneMatch(v -> valueForSuffix.startsWith(v));\n                }\n                return false;\n            case ANYTHING_BUT_PREFIX:\n                AnythingButValuesSet anythingButPrefixPattern = (AnythingButValuesSet) pattern;\n                String valueForPrefix = '\"' + val.asText() + '\"';\n                if (val.isTextual()) {\n                    return anythingButPrefixPattern.getValues().stream().noneMatch(v -> valueForPrefix.startsWith(v));\n                }\n                return false;\n\n            case NUMERIC_EQ:\n                valuePattern = (ValuePatterns) pattern;\n                return val.isNumber() && ComparableNumber.generate(val.asText()).equals(valuePattern.pattern());\n            case EXISTS:\n                return true;\n            case ABSENT:\n                return false;\n            case NUMERIC_RANGE:\n                final Range nr = (Range) pattern;\n                byte[] bytes;\n                if (nr.isCIDR) {\n                    if (!val.isTextual()) {\n                        return false;\n                    }\n                    try {\n                        bytes = CIDR.ipToString(val.asText()).getBytes(StandardCharsets.UTF_8);\n                    } catch (Exception e) {\n                        return false;\n                    }\n                } else {\n                    if (!val.isNumber()) {\n                        return false;\n                    }\n                    bytes = ComparableNumber.generate(val.asText()).getBytes(StandardCharsets.UTF_8);\n                }\n                final int comparedToBottom = compare(bytes, nr.bottom);\n                if ((comparedToBottom > 0) || (comparedToBottom == 0 && !nr.openBottom)) {\n                    final int comparedToTop = compare(bytes, nr.top);\n                    return comparedToTop < 0 || (comparedToTop == 0 && !nr.openTop);\n                }\n                return false;\n            case EQUALS_IGNORE_CASE:\n                valuePattern = (ValuePatterns) pattern;\n                return val.isTextual() && ('\"' + val.asText() + '\"').equalsIgnoreCase(valuePattern.pattern());\n            case WILDCARD:\n                valuePattern = (ValuePatterns) pattern;\n                return val.isTextual() &&\n                        ('\"' + val.asText() + '\"').matches(valuePattern.pattern().replaceAll(\"\\\\*\", \".*\"));\n            default:\n                throw new RuntimeException(\"Unsupported Pattern type \" + pattern.type());\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "isNumber()",
+      "isTextual()",
+      "asText()"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "java.lang.String": [
+      "equals(Object)",
+      "startsWith(String)",
+      "matches(String)",
+      "replaceAll(String, String)",
+      "toLowerCase(Locale)",
+      "equalsIgnoreCase(String)",
+      "getBytes(Charset)",
+      "endsWith(String)"
+    ],
+    "software.amazon.event.ruler.ValuePatterns": [
+      "pattern()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "reverse()"
+    ],
+    "java.util.stream.Stream": [
+      "noneMatch(Predicate<? super T>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "software.amazon.event.ruler.AnythingBut": [
+      "getValues()"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "generate(String)"
+    ],
+    "software.amazon.event.ruler.AnythingButValuesSet": [
+      "getValues()"
+    ],
+    "software.amazon.event.ruler.CIDR": [
+      "ipToString(String)"
+    ],
+    "software.amazon.event.ruler.Ruler": [
+      "compare(byte[], byte[])"
+    ]
+  },
+  "full_method_info": "private static boolean matches(final JsonNode val, final Patterns pattern) {\n    switch(pattern.type()) {\n        case EXACT:\n            ValuePatterns valuePattern = (ValuePatterns) pattern;\n            // if it's a string we match the \"-quoted form, otherwise (true, false, null) as-is.\n            final String compareTo = (val.isTextual()) ? '\"' + val.asText() + '\"' : val.asText();\n            return compareTo.equals(valuePattern.pattern());\n        case PREFIX:\n            valuePattern = (ValuePatterns) pattern;\n            return val.isTextual() && ('\"' + val.asText()).startsWith(valuePattern.pattern());\n        case PREFIX_EQUALS_IGNORE_CASE:\n            valuePattern = (ValuePatterns) pattern;\n            return val.isTextual() && ('\"' + val.asText().toLowerCase(Locale.ROOT)).startsWith(valuePattern.pattern().toLowerCase(Locale.ROOT));\n        case SUFFIX:\n            valuePattern = (ValuePatterns) pattern;\n            // Undoes the reverse on the pattern value to match against the provided value\n            return val.isTextual() && (val.asText() + '\"').endsWith(new StringBuilder(valuePattern.pattern()).reverse().toString());\n        case SUFFIX_EQUALS_IGNORE_CASE:\n            valuePattern = (ValuePatterns) pattern;\n            // Undoes the reverse on the pattern value to match against the provided value\n            return val.isTextual() && (val.asText().toLowerCase(Locale.ROOT) + '\"').endsWith(new StringBuilder(valuePattern.pattern().toLowerCase(Locale.ROOT)).reverse().toString());\n        case ANYTHING_BUT:\n            assert (pattern instanceof AnythingBut);\n            AnythingBut anythingButPattern = (AnythingBut) pattern;\n            if (val.isTextual()) {\n                return anythingButPattern.getValues().stream().noneMatch(v -> v.equals('\"' + val.asText() + '\"'));\n            } else if (val.isNumber()) {\n                return anythingButPattern.getValues().stream().noneMatch(v -> v.equals(ComparableNumber.generate(val.asText())));\n            }\n            return false;\n        case ANYTHING_BUT_IGNORE_CASE:\n            assert (pattern instanceof AnythingButValuesSet);\n            AnythingButValuesSet anythingButIgnoreCasePattern = (AnythingButValuesSet) pattern;\n            if (val.isTextual()) {\n                return anythingButIgnoreCasePattern.getValues().stream().noneMatch(v -> v.equalsIgnoreCase('\"' + val.asText() + '\"'));\n            }\n            return false;\n        case ANYTHING_BUT_SUFFIX:\n            AnythingButValuesSet anythingButSuffixPattern = (AnythingButValuesSet) pattern;\n            String valueForSuffix = val.asText() + '\"';\n            if (val.isTextual()) {\n                return anythingButSuffixPattern.getValues().stream().noneMatch(v -> valueForSuffix.startsWith(v));\n            }\n            return false;\n        case ANYTHING_BUT_PREFIX:\n            AnythingButValuesSet anythingButPrefixPattern = (AnythingButValuesSet) pattern;\n            String valueForPrefix = '\"' + val.asText() + '\"';\n            if (val.isTextual()) {\n                return anythingButPrefixPattern.getValues().stream().noneMatch(v -> valueForPrefix.startsWith(v));\n            }\n            return false;\n        case NUMERIC_EQ:\n            valuePattern = (ValuePatterns) pattern;\n            return val.isNumber() && ComparableNumber.generate(val.asText()).equals(valuePattern.pattern());\n        case EXISTS:\n            return true;\n        case ABSENT:\n            return false;\n        case NUMERIC_RANGE:\n            final Range nr = (Range) pattern;\n            byte[] bytes;\n            if (nr.isCIDR) {\n                if (!val.isTextual()) {\n                    return false;\n                }\n                try {\n                    bytes = CIDR.ipToString(val.asText()).getBytes(StandardCharsets.UTF_8);\n                } catch (Exception e) {\n                    return false;\n                }\n            } else {\n                if (!val.isNumber()) {\n                    return false;\n                }\n                bytes = ComparableNumber.generate(val.asText()).getBytes(StandardCharsets.UTF_8);\n            }\n            final int comparedToBottom = compare(bytes, nr.bottom);\n            if ((comparedToBottom > 0) || (comparedToBottom == 0 && !nr.openBottom)) {\n                final int comparedToTop = compare(bytes, nr.top);\n                return comparedToTop < 0 || (comparedToTop == 0 && !nr.openTop);\n            }\n            return false;\n        case EQUALS_IGNORE_CASE:\n            valuePattern = (ValuePatterns) pattern;\n            return val.isTextual() && ('\"' + val.asText() + '\"').equalsIgnoreCase(valuePattern.pattern());\n        case WILDCARD:\n            valuePattern = (ValuePatterns) pattern;\n            return val.isTextual() && ('\"' + val.asText() + '\"').matches(valuePattern.pattern().replaceAll(\"\\\\*\", \".*\"));\n        default:\n            throw new RuntimeException(\"Unsupported Pattern type \" + pattern.type());\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

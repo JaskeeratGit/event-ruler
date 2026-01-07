@@ -1,0 +1,20 @@
+{
+  "className": "ComparableNumber",
+  "methodName": "numbits",
+  "brief": "public static String numbits(long value){}",
+  "methodSignature": "numbits(long)",
+  "sourceCode": "public static String numbits(long value) {\n        int trailingZeroes = 0;\n        int index;\n        // Count the number of trailing zero bytes to skip setting them\n        for(index = MAX_LENGTH_IN_BYTES - 1; index >= 0; index--) {\n            if((value & BASE_128_BITMASK) != 0) {\n                break;\n            }\n            trailingZeroes ++;\n            value >>= 7;\n        }\n\n        byte[] result = new byte[MAX_LENGTH_IN_BYTES];\n\n        // Populate the byte array with the Base128 encoded bytes of the input value\n        for(; index >= 0; index--) {\n            result[index] = (byte)(value & BASE_128_BITMASK);\n            value >>= 7;\n        }\n\n        return new String(result, StandardCharsets.UTF_8);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "long"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Converts a long value to a Base128 encoded string representation.\n * <br/>\n * The Base128 encoding scheme is a way to represent a long value as a sequence\n * of bytes, where each byte encodes 7 bits of the original value. This allows for\n * efficient storage and transmission of large numbers.\n * <br/>\n * The method first determines the number of trailing zero bytes in the input\n * value by iterating over the bytes from the most significant byte to the least\n * significant byte, and counting the number of consecutive zero bytes at the end.\n * It then creates a byte array of fixed length {@code MAX_LENGTH_IN_BYTES} and\n * populates it with the Base128 encoded bytes of the input value, starting from\n * the least significant byte.\n * <br/>\n * As shown in Quamina's numbits.go, it's possible to use variable length encoding\n * to reduce storage for simple (often common) numbers but it's not done here to\n * keep range comparisons simple for now.\n *\n * @param value the long value to be converted\n * @return the Base128 encoded string representation of the input value\n */\npublic static String numbits(long value) {\n    int trailingZeroes = 0;\n    int index;\n    // Count the number of trailing zero bytes to skip setting them\n    for (index = MAX_LENGTH_IN_BYTES - 1; index >= 0; index--) {\n        if ((value & BASE_128_BITMASK) != 0) {\n            break;\n        }\n        trailingZeroes++;\n        value >>= 7;\n    }\n    byte[] result = new byte[MAX_LENGTH_IN_BYTES];\n    // Populate the byte array with the Base128 encoded bytes of the input value\n    for (; index >= 0; index--) {\n        result[index] = (byte) (value & BASE_128_BITMASK);\n        value >>= 7;\n    }\n    return new String(result, StandardCharsets.UTF_8);\n}",
+  "method_comment": "\n     * Converts a long value to a Base128 encoded string representation.\n     * <br/>\n     * The Base128 encoding scheme is a way to represent a long value as a sequence\n     * of bytes, where each byte encodes 7 bits of the original value. This allows for\n     * efficient storage and transmission of large numbers.\n     * <br/>\n     * The method first determines the number of trailing zero bytes in the input\n     * value by iterating over the bytes from the most significant byte to the least\n     * significant byte, and counting the number of consecutive zero bytes at the end.\n     * It then creates a byte array of fixed length {@code MAX_LENGTH_IN_BYTES} and\n     * populates it with the Base128 encoded bytes of the input value, starting from\n     * the least significant byte.\n     * <br/>\n     * As shown in Quamina's numbits.go, it's possible to use variable length encoding\n     * to reduce storage for simple (often common) numbers but it's not done here to\n     * keep range comparisons simple for now.\n     *\n     * @param value the long value to be converted\n     * @return the Base128 encoded string representation of the input value\n     ",
+  "method_annotation": ""
+}

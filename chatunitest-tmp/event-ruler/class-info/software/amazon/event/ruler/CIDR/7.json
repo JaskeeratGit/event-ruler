@@ -1,0 +1,29 @@
+{
+  "className": "CIDR",
+  "methodName": "computeBottomBytes",
+  "brief": "private static byte[] computeBottomBytes(final byte[] baseBytes, final int maskBits){}",
+  "methodSignature": "computeBottomBytes(byte[], int)",
+  "sourceCode": "private static byte[] computeBottomBytes(final byte[] baseBytes, final int maskBits) {\n\n        int variableBits = computeVariableBits(baseBytes, maskBits);\n\n        // Calculate the byte representation of the lowest IP address covered by the provided CIDR.\n        // Iterate from the least significant byte (right hand side) back to the most significant byte (left hand side).\n        byte[] minBytes = new byte[baseBytes.length];\n        for (int i = baseBytes.length - 1; i >= 0; i--) {\n\n            // This is the case where some or all of the byte is variable. So the min byte value possible is equal to\n            // the original IP address's bits for the leading non-variable bits and equal to all 0's for the trailing\n            // variable bits.\n            if (variableBits > 0) {\n                minBytes[i] = (byte) (baseBytes[i] & LEADING_MIN_BITS[Math.min(8, variableBits)]);\n\n                // There is no variable component to this byte. Thus, it must equal the byte from the original IP address in\n                // the provided CIDR.\n            } else {\n                minBytes[i] = baseBytes[i];\n            }\n\n            // Subtract 8 variable bits. We're effectively chopping off the least significant byte for next iteration.\n            variableBits -= 8;\n        }\n\n        return minBytes;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "software.amazon.event.ruler.CIDR": [
+      "computeVariableBits(byte[], int)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Calculate the byte representation of the lowest IP address covered by the provided CIDR.\n *\n * @param baseBytes The byte representation of the IP address (left-of-slash) component of the provided CIDR.\n * @param maskBits The integer (right-of-slash) of the provided CIDR.\n * @return The byte representation of the lowest IP address covered by the provided CIDR.\n */\nprivate static byte[] computeBottomBytes(final byte[] baseBytes, final int maskBits) {\n    int variableBits = computeVariableBits(baseBytes, maskBits);\n    // Calculate the byte representation of the lowest IP address covered by the provided CIDR.\n    // Iterate from the least significant byte (right hand side) back to the most significant byte (left hand side).\n    byte[] minBytes = new byte[baseBytes.length];\n    for (int i = baseBytes.length - 1; i >= 0; i--) {\n        // This is the case where some or all of the byte is variable. So the min byte value possible is equal to\n        // the original IP address's bits for the leading non-variable bits and equal to all 0's for the trailing\n        // variable bits.\n        if (variableBits > 0) {\n            minBytes[i] = (byte) (baseBytes[i] & LEADING_MIN_BITS[Math.min(8, variableBits)]);\n            // There is no variable component to this byte. Thus, it must equal the byte from the original IP address in\n            // the provided CIDR.\n        } else {\n            minBytes[i] = baseBytes[i];\n        }\n        // Subtract 8 variable bits. We're effectively chopping off the least significant byte for next iteration.\n        variableBits -= 8;\n    }\n    return minBytes;\n}",
+  "method_comment": "\n     * Calculate the byte representation of the lowest IP address covered by the provided CIDR.\n     *\n     * @param baseBytes The byte representation of the IP address (left-of-slash) component of the provided CIDR.\n     * @param maskBits The integer (right-of-slash) of the provided CIDR.\n     * @return The byte representation of the lowest IP address covered by the provided CIDR.\n     ",
+  "method_annotation": ""
+}

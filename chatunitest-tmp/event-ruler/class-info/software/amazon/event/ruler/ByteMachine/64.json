@@ -1,0 +1,34 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addTransitionForMultiByteSet",
+  "brief": "private static void addTransitionForMultiByteSet(ByteState state, InputMultiByteSet multiByteSet,\n                                                     SingleByteTransition transition){}",
+  "methodSignature": "addTransitionForMultiByteSet(ByteState, InputMultiByteSet, SingleByteTransition)",
+  "sourceCode": "private static void addTransitionForMultiByteSet(ByteState state, InputMultiByteSet multiByteSet,\n                                                     SingleByteTransition transition) {\n        for (MultiByte multiByte : multiByteSet.getMultiBytes()) {\n            byte[] bytes = multiByte.getBytes();\n            ByteState currentState = state;\n            for (int i = 0; i < bytes.length - 1; i++) {\n                ByteState nextState = new ByteState();\n                nextState.setIndeterminatePrefix(true);\n                currentState.addTransition(bytes[i], nextState);\n                currentState = nextState;\n            }\n            currentState.addTransition(bytes[bytes.length - 1], transition);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "InputMultiByteSet",
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "setIndeterminatePrefix(boolean)",
+      "addTransition(byte, SingleByteTransition)"
+    ],
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.input.InputMultiByteSet": [
+      "getMultiBytes()"
+    ],
+    "software.amazon.event.ruler.input.MultiByte": [
+      "getBytes()"
+    ]
+  },
+  "full_method_info": "private static void addTransitionForMultiByteSet(ByteState state, InputMultiByteSet multiByteSet, SingleByteTransition transition) {\n    for (MultiByte multiByte : multiByteSet.getMultiBytes()) {\n        byte[] bytes = multiByte.getBytes();\n        ByteState currentState = state;\n        for (int i = 0; i < bytes.length - 1; i++) {\n            ByteState nextState = new ByteState();\n            nextState.setIndeterminatePrefix(true);\n            currentState.addTransition(bytes[i], nextState);\n            currentState = nextState;\n        }\n        currentState.addTransition(bytes[bytes.length - 1], transition);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

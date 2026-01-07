@@ -1,0 +1,30 @@
+{
+  "className": "GenericMachine",
+  "methodName": "doesNameStateContainPattern",
+  "brief": "private boolean doesNameStateContainPattern(final NameState nameState, final Patterns pattern){}",
+  "methodSignature": "doesNameStateContainPattern(NameState, Patterns)",
+  "sourceCode": "private boolean doesNameStateContainPattern(final NameState nameState, final Patterns pattern) {\n        return nameState.getTerminalPatterns().contains(pattern) ||\n                nameState.getNonTerminalPatterns().contains(pattern);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "NameState",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "getTerminalPatterns()",
+      "getNonTerminalPatterns()"
+    ],
+    "software.amazon.event.ruler.Patterns": [],
+    "java.util.Set": [
+      "contains(Object)"
+    ]
+  },
+  "full_method_info": "private boolean doesNameStateContainPattern(final NameState nameState, final Patterns pattern) {\n    return nameState.getTerminalPatterns().contains(pattern) || nameState.getNonTerminalPatterns().contains(pattern);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "CompositeByteTransition",
+  "methodName": "getMatch",
+  "brief": "@Override\n    ByteMatch getMatch(){}",
+  "methodSignature": "getMatch()",
+  "sourceCode": "@Override\n    ByteMatch getMatch() {\n        return match;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\nByteMatch getMatch() {\n    return match;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

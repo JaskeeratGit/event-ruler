@@ -1,0 +1,26 @@
+{
+  "className": "ByteMap",
+  "methodName": "putTransition",
+  "brief": "void putTransition(final byte utf8byte, final SingleByteTransition transition){}",
+  "methodSignature": "putTransition(byte, SingleByteTransition)",
+  "sourceCode": "void putTransition(final byte utf8byte, final SingleByteTransition transition) {\n        updateTransition(utf8byte, transition, Operation.PUT);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte",
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.ByteMap": [
+      "updateTransition(byte, SingleByteTransition, Operation)"
+    ]
+  },
+  "full_method_info": "void putTransition(final byte utf8byte, final SingleByteTransition transition) {\n    updateTransition(utf8byte, transition, Operation.PUT);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

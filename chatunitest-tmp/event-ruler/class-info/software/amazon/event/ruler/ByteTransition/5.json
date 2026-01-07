@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "getShortcuts",
+  "brief": "abstract Iterable<ShortcutTransition> getShortcuts();",
+  "methodSignature": "getShortcuts()",
+  "sourceCode": "abstract Iterable<ShortcutTransition> getShortcuts();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns all shortcuts that are available if this transition is made.\n *\n * @return all shortcuts\n */\nabstract Iterable<ShortcutTransition> getShortcuts();",
+  "method_comment": "\n     * Returns all shortcuts that are available if this transition is made.\n     *\n     * @return all shortcuts\n     ",
+  "method_annotation": ""
+}

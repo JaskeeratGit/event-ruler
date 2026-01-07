@@ -1,0 +1,67 @@
+{
+  "fullClassName": "software.amazon.event.ruler.Constants",
+  "className": "Constants",
+  "index": 67,
+  "modifier": "[final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "final class Constants",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Arrays;",
+    "import java.util.List;",
+    "import java.util.regex.Pattern;"
+  ],
+  "fields": [
+    "final static String EXACT_MATCH = \"exactly\";",
+    "final static String EQUALS_IGNORE_CASE = \"equals-ignore-case\";",
+    "final static String PREFIX_MATCH = \"prefix\";",
+    "final static String SUFFIX_MATCH = \"suffix\";",
+    "final static String ANYTHING_BUT_MATCH = \"anything-but\";",
+    "final static String EXISTS_MATCH = \"exists\";",
+    "final static String WILDCARD = \"wildcard\";",
+    "final static String NUMERIC = \"numeric\";",
+    "final static String CIDR = \"cidr\";",
+    "final static String OR_RELATIONSHIP_KEYWORD = \"$or\";",
+    "final static String EQ = \"=\";",
+    "final static String LT = \"<\";",
+    "final static String LE = \"<=\";",
+    "final static String GT = \">\";",
+    "final static String GE = \">=\";",
+    "final static Pattern IPv4_REGEX = Pattern.compile(\"[0-9]+\\\\.[0-9]+\\\\.[0-9]+\\\\.[0-9]+\");",
+    "final static Pattern IPv6_REGEX = Pattern.compile(\"[0-9a-fA-F:]*:[0-9a-fA-F:]*\");",
+    "final static byte[] HEX_DIGITS = {\n      '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',\n      'A', 'B', 'C', 'D', 'E', 'F'\n  };",
+    "final static byte MAX_HEX_DIGIT = HEX_DIGITS[HEX_DIGITS.length - 1];",
+    "final static byte MIN_HEX_DIGIT = HEX_DIGITS[0];",
+    "static final byte[] BASE128_DIGITS = new byte[128];",
+    "final static byte MAX_NUM_DIGIT = BASE128_DIGITS[BASE128_DIGITS.length - 1];",
+    "final static byte MIN_NUM_DIGIT = BASE128_DIGITS[0];",
+    "final static List<String> RESERVED_FIELD_NAMES_IN_OR_RELATIONSHIP = Arrays.asList(\n      EXACT_MATCH,\n      EQUALS_IGNORE_CASE,\n      PREFIX_MATCH,\n      SUFFIX_MATCH,\n      ANYTHING_BUT_MATCH,\n      EXISTS_MATCH,\n      WILDCARD,\n      NUMERIC,\n      CIDR,\n      // Numeric comparisons\n      EQ, LT, LE, GT, GE,\n      // reserve below keywords for future extension\n      \"regex\",\n      // String Comparisons\n      \"not-wildcard\", \"not-equals-ignore-case\",\n      // Date/Time comparisons\n      \"date-after\", \"date-on-or-after\", \"date-before\", \"date-on-or-before\", \"in-date-range\",\n      // IP Address Comparison\n      \"ip-address-in-range\", \"ip-address-not-in-range\"\n  );"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "Constants()": "0"
+  },
+  "methodsBrief": [
+    "private Constants(){}"
+  ],
+  "constructorSigs": [
+    "Constants()"
+  ],
+  "constructorBrief": [
+    "private Constants(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.Arrays;\nimport java.util.List;\nimport java.util.regex.Pattern;\n\nfinal class Constants {\n\n    private Constants() {\n        throw new UnsupportedOperationException(\"You can't create instance of utility class.\");\n    }\n\n    final static String EXACT_MATCH = \"exactly\";\n\n    final static String EQUALS_IGNORE_CASE = \"equals-ignore-case\";\n\n    final static String PREFIX_MATCH = \"prefix\";\n\n    final static String SUFFIX_MATCH = \"suffix\";\n\n    final static String ANYTHING_BUT_MATCH = \"anything-but\";\n\n    final static String EXISTS_MATCH = \"exists\";\n\n    final static String WILDCARD = \"wildcard\";\n\n    final static String NUMERIC = \"numeric\";\n\n    final static String CIDR = \"cidr\";\n\n    // This is Ruler reserved words to represent the $or relationship among the fields.\n    final static String OR_RELATIONSHIP_KEYWORD = \"$or\";\n\n    final static String EQ = \"=\";\n\n    final static String LT = \"<\";\n\n    final static String LE = \"<=\";\n\n    final static String GT = \">\";\n\n    final static String GE = \">=\";\n\n    final static Pattern IPv4_REGEX = Pattern.compile(\"[0-9]+\\\\.[0-9]+\\\\.[0-9]+\\\\.[0-9]+\");\n\n    final static Pattern IPv6_REGEX = Pattern.compile(\"[0-9a-fA-F:]*:[0-9a-fA-F:]*\");\n\n    final static byte[] HEX_DIGITS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };\n\n    // F\n    final static byte MAX_HEX_DIGIT = HEX_DIGITS[HEX_DIGITS.length - 1];\n\n    // 0\n    final static byte MIN_HEX_DIGIT = HEX_DIGITS[0];\n\n    static final byte[] BASE128_DIGITS = new byte[128];\n\n    static {\n        for (int i = 0; i < BASE128_DIGITS.length; i++) {\n            BASE128_DIGITS[i] = (byte) i;\n        }\n    }\n\n    final static byte MAX_NUM_DIGIT = BASE128_DIGITS[BASE128_DIGITS.length - 1];\n\n    final static byte MIN_NUM_DIGIT = BASE128_DIGITS[0];\n\n    final static List<String> RESERVED_FIELD_NAMES_IN_OR_RELATIONSHIP = Arrays.asList(EXACT_MATCH, EQUALS_IGNORE_CASE, PREFIX_MATCH, SUFFIX_MATCH, ANYTHING_BUT_MATCH, EXISTS_MATCH, WILDCARD, NUMERIC, CIDR, // Numeric comparisons\n    EQ, LT, LE, GT, GE, // reserve below keywords for future extension\n    \"regex\", // String Comparisons\n    \"not-wildcard\", \"not-equals-ignore-case\", // Date/Time comparisons\n    \"date-after\", \"date-on-or-after\", \"date-before\", \"date-on-or-before\", \"in-date-range\", // IP Address Comparison\n    \"ip-address-in-range\", \"ip-address-not-in-range\");\n}\n",
+  "classDeclarationCode": "final class Constants {\n\n    private Constants() {\n        throw new UnsupportedOperationException(\"You can't create instance of utility class.\");\n    }\n\n    final static String EXACT_MATCH = \"exactly\";\n\n    final static String EQUALS_IGNORE_CASE = \"equals-ignore-case\";\n\n    final static String PREFIX_MATCH = \"prefix\";\n\n    final static String SUFFIX_MATCH = \"suffix\";\n\n    final static String ANYTHING_BUT_MATCH = \"anything-but\";\n\n    final static String EXISTS_MATCH = \"exists\";\n\n    final static String WILDCARD = \"wildcard\";\n\n    final static String NUMERIC = \"numeric\";\n\n    final static String CIDR = \"cidr\";\n\n    // This is Ruler reserved words to represent the $or relationship among the fields.\n    final static String OR_RELATIONSHIP_KEYWORD = \"$or\";\n\n    final static String EQ = \"=\";\n\n    final static String LT = \"<\";\n\n    final static String LE = \"<=\";\n\n    final static String GT = \">\";\n\n    final static String GE = \">=\";\n\n    final static Pattern IPv4_REGEX = Pattern.compile(\"[0-9]+\\\\.[0-9]+\\\\.[0-9]+\\\\.[0-9]+\");\n\n    final static Pattern IPv6_REGEX = Pattern.compile(\"[0-9a-fA-F:]*:[0-9a-fA-F:]*\");\n\n    final static byte[] HEX_DIGITS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };\n\n    // F\n    final static byte MAX_HEX_DIGIT = HEX_DIGITS[HEX_DIGITS.length - 1];\n\n    // 0\n    final static byte MIN_HEX_DIGIT = HEX_DIGITS[0];\n\n    static final byte[] BASE128_DIGITS = new byte[128];\n\n    static {\n        for (int i = 0; i < BASE128_DIGITS.length; i++) {\n            BASE128_DIGITS[i] = (byte) i;\n        }\n    }\n\n    final static byte MAX_NUM_DIGIT = BASE128_DIGITS[BASE128_DIGITS.length - 1];\n\n    final static byte MIN_NUM_DIGIT = BASE128_DIGITS[0];\n\n    final static List<String> RESERVED_FIELD_NAMES_IN_OR_RELATIONSHIP = Arrays.asList(EXACT_MATCH, EQUALS_IGNORE_CASE, PREFIX_MATCH, SUFFIX_MATCH, ANYTHING_BUT_MATCH, EXISTS_MATCH, WILDCARD, NUMERIC, CIDR, // Numeric comparisons\n    EQ, LT, LE, GT, GE, // reserve below keywords for future extension\n    \"regex\", // String Comparisons\n    \"not-wildcard\", \"not-equals-ignore-case\", // Date/Time comparisons\n    \"date-after\", \"date-on-or-after\", \"date-before\", \"date-on-or-before\", \"in-date-range\", // IP Address Comparison\n    \"ip-address-in-range\", \"ip-address-not-in-range\");\n}",
+  "initializerCode": "static {\n    for (int i = 0; i < BASE128_DIGITS.length; i++) {\n        BASE128_DIGITS[i] = (byte) i;\n    }\n}",
+  "subClasses": []
+}

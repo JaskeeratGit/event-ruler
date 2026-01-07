@@ -1,0 +1,24 @@
+{
+  "className": "ByteState",
+  "methodName": "getTransition",
+  "brief": "@Override\n    ByteTransition getTransition(byte utf8byte){}",
+  "methodSignature": "getTransition(byte)",
+  "sourceCode": "@Override\n    ByteTransition getTransition(byte utf8byte) {\n        // Saving the value to avoid reading an updated value\n        Object transitionStore = this.transitionStore;\n        if (transitionStore == null) {\n            return null;\n        } else if (transitionStore instanceof SingleByteTransitionEntry) {\n            SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n            return utf8byte == entry.utf8byte ? entry.transition : null;\n        }\n        ByteMap map = (ByteMap) transitionStore;\n        return map.getTransition(utf8byte);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteMap": [
+      "getTransition(byte)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the transition to which the given byte value is mapped, or {@code null} if this state contains no\n * transitions for the given byte value.\n *\n * @param utf8byte the byte value whose associated transition is to be returned\n * @return the transition to which the given byte value is mapped, or {@code null} if this state contains no\n * transitions for the given byte value\n */\n@Override\nByteTransition getTransition(byte utf8byte) {\n    // Saving the value to avoid reading an updated value\n    Object transitionStore = this.transitionStore;\n    if (transitionStore == null) {\n        return null;\n    } else if (transitionStore instanceof SingleByteTransitionEntry) {\n        SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n        return utf8byte == entry.utf8byte ? entry.transition : null;\n    }\n    ByteMap map = (ByteMap) transitionStore;\n    return map.getTransition(utf8byte);\n}",
+  "method_comment": "\n     * Returns the transition to which the given byte value is mapped, or {@code null} if this state contains no\n     * transitions for the given byte value.\n     *\n     * @param utf8byte the byte value whose associated transition is to be returned\n     * @return the transition to which the given byte value is mapped, or {@code null} if this state contains no\n     * transitions for the given byte value\n     ",
+  "method_annotation": "@Override\n"
+}

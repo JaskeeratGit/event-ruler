@@ -1,0 +1,27 @@
+{
+  "className": "GenericMachine",
+  "methodName": "eraseFieldStep",
+  "brief": "private void eraseFieldStep(String fieldName){}",
+  "methodSignature": "eraseFieldStep(String)",
+  "sourceCode": "private void eraseFieldStep(String fieldName) {\n        final String [] steps = fieldName.split(\"\\\\.\");\n        for (String step : steps) {\n            fieldStepsUsedRefCount.compute(step, (k, v) -> (v == 1) ? null : v - 1);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "split(String)"
+    ],
+    "java.util.Map": [
+      "compute(K, BiFunction<? super K, ? super V, ? extends V>)"
+    ]
+  },
+  "full_method_info": "private void eraseFieldStep(String fieldName) {\n    final String[] steps = fieldName.split(\"\\\\.\");\n    for (String step : steps) {\n        fieldStepsUsedRefCount.compute(step, (k, v) -> (v == 1) ? null : v - 1);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

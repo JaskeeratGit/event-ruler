@@ -1,0 +1,47 @@
+{
+  "fullClassName": "software.amazon.event.ruler.Machine",
+  "className": "Machine",
+  "index": 39,
+  "modifier": "[public ]",
+  "extend": "[GenericMachine<String>]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "public class Machine",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [],
+  "superClasses": [
+    "GenericMachine"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "builder()": "0",
+    "Machine()": "1",
+    "Machine(GenericMachineConfiguration)": "2"
+  },
+  "methodsBrief": [
+    "public static Builder builder(){}",
+    "@Deprecated\n    public Machine(){}",
+    "private Machine(GenericMachineConfiguration configuration){}"
+  ],
+  "constructorSigs": [
+    "Machine()",
+    "Machine(GenericMachineConfiguration)"
+  ],
+  "constructorBrief": [
+    "@Deprecated\n    public Machine(){}",
+    "private Machine(GenericMachineConfiguration configuration){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "software.amazon.event.ruler.GenericMachineConfiguration": []
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\n/**\n *  Represents a state machine used to match name/value patterns to rules.\n *  The machine is thread safe. The concurrency strategy is:\n *  Multi-thread access assumed, single-thread update enforced by synchronized on\n *  addRule/deleteRule.\n *  ConcurrentHashMap and ConcurrentSkipListSet are used so that writer and readers can be in tables\n *  simultaneously. So all changes the writer made could be synced to and viable by all readers (in other threads).\n *  Though it may  generate a half-built rule to rulesForEvent() e.g. when a long rule is adding and\n *  in the middle of adding, some event is coming to query machine, it won't generate side impact with rulesForEvent\n *  because each step of routing will check next State and transition map before moving forward.\n */\npublic class Machine extends GenericMachine<String> {\n\n    @Deprecated\n    public Machine() {\n        super();\n    }\n\n    private Machine(GenericMachineConfiguration configuration) {\n        super(configuration);\n    }\n\n    public static Builder builder() {\n        return new Builder();\n    }\n\n    public static class Builder extends GenericMachine.Builder<Machine, String> {\n\n        Builder() {\n        }\n\n        @Override\n        public Machine build() {\n            return new Machine(buildConfig());\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n *  Represents a state machine used to match name/value patterns to rules.\n *  The machine is thread safe. The concurrency strategy is:\n *  Multi-thread access assumed, single-thread update enforced by synchronized on\n *  addRule/deleteRule.\n *  ConcurrentHashMap and ConcurrentSkipListSet are used so that writer and readers can be in tables\n *  simultaneously. So all changes the writer made could be synced to and viable by all readers (in other threads).\n *  Though it may  generate a half-built rule to rulesForEvent() e.g. when a long rule is adding and\n *  in the middle of adding, some event is coming to query machine, it won't generate side impact with rulesForEvent\n *  because each step of routing will check next State and transition map before moving forward.\n */\npublic class Machine extends GenericMachine<String> {\n\n    @Deprecated\n    public Machine() {\n        super();\n    }\n\n    private Machine(GenericMachineConfiguration configuration) {\n        super(configuration);\n    }\n\n    public static Builder builder() {\n        return new Builder();\n    }\n\n    public static class Builder extends GenericMachine.Builder<Machine, String> {\n\n        Builder() {\n        }\n\n        @Override\n        public Machine build() {\n            return new Machine(buildConfig());\n        }\n    }\n}",
+  "subClasses": []
+}

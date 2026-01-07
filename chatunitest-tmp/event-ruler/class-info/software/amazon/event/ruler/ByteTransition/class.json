@@ -1,0 +1,80 @@
+{
+  "fullClassName": "software.amazon.event.ruler.ByteTransition",
+  "className": "ByteTransition",
+  "index": 44,
+  "modifier": "[abstract ]",
+  "extend": "[]",
+  "implement": "[Cloneable]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "abstract class ByteTransition",
+  "hasConstructor": false,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.util.Set;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [
+    "Cloneable"
+  ],
+  "methodSigs": {
+    "getNextByteState()": "0",
+    "setNextByteState(ByteState)": "1",
+    "getTransition(byte)": "2",
+    "getTransitions()": "3",
+    "getMatches()": "4",
+    "getShortcuts()": "5",
+    "expand()": "6",
+    "getTransitionForNextByteStates()": "7",
+    "isShortcutTrans()": "8",
+    "isMatchTrans()": "9",
+    "isEmpty()": "10",
+    "hasIndeterminatePrefix()": "11",
+    "gatherObjects(Set, int)": "12",
+    "clone()": "13"
+  },
+  "methodsBrief": [
+    "abstract ByteState getNextByteState();",
+    "abstract SingleByteTransition setNextByteState(ByteState nextState);",
+    "abstract ByteTransition getTransition(byte utf8byte);",
+    "abstract Iterable<ByteTransition> getTransitions();",
+    "abstract Iterable<ByteMatch> getMatches();",
+    "abstract Iterable<ShortcutTransition> getShortcuts();",
+    "abstract Iterable<SingleByteTransition> expand();",
+    "abstract ByteTransition getTransitionForNextByteStates();",
+    "boolean isShortcutTrans(){}",
+    "boolean isMatchTrans(){}",
+    "boolean isEmpty(){}",
+    "boolean hasIndeterminatePrefix(){}",
+    "public void gatherObjects(Set<Object> objectSet, int maxObjectCount){}",
+    "@Override\n    public ByteTransition clone(){}"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [
+    "getNextByteState()",
+    "setNextByteState(ByteState)",
+    "getTransitions()",
+    "getMatches()",
+    "getShortcuts()",
+    "getTransitionForNextByteStates()"
+  ],
+  "getterSetterBrief": [
+    "abstract ByteState getNextByteState();",
+    "abstract SingleByteTransition setNextByteState(ByteState nextState);",
+    "abstract Iterable<ByteTransition> getTransitions();",
+    "abstract Iterable<ByteMatch> getMatches();",
+    "abstract Iterable<ShortcutTransition> getShortcuts();",
+    "abstract ByteTransition getTransitionForNextByteStates();"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.Set;\n\n/**\n * Represents a transition (on a particular byte value) from a state to a state.\n */\nabstract class ByteTransition implements Cloneable {\n\n    /**\n     * Returns the state to transfer to.\n     *\n     * @return the state to transfer to, or {@code null} if this transition does not transfer to a state\n     */\n    abstract ByteState getNextByteState();\n\n    /**\n     * Sets the next state. The method returns this or a new transition that contains the given next state if the\n     * next state is not {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n     * support transfer.\n     *\n     * @param nextState the next state\n     * @return this or a new transition that contains the given next state if the next state is not {@code null};\n     * otherwise, the method returns {@code null} or a new transition that does not support transfer\n     */\n    abstract SingleByteTransition setNextByteState(ByteState nextState);\n\n    /**\n     * Get a subsequent transition from this transition for the given UTF-8 byte.\n     *\n     * @param utf8byte The byte to transition on\n     * @return The next transition given the byte, or {@code null} if there is not a next transition\n     */\n    abstract ByteTransition getTransition(byte utf8byte);\n\n    /**\n     * Get all the unique transitions (single or compound) reachable from this transition by any UTF-8 byte value.\n     *\n     * @return Iterable of all transitions reachable from this transition.\n     */\n    abstract Iterable<ByteTransition> getTransitions();\n\n    /**\n     * Returns matches that are triggered if this transition is made. This is a convenience function that traverses the\n     * linked list of matches and returns all of them in an Iterable.\n     *\n     * @return matches that are triggered if this transition is made.\n     */\n    abstract Iterable<ByteMatch> getMatches();\n\n    /**\n     * Returns all shortcuts that are available if this transition is made.\n     *\n     * @return all shortcuts\n     */\n    abstract Iterable<ShortcutTransition> getShortcuts();\n\n    /**\n     * Get all transitions represented by this transition (can be more than one if this is a compound transition).\n     *\n     * @return An iterable of all transitions represented by this transition.\n     */\n    abstract Iterable<SingleByteTransition> expand();\n\n    /**\n     * Get a transition that represents all of the next byte states for this transition.\n     *\n     * @return A transition that represents all of the next byte states for this transition.\n     */\n    abstract ByteTransition getTransitionForNextByteStates();\n\n    /**\n     * Tell if current transition is a shortcut transition or not.\n     *\n     * @return True if and only if this is a shortcut transition.\n     */\n    boolean isShortcutTrans() {\n        return false;\n    }\n\n    /**\n     * Tell if current transition is a match transition or not. Does not include shortcut transitions. Only includes\n     * transitions that are matches after processing the entire pattern value.\n     *\n     * @return True if and only if there is a match on this transition.\n     */\n    boolean isMatchTrans() {\n        return false;\n    }\n\n    /**\n     * Tell if current transition is empty which means doesn't has match nor next state.\n     * @return boolean\n     */\n    boolean isEmpty() {\n        return !getMatches().iterator().hasNext() && getNextByteState() == null;\n    }\n\n    /**\n     * Indicates if it is possible to traverse from the machine's start state to this transition using more than one\n     * possible prefix/character-sequence.\n     *\n     * @return True if prefix is indeterminate; false otherwise.\n     */\n    boolean hasIndeterminatePrefix() {\n        return false;\n    }\n\n    public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n        if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) {\n            // stops looping\n            objectSet.add(this);\n            for (ByteMatch match : getMatches()) {\n                match.gatherObjects(objectSet, maxObjectCount);\n            }\n            final ByteState nextByteState = getNextByteState();\n            if (nextByteState != null) {\n                nextByteState.gatherObjects(objectSet, maxObjectCount);\n            }\n        }\n    }\n\n    @Override\n    public ByteTransition clone() {\n        try {\n            return (ByteTransition) super.clone();\n        } catch (CloneNotSupportedException e) {\n            return null;\n        }\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents a transition (on a particular byte value) from a state to a state.\n */\nabstract class ByteTransition implements Cloneable {\n\n    /**\n     * Returns the state to transfer to.\n     *\n     * @return the state to transfer to, or {@code null} if this transition does not transfer to a state\n     */\n    abstract ByteState getNextByteState();\n\n    /**\n     * Sets the next state. The method returns this or a new transition that contains the given next state if the\n     * next state is not {@code null}. Otherwise, the method returns {@code null} or a new transition that does not\n     * support transfer.\n     *\n     * @param nextState the next state\n     * @return this or a new transition that contains the given next state if the next state is not {@code null};\n     * otherwise, the method returns {@code null} or a new transition that does not support transfer\n     */\n    abstract SingleByteTransition setNextByteState(ByteState nextState);\n\n    /**\n     * Get a subsequent transition from this transition for the given UTF-8 byte.\n     *\n     * @param utf8byte The byte to transition on\n     * @return The next transition given the byte, or {@code null} if there is not a next transition\n     */\n    abstract ByteTransition getTransition(byte utf8byte);\n\n    /**\n     * Get all the unique transitions (single or compound) reachable from this transition by any UTF-8 byte value.\n     *\n     * @return Iterable of all transitions reachable from this transition.\n     */\n    abstract Iterable<ByteTransition> getTransitions();\n\n    /**\n     * Returns matches that are triggered if this transition is made. This is a convenience function that traverses the\n     * linked list of matches and returns all of them in an Iterable.\n     *\n     * @return matches that are triggered if this transition is made.\n     */\n    abstract Iterable<ByteMatch> getMatches();\n\n    /**\n     * Returns all shortcuts that are available if this transition is made.\n     *\n     * @return all shortcuts\n     */\n    abstract Iterable<ShortcutTransition> getShortcuts();\n\n    /**\n     * Get all transitions represented by this transition (can be more than one if this is a compound transition).\n     *\n     * @return An iterable of all transitions represented by this transition.\n     */\n    abstract Iterable<SingleByteTransition> expand();\n\n    /**\n     * Get a transition that represents all of the next byte states for this transition.\n     *\n     * @return A transition that represents all of the next byte states for this transition.\n     */\n    abstract ByteTransition getTransitionForNextByteStates();\n\n    /**\n     * Tell if current transition is a shortcut transition or not.\n     *\n     * @return True if and only if this is a shortcut transition.\n     */\n    boolean isShortcutTrans() {\n        return false;\n    }\n\n    /**\n     * Tell if current transition is a match transition or not. Does not include shortcut transitions. Only includes\n     * transitions that are matches after processing the entire pattern value.\n     *\n     * @return True if and only if there is a match on this transition.\n     */\n    boolean isMatchTrans() {\n        return false;\n    }\n\n    /**\n     * Tell if current transition is empty which means doesn't has match nor next state.\n     * @return boolean\n     */\n    boolean isEmpty() {\n        return !getMatches().iterator().hasNext() && getNextByteState() == null;\n    }\n\n    /**\n     * Indicates if it is possible to traverse from the machine's start state to this transition using more than one\n     * possible prefix/character-sequence.\n     *\n     * @return True if prefix is indeterminate; false otherwise.\n     */\n    boolean hasIndeterminatePrefix() {\n        return false;\n    }\n\n    public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n        if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) {\n            // stops looping\n            objectSet.add(this);\n            for (ByteMatch match : getMatches()) {\n                match.gatherObjects(objectSet, maxObjectCount);\n            }\n            final ByteState nextByteState = getNextByteState();\n            if (nextByteState != null) {\n                nextByteState.gatherObjects(objectSet, maxObjectCount);\n            }\n        }\n    }\n\n    @Override\n    public ByteTransition clone() {\n        try {\n            return (ByteTransition) super.clone();\n        } catch (CloneNotSupportedException e) {\n            return null;\n        }\n    }\n}",
+  "subClasses": [
+    "software.amazon.event.ruler.CompoundByteTransition",
+    "software.amazon.event.ruler.SingleByteTransition"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "className": "ByteState",
+  "methodName": "addTransitionForAllBytes",
+  "brief": "void addTransitionForAllBytes(final SingleByteTransition transition){}",
+  "methodSignature": "addTransitionForAllBytes(SingleByteTransition)",
+  "sourceCode": "void addTransitionForAllBytes(final SingleByteTransition transition) {\n        // Saving the value to avoid reading an updated value\n        Object transitionStore = this.transitionStore;\n        ByteMap map;\n        if (transitionStore instanceof ByteMap) {\n            map = (ByteMap) transitionStore;\n        } else {\n            map = new ByteMap();\n        }\n        if (transitionStore instanceof SingleByteTransitionEntry) {\n            SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n            map.addTransition(entry.utf8byte, entry.transition);\n        }\n        map.addTransitionForAllBytes(transition);\n        this.transitionStore = map;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.ByteMap": [
+      "addTransitionForAllBytes(SingleByteTransition)",
+      "addTransition(byte, SingleByteTransition)"
+    ]
+  },
+  "full_method_info": "/**\n * Associates the given transition with all possible byte values in this state. If the state previously contained\n * any transitions for any of the byte values, the given transition is added to these old transitions.\n *\n * @param transition the transition to be associated with all possible byte values\n */\nvoid addTransitionForAllBytes(final SingleByteTransition transition) {\n    // Saving the value to avoid reading an updated value\n    Object transitionStore = this.transitionStore;\n    ByteMap map;\n    if (transitionStore instanceof ByteMap) {\n        map = (ByteMap) transitionStore;\n    } else {\n        map = new ByteMap();\n    }\n    if (transitionStore instanceof SingleByteTransitionEntry) {\n        SingleByteTransitionEntry entry = (SingleByteTransitionEntry) transitionStore;\n        map.addTransition(entry.utf8byte, entry.transition);\n    }\n    map.addTransitionForAllBytes(transition);\n    this.transitionStore = map;\n}",
+  "method_comment": "\n     * Associates the given transition with all possible byte values in this state. If the state previously contained\n     * any transitions for any of the byte values, the given transition is added to these old transitions.\n     *\n     * @param transition the transition to be associated with all possible byte values\n     ",
+  "method_annotation": ""
+}

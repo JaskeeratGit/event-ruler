@@ -1,0 +1,65 @@
+{
+  "className": "MachineComplexityEvaluator",
+  "methodName": "evaluate",
+  "brief": "int evaluate(ByteState state){}",
+  "methodSignature": "evaluate(ByteState)",
+  "sourceCode": "int evaluate(ByteState state) {\n        // Upfront cost: generate the map of all matches accessible from every state in the machine.\n        Map<SingleByteTransition, Set<ByteMatch>> matchesAccessibleFromEachTransition =\n                getMatchesAccessibleFromEachTransition(state);\n\n        Set<ByteTransition> visited = new HashSet<>();\n        visited.add(state);\n        int maxSize = 0;\n\n        // We'll do a breadth-first-search but it shouldn't matter.\n        Queue<ByteTransition> transitions = new LinkedList<>();\n        state.getTransitions().forEach(trans -> transitions.add(trans));\n        while (!transitions.isEmpty()) {\n            ByteTransition transition = transitions.remove();\n            if (visited.contains(transition)) {\n                continue;\n            }\n            visited.add(transition);\n\n            // The sum of all the wildcard patterns accessible from each SingleByteTransition we are present in on our\n            // current traversal is the number of wildcard rule prefixes matching a theoretical worst-case input value.\n            int size = 0;\n            for (SingleByteTransition single : transition.expand()) {\n                size += getPatternsWithComplexity(matchesAccessibleFromEachTransition.get(single)).size();\n\n                // Look for \"transitions for all bytes\" (i.e. wildcard transitions). Since an input value that matches\n                // foo will also match foo*, we also need to include in our size wildcard patterns accessible from foo*.\n                ByteState nextState = single.getNextByteState();\n                if (nextState != null) {\n                    for (SingleByteTransition transitionForAllBytes : nextState.getTransitionForAllBytes().expand()) {\n                        if (!(transitionForAllBytes instanceof ByteMachine.EmptyByteTransition) &&\n                                !contains(transition.expand(), transitionForAllBytes)) {\n                            size += getPatternsWithComplexity(matchesAccessibleFromEachTransition.get(transitionForAllBytes))\n                                    .size();\n                        }\n                    }\n                }\n            }\n            if (size >= maxComplexity) {\n                return maxComplexity;\n            }\n            if (size > maxSize) {\n                maxSize = size;\n            }\n\n            // Load up our queue with the next round of transitions, where each transition represents a set of states\n            // that could be accessed with a particular byte value.\n            ByteTransition nextTransition = transition.getTransitionForNextByteStates();\n            if (nextTransition != null) {\n                nextTransition.getTransitions().forEach(trans -> transitions.add(trans));\n            }\n        }\n\n        // Now that we have a maxSize for this ByteMachine, let's recursively get the maxSize for each next NameState\n        // accessible via any of this ByteMachine's matches. We will return the maximum maxSize.\n        int maxSizeFromNextNameStates = 0;\n        Set<ByteMatch> uniqueMatches = new HashSet<>();\n        for (Set<ByteMatch> matches : matchesAccessibleFromEachTransition.values()) {\n            uniqueMatches.addAll(matches);\n        }\n        for (ByteMatch match : uniqueMatches) {\n            NameState nextNameState = match.getNextNameState();\n            if (nextNameState != null) {\n                maxSizeFromNextNameStates = Math.max(maxSizeFromNextNameStates, nextNameState.evaluateComplexity(this));\n            }\n        }\n\n        return Math.max(maxSize, maxSizeFromNextNameStates);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "getTransitions()",
+      "getTransitionForAllBytes()"
+    ],
+    "software.amazon.event.ruler.MachineComplexityEvaluator": [
+      "getMatchesAccessibleFromEachTransition(ByteState)",
+      "contains(SingleByteTransition>, SingleByteTransition)",
+      "getPatternsWithComplexity(ByteMatch>)"
+    ],
+    "java.util.Set": [
+      "addAll(Collection<? extends E>)",
+      "contains(Object)",
+      "add(E)",
+      "size()"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "java.util.Queue": [
+      "remove()",
+      "add(E)"
+    ],
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "getTransitions()",
+      "getTransitionForNextByteStates()",
+      "getNextByteState()"
+    ],
+    "java.util.Map": [
+      "values()",
+      "get(Object)"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getNextNameState()"
+    ],
+    "java.lang.Math": [
+      "max(int, int)"
+    ],
+    "software.amazon.event.ruler.NameState": [
+      "evaluateComplexity(MachineComplexityEvaluator)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the maximum possible number of wildcard rule prefixes that could match a theoretical input value for a\n * machine beginning with ByteState state. This value is equivalent to the maximum number of states a traversal\n * could be present in simultaneously, counting only states that can lead to a wildcard match pattern. This function\n * will recursively evaluate all other machines accessible via next NameStates, and will return the maximum observed\n * from any machine. Caps out evaluation at maxComplexity to keep runtime under control. Otherwise, runtime for this\n * machine would be O(MN^2), where N is the number of states accessible from ByteState state, and M is the total\n * number of ByteMachines accessible via next NameStates.\n *\n * @param state Evaluates a machine beginning at this state.\n * @return The lesser of maxComplexity and the maximum possible number of wildcard rule prefixes from any machines.\n */\nint evaluate(ByteState state) {\n    // Upfront cost: generate the map of all matches accessible from every state in the machine.\n    Map<SingleByteTransition, Set<ByteMatch>> matchesAccessibleFromEachTransition = getMatchesAccessibleFromEachTransition(state);\n    Set<ByteTransition> visited = new HashSet<>();\n    visited.add(state);\n    int maxSize = 0;\n    // We'll do a breadth-first-search but it shouldn't matter.\n    Queue<ByteTransition> transitions = new LinkedList<>();\n    state.getTransitions().forEach(trans -> transitions.add(trans));\n    while (!transitions.isEmpty()) {\n        ByteTransition transition = transitions.remove();\n        if (visited.contains(transition)) {\n            continue;\n        }\n        visited.add(transition);\n        // The sum of all the wildcard patterns accessible from each SingleByteTransition we are present in on our\n        // current traversal is the number of wildcard rule prefixes matching a theoretical worst-case input value.\n        int size = 0;\n        for (SingleByteTransition single : transition.expand()) {\n            size += getPatternsWithComplexity(matchesAccessibleFromEachTransition.get(single)).size();\n            // Look for \"transitions for all bytes\" (i.e. wildcard transitions). Since an input value that matches\n            // foo will also match foo*, we also need to include in our size wildcard patterns accessible from foo*.\n            ByteState nextState = single.getNextByteState();\n            if (nextState != null) {\n                for (SingleByteTransition transitionForAllBytes : nextState.getTransitionForAllBytes().expand()) {\n                    if (!(transitionForAllBytes instanceof ByteMachine.EmptyByteTransition) && !contains(transition.expand(), transitionForAllBytes)) {\n                        size += getPatternsWithComplexity(matchesAccessibleFromEachTransition.get(transitionForAllBytes)).size();\n                    }\n                }\n            }\n        }\n        if (size >= maxComplexity) {\n            return maxComplexity;\n        }\n        if (size > maxSize) {\n            maxSize = size;\n        }\n        // Load up our queue with the next round of transitions, where each transition represents a set of states\n        // that could be accessed with a particular byte value.\n        ByteTransition nextTransition = transition.getTransitionForNextByteStates();\n        if (nextTransition != null) {\n            nextTransition.getTransitions().forEach(trans -> transitions.add(trans));\n        }\n    }\n    // Now that we have a maxSize for this ByteMachine, let's recursively get the maxSize for each next NameState\n    // accessible via any of this ByteMachine's matches. We will return the maximum maxSize.\n    int maxSizeFromNextNameStates = 0;\n    Set<ByteMatch> uniqueMatches = new HashSet<>();\n    for (Set<ByteMatch> matches : matchesAccessibleFromEachTransition.values()) {\n        uniqueMatches.addAll(matches);\n    }\n    for (ByteMatch match : uniqueMatches) {\n        NameState nextNameState = match.getNextNameState();\n        if (nextNameState != null) {\n            maxSizeFromNextNameStates = Math.max(maxSizeFromNextNameStates, nextNameState.evaluateComplexity(this));\n        }\n    }\n    return Math.max(maxSize, maxSizeFromNextNameStates);\n}",
+  "method_comment": "\n     * Returns the maximum possible number of wildcard rule prefixes that could match a theoretical input value for a\n     * machine beginning with ByteState state. This value is equivalent to the maximum number of states a traversal\n     * could be present in simultaneously, counting only states that can lead to a wildcard match pattern. This function\n     * will recursively evaluate all other machines accessible via next NameStates, and will return the maximum observed\n     * from any machine. Caps out evaluation at maxComplexity to keep runtime under control. Otherwise, runtime for this\n     * machine would be O(MN^2), where N is the number of states accessible from ByteState state, and M is the total\n     * number of ByteMachines accessible via next NameStates.\n     *\n     * @param state Evaluates a machine beginning at this state.\n     * @return The lesser of maxComplexity and the maximum possible number of wildcard rule prefixes from any machines.\n     ",
+  "method_annotation": ""
+}

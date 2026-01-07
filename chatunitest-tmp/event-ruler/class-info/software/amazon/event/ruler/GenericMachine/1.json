@@ -1,0 +1,25 @@
+{
+  "className": "GenericMachine",
+  "methodName": "rulesForJSONEvent",
+  "brief": "@SuppressWarnings(\"unchecked\")\n    public List<T> rulesForJSONEvent(final JsonNode eventRoot){}",
+  "methodSignature": "rulesForJSONEvent(JsonNode)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public List<T> rulesForJSONEvent(final JsonNode eventRoot) {\n        final Event event = new Event(eventRoot, this);\n        return (List<T>) ACFinder.matchRules(event, this, subRuleContextGenerator);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [],
+    "software.amazon.event.ruler.ACFinder": [
+      "matchRules(Event, GenericMachine<?>, Generator)"
+    ]
+  },
+  "full_method_info": "@SuppressWarnings(\"unchecked\")\npublic List<T> rulesForJSONEvent(final JsonNode eventRoot) {\n    final Event event = new Event(eventRoot, this);\n    return (List<T>) ACFinder.matchRules(event, this, subRuleContextGenerator);\n}",
+  "method_comment": "",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

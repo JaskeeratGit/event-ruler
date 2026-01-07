@@ -1,0 +1,34 @@
+{
+  "className": "ByteMachine",
+  "methodName": "findMatchPattern",
+  "brief": "private NameState findMatchPattern(ValuePatterns pattern){}",
+  "methodSignature": "findMatchPattern(ValuePatterns)",
+  "sourceCode": "private NameState findMatchPattern(ValuePatterns pattern) {\n        return findMatchPattern(getParser().parse(pattern.type(), pattern.pattern()), pattern);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ValuePatterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ValuePatterns": [
+      "pattern()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "findMatchPattern(InputCharacter[], Patterns)"
+    ],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(MatchType, String)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ]
+  },
+  "full_method_info": "private NameState findMatchPattern(ValuePatterns pattern) {\n    return findMatchPattern(getParser().parse(pattern.type(), pattern.pattern()), pattern);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

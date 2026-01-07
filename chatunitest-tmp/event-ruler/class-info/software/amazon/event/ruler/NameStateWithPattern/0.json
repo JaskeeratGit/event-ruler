@@ -1,0 +1,18 @@
+{
+  "className": "NameStateWithPattern",
+  "methodName": "getNameState",
+  "brief": "public NameState getNameState(){}",
+  "methodSignature": "getNameState()",
+  "sourceCode": "public NameState getNameState() {\n        return nameState;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "public NameState getNameState() {\n    return nameState;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

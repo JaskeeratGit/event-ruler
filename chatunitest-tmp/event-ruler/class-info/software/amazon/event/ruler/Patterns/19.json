@@ -1,0 +1,25 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButWildcard",
+  "brief": "public static AnythingButValuesSet anythingButWildcard(final String value){}",
+  "methodSignature": "anythingButWildcard(String)",
+  "sourceCode": "public static AnythingButValuesSet anythingButWildcard(final String value) {\n        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_WILDCARD, Collections.singleton(value));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "singleton(T)"
+    ]
+  },
+  "full_method_info": "public static AnythingButValuesSet anythingButWildcard(final String value) {\n    return new AnythingButValuesSet(MatchType.ANYTHING_BUT_WILDCARD, Collections.singleton(value));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

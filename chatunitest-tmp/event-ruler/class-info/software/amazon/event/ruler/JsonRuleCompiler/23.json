@@ -1,0 +1,35 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "processPrefixEqualsIgnoreCaseExpression",
+  "brief": "private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}",
+  "methodSignature": "processPrefixEqualsIgnoreCaseExpression(JsonParser)",
+  "sourceCode": "private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException {\n        final JsonToken prefixObject = parser.nextToken();\n        if (prefixObject != JsonToken.FIELD_NAME) {\n            barf(parser, \"Prefix expression name not found\");\n        }\n\n        final String prefixObjectOp = parser.getCurrentName();\n        if (!Constants.EQUALS_IGNORE_CASE.equals(prefixObjectOp)) {\n            barf(parser, \"Unsupported prefix pattern: \" + prefixObjectOp);\n        }\n\n        final JsonToken prefixEqualsIgnoreCase = parser.nextToken();\n        if (prefixEqualsIgnoreCase != JsonToken.VALUE_STRING) {\n            barf(parser, \"equals-ignore-case match pattern must be a string\");\n        }\n        final Patterns pattern = Patterns.prefixEqualsIgnoreCaseMatch('\"' + parser.getText());\n        if (parser.nextToken() != JsonToken.END_OBJECT) {\n            barf(parser, \"Only one key allowed in match expression\");\n        }\n        if (parser.nextToken() != JsonToken.END_OBJECT) {\n            barf(parser, \"Only one key allowed in match expression\");\n        }\n        return pattern;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getCurrentName()",
+      "nextToken()",
+      "getText()"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "prefixEqualsIgnoreCaseMatch(String)"
+    ]
+  },
+  "full_method_info": "private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException {\n    final JsonToken prefixObject = parser.nextToken();\n    if (prefixObject != JsonToken.FIELD_NAME) {\n        barf(parser, \"Prefix expression name not found\");\n    }\n    final String prefixObjectOp = parser.getCurrentName();\n    if (!Constants.EQUALS_IGNORE_CASE.equals(prefixObjectOp)) {\n        barf(parser, \"Unsupported prefix pattern: \" + prefixObjectOp);\n    }\n    final JsonToken prefixEqualsIgnoreCase = parser.nextToken();\n    if (prefixEqualsIgnoreCase != JsonToken.VALUE_STRING) {\n        barf(parser, \"equals-ignore-case match pattern must be a string\");\n    }\n    final Patterns pattern = Patterns.prefixEqualsIgnoreCaseMatch('\"' + parser.getText());\n    if (parser.nextToken() != JsonToken.END_OBJECT) {\n        barf(parser, \"Only one key allowed in match expression\");\n    }\n    if (parser.nextToken() != JsonToken.END_OBJECT) {\n        barf(parser, \"Only one key allowed in match expression\");\n    }\n    return pattern;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "Patterns",
+  "methodName": "suffixEqualsIgnoreCaseMatch",
+  "brief": "public static ValuePatterns suffixEqualsIgnoreCaseMatch(final String suffix){}",
+  "methodSignature": "suffixEqualsIgnoreCaseMatch(String)",
+  "sourceCode": "public static ValuePatterns suffixEqualsIgnoreCaseMatch(final String suffix) {\n        return new ValuePatterns(MatchType.SUFFIX_EQUALS_IGNORE_CASE, new StringBuilder(suffix).reverse().toString());\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "reverse()"
+    ]
+  },
+  "full_method_info": "public static ValuePatterns suffixEqualsIgnoreCaseMatch(final String suffix) {\n    return new ValuePatterns(MatchType.SUFFIX_EQUALS_IGNORE_CASE, new StringBuilder(suffix).reverse().toString());\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

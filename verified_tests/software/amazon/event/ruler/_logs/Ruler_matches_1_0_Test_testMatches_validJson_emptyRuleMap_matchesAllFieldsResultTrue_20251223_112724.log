@@ -1,0 +1,306 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< software.amazon.event.ruler:event-ruler >---------------
+[INFO] Building Event Ruler 1.8.2
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] Parameter 'encoding' is unknown for plugin 'maven-checkstyle-plugin:3.6.0:check (validate)'
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (validate) @ event-ruler ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ event-ruler ---
+[INFO] skip non existing resourceDirectory /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ event-ruler ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] >>> spotbugs:4.8.6.6:check (analyze-compile) > :spotbugs @ event-ruler >>>
+[INFO] 
+[INFO] --- spotbugs:4.8.6.6:spotbugs (spotbugs) @ event-ruler ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] 
+[INFO] <<< spotbugs:4.8.6.6:check (analyze-compile) < :spotbugs @ event-ruler <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.8.6.6:check (analyze-compile) @ event-ruler ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ event-ruler ---
+[INFO] skip non existing resourceDirectory /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ event-ruler ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 282 source files with javac [debug target 1.8] to target/test-classes
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsZero_whenTypeIsNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsZero_whenTypeIsNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsZero_whenTypeIsNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[INFO] Benchmark entries for software.amazon.event.ruler.jmh.CityLots2JmhBenchmarks already exist, overwriting
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsZero_whenTypeIsNull.java:[5,16] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[24,9] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[42,13] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[43,19] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsTypeHash_whenTypeNotNull.java:[45,17] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsZero_whenTypeIsNull.java:[32,13] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsZero_whenTypeIsNull.java:[33,19] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[WARNING] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_hashCode_29_0_Test_hashCode_returnsZero_whenTypeIsNull.java:[35,17] sun.misc.Unsafe is internal proprietary API and may be removed in a future release
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_addRule_17_0_Test_addRule_whenJsonRuleCompilerSucceeds_doesNotThrowAndInternalStateExists.java: Some input files use or override a deprecated API.
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_addRule_17_0_Test_addRule_whenJsonRuleCompilerSucceeds_doesNotThrowAndInternalStateExists.java: Recompile with -Xlint:deprecation for details.
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleClonesPatternsAndSortsKeys.java: Some input files use unchecked or unsafe operations.
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleClonesPatternsAndSortsKeys.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ event-ruler ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running software.amazon.event.ruler.SubRuleContextTest
+557ms
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.565 s -- in software.amazon.event.ruler.SubRuleContextTest
+[INFO] Running software.amazon.event.ruler.ComparableNumberTest
+i=1 s0: >Wt
+ s1: >Wt    
+i=2 s0: >Wt     s1: >Wt   
+i=1 s0:Ay(q~ s1:Ay(q
+i=2 s0:Ay(q s1:Ay(r    
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.707 s -- in software.amazon.event.ruler.ComparableNumberTest
+[INFO] Running software.amazon.event.ruler.ByteMachineTest
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -8633220722630149719
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 7384370488886161735
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5198935772048738682
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1016827378622747428
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -6537755821194927192
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 512197030371328012
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 167999529187095600
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -1872855135673356962
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5922701415525258079
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -7645209075558017227
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5952952176392701302
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1878271978464059623
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 647148025642534462
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -7112715761576190291
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 302645928925830290
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 7937391625581545633
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1428330831854863983
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8324527247498489385
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 9103256307247756782
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -7883612195462188203
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -735239935594508284
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5326049090707573281
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1668265702846029998
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 3696360170903339049
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -9177240609976630445
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1623984052263655685
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -3018144160069074724
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6366860101917385503
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8038949308418026560
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 4912267946870915528
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -6218407896676474554
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 7450441147408847758
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -2985259735208084401
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5813839426662226296
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -3756634619235017282
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -2013678606321402285
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5996749988986049245
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8448272705285850879
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -1977147175482073493
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8695858422939533975
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -926420659054523690
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6189890822149816764
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -9084445637559948761
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5161099419611515083
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5842709905258186072
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -1673851343736033043
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5057890405007134573
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1798638810556710696
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 7688017125544720625
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5012814841951209302
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -6126833167253205515
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -7766067394350654905
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1575608298184341575
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 7363558546257181300
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -1538746435523664845
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -8987985367201814872
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5480454782335941906
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2386155594253112634
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5889836532986328546
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1022199313358239401
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -4061446782604844861
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 4161004637806210966
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 9037512526371523895
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2289801290996470319
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5313014633406831628
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8869778202396664476
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 7845531289885916400
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -3978177655200822067
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -202760257800540621
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 9070544598666014836
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 3278004054846191452
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1922622782401127801
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5623510395725153036
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -9102409518803731313
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -2261864473121013942
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 3930236550409491552
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 4860511491756333235
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1058809531379140075
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5083761113792941174
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8990062653945627601
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5950548023459920550
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 523049466313154007
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6526989739145082203
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -965226579264709406
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8423890742830823707
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 163166668794011697
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1301102081717166273
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8398451547363291606
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 3249718697044426972
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2410037195889008781
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8738827949946124126
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -8449536930596447134
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -6785454181346248767
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -9033788173507224127
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -1684605800596702030
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1075893075133134777
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5187640501316926802
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5077097187018453855
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1526739651097147530
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 5661527310590040361
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -8149210414563360378
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 7756058134789774056
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 3033450746018849947
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1800461316625569663
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -680981837935958407
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1307032264648264793
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -7534221370172222829
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 609356606129876627
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6541969087994086115
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -6353365478717358238
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2915083907609659729
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2278836018716509768
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -7346448459947921991
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5306808739647964941
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1819828058819614067
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1324392184917331057
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -705005020166250827
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2786789747023608222
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1341129079401208207
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5175741331966795725
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6639908531396610967
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -4310317841419901776
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -3927353815878762510
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 4368581909376331313
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6119620939535024775
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 956623190979834720
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6041033218436055632
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -615070766716896469
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -8967465572877943386
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1310565683517248975
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 4851924759869508209
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -7702604694134970931
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 1198820428757900471
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2252960988337903159
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2664509509449550267
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 6409431559561479514
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -8392600547779040655
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 2816674858081060559
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -8522263712295157917
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 3783359800962941881
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with 8374688020696998938
+USE ME TO REPRODUCE - ByteMachineTest.testPatternPermutations seeding with -5739278585004919774
+[INFO] Tests run: 190, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.084 s -- in software.amazon.event.ruler.ByteMachineTest
+[INFO] Running software.amazon.event.ruler.NameStateTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.NameStateTest
+[INFO] Running software.amazon.event.ruler.EventTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in software.amazon.event.ruler.EventTest
+[INFO] Running software.amazon.event.ruler.BigEventTest
+matched rule name :[test]
+use rulesForJSONEvent API, matching takes : 14 ms
+matched rule name :[test]
+use rulesForEvent API, matching takes : 493 ms
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.611 s -- in software.amazon.event.ruler.BigEventTest
+[INFO] Running software.amazon.event.ruler.GenericMachineConfigurationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.GenericMachineConfigurationTest
+[INFO] Running software.amazon.event.ruler.input.InputMultiByteSetTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.input.InputMultiByteSetTest
+[INFO] Running software.amazon.event.ruler.input.SuffixParserTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.input.SuffixParserTest
+[INFO] Running software.amazon.event.ruler.input.MultiByteTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.input.MultiByteTest
+[INFO] Running software.amazon.event.ruler.input.InputByteTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.input.InputByteTest
+[INFO] Running software.amazon.event.ruler.input.EqualsIgnoreCaseParserTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.input.EqualsIgnoreCaseParserTest
+[INFO] Running software.amazon.event.ruler.input.WildcardParserTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in software.amazon.event.ruler.input.WildcardParserTest
+[INFO] Running software.amazon.event.ruler.input.InputWildcardTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.input.InputWildcardTest
+[INFO] Running software.amazon.event.ruler.input.SuffixEqualsIgnoreCaseParserTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.input.SuffixEqualsIgnoreCaseParserTest
+[INFO] Running software.amazon.event.ruler.input.ParseExceptionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.input.ParseExceptionTest
+[INFO] Running software.amazon.event.ruler.input.ParserTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.input.ParserTest
+[INFO] Running software.amazon.event.ruler.CIDRTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in software.amazon.event.ruler.CIDRTest
+[INFO] Running software.amazon.event.ruler.ACMachineTest
+Exception in thread "pool-3-thread-6" java.lang.AssertionError: OUCH bad event: {"key-000":"val-000","key-001":"val-001","key-002":"val-002","key-003":"val-003","key-004":"val-004","key-005":"val-005","key-006":"val-006","key-007":"val-007","key-008":"val-008","key-009":"val-009","key-010":"val-010","key-011":"val-011","key-012":"val-012","key-013":"val-013","key-014":"val-014","key-015":"val-015","key-016":"val-016","key-017":"val-017","key-018":"val-018","key-019":"val-019","key-020":"val-020","key-021":"val-021","key-022":"val-022","key-023":"val-023","key-024":"val-024","key-025":"val-025","key-026":"val-026","key-027":"val-027","key-028":"val-028","key-029":"val-029","key-030":"val-030","key-031":"val-031","key-032":"val-032","key-033":"val-033","key-034":"val-034","key-035":"val-035","key-036":"val-036","key-037":"val-037","key-038":"val-038","key-039":"val-039","key-040":"val-040","key-041":"val-041","key-042":"val-042","key-043":"val-043","key-044":"val-044","key-045":"val-045","key-046":"val-046","key-047":"val-047","key-048":"val-048","key-049":"val-049","key-050":"val-050","key-051":"val-051","key-052":"val-052","key-053":"val-053","key-054":"val-054","key-055":"val-055","key-056":"val-056","key-057":"val-057","key-058":"val-058","key-059":"val-059","key-060":"val-060","key-061":"val-061","key-062":"val-062","key-063":"val-063","key-064":"val-064","key-065":"val-065","key-066":"val-066","key-067":"val-067","key-068":"val-068","key-069":"val-069","key-070":"val-070","key-071":"val-071","key-072":"val-072","key-073":"val-073","key-074":"val-074","key-075":"val-075","key-076":"val-076","key-077":"val-077","key-078":"val-078","key-079":"val-079","key-080":"val-080","key-081":"val-081","key-082":"val-082","key-083":"val-083","key-084":"val-084","key-085":"val-085","key-086":"val-086","key-087":"val-087","key-088":"val-088","key-089":"val-089","key-090":"val-090","key-091":"val-091","key-092":"val-092","key-093":"val-093","key-094":"val-094","key-095":"val-095","key-096":"val-096","key-097":"val-097","key-098":"val-098","key-099":"val-099"}
+	at org.junit.Assert.fail(Assert.java:89)
+	at software.amazon.event.ruler.ACMachineTest$2MatchRuleRunnable.run(ACMachineTest.java:1077)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+[INFO] Tests run: 70, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.238 s -- in software.amazon.event.ruler.ACMachineTest
+[INFO] Running software.amazon.event.ruler.ByteMapTest
+[INFO] Tests run: 28, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in software.amazon.event.ruler.ByteMapTest
+[INFO] Running software.amazon.event.ruler.NameStateWithPatternTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.NameStateWithPatternTest
+[INFO] Running software.amazon.event.ruler.CompoundByteTransitionTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.CompoundByteTransitionTest
+[INFO] Running software.amazon.event.ruler.RuleCompilerTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.958 s -- in software.amazon.event.ruler.RuleCompilerTest
+[INFO] Running software.amazon.event.ruler.SetOperationsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.SetOperationsTest
+[INFO] Running software.amazon.event.ruler.ArrayMembershipTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.ArrayMembershipTest
+[INFO] Running software.amazon.event.ruler.SingleStateNameMatcherTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in software.amazon.event.ruler.SingleStateNameMatcherTest
+[INFO] Running software.amazon.event.ruler.MachineTest
+[INFO] Tests run: 75, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.156 s -- in software.amazon.event.ruler.MachineTest
+[INFO] Running software.amazon.event.ruler.CompositeByteTransitionTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.CompositeByteTransitionTest
+[INFO] Running software.amazon.event.ruler.ByteMatchTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.ByteMatchTest
+[INFO] Running software.amazon.event.ruler.JsonRuleCompilerTest
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in software.amazon.event.ruler.JsonRuleCompilerTest
+[INFO] Running software.amazon.event.ruler.ByteStateTest
+[INFO] Tests run: 48, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in software.amazon.event.ruler.ByteStateTest
+[INFO] Running software.amazon.event.ruler.GenericMachineTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in software.amazon.event.ruler.GenericMachineTest
+[INFO] Running software.amazon.event.ruler.PatternsTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s -- in software.amazon.event.ruler.PatternsTest
+[INFO] Running software.amazon.event.ruler.PathTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s -- in software.amazon.event.ruler.PathTest
+[INFO] Running software.amazon.event.ruler.MachineComplexityEvaluatorTest
+[INFO] Tests run: 55, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.395 s -- in software.amazon.event.ruler.MachineComplexityEvaluatorTest
+[INFO] Running software.amazon.event.ruler.IntIntMapTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.267 s -- in software.amazon.event.ruler.IntIntMapTest
+[INFO] Running software.amazon.event.ruler.RulerTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in software.amazon.event.ruler.RulerTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 676, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  24.981 s
+[INFO] Finished at: 2025-12-23T11:27:24-07:00
+[INFO] ------------------------------------------------------------------------

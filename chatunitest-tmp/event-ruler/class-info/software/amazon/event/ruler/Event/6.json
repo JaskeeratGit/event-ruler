@@ -1,0 +1,45 @@
+{
+  "className": "Event",
+  "methodName": "flattenObject",
+  "brief": "private static void flattenObject(final JsonNode object, final Map<String, List<String>> map, final Stack<String> path){}",
+  "methodSignature": "flattenObject(JsonNode, Map, Stack)",
+  "sourceCode": "private static void flattenObject(final JsonNode object, final Map<String, List<String>> map, final Stack<String> path) {\n        final Iterator<Map.Entry<String, JsonNode>> fields = object.fields();\n        while (fields.hasNext()) {\n            final Map.Entry<String, JsonNode> field = fields.next();\n            final JsonNode val = field.getValue();\n\n            path.push(field.getKey());\n            switch (val.getNodeType()) {\n                case OBJECT:\n                    flattenObject(val, map, path);\n                    break;\n                case ARRAY:\n                    flattenArray(val, map, path);\n                    break;\n                case STRING:\n                    recordNameVal(map, path, '\"' + val.asText() + '\"');\n                    break;\n                case NULL:\n                case BOOLEAN:\n                case NUMBER:\n                    recordNameVal(map, path, val.asText());\n                    break;\n                default:\n                    throw new RuntimeException(\"Unknown JsonNode type for: \" + val.asText());\n            }\n            path.pop();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "Map<String,List<String>>",
+    "Stack<String>"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "getNodeType()",
+      "fields()",
+      "asText()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ],
+    "java.util.Stack": [
+      "push(E)",
+      "pop()"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "flattenArray(JsonNode, String>>, String>)",
+      "flattenObject(JsonNode, String>>, String>)",
+      "recordNameVal(String>>, String>, String)"
+    ]
+  },
+  "full_method_info": "private static void flattenObject(final JsonNode object, final Map<String, List<String>> map, final Stack<String> path) {\n    final Iterator<Map.Entry<String, JsonNode>> fields = object.fields();\n    while (fields.hasNext()) {\n        final Map.Entry<String, JsonNode> field = fields.next();\n        final JsonNode val = field.getValue();\n        path.push(field.getKey());\n        switch(val.getNodeType()) {\n            case OBJECT:\n                flattenObject(val, map, path);\n                break;\n            case ARRAY:\n                flattenArray(val, map, path);\n                break;\n            case STRING:\n                recordNameVal(map, path, '\"' + val.asText() + '\"');\n                break;\n            case NULL:\n            case BOOLEAN:\n            case NUMBER:\n                recordNameVal(map, path, val.asText());\n                break;\n            default:\n                throw new RuntimeException(\"Unknown JsonNode type for: \" + val.asText());\n        }\n        path.pop();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

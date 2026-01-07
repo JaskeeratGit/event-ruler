@@ -1,0 +1,26 @@
+{
+  "method0": {
+    "methodName": "getRuleName",
+    "signature": "getRuleName()",
+    "className": "SubRuleContext",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "SubRuleContext",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "SubRuleContext",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "SubRuleContext",
+    "signature": "SubRuleContext(long, Object)",
+    "className": "SubRuleContext",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

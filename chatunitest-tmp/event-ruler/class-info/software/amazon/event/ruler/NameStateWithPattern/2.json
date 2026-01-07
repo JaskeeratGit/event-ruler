@@ -1,0 +1,27 @@
+{
+  "className": "NameStateWithPattern",
+  "methodName": "equals",
+  "brief": "@Override\n    public boolean equals(Object o){}",
+  "methodSignature": "equals(Object)",
+  "sourceCode": "@Override\n    public boolean equals(Object o) {\n        if (o == null || !(o instanceof NameStateWithPattern)) {\n            return false;\n        }\n        NameStateWithPattern otherNameStateWithPattern = (NameStateWithPattern) o;\n        return  nameState.equals(otherNameStateWithPattern.nameState) &&\n                pattern.equals(otherNameStateWithPattern.pattern);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [
+      "equals(Object)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "@Override\npublic boolean equals(Object o) {\n    if (o == null || !(o instanceof NameStateWithPattern)) {\n        return false;\n    }\n    NameStateWithPattern otherNameStateWithPattern = (NameStateWithPattern) o;\n    return nameState.equals(otherNameStateWithPattern.nameState) && pattern.equals(otherNameStateWithPattern.pattern);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

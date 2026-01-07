@@ -1,0 +1,32 @@
+{
+  "className": "ArrayMembership",
+  "methodName": "toString",
+  "brief": "public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "public String toString() {\n        StringBuilder sb = new StringBuilder();\n        for (IntIntMap.Entry entry : membership.entries()) {\n            sb.append(entry.getKey()).append('[').append(entry.getValue()).append(\"] \");\n        }\n        return sb.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "entries()"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(String)",
+      "append(int)"
+    ],
+    "software.amazon.event.ruler.IntIntMap.Entry": [
+      "getValue()",
+      "getKey()"
+    ]
+  },
+  "full_method_info": "// for debugging\npublic String toString() {\n    StringBuilder sb = new StringBuilder();\n    for (IntIntMap.Entry entry : membership.entries()) {\n        sb.append(entry.getKey()).append('[').append(entry.getValue()).append(\"] \");\n    }\n    return sb.toString();\n}",
+  "method_comment": " for debugging",
+  "method_annotation": ""
+}

@@ -1,0 +1,38 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "processAnythingButMatchExpression",
+  "brief": "private static Patterns processAnythingButMatchExpression(JsonParser parser,\n                                                              JsonToken anythingButExpressionToken) throws IOException{}",
+  "methodSignature": "processAnythingButMatchExpression(JsonParser, JsonToken)",
+  "sourceCode": "private static Patterns processAnythingButMatchExpression(JsonParser parser,\n                                                              JsonToken anythingButExpressionToken) throws IOException {\n        Set<String> values = new HashSet<>();\n        boolean hasNumber = false;\n        switch (anythingButExpressionToken) {\n            case VALUE_STRING:\n                values.add('\"' + parser.getText() + '\"');\n                break;\n            case VALUE_NUMBER_FLOAT:\n            case VALUE_NUMBER_INT:\n                values.add(ComparableNumber.generate(parser.getText()));\n                hasNumber = true;\n                break;\n            default:\n                barf(parser, \"Inside anything-but list, start|null|boolean is not supported.\");\n        }\n        return AnythingBut.anythingButMatch(values, hasNumber);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "JsonToken"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getText()"
+    ],
+    "com.fasterxml.jackson.core.JsonToken": [],
+    "java.util.Set": [
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.ComparableNumber": [
+      "generate(String)"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "barf(JsonParser, String)"
+    ],
+    "software.amazon.event.ruler.AnythingBut": [
+      "anythingButMatch(String>, boolean)"
+    ]
+  },
+  "full_method_info": "private static Patterns processAnythingButMatchExpression(JsonParser parser, JsonToken anythingButExpressionToken) throws IOException {\n    Set<String> values = new HashSet<>();\n    boolean hasNumber = false;\n    switch(anythingButExpressionToken) {\n        case VALUE_STRING:\n            values.add('\"' + parser.getText() + '\"');\n            break;\n        case VALUE_NUMBER_FLOAT:\n        case VALUE_NUMBER_INT:\n            values.add(ComparableNumber.generate(parser.getText()));\n            hasNumber = true;\n            break;\n        default:\n            barf(parser, \"Inside anything-but list, start|null|boolean is not supported.\");\n    }\n    return AnythingBut.anythingButMatch(values, hasNumber);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

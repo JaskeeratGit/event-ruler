@@ -1,0 +1,18 @@
+{
+  "className": "NameMatcher",
+  "methodName": "isEmpty",
+  "brief": "boolean isEmpty();",
+  "methodSignature": "isEmpty()",
+  "sourceCode": "boolean isEmpty();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns {@code true} if this name matcher contains no patterns.\n */\nboolean isEmpty();",
+  "method_comment": "\n     * Returns {@code true} if this name matcher contains no patterns.\n     ",
+  "method_annotation": ""
+}

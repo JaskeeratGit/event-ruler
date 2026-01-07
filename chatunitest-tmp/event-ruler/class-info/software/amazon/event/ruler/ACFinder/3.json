@@ -1,0 +1,35 @@
+{
+  "className": "ACFinder",
+  "methodName": "tryMustNotExistMatch",
+  "brief": "private static void tryMustNotExistMatch(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState,\n                                             final ACTask task, int nextKeyIndex, final ArrayMembership arrayMembership,\n                                             final SubRuleContext.Generator subRuleContextGenerator){}",
+  "methodSignature": "tryMustNotExistMatch(Set, NameState, ACTask, int, ArrayMembership, SubRuleContext.Generator)",
+  "sourceCode": "private static void tryMustNotExistMatch(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState,\n                                             final ACTask task, int nextKeyIndex, final ArrayMembership arrayMembership,\n                                             final SubRuleContext.Generator subRuleContextGenerator) {\n        if (!nameState.hasKeyTransitions()) {\n            return;\n        }\n\n        for (NameState nextNameState : nameState.getNameTransitions(task.event, arrayMembership)) {\n            if (nextNameState != null) {\n                addNameState(candidateSubRuleIds, nextNameState, ABSENCE_PATTERN, task, nextKeyIndex, arrayMembership,\n                        subRuleContextGenerator);\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<SubRuleContext>",
+    "NameState",
+    "ACTask",
+    "int",
+    "ArrayMembership",
+    "SubRuleContext.Generator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [
+      "getNameTransitions(Event, ArrayMembership)",
+      "hasKeyTransitions()"
+    ],
+    "software.amazon.event.ruler.ACTask": [],
+    "software.amazon.event.ruler.ArrayMembership": [],
+    "software.amazon.event.ruler.ACFinder": [
+      "addNameState(SubRuleContext>, NameState, Patterns, ACTask, int, ArrayMembership, Generator)"
+    ]
+  },
+  "full_method_info": "private static void tryMustNotExistMatch(final Set<SubRuleContext> candidateSubRuleIds, final NameState nameState, final ACTask task, int nextKeyIndex, final ArrayMembership arrayMembership, final SubRuleContext.Generator subRuleContextGenerator) {\n    if (!nameState.hasKeyTransitions()) {\n        return;\n    }\n    for (NameState nextNameState : nameState.getNameTransitions(task.event, arrayMembership)) {\n        if (nextNameState != null) {\n            addNameState(candidateSubRuleIds, nextNameState, ABSENCE_PATTERN, task, nextKeyIndex, arrayMembership, subRuleContextGenerator);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButPrefix",
+  "brief": "public static AnythingButValuesSet anythingButPrefix(final String prefix){}",
+  "methodSignature": "anythingButPrefix(String)",
+  "sourceCode": "public static AnythingButValuesSet anythingButPrefix(final String prefix) {\n        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_PREFIX, Collections.singleton(prefix));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Collections": [
+      "singleton(T)"
+    ]
+  },
+  "full_method_info": "public static AnythingButValuesSet anythingButPrefix(final String prefix) {\n    return new AnythingButValuesSet(MatchType.ANYTHING_BUT_PREFIX, Collections.singleton(prefix));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

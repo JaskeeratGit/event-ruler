@@ -1,0 +1,42 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addMatchValue",
+  "brief": "private NameState addMatchValue(Patterns pattern, String value, NameState nameStateToBeReturned){}",
+  "methodSignature": "addMatchValue(Patterns, String, NameState)",
+  "sourceCode": "private NameState addMatchValue(Patterns pattern, String value, NameState nameStateToBeReturned) {\n\n        final InputCharacter[] characters = getParser().parse(pattern.type(), value);\n        ByteState byteState = startState;\n        ByteState prevByteState = null;\n        int i = 0;\n        for (; i < characters.length - 1; i++) {\n            ByteTransition trans = getTransition(byteState, characters[i]);\n            if (trans.isEmpty()) {\n                break;\n            }\n            ByteState stateToReuse = null;\n            for (SingleByteTransition single : trans.expand()) {\n                ByteState nextByteState = single.getNextByteState();\n                if (canReuseNextByteState(byteState, nextByteState, characters, i)) {\n                    stateToReuse = nextByteState;\n                    break;\n                }\n            }\n\n            if (stateToReuse == null) {\n                break;\n            }\n            prevByteState = byteState;\n            byteState = stateToReuse;\n        }\n        // we found our way through the machine with all characters except the last having matches or shortcut.\n        return addEndOfMatch(byteState, prevByteState, characters, i, pattern, nameStateToBeReturned);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns",
+    "String",
+    "NameState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "java.lang.String": [],
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(MatchType, String)"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "canReuseNextByteState(ByteState, ByteState, InputCharacter[], int)",
+      "addEndOfMatch(ByteState, ByteState, InputCharacter[], int, Patterns, NameState)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()",
+      "isEmpty()",
+      "getNextByteState()"
+    ]
+  },
+  "full_method_info": "private NameState addMatchValue(Patterns pattern, String value, NameState nameStateToBeReturned) {\n    final InputCharacter[] characters = getParser().parse(pattern.type(), value);\n    ByteState byteState = startState;\n    ByteState prevByteState = null;\n    int i = 0;\n    for (; i < characters.length - 1; i++) {\n        ByteTransition trans = getTransition(byteState, characters[i]);\n        if (trans.isEmpty()) {\n            break;\n        }\n        ByteState stateToReuse = null;\n        for (SingleByteTransition single : trans.expand()) {\n            ByteState nextByteState = single.getNextByteState();\n            if (canReuseNextByteState(byteState, nextByteState, characters, i)) {\n                stateToReuse = nextByteState;\n                break;\n            }\n        }\n        if (stateToReuse == null) {\n            break;\n        }\n        prevByteState = byteState;\n        byteState = stateToReuse;\n    }\n    // we found our way through the machine with all characters except the last having matches or shortcut.\n    return addEndOfMatch(byteState, prevByteState, characters, i, pattern, nameStateToBeReturned);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

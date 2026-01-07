@@ -1,0 +1,159 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.Collections;
+import java.util.stream.Collectors;
+
+public class Patterns_numericEquals_21_0_Test {
+
+    @Test
+    public void testNumericEqualsDoubleDelegatesToStringForVariousValues() throws Exception {
+        Class<?> patternsClass = Class.forName("software.amazon.event.ruler.Patterns");
+        // obtain methods via reflection
+        Method numericEqualsDouble = patternsClass.getMethod("numericEquals", double.class);
+        Method numericEqualsString = patternsClass.getMethod("numericEquals", String.class);
+        // check deprecated annotation presence on double method (as declared in the focal snippet)
+        assertTrue(numericEqualsDouble.isAnnotationPresent(Deprecated.class), "numericEquals(double) should be annotated @Deprecated");
+        // various representative doubles (including NaN, infinities, and -0.0)
+        double[] testValues = new double[] { 0.0, -0.0, 123.456, -98765.4321, Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY };
+        Set<Object> returnedClasses = new HashSet<>();
+        for (double v : testValues) {
+            String s = Double.toString(v);
+            Object resFromDouble = numericEqualsDouble.invoke(null, v);
+            Object resFromString = numericEqualsString.invoke(null, s);
+            assertNotNull(resFromDouble, "Result from numericEquals(double) should not be null for value: " + v);
+            assertNotNull(resFromString, "Result from numericEquals(String) should not be null for value: " + s);
+            // ensure both results are of the same runtime class
+            assertEquals(resFromString.getClass(), resFromDouble.getClass(), "numericEquals(double) should return same type as numericEquals(String) for value: " + v);
+            // Collect returned classes to ensure consistent return type across inputs
+            returnedClasses.add(resFromDouble.getClass());
+            // they should represent equivalent patterns (deep compare)
+            assertTrue(deepEquals(resFromDouble, resFromString), "Returned objects should be deeply equal for value: " + v + " (string rep: " + s + ")");
+            // likely not the same instance (method constructs new objects) - if they happen to be same, it's still fine, but prefer not same
+            if (resFromDouble != resFromString) {
+                assertNotSame(resFromString, resFromDouble);
+            }
+        }
+        // At least one return class observed
+        assertFalse(returnedClasses.isEmpty(), "Expected at least one return class from numericEquals methods");
+    }
+
+    // Deep equality comparator using reflection for fields as fallback when equals() is not sufficient.
+    private static boolean deepEquals(Object a, Object b) throws IllegalAccessException {
+        if (a == b)
+            return true;
+        if (a == null || b == null)
+            return false;
+        Class<?> ca = a.getClass();
+        Class<?> cb = b.getClass();
+        if (!ca.equals(cb))
+            return false;
+        // If equals implemented (not Object.equals), prefer that
+        try {
+            Method equalsMethod = ca.getMethod("equals", Object.class);
+            // If the equals method is overridden in this class (i.e., declared in class or a superclass other than Object),
+            // using a.equals(b) is reasonable. We'll call it and return result if it returns true.
+            // If it returns false, we still try field-level comparison as fallback.
+            if (!equalsMethod.getDeclaringClass().equals(Object.class)) {
+                boolean eq = (boolean) equalsMethod.invoke(a, b);
+                if (eq) {
+                    return true;
+                }
+                // else fallthrough to field-level comparison
+            }
+        } catch (NoSuchMethodException ignored) {
+            // shouldn't happen, Object defines equals, but continue to field comparison
+        } catch (Exception ignored) {
+            // if equals invocation fails, fallback to field-level comparison
+        }
+        // Field-level comparison
+        Class<?> current = ca;
+        // Compare declared fields from the class hierarchy (excluding java.* classes)
+        while (current != null && !current.equals(Object.class)) {
+            Field[] fields = current.getDeclaredFields();
+            for (Field f : fields) {
+                // skip synthetic fields
+                if (f.isSynthetic())
+                    continue;
+                f.setAccessible(true);
+                Object va = f.get(a);
+                Object vb = f.get(b);
+                if (va == vb)
+                    continue;
+                if (va == null || vb == null)
+                    return false;
+                // primitive wrappers and strings: use Objects.equals
+                if (isPrimitiveOrWrapperOrString(va.getClass())) {
+                    if (!Objects.equals(va, vb))
+                        return false;
+                    continue;
+                }
+                // arrays: use Arrays.deepEquals
+                if (va.getClass().isArray()) {
+                    if (!arraysDeepEquals(va, vb))
+                        return false;
+                    continue;
+                }
+                // For other objects, attempt recursive deepEquals but guard against cycles by only descending into same-class objects
+                if (!va.getClass().equals(vb.getClass()))
+                    return false;
+                // Prevent recursion into java.* classes
+                if (va.getClass().getPackage() != null && va.getClass().getPackage().getName().startsWith("java.")) {
+                    if (!Objects.equals(va, vb))
+                        return false;
+                } else {
+                    if (!deepEquals(va, vb))
+                        return false;
+                }
+            }
+            current = current.getSuperclass();
+        }
+        return true;
+    }
+
+    private static boolean arraysDeepEquals(Object a, Object b) {
+        if (a == null || b == null)
+            return a == b;
+        if (!a.getClass().isArray() || !b.getClass().isArray())
+            return false;
+        // Use appropriate Arrays.deepEquals for object arrays, and specialized equals for primitives
+        if (a instanceof Object[] && b instanceof Object[]) {
+            return Arrays.deepEquals((Object[]) a, (Object[]) b);
+        }
+        if (a instanceof byte[] && b instanceof byte[])
+            return Arrays.equals((byte[]) a, (byte[]) b);
+        if (a instanceof short[] && b instanceof short[])
+            return Arrays.equals((short[]) a, (short[]) b);
+        if (a instanceof int[] && b instanceof int[])
+            return Arrays.equals((int[]) a, (int[]) b);
+        if (a instanceof long[] && b instanceof long[])
+            return Arrays.equals((long[]) a, (long[]) b);
+        if (a instanceof char[] && b instanceof char[])
+            return Arrays.equals((char[]) a, (char[]) b);
+        if (a instanceof float[] && b instanceof float[])
+            return Arrays.equals((float[]) a, (float[]) b);
+        if (a instanceof double[] && b instanceof double[])
+            return Arrays.equals((double[]) a, (double[]) b);
+        if (a instanceof boolean[] && b instanceof boolean[])
+            return Arrays.equals((boolean[]) a, (boolean[]) b);
+        return false;
+    }
+
+    private static boolean isPrimitiveOrWrapperOrString(Class<?> c) {
+        return c.isPrimitive() || c.equals(Boolean.class) || c.equals(Byte.class) || c.equals(Character.class) || c.equals(Short.class) || c.equals(Integer.class) || c.equals(Long.class) || c.equals(Float.class) || c.equals(Double.class) || c.equals(String.class);
+    }
+}
+
+--------------------------------------------
+Error in testNumericEqualsDoubleDelegatesToStringForVariousValues(): line 33 : java.lang.NumberFormatException: illegal syntax

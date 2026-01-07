@@ -1,0 +1,25 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "check",
+  "brief": "public static String check(final Reader source){}",
+  "methodSignature": "check(Reader)",
+  "sourceCode": "public static String check(final Reader source) {\n        return check(source, true);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Reader"
+  ],
+  "dependentMethods": {
+    "java.io.Reader": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "check(Reader, boolean)"
+    ]
+  },
+  "full_method_info": "public static String check(final Reader source) {\n    return check(source, true);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

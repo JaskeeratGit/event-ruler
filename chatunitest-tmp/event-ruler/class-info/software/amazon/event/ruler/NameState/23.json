@@ -1,0 +1,45 @@
+{
+  "className": "NameState",
+  "methodName": "gatherObjects",
+  "brief": "public void gatherObjects(Set<Object> objectSet, int maxObjectCount){}",
+  "methodSignature": "gatherObjects(Set, int)",
+  "sourceCode": "public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n        if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) { // stops looping\n            objectSet.add(this);\n            for (ByteMachine byteMachine : valueTransitions.values()) {\n                byteMachine.gatherObjects(objectSet, maxObjectCount);\n            }\n            for (Map.Entry<String, NameMatcher<NameState>> mustNotExistEntry : mustNotExistMatchers.entrySet()) {\n                mustNotExistEntry.getValue().getNextState().gatherObjects(objectSet, maxObjectCount);\n            }\n            for (Map.Entry<Patterns, Set<SubRuleContext>> entry : patternToTerminalSubRuleIds.entrySet()) {\n                objectSet.add(entry.getKey());\n                objectSet.addAll(entry.getValue());\n            }\n            for (Map.Entry<Patterns, Set<SubRuleContext>> entry : patternToNonTerminalSubRuleIds.entrySet()) {\n                objectSet.add(entry.getKey());\n                objectSet.addAll(entry.getValue());\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<Object>",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "addAll(Collection<? extends E>)",
+      "contains(Object)",
+      "add(E)",
+      "size()"
+    ],
+    "java.util.Map": [
+      "values()",
+      "entrySet()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "gatherObjects(Object>, int)"
+    ],
+    "software.amazon.event.ruler.NameState": [
+      "gatherObjects(Object>, int)"
+    ],
+    "software.amazon.event.ruler.NameMatcher": [
+      "getNextState()"
+    ],
+    "java.util.Map.Entry": [
+      "getValue()",
+      "getKey()"
+    ]
+  },
+  "full_method_info": "public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {\n    if (!objectSet.contains(this) && objectSet.size() < maxObjectCount) {\n        // stops looping\n        objectSet.add(this);\n        for (ByteMachine byteMachine : valueTransitions.values()) {\n            byteMachine.gatherObjects(objectSet, maxObjectCount);\n        }\n        for (Map.Entry<String, NameMatcher<NameState>> mustNotExistEntry : mustNotExistMatchers.entrySet()) {\n            mustNotExistEntry.getValue().getNextState().gatherObjects(objectSet, maxObjectCount);\n        }\n        for (Map.Entry<Patterns, Set<SubRuleContext>> entry : patternToTerminalSubRuleIds.entrySet()) {\n            objectSet.add(entry.getKey());\n            objectSet.addAll(entry.getValue());\n        }\n        for (Map.Entry<Patterns, Set<SubRuleContext>> entry : patternToNonTerminalSubRuleIds.entrySet()) {\n            objectSet.add(entry.getKey());\n            objectSet.addAll(entry.getValue());\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

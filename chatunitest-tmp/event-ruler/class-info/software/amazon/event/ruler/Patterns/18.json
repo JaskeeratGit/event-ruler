@@ -1,0 +1,35 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButSuffix",
+  "brief": "public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs){}",
+  "methodSignature": "anythingButSuffix(Set)",
+  "sourceCode": "public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs) {\n        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_SUFFIX,\n                anythingButs.stream().map(s -> new StringBuilder(s).reverse().toString()).collect(Collectors.toSet()));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<String>"
+  ],
+  "dependentMethods": {
+    "java.util.stream.Stream": [
+      "collect(Collector<? super T, A, R>)",
+      "map(Function<? super T, ? extends R>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "reverse()"
+    ],
+    "java.util.stream.Collectors": [
+      "toSet()"
+    ]
+  },
+  "full_method_info": "public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs) {\n    return new AnythingButValuesSet(MatchType.ANYTHING_BUT_SUFFIX, anythingButs.stream().map(s -> new StringBuilder(s).reverse().toString()).collect(Collectors.toSet()));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

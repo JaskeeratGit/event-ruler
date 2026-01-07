@@ -1,0 +1,54 @@
+{
+  "className": "ByteMachine",
+  "methodName": "extendShortcutTransition",
+  "brief": "private ByteTransition extendShortcutTransition(final ByteState state, final ByteTransition trans,\n                                                    final InputCharacter character, final int currentIndex){}",
+  "methodSignature": "extendShortcutTransition(ByteState, ByteTransition, InputCharacter, int)",
+  "sourceCode": "private ByteTransition extendShortcutTransition(final ByteState state, final ByteTransition trans,\n                                                    final InputCharacter character, final int currentIndex) {\n        if (!trans.isShortcutTrans()) {\n            return trans;\n        }\n\n        ShortcutTransition shortcut = (ShortcutTransition) trans;\n        Patterns shortcutPattern = shortcut.getMatch().getPattern();\n        String valueInCurrentPos = ((ValuePatterns) shortcutPattern).pattern();\n        final InputCharacter[] charactersInCurrentPos = getParser().parse(shortcutPattern.type(), valueInCurrentPos);\n        ByteState firstNewState = null;\n        ByteState currentState = state;\n        for (int k = currentIndex; k < charactersInCurrentPos.length-1; k++) {\n            // we need keep the current state always pointed to last character.\n            final ByteState newByteState = new ByteState();\n            newByteState.setIndeterminatePrefix(currentState.hasIndeterminatePrefix());\n            if (k != currentIndex) {\n                putTransitionNextState(currentState, charactersInCurrentPos[k], shortcut, newByteState);\n            } else {\n                firstNewState = newByteState;\n            }\n            currentState = newByteState;\n        }\n\n        putTransitionMatch(currentState, charactersInCurrentPos[charactersInCurrentPos.length-1],\n                EmptyByteTransition.INSTANCE, shortcut.getMatch());\n        removeTransition(currentState, charactersInCurrentPos[charactersInCurrentPos.length-1], shortcut);\n        putTransitionNextState(state, character, shortcut, firstNewState);\n        return getTransition(state, character);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "ByteTransition",
+    "InputCharacter",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "setIndeterminatePrefix(boolean)",
+      "hasIndeterminatePrefix()"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "isShortcutTrans()"
+    ],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getPattern()"
+    ],
+    "software.amazon.event.ruler.ShortcutTransition": [
+      "getMatch()"
+    ],
+    "software.amazon.event.ruler.ValuePatterns": [
+      "pattern()"
+    ],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(MatchType, String)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "putTransitionNextState(ByteState, InputCharacter, SingleByteTransition, ByteState)",
+      "removeTransition(ByteState, InputCharacter, SingleByteTransition)",
+      "putTransitionMatch(ByteState, InputCharacter, SingleByteTransition, ByteMatch)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ]
+  },
+  "full_method_info": "// If we meet shortcut trans, that means Range have byte overlapped with shortcut matches,\n// To simplify the logic, we extend the shortcut to normal byte state chain, then decide whether need create\n// new byte state for current call.\nprivate ByteTransition extendShortcutTransition(final ByteState state, final ByteTransition trans, final InputCharacter character, final int currentIndex) {\n    if (!trans.isShortcutTrans()) {\n        return trans;\n    }\n    ShortcutTransition shortcut = (ShortcutTransition) trans;\n    Patterns shortcutPattern = shortcut.getMatch().getPattern();\n    String valueInCurrentPos = ((ValuePatterns) shortcutPattern).pattern();\n    final InputCharacter[] charactersInCurrentPos = getParser().parse(shortcutPattern.type(), valueInCurrentPos);\n    ByteState firstNewState = null;\n    ByteState currentState = state;\n    for (int k = currentIndex; k < charactersInCurrentPos.length - 1; k++) {\n        // we need keep the current state always pointed to last character.\n        final ByteState newByteState = new ByteState();\n        newByteState.setIndeterminatePrefix(currentState.hasIndeterminatePrefix());\n        if (k != currentIndex) {\n            putTransitionNextState(currentState, charactersInCurrentPos[k], shortcut, newByteState);\n        } else {\n            firstNewState = newByteState;\n        }\n        currentState = newByteState;\n    }\n    putTransitionMatch(currentState, charactersInCurrentPos[charactersInCurrentPos.length - 1], EmptyByteTransition.INSTANCE, shortcut.getMatch());\n    removeTransition(currentState, charactersInCurrentPos[charactersInCurrentPos.length - 1], shortcut);\n    putTransitionNextState(state, character, shortcut, firstNewState);\n    return getTransition(state, character);\n}",
+  "method_comment": " new byte state for current call.",
+  "method_annotation": ""
+}

@@ -1,0 +1,24 @@
+{
+  "className": "ByteMachine",
+  "methodName": "evaluateComplexity",
+  "brief": "public int evaluateComplexity(MachineComplexityEvaluator evaluator){}",
+  "methodSignature": "evaluateComplexity(MachineComplexityEvaluator)",
+  "sourceCode": "public int evaluateComplexity(MachineComplexityEvaluator evaluator) {\n        return (startStateMatch != null ? 1 : 0) + evaluator.evaluate(startState);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "MachineComplexityEvaluator"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.MachineComplexityEvaluator": [
+      "evaluate(ByteState)"
+    ]
+  },
+  "full_method_info": "public int evaluateComplexity(MachineComplexityEvaluator evaluator) {\n    return (startStateMatch != null ? 1 : 0) + evaluator.evaluate(startState);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

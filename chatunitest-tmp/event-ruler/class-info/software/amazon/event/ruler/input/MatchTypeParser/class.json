@@ -1,0 +1,35 @@
+{
+  "fullClassName": "software.amazon.event.ruler.input.MatchTypeParser",
+  "className": "MatchTypeParser",
+  "index": 5,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler.input",
+  "packageDeclaration": "package software.amazon.event.ruler.input;",
+  "classSignature": "public interface MatchTypeParser",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import software.amazon.event.ruler.MatchType;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "parse(MatchType, String)": "0"
+  },
+  "methodsBrief": [
+    "InputCharacter[] parse(MatchType type, String value);"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "package software.amazon.event.ruler.input;\n\nimport software.amazon.event.ruler.MatchType;\n\npublic interface MatchTypeParser {\n\n    /**\n     * @param type Match type\n     * @param value string value to parse\n     * @return processed and parsed Input Character\n     */\n    InputCharacter[] parse(MatchType type, String value);\n}\n",
+  "classDeclarationCode": "public interface MatchTypeParser {\n\n    /**\n     * @param type Match type\n     * @param value string value to parse\n     * @return processed and parsed Input Character\n     */\n    InputCharacter[] parse(MatchType type, String value);\n}",
+  "subClasses": []
+}

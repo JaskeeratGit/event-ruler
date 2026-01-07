@@ -1,0 +1,24 @@
+{
+  "className": "GenericMachine",
+  "methodName": "isNamePattern",
+  "brief": "private boolean isNamePattern(Patterns pattern){}",
+  "methodSignature": "isNamePattern(Patterns)",
+  "sourceCode": "private boolean isNamePattern(Patterns pattern) {\n        return pattern.type() == MatchType.ABSENT;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ]
+  },
+  "full_method_info": "private boolean isNamePattern(Patterns pattern) {\n    return pattern.type() == MatchType.ABSENT;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

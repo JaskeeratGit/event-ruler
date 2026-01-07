@@ -1,0 +1,41 @@
+{
+  "className": "ByteMachine",
+  "methodName": "addTransition",
+  "brief": "private static void addTransition(ByteState state, InputCharacter character, SingleByteTransition transition){}",
+  "methodSignature": "addTransition(ByteState, InputCharacter, SingleByteTransition)",
+  "sourceCode": "private static void addTransition(ByteState state, InputCharacter character, SingleByteTransition transition) {\n        if (isWildcard(character)) {\n            state.putTransitionForAllBytes(transition);\n        } else if (isMultiByteSet(character)) {\n            addTransitionForMultiByteSet(state, InputMultiByteSet.cast(character), transition);\n        } else {\n            state.addTransition(InputByte.cast(character).getByte(), transition);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "InputCharacter",
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "addTransition(byte, SingleByteTransition)",
+      "putTransitionForAllBytes(SingleByteTransition)"
+    ],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isMultiByteSet(InputCharacter)",
+      "addTransitionForMultiByteSet(ByteState, InputMultiByteSet, SingleByteTransition)",
+      "isWildcard(InputCharacter)"
+    ],
+    "software.amazon.event.ruler.input.InputMultiByteSet": [
+      "cast(InputCharacter)"
+    ],
+    "software.amazon.event.ruler.input.InputByte": [
+      "cast(InputCharacter)",
+      "getByte()"
+    ]
+  },
+  "full_method_info": "private static void addTransition(ByteState state, InputCharacter character, SingleByteTransition transition) {\n    if (isWildcard(character)) {\n        state.putTransitionForAllBytes(transition);\n    } else if (isMultiByteSet(character)) {\n        addTransitionForMultiByteSet(state, InputMultiByteSet.cast(character), transition);\n    } else {\n        state.addTransition(InputByte.cast(character).getByte(), transition);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

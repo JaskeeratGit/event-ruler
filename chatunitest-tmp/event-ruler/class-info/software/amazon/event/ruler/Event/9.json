@@ -1,0 +1,34 @@
+{
+  "className": "Event",
+  "methodName": "addField",
+  "brief": "private void addField(final Map<String, List<Value>> fieldMap, final Progress progress, final String val){}",
+  "methodSignature": "addField(Map, Progress, String)",
+  "sourceCode": "private void addField(final Map<String, List<Value>> fieldMap, final Progress progress, final String val) {\n        final String key = progress.path.name();\n        final List<Value> vals = fieldMap.computeIfAbsent(key, k -> new ArrayList<>());\n        vals.add(new Value(val, progress.membership));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<String,List<Value>>",
+    "Progress",
+    "String"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Event.Progress": [],
+    "java.lang.String": [],
+    "software.amazon.event.ruler.Path": [
+      "name()"
+    ],
+    "java.util.Map": [
+      "computeIfAbsent(K, Function<? super K, ? extends V>)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "private void addField(final Map<String, List<Value>> fieldMap, final Progress progress, final String val) {\n    final String key = progress.path.name();\n    final List<Value> vals = fieldMap.computeIfAbsent(key, k -> new ArrayList<>());\n    vals.add(new Value(val, progress.membership));\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "isMatchTrans",
+  "brief": "boolean isMatchTrans(){}",
+  "methodSignature": "isMatchTrans()",
+  "sourceCode": "boolean isMatchTrans() {\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tell if current transition is a match transition or not. Does not include shortcut transitions. Only includes\n * transitions that are matches after processing the entire pattern value.\n *\n * @return True if and only if there is a match on this transition.\n */\nboolean isMatchTrans() {\n    return false;\n}",
+  "method_comment": "\n     * Tell if current transition is a match transition or not. Does not include shortcut transitions. Only includes\n     * transitions that are matches after processing the entire pattern value.\n     *\n     * @return True if and only if there is a match on this transition.\n     ",
+  "method_annotation": ""
+}

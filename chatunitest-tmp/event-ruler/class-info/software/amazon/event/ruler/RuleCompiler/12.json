@@ -1,0 +1,29 @@
+{
+  "className": "RuleCompiler",
+  "methodName": "compile",
+  "brief": "public static Map<String, List<Patterns>> compile(final byte[] source, final boolean withOverriding) throws IOException{}",
+  "methodSignature": "compile(byte[], boolean)",
+  "sourceCode": "public static Map<String, List<Patterns>> compile(final byte[] source, final boolean withOverriding) throws IOException {\n        return doCompile(JSON_FACTORY.createParser(source), withOverriding);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte[]",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "byte": [],
+    "software.amazon.event.ruler.RuleCompiler": [
+      "doCompile(JsonParser, boolean)"
+    ],
+    "com.fasterxml.jackson.core.JsonFactory": [
+      "createParser(byte[])"
+    ]
+  },
+  "full_method_info": "/**\n * Compile a rule from its JSON form to a Map suitable for use by events.ruler.Ruler (elements are surrounded by quotes).\n *\n * @param source rule, as a byte array\n * @return Map form of rule\n * @throws IOException if the rule isn't syntactically valid\n */\npublic static Map<String, List<Patterns>> compile(final byte[] source, final boolean withOverriding) throws IOException {\n    return doCompile(JSON_FACTORY.createParser(source), withOverriding);\n}",
+  "method_comment": "\n     * Compile a rule from its JSON form to a Map suitable for use by events.ruler.Ruler (elements are surrounded by quotes).\n     *\n     * @param source rule, as a byte array\n     * @return Map form of rule\n     * @throws IOException if the rule isn't syntactically valid\n     ",
+  "method_annotation": ""
+}

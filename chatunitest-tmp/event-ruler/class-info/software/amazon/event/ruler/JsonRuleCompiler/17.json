@@ -1,0 +1,44 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "parseObject",
+  "brief": "private static void parseObject(final List<Map<String, List<Patterns>>> rules,\n                                    final Path path,\n                                    final JsonParser parser,\n                                    final boolean withQuotes,\n                                    final boolean withOverriding) throws IOException{}",
+  "methodSignature": "parseObject(List, Path, JsonParser, boolean, boolean)",
+  "sourceCode": "private static void parseObject(final List<Map<String, List<Patterns>>> rules,\n                                    final Path path,\n                                    final JsonParser parser,\n                                    final boolean withQuotes,\n                                    final boolean withOverriding) throws IOException {\n\n        boolean fieldsPresent = false;\n        while (parser.nextToken() != JsonToken.END_OBJECT) {\n            fieldsPresent = true;\n\n            // field name\n            final String stepName = parser.getCurrentName();\n\n            // If it is \"$or\" primitive, we should bypass that primitive itself in the path as it is not\n            // a real field name, it is just used to describe the \"$or\" relationship among object in the followed array.\n            if (stepName.equals(Constants.OR_RELATIONSHIP_KEYWORD)) {\n                parseIntoOrRelationship(rules, path, parser, withQuotes, withOverriding);\n                // all Objects in $or array have been handled in above function, just bypass below logic.\n                continue;\n            }\n\n            switch (parser.nextToken()) {\n            case START_OBJECT:\n                path.push(stepName);\n                parseObject(rules, path, parser, withQuotes, withOverriding);\n                path.pop();\n                break;\n\n            case START_ARRAY:\n                writeRules(rules, path.extendedName(stepName), parser, withQuotes, withOverriding);\n                break;\n\n            default:\n                barf(parser, String.format(\"\\\"%s\\\" must be an object or an array\", stepName));\n            }\n        }\n        if (!fieldsPresent) {\n            barf(parser, \"Empty objects are not allowed\");\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Map<String,List<Patterns>>>",
+    "Path",
+    "JsonParser",
+    "boolean",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Path": [
+      "extendedName(String)",
+      "pop()",
+      "push(String)"
+    ],
+    "com.fasterxml.jackson.core.JsonParser": [
+      "getCurrentName()",
+      "nextToken()"
+    ],
+    "java.lang.String": [
+      "equals(Object)",
+      "format(String, Object[])"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "parseIntoOrRelationship(Patterns>>>, Path, JsonParser, boolean, boolean)",
+      "parseObject(Patterns>>>, Path, JsonParser, boolean, boolean)",
+      "writeRules(Patterns>>>, String, JsonParser, boolean, boolean)",
+      "barf(JsonParser, String)"
+    ]
+  },
+  "full_method_info": "private static void parseObject(final List<Map<String, List<Patterns>>> rules, final Path path, final JsonParser parser, final boolean withQuotes, final boolean withOverriding) throws IOException {\n    boolean fieldsPresent = false;\n    while (parser.nextToken() != JsonToken.END_OBJECT) {\n        fieldsPresent = true;\n        // field name\n        final String stepName = parser.getCurrentName();\n        // If it is \"$or\" primitive, we should bypass that primitive itself in the path as it is not\n        // a real field name, it is just used to describe the \"$or\" relationship among object in the followed array.\n        if (stepName.equals(Constants.OR_RELATIONSHIP_KEYWORD)) {\n            parseIntoOrRelationship(rules, path, parser, withQuotes, withOverriding);\n            // all Objects in $or array have been handled in above function, just bypass below logic.\n            continue;\n        }\n        switch(parser.nextToken()) {\n            case START_OBJECT:\n                path.push(stepName);\n                parseObject(rules, path, parser, withQuotes, withOverriding);\n                path.pop();\n                break;\n            case START_ARRAY:\n                writeRules(rules, path.extendedName(stepName), parser, withQuotes, withOverriding);\n                break;\n            default:\n                barf(parser, String.format(\"\\\"%s\\\" must be an object or an array\", stepName));\n        }\n    }\n    if (!fieldsPresent) {\n        barf(parser, \"Empty objects are not allowed\");\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

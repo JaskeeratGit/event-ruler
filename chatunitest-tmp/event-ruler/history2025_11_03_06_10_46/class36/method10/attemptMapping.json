@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "JsonRuleCompiler_compile_10_0_Test",
+    "fullName": "software.amazon.event.ruler.JsonRuleCompiler_compile_10_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test.java",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "compile",
+    "methodSig": "compile(String, boolean)"
+  },
+  "attempt1": {
+    "testClassName": "JsonRuleCompiler_compile_10_1_Test",
+    "fullName": "software.amazon.event.ruler.JsonRuleCompiler_compile_10_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test.java",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "compile",
+    "methodSig": "compile(String, boolean)"
+  },
+  "attempt2": {
+    "testClassName": "JsonRuleCompiler_compile_10_2_Test",
+    "fullName": "software.amazon.event.ruler.JsonRuleCompiler_compile_10_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test.java",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "compile",
+    "methodSig": "compile(String, boolean)"
+  },
+  "attempt3": {
+    "testClassName": "JsonRuleCompiler_compile_10_3_Test",
+    "fullName": "software.amazon.event.ruler.JsonRuleCompiler_compile_10_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test.java",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "compile",
+    "methodSig": "compile(String, boolean)"
+  },
+  "attempt4": {
+    "testClassName": "JsonRuleCompiler_compile_10_4_Test",
+    "fullName": "software.amazon.event.ruler.JsonRuleCompiler_compile_10_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test.java",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "compile",
+    "methodSig": "compile(String, boolean)"
+  }
+}

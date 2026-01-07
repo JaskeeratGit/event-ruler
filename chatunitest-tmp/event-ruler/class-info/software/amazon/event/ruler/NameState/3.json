@@ -1,0 +1,25 @@
+{
+  "className": "NameState",
+  "methodName": "getTerminalSubRuleIdsForPattern",
+  "brief": "Set<SubRuleContext> getTerminalSubRuleIdsForPattern(Patterns pattern){}",
+  "methodSignature": "getTerminalSubRuleIdsForPattern(Patterns)",
+  "sourceCode": "Set<SubRuleContext> getTerminalSubRuleIdsForPattern(Patterns pattern) {\n        return patternToTerminalSubRuleIds.get(pattern);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Get all the terminal sub-rule IDs that used a given pattern to lead to this NameState. \"Terminal\" means the last\n * field of the sub-rule led to this NameState, and thus, the sub-rule's matching criteria have been satisfied.\n *\n * NOTE: This function returns the raw key set from one of NameState's internal maps. Mutating it will corrupt the\n * state of NameState. Although standard coding practice would warrant returning a copy of the set, or wrapping it\n * to be immutable, we instead return the raw key set as a performance optimization since this is called repeatedly\n * on the critical matching path. This avoids creating new data structures and/or copying elements between them.\n *\n * @param pattern The pattern that the rules must use to get to this NameState.\n * @return The sub-rules, could be null if none for pattern.\n */\nSet<SubRuleContext> getTerminalSubRuleIdsForPattern(Patterns pattern) {\n    return patternToTerminalSubRuleIds.get(pattern);\n}",
+  "method_comment": "\n     * Get all the terminal sub-rule IDs that used a given pattern to lead to this NameState. \"Terminal\" means the last\n     * field of the sub-rule led to this NameState, and thus, the sub-rule's matching criteria have been satisfied.\n     *\n     * NOTE: This function returns the raw key set from one of NameState's internal maps. Mutating it will corrupt the\n     * state of NameState. Although standard coding practice would warrant returning a copy of the set, or wrapping it\n     * to be immutable, we instead return the raw key set as a performance optimization since this is called repeatedly\n     * on the critical matching path. This avoids creating new data structures and/or copying elements between them.\n     *\n     * @param pattern The pattern that the rules must use to get to this NameState.\n     * @return The sub-rules, could be null if none for pattern.\n     ",
+  "method_annotation": ""
+}

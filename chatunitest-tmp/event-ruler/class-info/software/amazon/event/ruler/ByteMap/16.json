@@ -1,0 +1,24 @@
+{
+  "className": "ByteMap",
+  "methodName": "expand",
+  "brief": "private static Iterable<SingleByteTransition> expand(ByteTransition transition){}",
+  "methodSignature": "expand(ByteTransition)",
+  "sourceCode": "private static Iterable<SingleByteTransition> expand(ByteTransition transition) {\n        if (transition == null) {\n            return Collections.EMPTY_SET;\n        }\n        return transition.expand();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteTransition": [
+      "expand()"
+    ]
+  },
+  "full_method_info": "private static Iterable<SingleByteTransition> expand(ByteTransition transition) {\n    if (transition == null) {\n        return Collections.EMPTY_SET;\n    }\n    return transition.expand();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

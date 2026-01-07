@@ -1,0 +1,66 @@
+{
+  "fullClassName": "software.amazon.event.ruler.AnythingBut",
+  "className": "AnythingBut",
+  "index": 53,
+  "modifier": "[public ]",
+  "extend": "[Patterns]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "public class AnythingBut",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collections;",
+    "import java.util.Objects;",
+    "import java.util.Set;"
+  ],
+  "fields": [
+    "private final Set<String> values;",
+    "private final boolean isNumeric;"
+  ],
+  "superClasses": [
+    "Patterns"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "anythingButMatch(Set, boolean)": "0",
+    "getValues()": "1",
+    "isNumeric()": "2",
+    "equals(Object)": "3",
+    "hashCode()": "4",
+    "toString()": "5",
+    "AnythingBut(Set, boolean)": "6"
+  },
+  "methodsBrief": [
+    "static AnythingBut anythingButMatch(final Set<String> values, final boolean isNumber){}",
+    "public Set<String> getValues(){}",
+    "boolean isNumeric(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "@Override\n    public String toString(){}",
+    "AnythingBut(final Set<String> values, final boolean isNumeric){}"
+  ],
+  "constructorSigs": [
+    "AnythingBut(Set, boolean)"
+  ],
+  "constructorBrief": [
+    "AnythingBut(final Set<String> values, final boolean isNumeric){}"
+  ],
+  "getterSetterSigs": [
+    "getValues()"
+  ],
+  "getterSetterBrief": [
+    "public Set<String> getValues(){}"
+  ],
+  "constructorDeps": {
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ]
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport java.util.Collections;\nimport java.util.Objects;\nimport java.util.Set;\n\n/**\n * Represents denylist like rule: any value matches if it's *not* in the anything-but list.\n * It supports lists whose members must be all strings or all numbers.\n * Numbers are treated as strings created with ComparableNumber.generate.\n */\npublic class AnythingBut extends Patterns {\n\n    private final Set<String> values;\n\n    // isNumeric: true means all the value in the Set are numbers; false means all the value are string.\n    private final boolean isNumeric;\n\n    AnythingBut(final Set<String> values, final boolean isNumeric) {\n        super(MatchType.ANYTHING_BUT);\n        this.values = Collections.unmodifiableSet(values);\n        this.isNumeric = isNumeric;\n    }\n\n    static AnythingBut anythingButMatch(final Set<String> values, final boolean isNumber) {\n        return new AnythingBut(values, isNumber);\n    }\n\n    public Set<String> getValues() {\n        return values;\n    }\n\n    boolean isNumeric() {\n        return isNumeric;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        if (!super.equals(o)) {\n            return false;\n        }\n        AnythingBut that = (AnythingBut) o;\n        return isNumeric == that.isNumeric && (Objects.equals(values, that.values));\n    }\n\n    @Override\n    public int hashCode() {\n        int result = super.hashCode();\n        result = 31 * result + (values != null ? values.hashCode() : 0);\n        result = 31 * result + (isNumeric ? 1 : 0);\n        return result;\n    }\n\n    @Override\n    public String toString() {\n        return \"AB:\" + values + \", isNum=\" + isNumeric + \" (\" + super.toString() + \")\";\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Represents denylist like rule: any value matches if it's *not* in the anything-but list.\n * It supports lists whose members must be all strings or all numbers.\n * Numbers are treated as strings created with ComparableNumber.generate.\n */\npublic class AnythingBut extends Patterns {\n\n    private final Set<String> values;\n\n    // isNumeric: true means all the value in the Set are numbers; false means all the value are string.\n    private final boolean isNumeric;\n\n    AnythingBut(final Set<String> values, final boolean isNumeric) {\n        super(MatchType.ANYTHING_BUT);\n        this.values = Collections.unmodifiableSet(values);\n        this.isNumeric = isNumeric;\n    }\n\n    static AnythingBut anythingButMatch(final Set<String> values, final boolean isNumber) {\n        return new AnythingBut(values, isNumber);\n    }\n\n    public Set<String> getValues() {\n        return values;\n    }\n\n    boolean isNumeric() {\n        return isNumeric;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (this == o) {\n            return true;\n        }\n        if (o == null || getClass() != o.getClass()) {\n            return false;\n        }\n        if (!super.equals(o)) {\n            return false;\n        }\n        AnythingBut that = (AnythingBut) o;\n        return isNumeric == that.isNumeric && (Objects.equals(values, that.values));\n    }\n\n    @Override\n    public int hashCode() {\n        int result = super.hashCode();\n        result = 31 * result + (values != null ? values.hashCode() : 0);\n        result = 31 * result + (isNumeric ? 1 : 0);\n        return result;\n    }\n\n    @Override\n    public String toString() {\n        return \"AB:\" + values + \", isNum=\" + isNumeric + \" (\" + super.toString() + \")\";\n    }\n}",
+  "subClasses": []
+}

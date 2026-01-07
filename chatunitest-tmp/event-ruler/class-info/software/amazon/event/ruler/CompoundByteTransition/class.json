@@ -1,0 +1,109 @@
+{
+  "fullClassName": "software.amazon.event.ruler.CompoundByteTransition",
+  "className": "CompoundByteTransition",
+  "index": 26,
+  "modifier": "[public , final ]",
+  "extend": "[ByteTransition]",
+  "implement": "[]",
+  "packageName": "software.amazon.event.ruler",
+  "packageDeclaration": "package software.amazon.event.ruler;",
+  "classSignature": "public final class CompoundByteTransition",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import javax.annotation.Nullable;",
+    "import java.util.Collections;",
+    "import java.util.HashSet;",
+    "import java.util.Iterator;",
+    "import java.util.Objects;",
+    "import java.util.Set;",
+    "import java.util.TreeSet;"
+  ],
+  "fields": [
+    "private final Set<SingleByteTransition> byteTransitions;",
+    "private final Set<ShortcutTransition> shortcutTransitions;",
+    "private final Set<SingleByteTransition> matchableTransitions;",
+    "private final ByteTransition transitionForNextByteState;"
+  ],
+  "superClasses": [
+    "ByteTransition"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "coalesce(Iterable)": "0",
+    "getNextByteState()": "1",
+    "setNextByteState(ByteState)": "2",
+    "expand()": "3",
+    "getTransitionForNextByteStates()": "4",
+    "getMatches()": "5",
+    "getShortcuts()": "6",
+    "getTransition(byte)": "7",
+    "getTransitions()": "8",
+    "equals(Object)": "9",
+    "hashCode()": "10",
+    "toString()": "11",
+    "CompoundByteTransition(Set)": "12"
+  },
+  "methodsBrief": [
+    "static <T extends ByteTransition> T coalesce(Iterable<SingleByteTransition> singles){}",
+    "@Override\n    @Nullable\n    ByteState getNextByteState(){}",
+    "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState){}",
+    "@Override\n    Set<SingleByteTransition> expand(){}",
+    "@Override\n    ByteTransition getTransitionForNextByteStates(){}",
+    "@Override\n    public Set<ByteMatch> getMatches(){}",
+    "@Override\n    public Set<ShortcutTransition> getShortcuts(){}",
+    "@Override\n    public ByteTransition getTransition(byte utf8byte){}",
+    "@Override\n    public Set<ByteTransition> getTransitions(){}",
+    "@Override\n    public boolean equals(Object o){}",
+    "@Override\n    public int hashCode(){}",
+    "@Override\n    public String toString(){}",
+    "private CompoundByteTransition(Set<SingleByteTransition> byteTransitions){}"
+  ],
+  "constructorSigs": [
+    "CompoundByteTransition(Set)"
+  ],
+  "constructorBrief": [
+    "private CompoundByteTransition(Set<SingleByteTransition> byteTransitions){}"
+  ],
+  "getterSetterSigs": [
+    "getNextByteState()",
+    "setNextByteState(ByteState)",
+    "getTransitionForNextByteStates()",
+    "getMatches()",
+    "getShortcuts()",
+    "getTransitions()"
+  ],
+  "getterSetterBrief": [
+    "@Override\n    @Nullable\n    ByteState getNextByteState(){}",
+    "@Override\n    public SingleByteTransition setNextByteState(ByteState nextState){}",
+    "@Override\n    ByteTransition getTransitionForNextByteStates(){}",
+    "@Override\n    public Set<ByteMatch> getMatches(){}",
+    "@Override\n    public Set<ShortcutTransition> getShortcuts(){}",
+    "@Override\n    public Set<ByteTransition> getTransitions(){}"
+  ],
+  "constructorDeps": {
+    "java.util.Collections": [
+      "unmodifiableSet(Set<? extends T>)"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "isShortcutTrans()",
+      "isMatchTrans()",
+      "getNextByteState()"
+    ],
+    "java.util.Set": [
+      "equals(Object)",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.CompoundByteTransition": [
+      "coalesce(SingleByteTransition>)"
+    ]
+  },
+  "compilationUnitCode": "package software.amazon.event.ruler;\n\nimport javax.annotation.Nullable;\nimport java.util.Collections;\nimport java.util.HashSet;\nimport java.util.Iterator;\nimport java.util.Objects;\nimport java.util.Set;\nimport java.util.TreeSet;\n\n/**\n * An implementation of ByteTransition that represents having taken multiple ByteTransitions simultaneously. This is\n * useful for traversing an NFA, i.e. when a single byte could lead you down multiple different transitions.\n */\npublic final class CompoundByteTransition extends ByteTransition {\n\n    /**\n     * The transitions that have all been simultaneously traversed.\n     */\n    private final Set<SingleByteTransition> byteTransitions;\n\n    /**\n     * A view of byteTransitions containing just the shortcuts.\n     */\n    private final Set<ShortcutTransition> shortcutTransitions;\n\n    /**\n     * A view of byteTransitions containing just the ones that can contain matches.\n     */\n    private final Set<SingleByteTransition> matchableTransitions;\n\n    /**\n     * A ByteTransition representing all nextByteStates from byteTransitions.\n     */\n    private final ByteTransition transitionForNextByteState;\n\n    private CompoundByteTransition(Set<SingleByteTransition> byteTransitions) {\n        this.byteTransitions = Collections.unmodifiableSet(byteTransitions);\n        Set<ShortcutTransition> shortcutTransitions = new HashSet<>();\n        Set<SingleByteTransition> matchableTransitions = new HashSet<>();\n        Set<SingleByteTransition> nextByteStates = new HashSet<>();\n        this.byteTransitions.forEach(t -> {\n            if (t.isShortcutTrans()) {\n                shortcutTransitions.add((ShortcutTransition) t);\n            }\n            if (t.isMatchTrans()) {\n                matchableTransitions.add(t);\n            }\n            ByteState nextByteState = t.getNextByteState();\n            if (nextByteState != null) {\n                nextByteStates.add(nextByteState);\n            }\n        });\n        this.shortcutTransitions = Collections.unmodifiableSet(shortcutTransitions);\n        this.matchableTransitions = Collections.unmodifiableSet(matchableTransitions);\n        if (nextByteStates.equals(byteTransitions)) {\n            this.transitionForNextByteState = this;\n        } else {\n            this.transitionForNextByteState = coalesce(nextByteStates);\n        }\n    }\n\n    static <T extends ByteTransition> T coalesce(Iterable<SingleByteTransition> singles) {\n        Iterator<SingleByteTransition> iterator = singles.iterator();\n        if (!iterator.hasNext()) {\n            return null;\n        }\n        SingleByteTransition firstElement = iterator.next();\n        if (!iterator.hasNext()) {\n            return (T) firstElement;\n        } else if (singles instanceof Set) {\n            return (T) new CompoundByteTransition((Set) singles);\n        } else {\n            // We expect Iterables with more than one element to always be Sets, so this should be dead code, but adding\n            // it here for future-proofing.\n            Set<SingleByteTransition> set = new HashSet();\n            singles.forEach(single -> set.add(single));\n            return (T) new CompoundByteTransition(set);\n        }\n    }\n\n    /**\n     * Returns the nextByteState from all byteTransitions with a preference to states that have determinate prefixes.\n     * These states are re-usable when adding rules to the machine.\n     *\n     * @return First byte state with a preference to re-usable states.\n     */\n    @Override\n    @Nullable\n    ByteState getNextByteState() {\n        ByteState firstNonNull = null;\n        for (ByteTransition trans : byteTransitions) {\n            for (SingleByteTransition single : trans.expand()) {\n                ByteState nextByteState = single.getNextByteState();\n                if (nextByteState != null) {\n                    if (!nextByteState.hasIndeterminatePrefix()) {\n                        return nextByteState;\n                    }\n                    if (firstNonNull == null) {\n                        firstNonNull = nextByteState;\n                    }\n                }\n            }\n        }\n        return firstNonNull;\n    }\n\n    @Override\n    public SingleByteTransition setNextByteState(ByteState nextState) {\n        return nextState;\n    }\n\n    /**\n     * Get all transitions represented by this compound transition.\n     *\n     * @return A set of all transitions represented by this transition.\n     */\n    @Override\n    Set<SingleByteTransition> expand() {\n        return byteTransitions;\n    }\n\n    @Override\n    ByteTransition getTransitionForNextByteStates() {\n        return transitionForNextByteState;\n    }\n\n    /**\n     * Get the matches given all of the transitions that have been simultaneously traversed. Excludes matches from\n     * shortcut transitions as these are not actual matches based on the characters seen so far during the current\n     * traversal.\n     *\n     * @return All matches from all of the simultaneously traversed transitions.\n     */\n    @Override\n    public Set<ByteMatch> getMatches() {\n        Set<ByteMatch> matches = new HashSet<>();\n        for (SingleByteTransition single : matchableTransitions) {\n            single.getMatches().forEach(match -> matches.add(match));\n        }\n        return matches;\n    }\n\n    @Override\n    public Set<ShortcutTransition> getShortcuts() {\n        return shortcutTransitions;\n    }\n\n    /**\n     * Get the next transition for a UTF-8 byte given all of the transitions that have been simultaneously traversed.\n     *\n     * @param utf8byte The byte to transition on\n     * @return Null if there are no transitions, the actual transition if 1, or a CompoundByteTransition if 2+\n     */\n    @Override\n    public ByteTransition getTransition(byte utf8byte) {\n        Set<SingleByteTransition> singles = new HashSet<>();\n        for (SingleByteTransition transition : this.byteTransitions) {\n            ByteTransition nextTransition = transition.getTransition(utf8byte);\n            if (nextTransition != null) {\n                nextTransition.expand().forEach(t -> singles.add(t));\n            }\n        }\n        return coalesce(singles);\n    }\n\n    @Override\n    public Set<ByteTransition> getTransitions() {\n        // Determine all unique ceilings held in the ByteMaps of all nextByteStates.\n        Set<Integer> allCeilings = new TreeSet<>();\n        for (SingleByteTransition transition : byteTransitions) {\n            ByteState nextByteState = transition.getNextByteState();\n            if (nextByteState != null) {\n                allCeilings.addAll(nextByteState.getCeilings());\n            }\n        }\n        // For each unique ceiling, determine all singular transitions accessible for that byte value, then add\n        // coalesced version to final result.\n        Set<ByteTransition> result = new HashSet<>();\n        for (Integer ceiling : allCeilings) {\n            Set<SingleByteTransition> singles = new HashSet<>();\n            for (SingleByteTransition transition : byteTransitions) {\n                ByteTransition nextTransition = transition.getTransition((byte) (ceiling - 1));\n                if (nextTransition != null) {\n                    nextTransition.expand().forEach(t -> singles.add(t));\n                }\n            }\n            ByteTransition coalesced = coalesce(singles);\n            if (coalesced != null) {\n                result.add(coalesced);\n            }\n        }\n        return result;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || o.getClass() != getClass()) {\n            return false;\n        }\n        CompoundByteTransition other = (CompoundByteTransition) o;\n        return Objects.equals(byteTransitions, other.byteTransitions);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(byteTransitions);\n    }\n\n    @Override\n    public String toString() {\n        return \"CBT: \" + byteTransitions.toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * An implementation of ByteTransition that represents having taken multiple ByteTransitions simultaneously. This is\n * useful for traversing an NFA, i.e. when a single byte could lead you down multiple different transitions.\n */\npublic final class CompoundByteTransition extends ByteTransition {\n\n    /**\n     * The transitions that have all been simultaneously traversed.\n     */\n    private final Set<SingleByteTransition> byteTransitions;\n\n    /**\n     * A view of byteTransitions containing just the shortcuts.\n     */\n    private final Set<ShortcutTransition> shortcutTransitions;\n\n    /**\n     * A view of byteTransitions containing just the ones that can contain matches.\n     */\n    private final Set<SingleByteTransition> matchableTransitions;\n\n    /**\n     * A ByteTransition representing all nextByteStates from byteTransitions.\n     */\n    private final ByteTransition transitionForNextByteState;\n\n    private CompoundByteTransition(Set<SingleByteTransition> byteTransitions) {\n        this.byteTransitions = Collections.unmodifiableSet(byteTransitions);\n        Set<ShortcutTransition> shortcutTransitions = new HashSet<>();\n        Set<SingleByteTransition> matchableTransitions = new HashSet<>();\n        Set<SingleByteTransition> nextByteStates = new HashSet<>();\n        this.byteTransitions.forEach(t -> {\n            if (t.isShortcutTrans()) {\n                shortcutTransitions.add((ShortcutTransition) t);\n            }\n            if (t.isMatchTrans()) {\n                matchableTransitions.add(t);\n            }\n            ByteState nextByteState = t.getNextByteState();\n            if (nextByteState != null) {\n                nextByteStates.add(nextByteState);\n            }\n        });\n        this.shortcutTransitions = Collections.unmodifiableSet(shortcutTransitions);\n        this.matchableTransitions = Collections.unmodifiableSet(matchableTransitions);\n        if (nextByteStates.equals(byteTransitions)) {\n            this.transitionForNextByteState = this;\n        } else {\n            this.transitionForNextByteState = coalesce(nextByteStates);\n        }\n    }\n\n    static <T extends ByteTransition> T coalesce(Iterable<SingleByteTransition> singles) {\n        Iterator<SingleByteTransition> iterator = singles.iterator();\n        if (!iterator.hasNext()) {\n            return null;\n        }\n        SingleByteTransition firstElement = iterator.next();\n        if (!iterator.hasNext()) {\n            return (T) firstElement;\n        } else if (singles instanceof Set) {\n            return (T) new CompoundByteTransition((Set) singles);\n        } else {\n            // We expect Iterables with more than one element to always be Sets, so this should be dead code, but adding\n            // it here for future-proofing.\n            Set<SingleByteTransition> set = new HashSet();\n            singles.forEach(single -> set.add(single));\n            return (T) new CompoundByteTransition(set);\n        }\n    }\n\n    /**\n     * Returns the nextByteState from all byteTransitions with a preference to states that have determinate prefixes.\n     * These states are re-usable when adding rules to the machine.\n     *\n     * @return First byte state with a preference to re-usable states.\n     */\n    @Override\n    @Nullable\n    ByteState getNextByteState() {\n        ByteState firstNonNull = null;\n        for (ByteTransition trans : byteTransitions) {\n            for (SingleByteTransition single : trans.expand()) {\n                ByteState nextByteState = single.getNextByteState();\n                if (nextByteState != null) {\n                    if (!nextByteState.hasIndeterminatePrefix()) {\n                        return nextByteState;\n                    }\n                    if (firstNonNull == null) {\n                        firstNonNull = nextByteState;\n                    }\n                }\n            }\n        }\n        return firstNonNull;\n    }\n\n    @Override\n    public SingleByteTransition setNextByteState(ByteState nextState) {\n        return nextState;\n    }\n\n    /**\n     * Get all transitions represented by this compound transition.\n     *\n     * @return A set of all transitions represented by this transition.\n     */\n    @Override\n    Set<SingleByteTransition> expand() {\n        return byteTransitions;\n    }\n\n    @Override\n    ByteTransition getTransitionForNextByteStates() {\n        return transitionForNextByteState;\n    }\n\n    /**\n     * Get the matches given all of the transitions that have been simultaneously traversed. Excludes matches from\n     * shortcut transitions as these are not actual matches based on the characters seen so far during the current\n     * traversal.\n     *\n     * @return All matches from all of the simultaneously traversed transitions.\n     */\n    @Override\n    public Set<ByteMatch> getMatches() {\n        Set<ByteMatch> matches = new HashSet<>();\n        for (SingleByteTransition single : matchableTransitions) {\n            single.getMatches().forEach(match -> matches.add(match));\n        }\n        return matches;\n    }\n\n    @Override\n    public Set<ShortcutTransition> getShortcuts() {\n        return shortcutTransitions;\n    }\n\n    /**\n     * Get the next transition for a UTF-8 byte given all of the transitions that have been simultaneously traversed.\n     *\n     * @param utf8byte The byte to transition on\n     * @return Null if there are no transitions, the actual transition if 1, or a CompoundByteTransition if 2+\n     */\n    @Override\n    public ByteTransition getTransition(byte utf8byte) {\n        Set<SingleByteTransition> singles = new HashSet<>();\n        for (SingleByteTransition transition : this.byteTransitions) {\n            ByteTransition nextTransition = transition.getTransition(utf8byte);\n            if (nextTransition != null) {\n                nextTransition.expand().forEach(t -> singles.add(t));\n            }\n        }\n        return coalesce(singles);\n    }\n\n    @Override\n    public Set<ByteTransition> getTransitions() {\n        // Determine all unique ceilings held in the ByteMaps of all nextByteStates.\n        Set<Integer> allCeilings = new TreeSet<>();\n        for (SingleByteTransition transition : byteTransitions) {\n            ByteState nextByteState = transition.getNextByteState();\n            if (nextByteState != null) {\n                allCeilings.addAll(nextByteState.getCeilings());\n            }\n        }\n        // For each unique ceiling, determine all singular transitions accessible for that byte value, then add\n        // coalesced version to final result.\n        Set<ByteTransition> result = new HashSet<>();\n        for (Integer ceiling : allCeilings) {\n            Set<SingleByteTransition> singles = new HashSet<>();\n            for (SingleByteTransition transition : byteTransitions) {\n                ByteTransition nextTransition = transition.getTransition((byte) (ceiling - 1));\n                if (nextTransition != null) {\n                    nextTransition.expand().forEach(t -> singles.add(t));\n                }\n            }\n            ByteTransition coalesced = coalesce(singles);\n            if (coalesced != null) {\n                result.add(coalesced);\n            }\n        }\n        return result;\n    }\n\n    @Override\n    public boolean equals(Object o) {\n        if (o == null || o.getClass() != getClass()) {\n            return false;\n        }\n        CompoundByteTransition other = (CompoundByteTransition) o;\n        return Objects.equals(byteTransitions, other.byteTransitions);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(byteTransitions);\n    }\n\n    @Override\n    public String toString() {\n        return \"CBT: \" + byteTransitions.toString();\n    }\n}",
+  "subClasses": []
+}

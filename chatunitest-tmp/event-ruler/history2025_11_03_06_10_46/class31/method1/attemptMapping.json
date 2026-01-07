@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Range_lessThanOrEqualTo_1_0_Test",
+    "fullName": "software.amazon.event.ruler.Range_lessThanOrEqualTo_1_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_lessThanOrEqualTo_1_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "lessThanOrEqualTo",
+    "methodSig": "lessThanOrEqualTo(String)"
+  },
+  "attempt1": {
+    "testClassName": "Range_lessThanOrEqualTo_1_1_Test",
+    "fullName": "software.amazon.event.ruler.Range_lessThanOrEqualTo_1_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_lessThanOrEqualTo_1_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "lessThanOrEqualTo",
+    "methodSig": "lessThanOrEqualTo(String)"
+  },
+  "attempt2": {
+    "testClassName": "Range_lessThanOrEqualTo_1_2_Test",
+    "fullName": "software.amazon.event.ruler.Range_lessThanOrEqualTo_1_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_lessThanOrEqualTo_1_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "lessThanOrEqualTo",
+    "methodSig": "lessThanOrEqualTo(String)"
+  },
+  "attempt3": {
+    "testClassName": "Range_lessThanOrEqualTo_1_3_Test",
+    "fullName": "software.amazon.event.ruler.Range_lessThanOrEqualTo_1_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_lessThanOrEqualTo_1_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "lessThanOrEqualTo",
+    "methodSig": "lessThanOrEqualTo(String)"
+  },
+  "attempt4": {
+    "testClassName": "Range_lessThanOrEqualTo_1_4_Test",
+    "fullName": "software.amazon.event.ruler.Range_lessThanOrEqualTo_1_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_lessThanOrEqualTo_1_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "lessThanOrEqualTo",
+    "methodSig": "lessThanOrEqualTo(String)"
+  }
+}

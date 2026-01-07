@@ -1,0 +1,18 @@
+{
+  "className": "GenericMachine",
+  "methodName": "createNameMatcher",
+  "brief": "@Nonnull\n    @SuppressWarnings(\"unchecked\")\n    private <R> NameMatcher<R> createNameMatcher(){}",
+  "methodSignature": "createNameMatcher()",
+  "sourceCode": "@Nonnull\n    @SuppressWarnings(\"unchecked\")\n    private <R> NameMatcher<R> createNameMatcher() {\n        return (NameMatcher<R>) new SingleStateNameMatcher();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Nonnull\n@SuppressWarnings(\"unchecked\")\nprivate <R> NameMatcher<R> createNameMatcher() {\n    return (NameMatcher<R>) new SingleStateNameMatcher();\n}",
+  "method_comment": "",
+  "method_annotation": "@Nonnull\n@SuppressWarnings(\"unchecked\")\n"
+}

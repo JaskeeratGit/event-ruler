@@ -1,0 +1,18 @@
+{
+  "className": "Patterns",
+  "methodName": "toString",
+  "brief": "@Override\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        return \"T:\" + type;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic String toString() {\n    return \"T:\" + type;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

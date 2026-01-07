@@ -1,0 +1,32 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "check",
+  "brief": "public static String check(final String source, final boolean withOverriding){}",
+  "methodSignature": "check(String, boolean)",
+  "sourceCode": "public static String check(final String source, final boolean withOverriding) {\n        try {\n            doCompile(JSON_FACTORY.createParser(source), withOverriding);\n            return null;\n        } catch (Exception e) {\n            return e.getLocalizedMessage();\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "doCompile(JsonParser, boolean)"
+    ],
+    "com.fasterxml.jackson.core.JsonFactory": [
+      "createParser(String)"
+    ],
+    "java.lang.Throwable": [
+      "getLocalizedMessage()"
+    ]
+  },
+  "full_method_info": "public static String check(final String source, final boolean withOverriding) {\n    try {\n        doCompile(JSON_FACTORY.createParser(source), withOverriding);\n        return null;\n    } catch (Exception e) {\n        return e.getLocalizedMessage();\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

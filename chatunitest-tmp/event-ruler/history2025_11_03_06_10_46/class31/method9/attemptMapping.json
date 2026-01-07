@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Range_minDigit_9_0_Test",
+    "fullName": "software.amazon.event.ruler.Range_minDigit_9_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_minDigit_9_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "minDigit",
+    "methodSig": "minDigit()"
+  },
+  "attempt1": {
+    "testClassName": "Range_minDigit_9_1_Test",
+    "fullName": "software.amazon.event.ruler.Range_minDigit_9_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_minDigit_9_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "minDigit",
+    "methodSig": "minDigit()"
+  },
+  "attempt2": {
+    "testClassName": "Range_minDigit_9_2_Test",
+    "fullName": "software.amazon.event.ruler.Range_minDigit_9_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_minDigit_9_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "minDigit",
+    "methodSig": "minDigit()"
+  },
+  "attempt3": {
+    "testClassName": "Range_minDigit_9_3_Test",
+    "fullName": "software.amazon.event.ruler.Range_minDigit_9_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_minDigit_9_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "minDigit",
+    "methodSig": "minDigit()"
+  },
+  "attempt4": {
+    "testClassName": "Range_minDigit_9_4_Test",
+    "fullName": "software.amazon.event.ruler.Range_minDigit_9_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/er_latest_stable/event-ruler/chatunitest-generated/event-ruler/software/amazon/event/ruler/Range_minDigit_9_0_Test.java",
+    "className": "Range",
+    "packageName": "software.amazon.event.ruler",
+    "methodName": "minDigit",
+    "methodSig": "minDigit()"
+  }
+}

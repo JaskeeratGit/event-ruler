@@ -1,0 +1,36 @@
+{
+  "className": "ByteMachine",
+  "methodName": "putTransitionNextState",
+  "brief": "private static void putTransitionNextState(ByteState state, InputCharacter character,\n                                               SingleByteTransition transition, ByteState nextState){}",
+  "methodSignature": "putTransitionNextState(ByteState, InputCharacter, SingleByteTransition, ByteState)",
+  "sourceCode": "private static void putTransitionNextState(ByteState state, InputCharacter character,\n                                               SingleByteTransition transition, ByteState nextState) {\n        // In order to avoid change being felt by the concurrent query thread in the middle of change, we clone the\n        // trans firstly and will not update state store until the changes have completely applied in the new trans.\n        ByteTransition trans = transition.clone();\n        SingleByteTransition single = trans.setNextByteState(nextState);\n        if (single != null && !single.isEmpty() && single != transition) {\n            addTransition(state, character, single);\n        }\n        removeTransition(state, character, transition);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "InputCharacter",
+    "SingleByteTransition",
+    "ByteState"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.ByteTransition": [
+      "isEmpty()",
+      "setNextByteState(ByteState)",
+      "clone()"
+    ],
+    "software.amazon.event.ruler.ByteMachine": [
+      "removeTransition(ByteState, InputCharacter, SingleByteTransition)",
+      "addTransition(ByteState, InputCharacter, SingleByteTransition)"
+    ]
+  },
+  "full_method_info": "private static void putTransitionNextState(ByteState state, InputCharacter character, SingleByteTransition transition, ByteState nextState) {\n    // In order to avoid change being felt by the concurrent query thread in the middle of change, we clone the\n    // trans firstly and will not update state store until the changes have completely applied in the new trans.\n    ByteTransition trans = transition.clone();\n    SingleByteTransition single = trans.setNextByteState(nextState);\n    if (single != null && !single.isEmpty() && single != transition) {\n        addTransition(state, character, single);\n    }\n    removeTransition(state, character, transition);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

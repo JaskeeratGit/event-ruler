@@ -1,0 +1,31 @@
+{
+  "className": "MachineComplexityEvaluator",
+  "methodName": "getPatternsWithComplexity",
+  "brief": "private static Set<Patterns> getPatternsWithComplexity(Set<ByteMatch> matches){}",
+  "methodSignature": "getPatternsWithComplexity(Set)",
+  "sourceCode": "private static Set<Patterns> getPatternsWithComplexity(Set<ByteMatch> matches) {\n        Set<Patterns> patterns = new HashSet<>();\n        for (ByteMatch match : matches) {\n            if (MATCH_TYPES_WITH_COMPLEXITY.contains(match.getPattern().type())) {\n                patterns.add(match.getPattern());\n            }\n        }\n        return patterns;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<ByteMatch>"
+  ],
+  "dependentMethods": {
+    "java.util.Set": [
+      "contains(Object)",
+      "add(E)"
+    ],
+    "software.amazon.event.ruler.Patterns": [
+      "type()"
+    ],
+    "software.amazon.event.ruler.ByteMatch": [
+      "getPattern()"
+    ]
+  },
+  "full_method_info": "private static Set<Patterns> getPatternsWithComplexity(Set<ByteMatch> matches) {\n    Set<Patterns> patterns = new HashSet<>();\n    for (ByteMatch match : matches) {\n        if (MATCH_TYPES_WITH_COMPLEXITY.contains(match.getPattern().type())) {\n            patterns.add(match.getPattern());\n        }\n    }\n    return patterns;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

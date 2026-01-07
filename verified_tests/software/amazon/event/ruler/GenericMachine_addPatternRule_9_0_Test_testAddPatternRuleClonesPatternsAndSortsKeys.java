@@ -1,0 +1,108 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+class GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleClonesPatternsAndSortsKeys {
+
+    // A testable subclass that attempts to capture the parameters passed into addStep.
+    // The signature uses raw types and erased parameter types so it will successfully
+    // override the original addStep method if its erasure matches (List, Map, Object).
+    // If the original addStep is private in the real class, this will be a new method
+    // in the subclass and will not intercept calls; tests relying on interception will fail in that case.
+    static class TestGenericMachine extends GenericMachine {
+
+        final AtomicReference<List> capturedKeys = new AtomicReference<>();
+
+        final AtomicReference<Map> capturedNamePatterns = new AtomicReference<>();
+
+        final AtomicReference<Object> capturedName = new AtomicReference<>();
+
+        TestGenericMachine() {
+            // Use package-private configuration constructor
+            super(new GenericMachineConfiguration(false, false));
+        }
+
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+        public void addStep(List keys, Map namePatterns, Object name) {
+            // capture shallow copies to avoid accidental mutation in assertions
+            capturedKeys.set(keys == null ? null : new ArrayList<>(keys));
+            capturedNamePatterns.set(namePatterns == null ? null : new HashMap(namePatterns));
+            capturedName.set(name);
+        }
+    }
+
+
+    @Test
+    void testAddPatternRuleClonesPatternsAndSortsKeys() throws Exception {
+        TestGenericMachine gm = new TestGenericMachine();
+        // Create a Patterns instance that can be distinguished after cloning.
+        // We'll override clone() to ensure a different instance is returned.
+        Patterns originalPattern = new Patterns(null) {
+
+            @Override
+            public Object clone() {
+                // return distinct instance so we can verify cloned != original
+                return new Patterns(null);
+            }
+        };
+        // Prepare map with keys in unsorted order to verify sorting.
+        Map<String, List<Patterns>> namevals = new HashMap<>();
+        List<Patterns> listA = new ArrayList<>();
+        listA.add(originalPattern);
+        namevals.put("b-key", listA);
+        List<Patterns> listB = new ArrayList<>();
+        listB.add(originalPattern);
+        namevals.put("a-key", listB);
+        // Before invoking, ensure original lists contain the original object
+        assertSame(originalPattern, namevals.get("a-key").get(0));
+        assertSame(originalPattern, namevals.get("b-key").get(0));
+        // Call the method under test. We expect our TestGenericMachine.addStep override
+        // to capture the cloned map and sorted keys. If the real addStep is private,
+        // our override won't be called and the captured references will be null leading to test failure.
+        gm.addPatternRule("MyRule", namevals);
+        // Ensure addStep override captured parameters
+        List capturedKeys = gm.capturedKeys.get();
+        Map capturedNamePatterns = gm.capturedNamePatterns.get();
+        Object capturedName = gm.capturedName.get();
+        assertNotNull(capturedKeys, "Expected addStep to be intercepted and keys captured");
+        assertNotNull(capturedNamePatterns, "Expected addStep to be intercepted and namePatterns captured");
+        assertEquals("MyRule", capturedName, "Expected captured rule name to match provided");
+        // Keys should be sorted lexicographically: ["a-key", "b-key"]
+        List<String> expectedSorted = Arrays.asList("a-key", "b-key");
+        // convert capturedKeys to List<String> for comparison (they may already be Strings)
+        List<String> capturedKeysStrings = new ArrayList<>();
+        for (Object k : capturedKeys) {
+            capturedKeysStrings.add(String.valueOf(k));
+        }
+        assertEquals(expectedSorted, capturedKeysStrings);
+        // Verify that the patterns in capturedNamePatterns are clones (distinct instances) and
+        // that the original namevals map/list objects were not modified.
+        List<?> capturedListForA = (List<?>) capturedNamePatterns.get("a-key");
+        assertNotNull(capturedListForA);
+        assertFalse(capturedListForA.isEmpty());
+        // The captured pattern instance should NOT be the same as the originalPattern instance
+        assertNotSame(originalPattern, capturedListForA.get(0), "Expected the Patterns instance in the stored (cloned) map to be a different object from the original");
+        // Original lists should still contain the original pattern instance unchanged
+        assertSame(originalPattern, namevals.get("a-key").get(0));
+        assertSame(originalPattern, namevals.get("b-key").get(0));
+    }
+
+}

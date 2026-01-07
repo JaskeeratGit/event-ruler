@@ -1,0 +1,26 @@
+{
+  "className": "ListBasedRuleCompiler",
+  "methodName": "rulePathname",
+  "brief": "private static List<String> rulePathname(final Deque<String> path, final String stepName){}",
+  "methodSignature": "rulePathname(Deque, String)",
+  "sourceCode": "private static List<String> rulePathname(final Deque<String> path, final String stepName) {\n            List<String> sb = new ArrayList<>(path);\n            sb.add(stepName);\n            return sb;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Deque<String>",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "private static List<String> rulePathname(final Deque<String> path, final String stepName) {\n    List<String> sb = new ArrayList<>(path);\n    sb.add(stepName);\n    return sb;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

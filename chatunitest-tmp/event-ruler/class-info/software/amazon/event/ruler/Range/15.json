@@ -1,0 +1,28 @@
+{
+  "className": "Range",
+  "methodName": "hashCode",
+  "brief": "@Override\n    public int hashCode(){}",
+  "methodSignature": "hashCode()",
+  "sourceCode": "@Override\n    public int hashCode() {\n        int result = super.hashCode();\n        result = 31 * result + Arrays.hashCode(bottom);\n        result = 31 * result + Boolean.hashCode(openBottom);\n        result = 31 * result + Arrays.hashCode(top);\n        result = 31 * result + Boolean.hashCode(openTop);\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "hashCode()"
+    ],
+    "java.util.Arrays": [
+      "hashCode(byte[])"
+    ],
+    "java.lang.Boolean": [
+      "hashCode(boolean)"
+    ]
+  },
+  "full_method_info": "@Override\npublic int hashCode() {\n    int result = super.hashCode();\n    result = 31 * result + Arrays.hashCode(bottom);\n    result = 31 * result + Boolean.hashCode(openBottom);\n    result = 31 * result + Arrays.hashCode(top);\n    result = 31 * result + Boolean.hashCode(openTop);\n    return result;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,53 @@
+{
+  "className": "ByteMap",
+  "methodName": "updateTransition",
+  "brief": "private void updateTransition(final byte utf8byte, final SingleByteTransition transition, Operation operation){}",
+  "methodSignature": "updateTransition(byte, SingleByteTransition, Operation)",
+  "sourceCode": "private void updateTransition(final byte utf8byte, final SingleByteTransition transition, Operation operation) {\n        final int index = utf8byte & 0xFF;\n        ByteTransition target =  map.higherEntry(index).getValue();\n\n        ByteTransition coalesced;\n        if (operation == Operation.PUT) {\n            coalesced = coalesce(transition);\n        } else {\n            Iterable<SingleByteTransition> targetIterable = expand(target);\n            if (!targetIterable.iterator().hasNext()) {\n                coalesced = operation == Operation.ADD ? coalesce(transition) : null;\n            } else {\n                Set<SingleByteTransition> singles = new HashSet<>();\n                targetIterable.forEach(single -> singles.add(single));\n                if (operation == Operation.ADD) {\n                    singles.add(transition);\n                } else {\n                    singles.remove(transition);\n                }\n                coalesced = coalesce(singles);\n            }\n        }\n\n        final boolean atBottom = index == 0 || map.containsKey(index);\n        if (!atBottom) {\n            map.put(index, target);\n        }\n        map.put(index + 1, coalesced);\n\n        // Merge adjacent mappings with the same transition.\n        mergeAdjacentInMapIfNeeded(map);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "byte",
+    "SingleByteTransition",
+    "Operation"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "software.amazon.event.ruler.ByteMap.Operation": [],
+    "java.util.Map.Entry": [
+      "getValue()"
+    ],
+    "java.util.NavigableMap": [
+      "higherEntry(K)"
+    ],
+    "software.amazon.event.ruler.CompoundByteTransition": [
+      "coalesce(SingleByteTransition>)"
+    ],
+    "software.amazon.event.ruler.ByteMap": [
+      "expand(ByteTransition)",
+      "mergeAdjacentInMapIfNeeded(ByteTransition>)"
+    ],
+    "java.util.Iterator": [
+      "hasNext()"
+    ],
+    "java.lang.Iterable": [
+      "iterator()",
+      "forEach(Consumer<? super T>)"
+    ],
+    "java.util.Set": [
+      "remove(Object)",
+      "add(E)"
+    ],
+    "java.util.Map": [
+      "put(K, V)",
+      "containsKey(Object)"
+    ]
+  },
+  "full_method_info": "/**\n *  Updates one ceiling=>transition mapping and leaves the map in a consistent state. We go through the map and find\n *  the entry that contains the byte value. If the new byte value is not at the bottom of the entry, we write a new\n *  entry representing the part of the entry less than the byte value. Then we write a new entry for the byte value.\n *  Then we merge entries mapping to the same transition.\n */\nprivate void updateTransition(final byte utf8byte, final SingleByteTransition transition, Operation operation) {\n    final int index = utf8byte & 0xFF;\n    ByteTransition target = map.higherEntry(index).getValue();\n    ByteTransition coalesced;\n    if (operation == Operation.PUT) {\n        coalesced = coalesce(transition);\n    } else {\n        Iterable<SingleByteTransition> targetIterable = expand(target);\n        if (!targetIterable.iterator().hasNext()) {\n            coalesced = operation == Operation.ADD ? coalesce(transition) : null;\n        } else {\n            Set<SingleByteTransition> singles = new HashSet<>();\n            targetIterable.forEach(single -> singles.add(single));\n            if (operation == Operation.ADD) {\n                singles.add(transition);\n            } else {\n                singles.remove(transition);\n            }\n            coalesced = coalesce(singles);\n        }\n    }\n    final boolean atBottom = index == 0 || map.containsKey(index);\n    if (!atBottom) {\n        map.put(index, target);\n    }\n    map.put(index + 1, coalesced);\n    // Merge adjacent mappings with the same transition.\n    mergeAdjacentInMapIfNeeded(map);\n}",
+  "method_comment": "\n     *  Updates one ceiling=>transition mapping and leaves the map in a consistent state. We go through the map and find\n     *  the entry that contains the byte value. If the new byte value is not at the bottom of the entry, we write a new\n     *  entry representing the part of the entry less than the byte value. Then we write a new entry for the byte value.\n     *  Then we merge entries mapping to the same transition.\n     ",
+  "method_annotation": ""
+}

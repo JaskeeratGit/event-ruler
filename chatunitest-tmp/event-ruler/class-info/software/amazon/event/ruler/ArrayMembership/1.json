@@ -1,0 +1,24 @@
+{
+  "className": "ArrayMembership",
+  "methodName": "deleteMembership",
+  "brief": "void deleteMembership(int array){}",
+  "methodSignature": "deleteMembership(int)",
+  "sourceCode": "void deleteMembership(int array) {\n        membership.remove(array);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.IntIntMap": [
+      "remove(int)"
+    ]
+  },
+  "full_method_info": "void deleteMembership(int array) {\n    membership.remove(array);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

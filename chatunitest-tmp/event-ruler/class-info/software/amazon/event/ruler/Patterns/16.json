@@ -1,0 +1,20 @@
+{
+  "className": "Patterns",
+  "methodName": "anythingButPrefix",
+  "brief": "public static AnythingButValuesSet anythingButPrefix(final Set<String> anythingButs){}",
+  "methodSignature": "anythingButPrefix(Set)",
+  "sourceCode": "public static AnythingButValuesSet anythingButPrefix(final Set<String> anythingButs) {\n        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_PREFIX, anythingButs);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Set<String>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "public static AnythingButValuesSet anythingButPrefix(final Set<String> anythingButs) {\n    return new AnythingButValuesSet(MatchType.ANYTHING_BUT_PREFIX, anythingButs);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

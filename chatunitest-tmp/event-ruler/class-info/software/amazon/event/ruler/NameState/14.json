@@ -1,0 +1,27 @@
+{
+  "className": "NameState",
+  "methodName": "addTransition",
+  "brief": "void addTransition(final String key, final ByteMachine to){}",
+  "methodSignature": "addTransition(String, ByteMachine)",
+  "sourceCode": "void addTransition(final String key, final ByteMachine to) {\n        valueTransitions.put(key, to);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "ByteMachine"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "software.amazon.event.ruler.ByteMachine": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "void addTransition(final String key, final ByteMachine to) {\n    valueTransitions.put(key, to);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

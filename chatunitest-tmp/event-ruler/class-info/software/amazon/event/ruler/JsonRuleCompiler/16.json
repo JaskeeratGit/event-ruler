@@ -1,0 +1,30 @@
+{
+  "className": "JsonRuleCompiler",
+  "methodName": "doCompile",
+  "brief": "private static List<Map<String, List<Patterns>>> doCompile(final JsonParser parser, boolean withOverriding) throws IOException{}",
+  "methodSignature": "doCompile(JsonParser, boolean)",
+  "sourceCode": "private static List<Map<String, List<Patterns>>> doCompile(final JsonParser parser, boolean withOverriding) throws IOException {\n        final Path path = new Path();\n        final List<Map<String, List<Patterns>>> rules = new ArrayList<>();\n        if (parser.nextToken() != JsonToken.START_OBJECT) {\n            barf(parser, \"Filter is not an object\");\n        }\n        parseObject(rules, path, parser, true, withOverriding);\n        parser.close();\n        return rules;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonParser",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.core.JsonParser": [
+      "nextToken()",
+      "close()"
+    ],
+    "software.amazon.event.ruler.JsonRuleCompiler": [
+      "parseObject(Patterns>>>, Path, JsonParser, boolean, boolean)",
+      "barf(JsonParser, String)"
+    ]
+  },
+  "full_method_info": "private static List<Map<String, List<Patterns>>> doCompile(final JsonParser parser, boolean withOverriding) throws IOException {\n    final Path path = new Path();\n    final List<Map<String, List<Patterns>>> rules = new ArrayList<>();\n    if (parser.nextToken() != JsonToken.START_OBJECT) {\n        barf(parser, \"Filter is not an object\");\n    }\n    parseObject(rules, path, parser, true, withOverriding);\n    parser.close();\n    return rules;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

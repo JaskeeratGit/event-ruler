@@ -1,0 +1,42 @@
+{
+  "className": "Event",
+  "methodName": "loadArray",
+  "brief": "private void loadArray(final JsonNode array, final Map<String, List<Value>> fieldMap, final Progress progress){}",
+  "methodSignature": "loadArray(JsonNode, Map, Progress)",
+  "sourceCode": "private void loadArray(final JsonNode array, final Map<String, List<Value>> fieldMap, final Progress progress) {\n        final int arrayID = progress.arrayCount++;\n        final Iterator<JsonNode> elements = array.elements();\n\n        int arrayIndex = 0;\n        while (elements.hasNext()) {\n            final JsonNode element = elements.next();\n            switch (element.getNodeType()) {\n            case OBJECT:\n                progress.membership.putMembership(arrayID, arrayIndex);\n                loadObject(element, fieldMap, progress);\n                progress.membership.deleteMembership(arrayID);\n                break;\n            case ARRAY:\n                progress.membership.putMembership(arrayID, arrayIndex);\n                loadArray(element, fieldMap, progress);\n                progress.membership.deleteMembership(arrayID);\n                break;\n            case STRING:\n                addField(fieldMap, progress, '\"' + element.asText() + '\"');\n                break;\n            case NULL:\n            case BOOLEAN:\n            case NUMBER:\n                addField(fieldMap, progress, element.asText());\n                break;\n            default:\n                throw new RuntimeException(\"Unknown JsonNode type for: \" + element.asText());\n            }\n            arrayIndex++;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "JsonNode",
+    "Map<String,List<Value>>",
+    "Progress"
+  ],
+  "dependentMethods": {
+    "com.fasterxml.jackson.databind.JsonNode": [
+      "getNodeType()",
+      "elements()",
+      "asText()"
+    ],
+    "software.amazon.event.ruler.Event.Progress": [],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "software.amazon.event.ruler.ArrayMembership": [
+      "deleteMembership(int)",
+      "putMembership(int, int)"
+    ],
+    "software.amazon.event.ruler.Event": [
+      "addField(Value>>, Progress, String)",
+      "loadArray(JsonNode, Value>>, Progress)",
+      "loadObject(JsonNode, Value>>, Progress)"
+    ]
+  },
+  "full_method_info": "private void loadArray(final JsonNode array, final Map<String, List<Value>> fieldMap, final Progress progress) {\n    final int arrayID = progress.arrayCount++;\n    final Iterator<JsonNode> elements = array.elements();\n    int arrayIndex = 0;\n    while (elements.hasNext()) {\n        final JsonNode element = elements.next();\n        switch(element.getNodeType()) {\n            case OBJECT:\n                progress.membership.putMembership(arrayID, arrayIndex);\n                loadObject(element, fieldMap, progress);\n                progress.membership.deleteMembership(arrayID);\n                break;\n            case ARRAY:\n                progress.membership.putMembership(arrayID, arrayIndex);\n                loadArray(element, fieldMap, progress);\n                progress.membership.deleteMembership(arrayID);\n                break;\n            case STRING:\n                addField(fieldMap, progress, '\"' + element.asText() + '\"');\n                break;\n            case NULL:\n            case BOOLEAN:\n            case NUMBER:\n                addField(fieldMap, progress, element.asText());\n                break;\n            default:\n                throw new RuntimeException(\"Unknown JsonNode type for: \" + element.asText());\n        }\n        arrayIndex++;\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "ByteMap",
+  "methodName": "putTransitionForAllBytes",
+  "brief": "void putTransitionForAllBytes(final SingleByteTransition transition){}",
+  "methodSignature": "putTransitionForAllBytes(SingleByteTransition)",
+  "sourceCode": "void putTransitionForAllBytes(final SingleByteTransition transition) {\n        NavigableMap<Integer, ByteTransition> newMap = new TreeMap<>();\n        newMap.put(256, transition);\n        map = newMap;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "SingleByteTransition"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.SingleByteTransition": [],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "void putTransitionForAllBytes(final SingleByteTransition transition) {\n    NavigableMap<Integer, ByteTransition> newMap = new TreeMap<>();\n    newMap.put(256, transition);\n    map = newMap;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

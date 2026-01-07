@@ -1,0 +1,27 @@
+{
+  "className": "Patterns",
+  "methodName": "numericEquals",
+  "brief": "@Deprecated\n    public static ValuePatterns numericEquals(final double val){}",
+  "methodSignature": "numericEquals(double)",
+  "sourceCode": "@Deprecated\n    public static ValuePatterns numericEquals(final double val) {\n        return numericEquals(Double.toString(val));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "double"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.Patterns": [
+      "numericEquals(String)"
+    ],
+    "java.lang.Double": [
+      "toString(double)"
+    ]
+  },
+  "full_method_info": "/**\n * Use the other numericEquals(String) instead\n */\n@Deprecated\npublic static ValuePatterns numericEquals(final double val) {\n    return numericEquals(Double.toString(val));\n}",
+  "method_comment": " Use the other numericEquals(String) instead ",
+  "method_annotation": "@Deprecated\n"
+}

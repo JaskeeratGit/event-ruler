@@ -1,0 +1,18 @@
+{
+  "className": "ByteTransition",
+  "methodName": "getTransitionForNextByteStates",
+  "brief": "abstract ByteTransition getTransitionForNextByteStates();",
+  "methodSignature": "getTransitionForNextByteStates()",
+  "sourceCode": "abstract ByteTransition getTransitionForNextByteStates();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Get a transition that represents all of the next byte states for this transition.\n *\n * @return A transition that represents all of the next byte states for this transition.\n */\nabstract ByteTransition getTransitionForNextByteStates();",
+  "method_comment": "\n     * Get a transition that represents all of the next byte states for this transition.\n     *\n     * @return A transition that represents all of the next byte states for this transition.\n     ",
+  "method_annotation": ""
+}

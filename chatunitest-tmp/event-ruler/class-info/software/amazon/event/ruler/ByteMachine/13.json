@@ -1,0 +1,33 @@
+{
+  "className": "ByteMachine",
+  "methodName": "removeFromAnythingButsMap",
+  "brief": "private void removeFromAnythingButsMap(Map<NameState, List<Patterns>> map, NameState nameState, Patterns pattern){}",
+  "methodSignature": "removeFromAnythingButsMap(Map, NameState, Patterns)",
+  "sourceCode": "private void removeFromAnythingButsMap(Map<NameState, List<Patterns>> map, NameState nameState, Patterns pattern) {\n        List<Patterns> patterns = map.get(nameState);\n        if (patterns != null) {\n            patterns.remove(pattern);\n            if (patterns.isEmpty()) {\n                map.remove(nameState);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<NameState,List<Patterns>>",
+    "NameState",
+    "Patterns"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.NameState": [],
+    "software.amazon.event.ruler.Patterns": [],
+    "java.util.Map": [
+      "remove(Object)",
+      "get(Object)"
+    ],
+    "java.util.List": [
+      "remove(Object)",
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "private void removeFromAnythingButsMap(Map<NameState, List<Patterns>> map, NameState nameState, Patterns pattern) {\n    List<Patterns> patterns = map.get(nameState);\n    if (patterns != null) {\n        patterns.remove(pattern);\n        if (patterns.isEmpty()) {\n            map.remove(nameState);\n        }\n    }\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,41 @@
+{
+  "className": "ByteMachine",
+  "methodName": "doMultipleTransitionsConvergeForInputByte",
+  "brief": "private boolean doMultipleTransitionsConvergeForInputByte(ByteState byteState, InputCharacter[] characters, int i){}",
+  "methodSignature": "doMultipleTransitionsConvergeForInputByte(ByteState, InputCharacter[], int)",
+  "sourceCode": "private boolean doMultipleTransitionsConvergeForInputByte(ByteState byteState, InputCharacter[] characters, int i) {\n        if (!isByte(characters[i])) {\n            return false;\n        }\n\n        boolean isNextCharacterForSuffixMatch = isNextCharacterFirstContinuationByteForSuffixMatch(characters, i);\n        if (!isNextCharacterFirstByteOfMultiByte(characters, i) && !isNextCharacterForSuffixMatch) {\n            // If we are in the midst of a multi-byte sequence, we know that we are dealing with single transitions.\n            return false;\n        }\n\n        // Scenario 1 where multiple transitions will later converge: wildcard leads to wildcard state and following\n        // character can be used to skip wildcard state. Check for a non-self-referencing wildcard transition.\n        ByteTransition byteStateTransitionForAllBytes = byteState.getTransitionForAllBytes();\n        if (!byteStateTransitionForAllBytes.isEmpty() && byteStateTransitionForAllBytes != byteState) {\n            return true;\n        }\n\n        // Scenario 2 where multiple transitions will later converge: equals_ignore_case lower and upper case paths.\n        // Parse the next Java character into lower and upper case representations. Check if there are multiple\n        // multibytes (paths) and that there exists a transition that both lead to.\n        String value = extractNextJavaCharacterFromInputCharacters(characters, i);\n        MatchType matchType = isNextCharacterForSuffixMatch ? SUFFIX_EQUALS_IGNORE_CASE : EQUALS_IGNORE_CASE;\n        InputCharacter[] inputCharacters = getParser().parse(matchType, value);\n        ByteTransition transition = getTransition(byteState, inputCharacters[0]);\n        return inputCharacters[0] instanceof InputMultiByteSet && transition != null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "ByteState",
+    "InputCharacter[]",
+    "int"
+  ],
+  "dependentMethods": {
+    "software.amazon.event.ruler.ByteState": [
+      "getTransitionForAllBytes()"
+    ],
+    "software.amazon.event.ruler.input.InputCharacter": [],
+    "software.amazon.event.ruler.ByteMachine": [
+      "isNextCharacterFirstContinuationByteForSuffixMatch(InputCharacter[], int)",
+      "isNextCharacterFirstByteOfMultiByte(InputCharacter[], int)",
+      "extractNextJavaCharacterFromInputCharacters(InputCharacter[], int)",
+      "isByte(InputCharacter)",
+      "getTransition(SingleByteTransition, InputCharacter)"
+    ],
+    "software.amazon.event.ruler.ByteTransition": [
+      "isEmpty()"
+    ],
+    "software.amazon.event.ruler.input.DefaultParser": [
+      "getParser()",
+      "parse(MatchType, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns true if the current InputCharacter is the first InputByte of a Java character and there exists at least\n * two transitions, one using the next InputCharacter, away from byteState leading down paths that eventually\n * converge to a common state.\n *\n * @param byteState State where we look for at least two transitions that eventually converge to a common state.\n * @param characters The array of InputCharacters.\n * @param i The current index in the characters array.\n * @return True if and only if multiple transitions eventually converge to a common state.\n */\nprivate boolean doMultipleTransitionsConvergeForInputByte(ByteState byteState, InputCharacter[] characters, int i) {\n    if (!isByte(characters[i])) {\n        return false;\n    }\n    boolean isNextCharacterForSuffixMatch = isNextCharacterFirstContinuationByteForSuffixMatch(characters, i);\n    if (!isNextCharacterFirstByteOfMultiByte(characters, i) && !isNextCharacterForSuffixMatch) {\n        // If we are in the midst of a multi-byte sequence, we know that we are dealing with single transitions.\n        return false;\n    }\n    // Scenario 1 where multiple transitions will later converge: wildcard leads to wildcard state and following\n    // character can be used to skip wildcard state. Check for a non-self-referencing wildcard transition.\n    ByteTransition byteStateTransitionForAllBytes = byteState.getTransitionForAllBytes();\n    if (!byteStateTransitionForAllBytes.isEmpty() && byteStateTransitionForAllBytes != byteState) {\n        return true;\n    }\n    // Scenario 2 where multiple transitions will later converge: equals_ignore_case lower and upper case paths.\n    // Parse the next Java character into lower and upper case representations. Check if there are multiple\n    // multibytes (paths) and that there exists a transition that both lead to.\n    String value = extractNextJavaCharacterFromInputCharacters(characters, i);\n    MatchType matchType = isNextCharacterForSuffixMatch ? SUFFIX_EQUALS_IGNORE_CASE : EQUALS_IGNORE_CASE;\n    InputCharacter[] inputCharacters = getParser().parse(matchType, value);\n    ByteTransition transition = getTransition(byteState, inputCharacters[0]);\n    return inputCharacters[0] instanceof InputMultiByteSet && transition != null;\n}",
+  "method_comment": "\n     * Returns true if the current InputCharacter is the first InputByte of a Java character and there exists at least\n     * two transitions, one using the next InputCharacter, away from byteState leading down paths that eventually\n     * converge to a common state.\n     *\n     * @param byteState State where we look for at least two transitions that eventually converge to a common state.\n     * @param characters The array of InputCharacters.\n     * @param i The current index in the characters array.\n     * @return True if and only if multiple transitions eventually converge to a common state.\n     ",
+  "method_annotation": ""
+}
