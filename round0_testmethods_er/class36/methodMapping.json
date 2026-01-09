@@ -1,0 +1,218 @@
+{
+  "method0": {
+    "methodName": "check",
+    "signature": "check(Reader, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "check",
+    "signature": "check(Reader)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method10": {
+    "methodName": "compile",
+    "signature": "compile(String, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method11": {
+    "methodName": "compile",
+    "signature": "compile(String)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method12": {
+    "methodName": "compile",
+    "signature": "compile(byte[], boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method13": {
+    "methodName": "compile",
+    "signature": "compile(byte[])",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method14": {
+    "methodName": "compile",
+    "signature": "compile(InputStream, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method15": {
+    "methodName": "compile",
+    "signature": "compile(InputStream)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method16": {
+    "methodName": "doCompile",
+    "signature": "doCompile(JsonParser, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method17": {
+    "methodName": "parseObject",
+    "signature": "parseObject(List, Path, JsonParser, boolean, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method18": {
+    "methodName": "parseObjectInsideOrRelationship",
+    "signature": "parseObjectInsideOrRelationship(List, Path, JsonParser, boolean, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method19": {
+    "methodName": "parseIntoOrRelationship",
+    "signature": "parseIntoOrRelationship(List, Path, JsonParser, boolean, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "check",
+    "signature": "check(String, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method20": {
+    "methodName": "deepCopyRules",
+    "signature": "deepCopyRules(List)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method21": {
+    "methodName": "writeRules",
+    "signature": "writeRules(List, String, JsonParser, boolean, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method22": {
+    "methodName": "processMatchExpression",
+    "signature": "processMatchExpression(JsonParser)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method23": {
+    "methodName": "processPrefixEqualsIgnoreCaseExpression",
+    "signature": "processPrefixEqualsIgnoreCaseExpression(JsonParser)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method24": {
+    "methodName": "processSuffixEqualsIgnoreCaseExpression",
+    "signature": "processSuffixEqualsIgnoreCaseExpression(JsonParser)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method25": {
+    "methodName": "processAnythingButListMatchExpression",
+    "signature": "processAnythingButListMatchExpression(JsonParser)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method26": {
+    "methodName": "processAnythingButValuesSetMatchExpression",
+    "signature": "processAnythingButValuesSetMatchExpression(JsonParser, MatchType)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method27": {
+    "methodName": "processAnythingButMatchExpression",
+    "signature": "processAnythingButMatchExpression(JsonParser, JsonToken)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method28": {
+    "methodName": "processAnythingButValuesSetSingleValueMatchExpression",
+    "signature": "processAnythingButValuesSetSingleValueMatchExpression(JsonParser, JsonToken, MatchType)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method29": {
+    "methodName": "generateValueBasedOnMatchType",
+    "signature": "generateValueBasedOnMatchType(String, MatchType)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "check",
+    "signature": "check(String)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method30": {
+    "methodName": "processNumericMatchExpression",
+    "signature": "processNumericMatchExpression(JsonParser)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method31": {
+    "methodName": "completeNumericRange",
+    "signature": "completeNumericRange(JsonParser, JsonToken, String, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method32": {
+    "methodName": "processExistsExpression",
+    "signature": "processExistsExpression(JsonParser)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method33": {
+    "methodName": "tooManyElements",
+    "signature": "tooManyElements(JsonParser)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method34": {
+    "methodName": "barf",
+    "signature": "barf(JsonParser, String)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method35": {
+    "methodName": "JsonRuleCompiler",
+    "signature": "JsonRuleCompiler()",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "check",
+    "signature": "check(byte[], boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method5": {
+    "methodName": "check",
+    "signature": "check(byte[])",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method6": {
+    "methodName": "check",
+    "signature": "check(InputStream, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method7": {
+    "methodName": "check",
+    "signature": "check(InputStream)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method8": {
+    "methodName": "compile",
+    "signature": "compile(Reader, boolean)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method9": {
+    "methodName": "compile",
+    "signature": "compile(Reader)",
+    "className": "JsonRuleCompiler",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

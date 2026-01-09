@@ -1,0 +1,74 @@
+{
+  "method0": {
+    "methodName": "isIPv4OrIPv6",
+    "signature": "isIPv4OrIPv6(String)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "ipToBytes",
+    "signature": "ipToBytes(String)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method10": {
+    "methodName": "barf",
+    "signature": "barf(String)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method11": {
+    "methodName": "CIDR",
+    "signature": "CIDR()",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "ipToString",
+    "signature": "ipToString(String)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "ipToStringIfPossible",
+    "signature": "ipToStringIfPossible(String)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "ipToRangeIfPossible",
+    "signature": "ipToRangeIfPossible(String)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method5": {
+    "methodName": "toHexDigits",
+    "signature": "toHexDigits(byte[])",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method6": {
+    "methodName": "cidr",
+    "signature": "cidr(String)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method7": {
+    "methodName": "computeBottomBytes",
+    "signature": "computeBottomBytes(byte[], int)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method8": {
+    "methodName": "computeTopBytes",
+    "signature": "computeTopBytes(byte[], int)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method9": {
+    "methodName": "computeVariableBits",
+    "signature": "computeVariableBits(byte[], int)",
+    "className": "CIDR",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

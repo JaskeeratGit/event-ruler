@@ -1,0 +1,41 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import java.io.Reader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+
+class RuleCompiler_compile_14_0_Test_compile_withNullInput_shouldThrowNullPointerException {
+
+
+
+    @Test
+    void compile_withNullInput_shouldThrowNullPointerException() {
+        // Passing null should result in a NullPointerException when the factory attempts to create a parser.
+        assertThrows(NullPointerException.class, () -> RuleCompiler.compile(null, true));
+    }
+
+}

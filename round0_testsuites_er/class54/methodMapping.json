@@ -1,0 +1,242 @@
+{
+  "method0": {
+    "methodName": "rulesForJSONEvent",
+    "signature": "rulesForJSONEvent(String)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "rulesForJSONEvent",
+    "signature": "rulesForJSONEvent(JsonNode)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method10": {
+    "methodName": "deletePatternRule",
+    "signature": "deletePatternRule(T, Map)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method11": {
+    "methodName": "deleteRule",
+    "signature": "deleteRule(T, Map)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method12": {
+    "methodName": "deleteStep",
+    "signature": "deleteStep(NameState, List, int, Map, T, List, Set)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method13": {
+    "methodName": "doesNameStateContainPattern",
+    "signature": "doesNameStateContainPattern(NameState, Patterns)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method14": {
+    "methodName": "deletePattern",
+    "signature": "deletePattern(NameState, String, Patterns)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method15": {
+    "methodName": "addRule",
+    "signature": "addRule(T, String)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method16": {
+    "methodName": "addRule",
+    "signature": "addRule(T, Reader)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method17": {
+    "methodName": "addRule",
+    "signature": "addRule(T, InputStream)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method18": {
+    "methodName": "addRule",
+    "signature": "addRule(T, byte[])",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method19": {
+    "methodName": "deleteRule",
+    "signature": "deleteRule(T, String)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "rulesForEvent",
+    "signature": "rulesForEvent(String)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method20": {
+    "methodName": "deleteRule",
+    "signature": "deleteRule(T, Reader)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method21": {
+    "methodName": "deleteRule",
+    "signature": "deleteRule(T, InputStream)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method22": {
+    "methodName": "addStep",
+    "signature": "addStep(List, Map, T)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method23": {
+    "methodName": "addStep",
+    "signature": "addStep(NameState, List, int, Map, T, List, Set<NameState>[])",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method24": {
+    "methodName": "hasValuePatterns",
+    "signature": "hasValuePatterns(List)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method25": {
+    "methodName": "hasKeyPatterns",
+    "signature": "hasKeyPatterns(List)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method26": {
+    "methodName": "isNamePattern",
+    "signature": "isNamePattern(Patterns)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method27": {
+    "methodName": "addIntoUsedFields",
+    "signature": "addIntoUsedFields(List)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method28": {
+    "methodName": "checkAndDeleteUsedFields",
+    "signature": "checkAndDeleteUsedFields(List)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method29": {
+    "methodName": "isEmpty",
+    "signature": "isEmpty()",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "rulesForEvent",
+    "signature": "rulesForEvent(List)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method30": {
+    "methodName": "createNameMatcher",
+    "signature": "createNameMatcher()",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method31": {
+    "methodName": "recordFieldStep",
+    "signature": "recordFieldStep(String)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method32": {
+    "methodName": "eraseFieldStep",
+    "signature": "eraseFieldStep(String)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method33": {
+    "methodName": "evaluateComplexity",
+    "signature": "evaluateComplexity(MachineComplexityEvaluator)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method34": {
+    "methodName": "approximateObjectCount",
+    "signature": "approximateObjectCount(int)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method35": {
+    "methodName": "approximateObjectCount",
+    "signature": "approximateObjectCount()",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method36": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method37": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method38": {
+    "methodName": "GenericMachine",
+    "signature": "GenericMachine()",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method39": {
+    "methodName": "GenericMachine",
+    "signature": "GenericMachine(GenericMachineConfiguration)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "rulesForEvent",
+    "signature": "rulesForEvent(JsonNode)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method5": {
+    "methodName": "rulesForEvent",
+    "signature": "rulesForEvent(String[])",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method6": {
+    "methodName": "getStartState",
+    "signature": "getStartState()",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method7": {
+    "methodName": "isFieldStepUsed",
+    "signature": "isFieldStepUsed(String)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method8": {
+    "methodName": "addRule",
+    "signature": "addRule(T, Map)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method9": {
+    "methodName": "addPatternRule",
+    "signature": "addPatternRule(T, Map)",
+    "className": "GenericMachine",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

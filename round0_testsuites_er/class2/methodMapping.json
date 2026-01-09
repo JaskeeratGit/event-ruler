@@ -1,0 +1,44 @@
+{
+  "method0": {
+    "methodName": "cast",
+    "signature": "cast(InputCharacter)",
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method1": {
+    "methodName": "getMultiBytes",
+    "signature": "getMultiBytes()",
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method2": {
+    "methodName": "getType",
+    "signature": "getType()",
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method3": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method4": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method5": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method6": {
+    "methodName": "InputMultiByteSet",
+    "signature": "InputMultiByteSet(Set)",
+    "className": "InputMultiByteSet",
+    "packageName": "software.amazon.event.ruler.input"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "method0": {
+    "methodName": "parse",
+    "signature": "parse(String)",
+    "className": "WildcardParser",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method1": {
+    "methodName": "WildcardParser",
+    "signature": "WildcardParser()",
+    "className": "WildcardParser",
+    "packageName": "software.amazon.event.ruler.input"
+  }
+}

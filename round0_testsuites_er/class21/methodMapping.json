@@ -1,0 +1,50 @@
+{
+  "method0": {
+    "methodName": "matchesRule",
+    "signature": "matchesRule(String, String)",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "matches",
+    "signature": "matches(String, String)",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "matchesAllFields",
+    "signature": "matchesAllFields(JsonNode, Map)",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "matchesOneOf",
+    "signature": "matchesOneOf(JsonNode, List)",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "matches",
+    "signature": "matches(JsonNode, Patterns)",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method5": {
+    "methodName": "tryToRetrievePath",
+    "signature": "tryToRetrievePath(JsonNode, List)",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method6": {
+    "methodName": "compare",
+    "signature": "compare(byte[], byte[])",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method7": {
+    "methodName": "Ruler",
+    "signature": "Ruler()",
+    "className": "Ruler",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

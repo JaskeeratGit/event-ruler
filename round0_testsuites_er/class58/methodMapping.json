@@ -1,0 +1,32 @@
+{
+  "method0": {
+    "methodName": "getNameState",
+    "signature": "getNameState()",
+    "className": "NameStateWithPattern",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "getPattern",
+    "signature": "getPattern()",
+    "className": "NameStateWithPattern",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "NameStateWithPattern",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "NameStateWithPattern",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "NameStateWithPattern",
+    "signature": "NameStateWithPattern(NameState, Patterns)",
+    "className": "NameStateWithPattern",
+    "packageName": "software.amazon.event.ruler"
+  }
+}

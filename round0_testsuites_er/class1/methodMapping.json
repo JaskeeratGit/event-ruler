@@ -1,0 +1,38 @@
+{
+  "method0": {
+    "methodName": "getParser",
+    "signature": "getParser()",
+    "className": "DefaultParser",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method1": {
+    "methodName": "getNonSingletonParserForTesting",
+    "signature": "getNonSingletonParserForTesting(WildcardParser, EqualsIgnoreCaseParser, SuffixParser, SuffixEqualsIgnoreCaseParser)",
+    "className": "DefaultParser",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method2": {
+    "methodName": "parse",
+    "signature": "parse(MatchType, String)",
+    "className": "DefaultParser",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method3": {
+    "methodName": "parse",
+    "signature": "parse(byte)",
+    "className": "DefaultParser",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method4": {
+    "methodName": "DefaultParser",
+    "signature": "DefaultParser()",
+    "className": "DefaultParser",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method5": {
+    "methodName": "DefaultParser",
+    "signature": "DefaultParser(WildcardParser, EqualsIgnoreCaseParser, SuffixParser, SuffixEqualsIgnoreCaseParser)",
+    "className": "DefaultParser",
+    "packageName": "software.amazon.event.ruler.input"
+  }
+}

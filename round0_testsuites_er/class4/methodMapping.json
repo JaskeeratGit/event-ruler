@@ -1,0 +1,80 @@
+{
+  "method0": {
+    "methodName": "getBytes",
+    "signature": "getBytes()",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method1": {
+    "methodName": "singular",
+    "signature": "singular()",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method10": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method11": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method12": {
+    "methodName": "MultiByte",
+    "signature": "MultiByte(byte[])",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method2": {
+    "methodName": "is",
+    "signature": "is(byte[])",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method3": {
+    "methodName": "isNumeric",
+    "signature": "isNumeric()",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method4": {
+    "methodName": "isLessThan",
+    "signature": "isLessThan(MultiByte)",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method5": {
+    "methodName": "isLessThanOrEqualTo",
+    "signature": "isLessThanOrEqualTo(MultiByte)",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method6": {
+    "methodName": "isGreaterThan",
+    "signature": "isGreaterThan(MultiByte)",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method7": {
+    "methodName": "isGreaterThanOrEqualTo",
+    "signature": "isGreaterThanOrEqualTo(MultiByte)",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method8": {
+    "methodName": "isLessThan",
+    "signature": "isLessThan(MultiByte, boolean)",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  },
+  "method9": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "MultiByte",
+    "packageName": "software.amazon.event.ruler.input"
+  }
+}

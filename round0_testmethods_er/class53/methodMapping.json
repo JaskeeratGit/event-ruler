@@ -1,0 +1,44 @@
+{
+  "method0": {
+    "methodName": "anythingButMatch",
+    "signature": "anythingButMatch(Set, boolean)",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method1": {
+    "methodName": "getValues",
+    "signature": "getValues()",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method2": {
+    "methodName": "isNumeric",
+    "signature": "isNumeric()",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method3": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method4": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method5": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler"
+  },
+  "method6": {
+    "methodName": "AnythingBut",
+    "signature": "AnythingBut(Set, boolean)",
+    "className": "AnythingBut",
+    "packageName": "software.amazon.event.ruler"
+  }
+}
