@@ -1,0 +1,37 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+/**
+ * Fixed unit test using JUnit 4 to match the project's test classpath.
+ *
+ * The original expectation (NullPointerException) was incorrect: passing a null InputStream into
+ * RuleCompiler.compile(...) results in a com.fasterxml.jackson.core.JsonParseException being thrown
+ * by the JSON parser logic inside RuleCompiler. This test asserts for that exception.
+ */
+public class RuleCompilerCompileNullInputTest {
+
+    @Test
+    public void compile_withNullInput_shouldThrowJsonParseException() {
+        try {
+            // Disambiguate overloaded compile by casting null to InputStream.
+            RuleCompiler.compile((InputStream) null, true);
+            Assert.fail("Expected a JsonParseException to be thrown");
+        } catch (JsonParseException expected) {
+            // Test passes
+        } catch (IOException e) {
+            // JsonParseException is a subclass of IOException; if another IOException is thrown,
+            // fail and report it.
+            Assert.fail("Expected JsonParseException but got a different IOException: " + e);
+        } catch (RuntimeException e) {
+            // If some other runtime exception is thrown, fail the test with details.
+            Assert.fail("Expected JsonParseException but got a RuntimeException: " + e);
+        }
+    }
+
+}

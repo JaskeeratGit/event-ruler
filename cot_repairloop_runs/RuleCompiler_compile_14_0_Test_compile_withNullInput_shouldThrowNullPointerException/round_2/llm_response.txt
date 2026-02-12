@@ -1,0 +1,26 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.io.InputStream;
+
+/**
+ * Fixed unit test using JUnit 5.
+ *
+ * The original expectation (NullPointerException) was incorrect: passing a null InputStream into
+ * RuleCompiler.compile(...) results in a com.fasterxml.jackson.core.JsonParseException being thrown
+ * by the JSON parser logic inside RuleCompiler. This test asserts for that exception.
+ */
+public class RuleCompilerCompileNullInputTest {
+
+    @Test
+    public void compile_withNullInput_shouldThrowJsonParseException() {
+        // Disambiguate overloaded compile by casting null to InputStream.
+        Assertions.assertThrows(JsonParseException.class, () -> RuleCompiler.compile((InputStream) null, true));
+    }
+
+}
+<<Generation Over>>

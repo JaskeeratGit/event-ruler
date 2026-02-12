@@ -1,0 +1,544 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `deletePatternRule(T, Map)` in the focal class `GenericMachine`, and their information is
+```[java]
+public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals) {
+        if (namevals.size() > MAXIMUM_RULE_SIZE) {
+            throw new RuntimeException("Size of rule '" + name + "' exceeds max value of " + MAXIMUM_RULE_SIZE);
+        }
+        final List<String> keys = new ArrayList<>(namevals.keySet());
+        Collections.sort(keys);
+        synchronized(this) {
+            final List<String> deletedKeys =  new ArrayList<>();
+            final Set<SubRuleContext> candidateSubRuleIds = new HashSet<>();
+            deleteStep(getStartState(), keys, 0, namevals, name, deletedKeys, candidateSubRuleIds);
+            // check and delete the key from filedUsed ...
+            checkAndDeleteUsedFields(deletedKeys);
+        }
+
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+class GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount {
+
+    private GenericMachine<String> machine;
+
+    @BeforeEach
+    void setUp() {
+        // Use the public no-arg constructor
+        machine = new GenericMachine<>();
+    }
+
+
+    @Test
+    void testDeletePatternRuleDeletesKeysAndUpdatesRefCount() throws Exception {
+        // Prepare namevals with two keys in unsorted order to ensure sorting path is executed
+        Map<String, List<Patterns>> namevals = new HashMap<>();
+        namevals.put("b", Collections.singletonList(new Patterns()));
+        namevals.put("a", Collections.singletonList(new Patterns()));
+        // Populate private fieldStepsUsedRefCount with entries for "a" and "b"
+        Field f = GenericMachine.class.getDeclaredField("fieldStepsUsedRefCount");
+        f.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<String, Integer> refCount = (Map<String, Integer>) f.get(machine);
+        // Put initial counts
+        refCount.put("a", 1);
+        refCount.put("b", 2);
+        // Invoke public method
+        machine.deletePatternRule("myRule", namevals);
+        // After deletion, per our implementation, both keys are deleted:
+        // "a" had count 1 -> should be removed
+        // "b" had count 2 -> decremented to 1
+        assertFalse(refCount.containsKey("a"), "Expected 'a' to be removed from ref count");
+        assertEquals(Integer.valueOf(1), refCount.get("b"));
+    }
+
+}
+
+// ---------- Minimal supporting classes and a simplified GenericMachine implementation ----------
+class GenericMachineConfiguration {
+
+    private final boolean additionalNameStateReuse;
+
+    private final boolean ruleOverriding;
+
+    GenericMachineConfiguration(boolean additionalNameStateReuse, boolean ruleOverriding) {
+        this.additionalNameStateReuse = additionalNameStateReuse;
+        this.ruleOverriding = ruleOverriding;
+    }
+}
+
+class Patterns {
+    // minimal stub for Patterns
+}
+
+class SubRuleContext {
+
+    private final String id;
+
+    SubRuleContext(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof SubRuleContext))
+            return false;
+        SubRuleContext that = (SubRuleContext) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    static class Generator {
+
+        SubRuleContext generate(String id) {
+            return new SubRuleContext(id);
+        }
+    }
+}
+
+@SuppressWarnings("unused")
+class GenericMachine<T> {
+
+    private static final int MAXIMUM_RULE_SIZE = 256;
+
+    private final GenericMachineConfiguration configuration;
+
+    private final NameState startState = new NameState();
+
+    private final Map<String, Integer> fieldStepsUsedRefCount = new ConcurrentHashMap<>();
+
+    private final SubRuleContext.Generator subRuleContextGenerator = new SubRuleContext.Generator();
+
+    @Deprecated
+    public GenericMachine() {
+        this(new GenericMachineConfiguration(false, false));
+    }
+
+    protected GenericMachine(GenericMachineConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    final NameState getStartState() {
+        return startState;
+    }
+
+    public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals) {
+        if (namevals.size() > MAXIMUM_RULE_SIZE) {
+            throw new RuntimeException("Size of rule '" + name + "' exceeds max value of " + MAXIMUM_RULE_SIZE);
+        }
+        final List<String> keys = new ArrayList<>(namevals.keySet());
+        Collections.sort(keys);
+        synchronized (this) {
+            final List<String> deletedKeys = new ArrayList<>();
+            final Set<SubRuleContext> candidateSubRuleIds = new HashSet<>();
+            deleteStep(getStartState(), keys, 0, namevals, name, deletedKeys, candidateSubRuleIds);
+            // check and delete the key from fieldStepsUsedRefCount ...
+            checkAndDeleteUsedFields(deletedKeys);
+        }
+    }
+
+    // Private helper that the tests will call via reflection
+    private void deleteStep(final NameState state, final List<String> keys, final int index, final Map<String, List<Patterns>> namevals, final T name, final List<String> deletedKeys, final Set<SubRuleContext> candidateSubRuleIds) {
+        // simplified behavior:
+        // - if index >= keys.size(), do nothing
+        // - otherwise add all keys to deletedKeys and add one SubRuleContext
+        if (index >= keys.size()) {
+            return;
+        }
+        for (String k : keys) {
+            deletedKeys.add(k);
+        }
+        candidateSubRuleIds.add(subRuleContextGenerator.generate(String.valueOf(name)));
+    }
+
+    // Private helper to simulate updating the fieldStepsUsedRefCount map
+    private void checkAndDeleteUsedFields(final List<String> deletedKeys) {
+        for (String key : deletedKeys) {
+            fieldStepsUsedRefCount.computeIfPresent(key, (k, v) -> {
+                int nv = v - 1;
+                return nv <= 0 ? null : nv;
+            });
+        }
+    }
+
+    // Minimal NameState class
+    static class NameState {
+    }
+}
+
+```
+
+The error encountered when running this unit test is:
+
+```
+compilation
+src/test/java/software/amazon/event/ruler/GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleClonesPatternsAndSortsKeys.java:[58,36] constructor Patterns in class software.amazon.event.ruler.Patterns cannot be applied to given types;
+required: no arguments
+found: <nulltype>
+reason: actual and formal argument lists differ in length
+src/test/java/software/amazon/event/ruler/GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleClonesPatternsAndSortsKeys.java:[63,24] constructor Patterns in class software.amazon.event.ruler.Patterns cannot be applied to given types;
+required: no arguments
+found: <nulltype>
+reason: actual and formal argument lists differ in length
+src/test/java/software/amazon/event/ruler/GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleClonesPatternsAndSortsKeys.java:[80,11] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable gm of type software.amazon.event.ruler.GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleClonesPatternsAndSortsKeys.TestGenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleThrowsWhenExceedsMax.java:[64,64] constructor Patterns in class software.amazon.event.ruler.Patterns cannot be applied to given types;
+required: no arguments
+found: <nulltype>
+reason: actual and formal argument lists differ in length
+src/test/java/software/amazon/event/ruler/GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleThrowsWhenExceedsMax.java:[67,76] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable gm of type software.amazon.event.ruler.GenericMachine_addPatternRule_9_0_Test_testAddPatternRuleThrowsWhenExceedsMax.TestGenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_addRule_17_0_Test_addRule_whenJsonRuleCompilerSucceeds_doesNotThrowAndInternalStateExists.java:[37,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.io.InputStream)
+location: variable machine of type software.amazon.event.ruler.GenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_addRule_17_0_Test_addRule_whenJsonRuleCompilerThrows_usesRuleCompilerFallback.java:[37,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.io.InputStream)
+location: variable machine of type software.amazon.event.ruler.GenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_builder_37_0_Test_builderReturnsNonNullAndDistinctInstances.java:[34,41] cannot find symbol
+symbol:   method <java.lang.String>builder()
+location: class software.amazon.event.ruler.GenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_builder_37_0_Test_builderReturnsNonNullAndDistinctInstances.java:[36,41] cannot find symbol
+symbol:   method <java.lang.Integer>builder()
+location: class software.amazon.event.ruler.GenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_builder_37_0_Test_builderViaReflectionProducesSameBuilderTypeAndIsCallableStatically.java:[42,46] cannot find symbol
+symbol:   method builder()
+location: class software.amazon.event.ruler.GenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_builder_37_0_Test_multipleCallsProduceDistinctObjects.java:[35,34] cannot find symbol
+symbol:   method builder()
+location: class software.amazon.event.ruler.GenericMachine
+src/test/java/software/amazon/event/ruler/GenericMachine_builder_37_0_Test_multipleCallsProduceDistinctObjects.java:[36,34] cannot find symbol
+symbol:   method builder()
+location: class software.amazon.event.ruler.GenericMachine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[61,14] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[70,22] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[85,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[86,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[87,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[89,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[92,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[95,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[97,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[100,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[103,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[106,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[108,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[111,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[114,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[117,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[119,26] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[191,14] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[192,30] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[237,14] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[242,14] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[244,32] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[295,10] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[296,32] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[306,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[307,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[312,22] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[316,22] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[320,22] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[329,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[330,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[339,41] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[351,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[352,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[354,37] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[363,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[364,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[373,41] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[385,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[386,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[388,37] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[397,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[398,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[408,41] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[420,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[421,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[423,37] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[441,10] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[442,36] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[460,10] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[461,36] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable m of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[494,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[495,33] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[543,28] cannot find symbol
+symbol:   method exactMatch(java.lang.String)
+location: class software.amazon.event.ruler.Patterns
+src/test/software/amazon/event/ruler/ACMachineTest.java:[544,28] cannot find symbol
+symbol:   method exactMatch(java.lang.String)
+location: class software.amazon.event.ruler.Patterns
+src/test/software/amazon/event/ruler/ACMachineTest.java:[552,34] cannot find symbol
+symbol:   method prefixMatch(java.lang.String)
+location: class software.amazon.event.ruler.Patterns
+src/test/software/amazon/event/ruler/ACMachineTest.java:[556,20] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[675,38] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[732,37] cannot find symbol
+symbol:   method exactMatch(java.lang.String)
+location: class software.amazon.event.ruler.Patterns
+src/test/software/amazon/event/ruler/ACMachineTest.java:[755,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[756,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[759,33] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[762,20] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[771,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[772,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.io.StringReader)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[773,16] cannot find symbol
+symbol:   method addRule(java.lang.String,byte[])
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[774,16] cannot find symbol
+symbol:   method addRule(java.lang.String,java.io.ByteArrayInputStream)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[776,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[797,20] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[803,38] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[822,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[823,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[824,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[829,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[831,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[837,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[839,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[845,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[847,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[867,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[868,38] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[874,16] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[875,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[882,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[889,39] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[950,24] cannot find symbol
+symbol:   method addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[968,54] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+src/test/software/amazon/event/ruler/ACMachineTest.java:[1002,38] cannot find symbol
+symbol:   method rulesForJSONEvent(java.lang.String)
+location: variable machine of type software.amazon.event.ruler.Machine
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in GenericMachine.
+    - The method under test is GenericMachine.deletePatternRule.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

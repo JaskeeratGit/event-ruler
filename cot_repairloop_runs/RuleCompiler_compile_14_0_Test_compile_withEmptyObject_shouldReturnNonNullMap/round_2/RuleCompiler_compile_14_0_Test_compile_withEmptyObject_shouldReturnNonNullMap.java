@@ -1,0 +1,27 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+/**
+ * Fixed unit test: the RuleCompiler.compile(...) rejects empty JSON objects and
+ * throws a JsonParseException with message "Empty objects are not allowed".
+ *
+ * This test now asserts that calling compile with "{}" throws the expected exception.
+ */
+public class RuleCompiler_compile_14_0_Test_compile_withEmptyObject_shouldReturnNonNullMap {
+
+    @Test(timeout = 5000, expected = JsonParseException.class)
+    public void compile_withEmptyObject_shouldThrowJsonParseException() throws IOException {
+        // "{}" is an empty JSON object. The compiler's parse rules reject empty objects.
+        try (InputStream is = new ByteArrayInputStream("{}".getBytes(StandardCharsets.UTF_8))) {
+            // Expect JsonParseException to be thrown by this call
+            RuleCompiler.compile(is, true);
+        }
+    }
+}

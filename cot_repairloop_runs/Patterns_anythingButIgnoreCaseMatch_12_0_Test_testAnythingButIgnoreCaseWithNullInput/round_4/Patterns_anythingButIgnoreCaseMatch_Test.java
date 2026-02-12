@@ -1,0 +1,108 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Fixed unit tests for Patterns.anythingButIgnoreCaseMatch(Set).
+ *
+ * Notes:
+ * - The implementation of AnythingButValuesSet constructs an unmodifiable set from the provided set
+ *   using Collections.unmodifiableSet(...). That returns an unmodifiable view over the original set.
+ *   Passing null to that constructor results in a NullPointerException (Collections.unmodifiableSet(null)).
+ *   Therefore the behavior when calling Patterns.anythingButIgnoreCaseMatch((Set<String>) null) is to throw NPE.
+ *
+ * - We verify:
+ *   - NPE is thrown when null is passed.
+ *   - The returned object's MatchType should be ANYTHING_BUT_IGNORE_CASE.
+ *   - The stored set is non-null, unmodifiable, and (because an unmodifiable view is used) reflects
+ *     subsequent changes to the original input set.
+ */
+public class Patterns_anythingButIgnoreCaseMatch_Test {
+
+    // Helper: find a field of given type (or subtype) in object's class hierarchy and return its value
+    @SuppressWarnings("unchecked")
+    private <T> T getFieldValueByType(Object instance, Class<T> fieldType) throws IllegalAccessException {
+        Class<?> cls = instance.getClass();
+        while (cls != null) {
+            for (Field f : cls.getDeclaredFields()) {
+                if (fieldType.isAssignableFrom(f.getType())) {
+                    f.setAccessible(true);
+                    Object val = f.get(instance);
+                    return (T) val;
+                }
+            }
+            cls = cls.getSuperclass();
+        }
+        throw new AssertionError("No field of type " + fieldType.getName() + " found on " + instance.getClass());
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testAnythingButIgnoreCaseWithNullInput_throwsNullPointerException() {
+        // Passing null to the method leads to NPE because the implementation wraps the set with Collections.unmodifiableSet(...)
+        // cast to the Set<String> overload to avoid ambiguity with other overloads
+        Patterns.anythingButIgnoreCaseMatch((Set<String>) null);
+    }
+
+    @Test
+    public void testAnythingButIgnoreCaseWithEmptySet_returnsObjectWithEmptyUnmodifiableStoredSet() throws Exception {
+        Object result = Patterns.anythingButIgnoreCaseMatch(Collections.emptySet());
+        assertNotNull("Result should not be null for empty input set", result);
+
+        // verify match type field
+        MatchType matchTypeValue = getFieldValueByType(result, MatchType.class);
+        assertEquals("MatchType should be ANYTHING_BUT_IGNORE_CASE", MatchType.ANYTHING_BUT_IGNORE_CASE, matchTypeValue);
+
+        // verify stored set field is present, empty, and unmodifiable
+        @SuppressWarnings("unchecked")
+        Set<String> stored = getFieldValueByType(result, Set.class);
+        assertNotNull("Implementation should store a non-null set when provided an empty set", stored);
+        assertTrue("Stored set should be empty for empty input", stored.isEmpty());
+
+        // stored should be unmodifiable - attempting to add should throw UnsupportedOperationException
+        try {
+            stored.add("should-fail");
+            fail("Expected UnsupportedOperationException when modifying stored set");
+        } catch (UnsupportedOperationException expected) {
+            // expected
+        }
+    }
+
+    @Test
+    public void testAnythingButIgnoreCaseWithNonEmptySet_storesViewAndIsUnmodifiable() throws Exception {
+        Set<String> original = new HashSet<>();
+        original.add("Alpha");
+        original.add("Beta");
+
+        Object result = Patterns.anythingButIgnoreCaseMatch(original);
+        assertNotNull("Result should not be null for non-empty input set", result);
+
+        MatchType matchTypeValue = getFieldValueByType(result, MatchType.class);
+        assertEquals("MatchType should be ANYTHING_BUT_IGNORE_CASE", MatchType.ANYTHING_BUT_IGNORE_CASE, matchTypeValue);
+
+        @SuppressWarnings("unchecked")
+        Set<String> stored = getFieldValueByType(result, Set.class);
+        assertNotNull("Stored set should not be null for non-empty input", stored);
+        // stored should contain the elements that were in the input at the time of invocation
+        assertTrue("Stored set should contain elements from the input set",
+                stored.contains("Alpha") && stored.contains("Beta"));
+
+        // The implementation uses Collections.unmodifiableSet(original) which returns an unmodifiable view.
+        // Therefore mutating the original after constructing the result will be reflected in the stored view.
+        original.add("Gamma");
+        assertTrue("Stored set should reflect subsequent changes to the original input set (unmodifiable view)", stored.contains("Gamma"));
+
+        // stored should be unmodifiable
+        try {
+            stored.add("another");
+            fail("Expected UnsupportedOperationException when modifying stored set");
+        } catch (UnsupportedOperationException expected) {
+            // expected
+        }
+    }
+}

@@ -1,0 +1,47 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Fixed unit test (JUnit 5):
+ * - Asserts that compiling an empty JSON object ("{}") produces a JsonParseException
+ *   with the expected message (the implementation disallows empty objects).
+ * - Verifies the private doCompile method is accessible via reflection and that
+ *   invoking it with the same parser also surfaces the same JsonParseException (wrapped
+ *   in InvocationTargetException by reflection).
+ */
+public class JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible {
+
+    @Test
+    public void testCompileWithEmptyObjectThrowsJsonParseExceptionAndDoCompileAccessible() throws Exception {
+        // The implementation does not accept empty objects. Assert that compiling "{}" fails as observed.
+        JsonParseException compileEx = assertThrows(JsonParseException.class, () -> JsonRuleCompiler.compile("{}", true));
+        assertNotNull(compileEx.getMessage());
+        assertTrue(compileEx.getMessage().contains("Empty objects are not allowed"),
+                "Expected error message to mention empty objects being disallowed");
+
+        // Also invoke the private doCompile directly with a parser that starts with START_OBJECT
+        // and verify the same underlying JsonParseException is produced (wrapped by reflection).
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser("{}");
+        Method doCompile = JsonRuleCompiler.class.getDeclaredMethod("doCompile", JsonParser.class, boolean.class);
+        doCompile.setAccessible(true);
+        try {
+            InvocationTargetException ite = assertThrows(InvocationTargetException.class, () -> doCompile.invoke(null, parser, true));
+            Throwable cause = ite.getCause();
+            assertNotNull(cause, "InvocationTargetException should have a cause");
+            assertTrue(cause instanceof JsonParseException, "Expected cause to be JsonParseException");
+            assertTrue(cause.getMessage().contains("Empty objects are not allowed"),
+                    "Expected underlying error message to mention empty objects being disallowed");
+        } finally {
+            parser.close();
+        }
+    }
+}

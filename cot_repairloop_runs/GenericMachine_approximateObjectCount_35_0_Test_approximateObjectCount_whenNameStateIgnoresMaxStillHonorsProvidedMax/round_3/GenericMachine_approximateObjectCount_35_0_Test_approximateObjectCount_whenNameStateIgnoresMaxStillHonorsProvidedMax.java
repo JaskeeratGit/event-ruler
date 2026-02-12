@@ -1,0 +1,94 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.util.Set;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Tests for GenericMachine.approximateObjectCount behavior when the start NameState
+ * implementation ignores or respects the provided max. Also verifies the deprecated
+ * no-arg method delegates to the int-arg variant.
+ */
+public class GenericMachine_approximateObjectCount_35_0_Test_approximateObjectCount_whenNameStateIgnoresMaxStillHonorsProvidedMax {
+
+    /**
+     * A Test helper that overrides NameState.gatherObjects to controllably add objects.
+     *
+     * Note: This class relies on the (observed) signature:
+     *   public void gatherObjects(Set<Object> objectSet, int maxObjectCount)
+     * in the real NameState class.
+     */
+    static class CountingNameState extends NameState {
+
+        private final int toAdd;
+        private final boolean respectMax;
+
+        CountingNameState(int toAdd, boolean respectMax) {
+            this.toAdd = toAdd;
+            this.respectMax = respectMax;
+        }
+
+        @Override
+        public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {
+            // If respectMax is true, stop at maxObjectCount.
+            int limit = respectMax ? Math.min(toAdd, maxObjectCount) : toAdd;
+            for (int i = 0; i < limit; i++) {
+                // Use distinct objects to ensure set size increments.
+                objectSet.add(new StringBuilder("obj-" + i).toString());
+            }
+        }
+    }
+
+    // Helper to replace the private final startState field via reflection
+    private static void replaceStartState(GenericMachine machine, NameState replacement) throws Exception {
+        Field startField = GenericMachine.class.getDeclaredField("startState");
+        startField.setAccessible(true);
+        startField.set(machine, replacement);
+    }
+
+    @Test
+    public void approximateObjectCount_whenNameStateIgnoresMaxStillHonorsProvidedMax() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that does NOT respect max (will attempt to add 10)
+        replaceStartState(machine, new CountingNameState(10, false));
+        // act: even if NameState ignores max, approximateObjectCount returns min(size, max)
+        int result = machine.approximateObjectCount(4);
+        // Because our fake NameState will attempt to add 10 distinct objects, objectSet.size() will be 10,
+        // so the method should return min(10, 4) = 4.
+        assertEquals("Result should be min(objectSet.size(), maxObjectCount) even if NameState ignores max argument",
+                4, result);
+    }
+
+    @Test
+    public void approximateObjectCount_whenNameStateRespectsMaxHonorsProvidedMax() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that DOES respect max (will add at most max)
+        replaceStartState(machine, new CountingNameState(10, true));
+        // act: provide a large max so that NameState's toAdd (10) is the limiting factor
+        int result = machine.approximateObjectCount(20);
+        // NameState respects the max and only adds 10, so min(10,20) = 10
+        assertEquals("When NameState respects max, the returned count should be the actual number added",
+                10, result);
+    }
+
+    @Test
+    public void approximateObjectCount_noArgDeprecatedDelegatesToIntVersion() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that does NOT respect max (will attempt to add 10)
+        replaceStartState(machine, new CountingNameState(10, false));
+        // act: call deprecated no-arg method which should delegate to the int-arg with Integer.MAX_VALUE
+        int result = machine.approximateObjectCount();
+        // Since our NameState attempts to add 10, and max is Integer.MAX_VALUE, result should be 10.
+        assertEquals("Deprecated no-arg method should delegate and return the full observed size when max is large",
+                10, result);
+    }
+}

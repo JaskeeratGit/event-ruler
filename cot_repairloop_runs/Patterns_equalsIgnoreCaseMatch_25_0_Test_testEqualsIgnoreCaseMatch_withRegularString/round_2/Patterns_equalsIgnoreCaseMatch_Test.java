@@ -1,0 +1,79 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ *
+ * These tests avoid relying on specific private field names (like "type" or "value").
+ * Instead they locate the fields by their types (MatchType and String / Object) so that
+ * reflection works even if the implementation's field names differ.
+ */
+public class Patterns_equalsIgnoreCaseMatch_Test {
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withRegularString() throws Exception {
+        String input = "TeStValUe";
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        assertNotNull(vp, "Returned ValuePatterns should not be null");
+
+        Class<?> cls = vp.getClass();
+
+        Field typeField = findFieldOfType(cls, MatchType.class)
+                .orElseThrow(() -> new AssertionError("No field of type MatchType found in ValuePatterns"));
+        typeField.setAccessible(true);
+        Object typeVal = typeField.get(vp);
+        assertSame(MatchType.EQUALS_IGNORE_CASE, typeVal, "MatchType stored should be EQUALS_IGNORE_CASE");
+
+        // Try to find a field that holds the value. Prefer String, then Object, then any non-MatchType field.
+        Field valueField = findFieldOfType(cls, String.class)
+                .orElseGet(() -> findFieldOfType(cls, Object.class)
+                        .orElseGet(() -> findFirstNonMatchTypeField(cls)
+                                .orElseThrow(() -> new AssertionError("No suitable value field found in ValuePatterns"))));
+        valueField.setAccessible(true);
+        Object valueVal = valueField.get(vp);
+
+        assertEquals(input, valueVal, "Stored value should equal the input string");
+    }
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withNull() throws Exception {
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(null);
+        assertNotNull(vp, "Returned ValuePatterns should not be null even when input is null");
+
+        Class<?> cls = vp.getClass();
+
+        Field typeField = findFieldOfType(cls, MatchType.class)
+                .orElseThrow(() -> new AssertionError("No field of type MatchType found in ValuePatterns"));
+        typeField.setAccessible(true);
+        Object typeVal = typeField.get(vp);
+        assertSame(MatchType.EQUALS_IGNORE_CASE, typeVal, "MatchType stored should be EQUALS_IGNORE_CASE");
+
+        Field valueField = findFieldOfType(cls, String.class)
+                .orElseGet(() -> findFieldOfType(cls, Object.class)
+                        .orElseGet(() -> findFirstNonMatchTypeField(cls)
+                                .orElseThrow(() -> new AssertionError("No suitable value field found in ValuePatterns"))));
+        valueField.setAccessible(true);
+        Object valueVal = valueField.get(vp);
+
+        assertNull(valueVal, "Stored value should be null when input is null");
+    }
+
+    private Optional<Field> findFieldOfType(Class<?> cls, Class<?> fieldType) {
+        return Arrays.stream(cls.getDeclaredFields())
+                .filter(f -> fieldType.isAssignableFrom(f.getType()))
+                .findFirst();
+    }
+
+    private Optional<Field> findFirstNonMatchTypeField(Class<?> cls) {
+        return Arrays.stream(cls.getDeclaredFields())
+                .filter(f -> !MatchType.class.isAssignableFrom(f.getType()))
+                .findFirst();
+    }
+}

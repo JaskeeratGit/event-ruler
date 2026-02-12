@@ -1,0 +1,15 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+public class RuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException {
+
+    @Test(expected = NullPointerException.class)
+    public void compileWithNullSourceThrowsNullPointerException() throws Exception {
+        // Cast null to String so the compile(String) overload is selected (otherwise compile(null)
+        // is ambiguous when multiple overloads accept reference types).
+        RuleCompiler.compile((String) null);
+    }
+}
+<<Generation Over>>

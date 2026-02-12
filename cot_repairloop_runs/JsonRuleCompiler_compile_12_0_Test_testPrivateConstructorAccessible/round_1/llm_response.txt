@@ -1,0 +1,51 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+import org.junit.Assert;
+
+import java.lang.reflect.Constructor;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+/**
+ * Fixed unit tests for JsonRuleCompiler (JUnit 4 compatible).
+ *
+ * Notes:
+ * - Uses JUnit 4 annotations to avoid dependency on junit-jupiter (JUnit 5) if not present.
+ * - Uses Constructor.isAccessible() which is Java 8 compatible.
+ * - Includes simple smoke tests for JsonRuleCompiler.compile(byte[], boolean) using an empty JSON array.
+ */
+public class JsonRuleCompilerTest {
+
+    @Test
+    public void testPrivateConstructorAccessible() throws Exception {
+        // cover private constructor via reflection (Java 8 compatible)
+        Constructor<JsonRuleCompiler> ctor = JsonRuleCompiler.class.getDeclaredConstructor();
+        // on Java 8, use isAccessible() instead of canAccess(null)
+        Assert.assertFalse(ctor.isAccessible());
+        ctor.setAccessible(true);
+        Object instance = ctor.newInstance();
+        Assert.assertNotNull(instance);
+    }
+
+    @Test
+    public void testCompileWithEmptyJsonArrayDoesNotThrow() throws Exception {
+        // A simple smoke test for the compile method. Use a minimal valid JSON input (empty array).
+        byte[] source = "[]".getBytes(StandardCharsets.UTF_8);
+        // The compile method may throw IOException; declaring throws Exception on the test covers that.
+        List<?> result = JsonRuleCompiler.compile(source, false);
+        Assert.assertNotNull(result);
+        // Expecting an empty list for an empty JSON array input (smoke test to ensure the method runs).
+        Assert.assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testCompileWithEmptyJsonArrayWithOverridingTrue() throws Exception {
+        byte[] source = "[]".getBytes(StandardCharsets.UTF_8);
+        List<?> result = JsonRuleCompiler.compile(source, true);
+        Assert.assertNotNull(result);
+        Assert.assertTrue(result.isEmpty());
+    }
+}
+<<Generation Over>>

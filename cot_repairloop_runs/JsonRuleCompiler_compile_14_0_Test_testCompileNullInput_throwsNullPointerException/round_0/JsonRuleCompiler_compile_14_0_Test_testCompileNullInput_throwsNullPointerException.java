@@ -1,0 +1,17 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+
+import java.io.InputStream;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class JsonRuleCompiler_compile_14_0_Test_testCompileNullInput_throwsNullPointerException {
+
+    @Test
+    void testCompileNullInput_throwsNullPointerException() {
+        // disambiguate overloaded compile methods by casting null to InputStream
+        assertThrows(NullPointerException.class, () -> JsonRuleCompiler.compile((InputStream) null, false));
+    }
+
+}

@@ -1,0 +1,46 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * Fixed unit test: switched to JUnit 4 imports (org.junit.Test and org.junit.Assert)
+ * and adjusted assertion argument order to match JUnit 4 signatures.
+ */
+public class JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible {
+
+    @Test
+    public void testCompileWithEmptyObjectReturnsListAndDoCompileAccessible() throws Exception {
+        // Call the public compile method and use the concrete generic type returned by the API.
+        List<Map<String, List<Patterns>>> result = JsonRuleCompiler.compile("{}", true);
+        assertNotNull("compile should return a non-null List (possibly empty) for an empty JSON object", result);
+
+        // Also invoke the private doCompile directly with a parser that starts with START_OBJECT and ensure it completes.
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser("{}");
+        Method doCompile = JsonRuleCompiler.class.getDeclaredMethod("doCompile", JsonParser.class, boolean.class);
+        doCompile.setAccessible(true);
+        try {
+            Object invoked = doCompile.invoke(null, parser, true);
+            // doCompile returns List<Map<String, List<Patterns>>>, so at least assert it's a List
+            assertNotNull("doCompile invocation should not return null for '{}'", invoked);
+            assertTrue("doCompile should return a List", invoked instanceof List);
+        } catch (InvocationTargetException ite) {
+            // If implementation throws, fail the test with the underlying cause
+            throw new AssertionError("doCompile threw an unexpected exception", ite.getCause());
+        } finally {
+            parser.close();
+        }
+    }
+
+}
+<<Generation Over>>

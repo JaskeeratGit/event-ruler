@@ -1,0 +1,89 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36msoftware.amazon.event.ruler:event-ruler[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Event Ruler 1.8.2[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-checkstyle-plugin:3.6.0:check[m [1m(validate)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:compile[m [1m(default-compile)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspotbugs-maven-plugin:4.8.6.6:check[m [1m(analyze-compile)[0;1m > [0;1m:spotbugs[m @ [36mevent-ruler[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspotbugs-maven-plugin:4.8.6.6:spotbugs[m [1m(spotbugs)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Fork Value is true
+[[1;34mINFO[m] Done SpotBugs Analysis....
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspotbugs-maven-plugin:4.8.6.6:check[m [1m(analyze-compile)[0;1m < [0;1m:spotbugs[m @ [36mevent-ruler[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspotbugs-maven-plugin:4.8.6.6:check[m [1m(analyze-compile)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] BugInstance size is 0
+[[1;34mINFO[m] Error size is 0
+[[1;34mINFO[m] No errors/warnings found
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 46 source files with javac [debug target 1.8] to target/test-classes
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] COMPILATION ERROR : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[3,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[4,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[9,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[9,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[11,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[11,1] static import only from classes and interfaces
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[12,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[12,1] static import only from classes and interfaces
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[25,6] cannot find symbol
+  symbol:   class BeforeEach
+  location: class software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[31,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[19,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible
+[[1;34mINFO[m] 11 errors 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  4.497 s
+[[1;34mINFO[m] Finished at: 2026-01-16T14:31:37-07:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m on project [36mevent-ruler[m: [1;31mCompilation failure[m: Compilation failure: 
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[3,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[4,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[9,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[9,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[11,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[11,1] static import only from classes and interfaces
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[12,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[12,1] static import only from classes and interfaces
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[25,6] cannot find symbol
+[[1;31mERROR[m]   symbol:   class BeforeEach
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection.java:[31,6] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Test
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testPrivateDeleteStepInvocationViaReflection
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[19,6] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Test
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

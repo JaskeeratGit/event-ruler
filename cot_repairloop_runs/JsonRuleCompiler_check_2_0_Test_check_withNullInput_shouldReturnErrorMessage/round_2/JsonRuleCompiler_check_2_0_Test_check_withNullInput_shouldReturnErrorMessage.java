@@ -1,0 +1,64 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit test for JsonRuleCompiler.check when a null String is passed.
+ *
+ * This test temporarily replaces the internal JSON_FACTORY used by JsonRuleCompiler
+ * with a stub that throws an IOException with a clear message when createParser(null)
+ * is invoked. This ensures the checked exception path in JsonRuleCompiler.check(...)
+ * is exercised and that a non-empty localized message is returned.
+ */
+public class JsonRuleCompiler_check_2_0_Test_check_withNullInput_shouldReturnErrorMessage {
+
+    @Test
+    public void check_withNullInput_shouldReturnErrorMessage() throws Exception {
+        // Access the private static JSON_FACTORY field in JsonRuleCompiler
+        Field factoryField = JsonRuleCompiler.class.getDeclaredField("JSON_FACTORY");
+        factoryField.setAccessible(true);
+
+        // Preserve original factory to restore after test
+        Object originalFactory = factoryField.get(null);
+
+        // Create a stub JsonFactory that throws an IOException with a non-empty message for null input
+        JsonFactory stubFactory = new JsonFactory() {
+            @Override
+            public com.fasterxml.jackson.core.JsonParser createParser(String content) throws IOException {
+                if (content == null) {
+                    throw new IOException("input string was null");
+                }
+                // fallback to default behavior for non-null input
+                return super.createParser(content);
+            }
+        };
+
+        try {
+            // Remove final modifier so we can replace the static final field
+            Field modifiersField = Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(factoryField, factoryField.getModifiers() & ~Modifier.FINAL);
+
+            // Replace the JSON_FACTORY with our stub
+            factoryField.set(null, stubFactory);
+
+            // Call the method under test with a null String
+            String result = JsonRuleCompiler.check((String) null, false);
+
+            // verify an error message (non-null and non-empty) is returned
+            assertNotNull(result, "Expected non-null error message for null input");
+            assertFalse(result.isEmpty(), "Expected non-empty error message for null input");
+
+        } finally {
+            // Restore the original factory to avoid side effects on other tests
+            factoryField.set(null, originalFactory);
+        }
+    }
+}

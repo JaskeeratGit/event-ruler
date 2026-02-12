@@ -1,0 +1,108 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+import java.lang.reflect.Field;
+
+import static org.junit.Assert.*;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withNull {
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withNull() throws Exception {
+        String input = null;
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        assertNotNull("Returned ValuePatterns should not be null", vp);
+        Class<?> cls = vp.getClass();
+
+        // Discover fields robustly instead of relying on specific names
+        Field matchField = null;
+        Field valueField = null;
+
+        for (Field f : cls.getDeclaredFields()) {
+            f.setAccessible(true);
+            // prefer finding the String-typed field for stored value
+            if (f.getType() == String.class) {
+                valueField = f;
+            }
+            // try to identify the MatchType enum field
+            if (f.getType() == MatchType.class) {
+                matchField = f;
+            }
+        }
+
+        // Fallback: if we didn't find a MatchType-typed field, find a field whose value equals the enum constant
+        if (matchField == null) {
+            for (Field f : cls.getDeclaredFields()) {
+                f.setAccessible(true);
+                try {
+                    Object val = f.get(vp);
+                    if (MatchType.EQUALS_IGNORE_CASE.equals(val)) {
+                        matchField = f;
+                        break;
+                    }
+                } catch (IllegalAccessException ignore) {
+                    // try next
+                }
+            }
+        }
+
+        assertNotNull("Could not locate field holding match type in ValuePatterns implementation", matchField);
+        assertNotNull("Could not locate field holding stored value (String) in ValuePatterns implementation", valueField);
+
+        Object typeVal = matchField.get(vp);
+        Object valueVal = valueField.get(vp);
+
+        assertSame("Match type should be EQUALS_IGNORE_CASE", MatchType.EQUALS_IGNORE_CASE, typeVal);
+        assertNull("Stored value should be null when input is null", valueVal);
+    }
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withValue() throws Exception {
+        String input = "TeStVal";
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        assertNotNull("Returned ValuePatterns should not be null", vp);
+        Class<?> cls = vp.getClass();
+
+        Field matchField = null;
+        Field valueField = null;
+
+        for (Field f : cls.getDeclaredFields()) {
+            f.setAccessible(true);
+            if (f.getType() == String.class) {
+                valueField = f;
+            }
+            if (f.getType() == MatchType.class) {
+                matchField = f;
+            }
+        }
+
+        if (matchField == null) {
+            for (Field f : cls.getDeclaredFields()) {
+                f.setAccessible(true);
+                try {
+                    Object val = f.get(vp);
+                    if (MatchType.EQUALS_IGNORE_CASE.equals(val)) {
+                        matchField = f;
+                        break;
+                    }
+                } catch (IllegalAccessException ignore) {
+                }
+            }
+        }
+
+        assertNotNull("Could not locate field holding match type in ValuePatterns implementation", matchField);
+        assertNotNull("Could not locate field holding stored value (String) in ValuePatterns implementation", valueField);
+
+        Object typeVal = matchField.get(vp);
+        Object valueVal = valueField.get(vp);
+
+        assertSame("Match type should be EQUALS_IGNORE_CASE", MatchType.EQUALS_IGNORE_CASE, typeVal);
+        assertEquals("Stored value should be the same as input", input, valueVal);
+    }
+}
+<<Generation Over>>

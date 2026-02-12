@@ -1,0 +1,107 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/*
+ Explanation of the fixes (kept as comments at the top of this test file):
+
+ 1) Observed errors in the build logs complained about missing org.junit.jupiter.api packages.
+    That indicates tests were written for JUnit 5 but earlier some files were still using JUnit 4.
+    To avoid mixed JUnit problems, this file is written with JUnit 5 (org.junit.jupiter).
+
+ 2) The original test expected a NullPointerException when a map value list was null.
+    The focal method (GenericMachine.addRule) calls nameVal.getValue().stream() which will
+    throw a NullPointerException when the list itself is null. The test uses assertThrows to
+    assert that behaviour.
+
+ 3) To verify correct conversion, the test subclass TestGenericMachine captures the call to
+    addPatternRule(name, patternMap) and makes a defensive deep copy of the pattern map so
+    assertions can be made about the captured structure.
+
+ 4) This file uses only JUnit 5 assertions and lifecycle annotations. No changes were made to
+    the production code.
+
+ The tests included below:
+  - testAddRule_nullValueList_throwsNullPointerException: ensures NullPointerException is thrown
+    when a map key maps to a null list.
+  - testAddRule_validConvertsToPatterns: ensures that a valid List<String> is converted into a
+    List<Patterns> with the same number of elements and the rule name is passed through.
+*/
+
+public class GenericMachineAddRuleTest {
+
+    // A small test subclass to capture calls to addPatternRule
+    // Placed in the same package so we can override methods.
+    static class TestGenericMachine extends GenericMachine<String> {
+
+        String capturedName;
+        Map<String, List<Patterns>> capturedPatternMap;
+
+        TestGenericMachine() {
+            super(new GenericMachineConfiguration(false, false));
+        }
+
+        // Must use the same (public) visibility as the method in the base class.
+        @Override
+        public void addPatternRule(final String name, final Map<String, List<Patterns>> patternMap) {
+            this.capturedName = name;
+            // make defensive deep copy for assertions
+            this.capturedPatternMap = new HashMap<>();
+            for (Map.Entry<String, List<Patterns>> e : patternMap.entrySet()) {
+                this.capturedPatternMap.put(e.getKey(), new ArrayList<>(e.getValue()));
+            }
+        }
+    }
+
+    private TestGenericMachine gm;
+
+    @BeforeEach
+    public void setUp() {
+        gm = new TestGenericMachine();
+    }
+
+    @Test
+    public void testAddRule_nullValueList_throwsNullPointerException() {
+        Map<String, List<String>> input = new HashMap<>();
+        input.put("key-with-null", null);
+        assertThrows(NullPointerException.class, () -> gm.addRule("npe-rule", input));
+    }
+
+    @Test
+    public void testAddRule_validConvertsToPatterns() {
+        Map<String, List<String>> input = new HashMap<>();
+        input.put("k", Arrays.asList("a", "b"));
+
+        gm.addRule("rule-1", input);
+
+        assertEquals("rule-1", gm.capturedName, "Captured rule name should match");
+        assertNotNull(gm.capturedPatternMap, "Captured pattern map should not be null");
+        assertTrue(gm.capturedPatternMap.containsKey("k"), "Captured pattern map should contain key 'k'");
+
+        List<Patterns> patterns = gm.capturedPatternMap.get("k");
+        assertNotNull(patterns, "Patterns list should not be null for key 'k'");
+        assertEquals(2, patterns.size(), "Patterns list size should match input list size");
+        assertNotNull(patterns.get(0), "First pattern should not be null");
+        assertNotNull(patterns.get(1), "Second pattern should not be null");
+    }
+
+    @Test
+    public void testAddRule_emptyListProducesEmptyPatternsList() {
+        Map<String, List<String>> input = new HashMap<>();
+        input.put("empty", Collections.emptyList());
+
+        gm.addRule("rule-empty", input);
+
+        assertEquals("rule-empty", gm.capturedName);
+        assertNotNull(gm.capturedPatternMap);
+        assertTrue(gm.capturedPatternMap.containsKey("empty"));
+        List<Patterns> patterns = gm.capturedPatternMap.get("empty");
+        assertNotNull(patterns);
+        assertEquals(0, patterns.size(), "Empty input list should produce empty Patterns list");
+    }
+}

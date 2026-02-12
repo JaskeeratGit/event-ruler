@@ -1,0 +1,213 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `equalsIgnoreCaseMatch(String)` in the focal class `Patterns`, and their information is
+```[java]
+public static ValuePatterns equalsIgnoreCaseMatch(final String value) {
+        return new ValuePatterns(MatchType.EQUALS_IGNORE_CASE, value);
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ *
+ * Note:
+ * - The original tests assumed the ValuePatterns class had a field named "value".
+ *   That field name is not guaranteed; to make tests resilient we use reflection to
+ *   locate fields by their runtime contents/types instead of relying on a specific name.
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances {
+
+    @Test
+    public void testMultipleCallsProduceDistinctInstances() {
+        ValuePatterns vp1 = Patterns.equalsIgnoreCaseMatch("a");
+        ValuePatterns vp2 = Patterns.equalsIgnoreCaseMatch("b");
+        assertNotSame(vp1, vp2, "Each call should produce a new ValuePatterns instance");
+    }
+
+    @Test
+    public void testReturnedObjectsHaveExpectedTypeAndValue() throws Exception {
+        String expected = "abc";
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(expected);
+        assertNotNull(vp, "Returned ValuePatterns should not be null");
+
+        // Find a field that holds the MatchType.EQUALS_IGNORE_CASE value
+        Field matchTypeField = findFieldByValueInHierarchy(vp, val -> Objects.equals(val, MatchType.EQUALS_IGNORE_CASE));
+        assertNotNull(matchTypeField, "Could not locate a field storing MatchType.EQUALS_IGNORE_CASE in ValuePatterns");
+
+        // Find a field of type String that stores the provided value
+        Field storedValueField = findFieldInHierarchy(vp, field -> {
+            if (field.getType() == String.class) {
+                try {
+                    field.setAccessible(true);
+                    Object val = field.get(vp);
+                    return Objects.equals(val, expected);
+                } catch (IllegalAccessException e) {
+                    return false;
+                }
+            }
+            return false;
+        });
+        assertNotNull(storedValueField, "Could not locate a String-typed field holding the provided value in ValuePatterns");
+    }
+
+    @Test
+    public void testNullValueIsPreserved() throws Exception {
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(null);
+        assertNotNull(vp, "Returned ValuePatterns should not be null even if value is null");
+
+        // Find a String-typed field whose value is null. This verifies the null passed is preserved.
+        Field nullStringField = findFieldInHierarchy(vp, field -> {
+            if (field.getType() == String.class) {
+                try {
+                    field.setAccessible(true);
+                    return field.get(vp) == null;
+                } catch (IllegalAccessException e) {
+                    return false;
+                }
+            }
+            return false;
+        });
+
+        assertNotNull(nullStringField, "Could not locate a String-typed field with null value in ValuePatterns when null was passed");
+    }
+
+    // Helper: search declared fields in the class and superclasses and return the first matching Field
+    private static Field findFieldInHierarchy(Object obj, Predicate<Field> predicate) {
+        Class<?> cls = obj.getClass();
+        List<Class<?>> hierarchy = new ArrayList<>();
+        while (cls != null && cls != Object.class) {
+            hierarchy.add(cls);
+            cls = cls.getSuperclass();
+        }
+        for (Class<?> c : hierarchy) {
+            Field[] fields = c.getDeclaredFields();
+            for (Field f : fields) {
+                try {
+                    f.setAccessible(true);
+                } catch (SecurityException ignored) {
+                }
+                try {
+                    if (predicate.test(f)) {
+                        return f;
+                    }
+                } catch (Throwable ignored) {
+                    // ignore field access problems for this heuristic search
+                }
+            }
+        }
+        return null;
+    }
+
+    // Helper: search for a field whose runtime value (for the provided instance) matches a predicate on the value
+    private static Field findFieldByValueInHierarchy(Object obj, Predicate<Object> valuePredicate) {
+        return findFieldInHierarchy(obj, field -> {
+            try {
+                field.setAccessible(true);
+                Object val = field.get(obj);
+                return valuePredicate.test(val);
+            } catch (IllegalAccessException e) {
+                return false;
+            }
+        });
+    }
+}
+```
+
+The error encountered when running this unit test is:
+
+```
+compile
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 45 source files with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[3,29] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[11,36] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[23,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[30,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[56,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances
+[INFO] 5 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.345 s
+[INFO] Finished at: 2026-01-16T14:57:07-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project event-ruler: Compilation failure: Compilation failure: 
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[3,29] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[11,36] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[23,6] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class software.amazon.event.ruler.Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[30,6] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class software.amazon.event.ruler.Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances
+[ERROR] Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances.java:[56,6] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class software.amazon.event.ruler.Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in Patterns.
+    - The method under test is Patterns.equalsIgnoreCaseMatch.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

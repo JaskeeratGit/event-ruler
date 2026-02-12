@@ -1,0 +1,17 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+import java.io.InputStream;
+
+public class JsonRuleCompiler_compile_14_0_Test_testCompileNullInput_throwsNullPointerException {
+
+    @Test(expected = NullPointerException.class)
+    public void testCompileNullInput_throwsNullPointerException() throws Exception {
+        // disambiguate overloaded compile methods by casting null to InputStream
+        JsonRuleCompiler.compile((InputStream) null, false);
+    }
+
+}
+<<Generation Over>>

@@ -1,0 +1,147 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `anythingButIgnoreCaseMatch(Set)` in the focal class `Patterns`, and their information is
+```[java]
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs) {
+        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_IGNORE_CASE, anythingButs);
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.stream.Collectors;
+
+public class Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput {
+
+    // Helper: find a field of given type (or subtype) in object's class hierarchy and return its value
+    @SuppressWarnings("unchecked")
+    private <T> T getFieldValueByType(Object instance, Class<T> fieldType) throws IllegalAccessException {
+        Class<?> cls = instance.getClass();
+        while (cls != null) {
+            for (Field f : cls.getDeclaredFields()) {
+                if (fieldType.isAssignableFrom(f.getType())) {
+                    f.setAccessible(true);
+                    Object val = f.get(instance);
+                    return (T) val;
+                }
+            }
+            cls = cls.getSuperclass();
+        }
+        throw new AssertionError("No field of type " + fieldType.getName() + " found on " + instance.getClass());
+    }
+
+
+
+    @Test
+    public void testAnythingButIgnoreCaseWithNullInput() throws Exception {
+        // Cast null to the Set<String> overload to avoid ambiguity with the String overload
+        Object result = software.amazon.event.ruler.Patterns.anythingButIgnoreCaseMatch((Set<String>) null);
+        assertNotNull(result);
+        software.amazon.event.ruler.MatchType matchTypeValue = getFieldValueByType(result, software.amazon.event.ruler.MatchType.class);
+        assertEquals(software.amazon.event.ruler.MatchType.ANYTHING_BUT_IGNORE_CASE, matchTypeValue);
+        // For null input, implementation may store null or an empty set. Accept either.
+        @SuppressWarnings("unchecked")
+        Set<String> stored = getFieldValueByType(result, Set.class);
+        if (stored != null) {
+            assertTrue(stored.isEmpty(), "Stored set should be empty when input is null (if implementation chooses empty collection)");
+        } else {
+            // acceptable: implementation stored null
+            assertNull(stored);
+        }
+    }
+
+}
+```
+
+The error encountered when running this unit test is:
+
+```
+compile
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 45 source files with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[7,1] package org.mockito does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[8,1] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[9,26] package org.mockito does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[10,36] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[11,39] package org.junit.jupiter.api.extension does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[12,33] package org.mockito.junit.jupiter does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[36,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput
+[INFO] 7 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.370 s
+[INFO] Finished at: 2026-01-16T14:45:01-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project event-ruler: Compilation failure: Compilation failure: 
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[7,1] package org.mockito does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[8,1] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[9,26] package org.mockito does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[10,36] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[11,39] package org.junit.jupiter.api.extension does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[12,33] package org.mockito.junit.jupiter does not exist
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[36,6] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class software.amazon.event.ruler.Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in Patterns.
+    - The method under test is Patterns.anythingButIgnoreCaseMatch.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

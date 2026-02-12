@@ -1,0 +1,344 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36msoftware.amazon.event.ruler:event-ruler[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Event Ruler 1.8.2[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-checkstyle-plugin:3.6.0:check[m [1m(validate)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:compile[m [1m(default-compile)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspotbugs-maven-plugin:4.8.6.6:check[m [1m(analyze-compile)[0;1m > [0;1m:spotbugs[m @ [36mevent-ruler[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspotbugs-maven-plugin:4.8.6.6:spotbugs[m [1m(spotbugs)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Fork Value is true
+[[1;34mINFO[m] Done SpotBugs Analysis....
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspotbugs-maven-plugin:4.8.6.6:check[m [1m(analyze-compile)[0;1m < [0;1m:spotbugs[m @ [36mevent-ruler[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspotbugs-maven-plugin:4.8.6.6:check[m [1m(analyze-compile)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] BugInstance size is 0
+[[1;34mINFO[m] Error size is 0
+[[1;34mINFO[m] No errors/warnings found
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 45 source files with javac [debug target 1.8] to target/test-classes
+[[1;34mINFO[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java: Some input files use or override a deprecated API.
+[[1;34mINFO[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java: Recompile with -Xlint:deprecation for details.
+[[1;34mINFO[m] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] COMPILATION ERROR : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[76,8] class MatchType is public, should be declared in a file named MatchType.java
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[80,8] class ValuePatterns is public, should be declared in a file named ValuePatterns.java
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[3,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[7,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[14,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[33,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[53,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[18,9] cannot find symbol
+  symbol:   method assertNotNull(software.amazon.event.ruler.ValuePatterns)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[29,9] cannot find symbol
+  symbol:   method assertSame(software.amazon.event.ruler.MatchType,java.lang.Object)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[30,9] cannot find symbol
+  symbol:   method assertEquals(java.lang.String,java.lang.Object)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[37,9] cannot find symbol
+  symbol:   method assertNotNull(software.amazon.event.ruler.ValuePatterns)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[44,9] cannot find symbol
+  symbol:   method assertSame(software.amazon.event.ruler.MatchType,java.lang.Object)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[45,9] cannot find symbol
+  symbol:   method assertEquals(java.lang.String,java.lang.Object)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[49,9] cannot find symbol
+  symbol:   method assertEquals(software.amazon.event.ruler.ValuePatterns,software.amazon.event.ruler.ValuePatterns)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[50,9] cannot find symbol
+  symbol:   method assertEquals(int,int)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[57,9] cannot find symbol
+  symbol:   method assertNotNull(software.amazon.event.ruler.ValuePatterns)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[64,9] cannot find symbol
+  symbol:   method assertNull(java.lang.Object)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[65,9] cannot find symbol
+  symbol:   method assertSame(software.amazon.event.ruler.MatchType,java.lang.Object)
+  location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[540,15] no suitable method found for add(software.amazon.event.ruler.ValuePatterns)
+    method java.util.Collection.add(software.amazon.event.ruler.Patterns) is not applicable
+      (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+    method java.util.List.add(software.amazon.event.ruler.Patterns) is not applicable
+      (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[541,15] no suitable method found for add(software.amazon.event.ruler.ValuePatterns)
+    method java.util.Collection.add(software.amazon.event.ruler.Patterns) is not applicable
+      (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+    method java.util.List.add(software.amazon.event.ruler.Patterns) is not applicable
+      (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[549,13] method setPatterns in class software.amazon.event.ruler.ACMachineTest.Rule cannot be applied to given types;
+  required: software.amazon.event.ruler.Patterns[]
+  found: software.amazon.event.ruler.ValuePatterns
+  reason: varargs mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[729,24] no suitable method found for add(software.amazon.event.ruler.ValuePatterns)
+    method java.util.Collection.add(software.amazon.event.ruler.Patterns) is not applicable
+      (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+    method java.util.List.add(software.amazon.event.ruler.Patterns) is not applicable
+      (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[39,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[93,37] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[97,36] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[114,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[381,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[382,44] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[391,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[392,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[476,41] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[479,33] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[484,35] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[517,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[527,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[659,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[660,44] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[662,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[663,83] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[664,84] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[666,86] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[668,84] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[669,85] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[671,87] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[673,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[674,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[676,49] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[726,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[741,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[762,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[777,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[788,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[794,50] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[800,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[806,50] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[815,51] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[822,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[833,51] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[838,52] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[846,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[847,55] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[867,44] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[882,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[891,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[893,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[902,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[904,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[913,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[922,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[931,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[940,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[949,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[958,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[967,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[976,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[985,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[987,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[989,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[991,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1000,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1002,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1004,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1006,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1015,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1017,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1026,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1028,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1037,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1039,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1041,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1050,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1052,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1054,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1056,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1058,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1067,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1069,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1078,70] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1087,70] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1089,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;34mINFO[m] 100 errors 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  4.730 s
+[[1;34mINFO[m] Finished at: 2026-01-16T14:48:32-07:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m on project [36mevent-ruler[m: [1;31mCompilation failure[m: Compilation failure: 
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[76,8] class MatchType is public, should be declared in a file named MatchType.java
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[80,8] class ValuePatterns is public, should be declared in a file named ValuePatterns.java
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[3,29] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[7,36] package org.junit.jupiter.api does not exist
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[14,6] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Test
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[33,6] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Test
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[53,6] cannot find symbol
+[[1;31mERROR[m]   symbol:   class Test
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[18,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertNotNull(software.amazon.event.ruler.ValuePatterns)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[29,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertSame(software.amazon.event.ruler.MatchType,java.lang.Object)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[30,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertEquals(java.lang.String,java.lang.Object)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[37,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertNotNull(software.amazon.event.ruler.ValuePatterns)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[44,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertSame(software.amazon.event.ruler.MatchType,java.lang.Object)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[45,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertEquals(java.lang.String,java.lang.Object)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[49,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertEquals(software.amazon.event.ruler.ValuePatterns,software.amazon.event.ruler.ValuePatterns)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[50,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertEquals(int,int)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[57,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertNotNull(software.amazon.event.ruler.ValuePatterns)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[64,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertNull(java.lang.Object)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/java/software/amazon/event/ruler/PatternsEqualsIgnoreCaseMatchTest.java:[65,9] cannot find symbol
+[[1;31mERROR[m]   symbol:   method assertSame(software.amazon.event.ruler.MatchType,java.lang.Object)
+[[1;31mERROR[m]   location: class software.amazon.event.ruler.PatternsEqualsIgnoreCaseMatchTest
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[540,15] no suitable method found for add(software.amazon.event.ruler.ValuePatterns)
+[[1;31mERROR[m]     method java.util.Collection.add(software.amazon.event.ruler.Patterns) is not applicable
+[[1;31mERROR[m]       (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m]     method java.util.List.add(software.amazon.event.ruler.Patterns) is not applicable
+[[1;31mERROR[m]       (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[541,15] no suitable method found for add(software.amazon.event.ruler.ValuePatterns)
+[[1;31mERROR[m]     method java.util.Collection.add(software.amazon.event.ruler.Patterns) is not applicable
+[[1;31mERROR[m]       (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m]     method java.util.List.add(software.amazon.event.ruler.Patterns) is not applicable
+[[1;31mERROR[m]       (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[549,13] method setPatterns in class software.amazon.event.ruler.ACMachineTest.Rule cannot be applied to given types;
+[[1;31mERROR[m]   required: software.amazon.event.ruler.Patterns[]
+[[1;31mERROR[m]   found: software.amazon.event.ruler.ValuePatterns
+[[1;31mERROR[m]   reason: varargs mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ACMachineTest.java:[729,24] no suitable method found for add(software.amazon.event.ruler.ValuePatterns)
+[[1;31mERROR[m]     method java.util.Collection.add(software.amazon.event.ruler.Patterns) is not applicable
+[[1;31mERROR[m]       (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m]     method java.util.List.add(software.amazon.event.ruler.Patterns) is not applicable
+[[1;31mERROR[m]       (argument mismatch; software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns)
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[39,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[93,37] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[97,36] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[114,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[381,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[382,44] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[391,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[392,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[476,41] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[479,33] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[484,35] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[517,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[527,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[659,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[660,44] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[662,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[663,83] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[664,84] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[666,86] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[668,84] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[669,85] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[671,87] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[673,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[674,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[676,49] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[726,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[741,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[762,43] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[777,46] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[788,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[794,50] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[800,47] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[806,50] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[815,51] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[822,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[833,51] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[838,52] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[846,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[847,55] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[867,44] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[882,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[891,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[893,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[902,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[904,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[913,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[922,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[931,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[940,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[949,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[958,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[967,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[976,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[985,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[987,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[989,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[991,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1000,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1002,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1004,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1006,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1015,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1017,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1026,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1028,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1037,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1039,54] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1041,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1050,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1052,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1054,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1056,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1058,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1067,64] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1069,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1078,70] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1087,70] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] /home/jaskeerat/paper1/er_latest_stable/cot/event-ruler/src/test/software/amazon/event/ruler/ByteMachineTest.java:[1089,53] incompatible types: software.amazon.event.ruler.ValuePatterns cannot be converted to software.amazon.event.ruler.Patterns
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

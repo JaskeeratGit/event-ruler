@@ -1,0 +1,108 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+import sun.misc.Unsafe;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Fixed unit test for Range.hashCode() when bottom and top arrays are intended to be null.
+ *
+ * This test avoids using MethodHandles.unreflectSpecial (which can fail due to lookup access restrictions).
+ * Instead it allocates an instance of Patterns without invoking its constructor (using Unsafe) and copies
+ * the Patterns-declared instance fields from the Range instance into that allocated Patterns instance.
+ * Calling hashCode() on that Patterns instance therefore runs the Patterns.hashCode() implementation and
+ * yields the effective "super.hashCode()" for the Range instance (assuming Patterns.hashCode() depends only
+ * on the fields declared in Patterns, which is the reasonable expectation for a superclass hashCode).
+ *
+ * The test then reflectively reads the fields used by Range.hashCode() and computes the expected value
+ * using the same algorithm as Range.hashCode(), asserting equality with range.hashCode().
+ */
+public class Range_hashCode_15_0_Test_testHashCode_nullArrays {
+
+    @Test
+    public void testHashCode_nullArrays() throws Throwable {
+        // create Range (attempting to pass null arrays)
+        Range range = new Range(null, true, null, false, true);
+
+        // Obtain Unsafe instance
+        Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+        theUnsafe.setAccessible(true);
+        Unsafe unsafe = (Unsafe) theUnsafe.get(null);
+
+        // Allocate a Patterns instance without invoking its constructor
+        Patterns patternsInstance = (Patterns) unsafe.allocateInstance(Patterns.class);
+
+        // Copy all non-static fields declared in Patterns from the Range instance to the allocated Patterns instance.
+        // This makes patternsInstance have the same superclass-state as range, so patternsInstance.hashCode()
+        // should return the same value that super.hashCode() would return inside Range.hashCode().
+        Field[] patternFields = Patterns.class.getDeclaredFields();
+        for (Field pf : patternFields) {
+            if (Modifier.isStatic(pf.getModifiers())) {
+                continue;
+            }
+            pf.setAccessible(true);
+            long offset = unsafe.objectFieldOffset(pf);
+            Class<?> type = pf.getType();
+            Object value = pf.get(range); // read the inherited field value from the Range instance
+
+            if (type == int.class) {
+                unsafe.putInt(patternsInstance, offset, value == null ? 0 : (Integer) value);
+            } else if (type == long.class) {
+                unsafe.putLong(patternsInstance, offset, value == null ? 0L : (Long) value);
+            } else if (type == boolean.class) {
+                unsafe.putBoolean(patternsInstance, offset, value != null && (Boolean) value);
+            } else if (type == byte.class) {
+                unsafe.putByte(patternsInstance, offset, value == null ? (byte) 0 : (Byte) value);
+            } else if (type == char.class) {
+                unsafe.putChar(patternsInstance, offset, value == null ? (char) 0 : (Character) value);
+            } else if (type == short.class) {
+                unsafe.putShort(patternsInstance, offset, value == null ? (short) 0 : (Short) value);
+            } else if (type == float.class) {
+                unsafe.putFloat(patternsInstance, offset, value == null ? 0f : (Float) value);
+            } else if (type == double.class) {
+                unsafe.putDouble(patternsInstance, offset, value == null ? 0d : (Double) value);
+            } else {
+                // reference type
+                unsafe.putObject(patternsInstance, offset, value);
+            }
+        }
+
+        // Now patternsInstance.hashCode() corresponds to the superclass hash used in Range.hashCode()
+        int superHash = patternsInstance.hashCode();
+
+        // reflectively retrieve the actual fields used in Range.hashCode(),
+        // so we compute expected using the same runtime values the method uses.
+        Field bottomField = Range.class.getDeclaredField("bottom");
+        bottomField.setAccessible(true);
+        byte[] bottom = (byte[]) bottomField.get(range);
+
+        Field openBottomField = Range.class.getDeclaredField("openBottom");
+        openBottomField.setAccessible(true);
+        boolean openBottom = openBottomField.getBoolean(range);
+
+        Field topField = Range.class.getDeclaredField("top");
+        topField.setAccessible(true);
+        byte[] top = (byte[]) topField.get(range);
+
+        Field openTopField = Range.class.getDeclaredField("openTop");
+        openTopField.setAccessible(true);
+        boolean openTop = openTopField.getBoolean(range);
+
+        // compute expected hash following the same algorithm as Range.hashCode()
+        int expected = superHash;
+        expected = 31 * expected + Arrays.hashCode(bottom);
+        expected = 31 * expected + Boolean.hashCode(openBottom);
+        expected = 31 * expected + Arrays.hashCode(top);
+        expected = 31 * expected + Boolean.hashCode(openTop);
+
+        assertEquals(expected, range.hashCode());
+    }
+}
+<<Generation Over>>

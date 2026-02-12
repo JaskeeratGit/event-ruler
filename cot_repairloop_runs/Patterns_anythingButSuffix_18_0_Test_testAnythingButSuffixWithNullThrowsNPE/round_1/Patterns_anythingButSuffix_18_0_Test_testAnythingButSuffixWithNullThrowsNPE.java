@@ -1,0 +1,55 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+import java.lang.reflect.Field;
+import java.util.Set;
+
+import static org.junit.Assert.*;
+
+/**
+ * Fixed unit test for Patterns.anythingButSuffix(Set).
+ *
+ * The original test called Patterns.anythingButSuffix(null) which is ambiguous because
+ * Patterns has overloaded methods anythingButSuffix(String) and anythingButSuffix(Set<String>).
+ * The ambiguity is resolved here by casting null to Set<String>.
+ *
+ * This test uses JUnit 4 imports to match environments that do not have JUnit Jupiter on the classpath.
+ */
+public class Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE {
+
+    @Test
+    public void testAnythingButSuffixWithNullThrowsNPE() {
+        try {
+            Patterns.anythingButSuffix((Set<String>) null);
+            fail("Passing null should throw NullPointerException");
+        } catch (NullPointerException expected) {
+            // expected
+        }
+    }
+
+    /**
+     * Finds the first declared field in the given object's class that is assignable to the given type.
+     */
+    private static Field findFieldByType(Object obj, Class<?> type) {
+        Class<?> cls = obj.getClass();
+        for (Field f : cls.getDeclaredFields()) {
+            if (type.isAssignableFrom(f.getType())) {
+                f.setAccessible(true);
+                return f;
+            }
+        }
+        // If not found directly on the class, check superclasses
+        Class<?> superCls = cls.getSuperclass();
+        while (superCls != null && superCls != Object.class) {
+            for (Field f : superCls.getDeclaredFields()) {
+                if (type.isAssignableFrom(f.getType())) {
+                    f.setAccessible(true);
+                    return f;
+                }
+            }
+            superCls = superCls.getSuperclass();
+        }
+        return null;
+    }
+}

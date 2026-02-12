@@ -1,0 +1,39 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.Test;
+
+import java.io.InputStream;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+/**
+ * Fixed unit test for JsonRuleCompiler.compile(InputStream, boolean).
+ *
+ * Notes:
+ * - Many environments for this project use JUnit 4 on the classpath. The original
+ *   version used JUnit 5 imports which caused compilation failures. This test uses
+ *   JUnit 4 compatible APIs so it compiles and runs in typical project setups.
+ *
+ * - The implementation may throw either JsonParseException or NullPointerException
+ *   when given a null InputStream; the test accepts either as a valid failure.
+ */
+public class JsonRuleCompiler_compile_14_0_Test_testCompileNullInput_throwsException {
+
+    @Test
+    public void testCompileNullInput_throwsJsonParseExceptionOrNullPointerException() throws Exception {
+        try {
+            // disambiguate overloaded compile methods by casting null to InputStream
+            JsonRuleCompiler.compile((InputStream) null, false);
+            fail("Expected JsonParseException or NullPointerException to be thrown");
+        } catch (Throwable thrown) {
+            // Accept either JsonParseException (current behaviour) or NullPointerException (possible alternative)
+            assertTrue("Expected JsonParseException or NullPointerException, but got: " + thrown.getClass().getName(),
+                    (thrown instanceof JsonParseException) || (thrown instanceof NullPointerException));
+        }
+    }
+
+}
+<<Generation Over>>

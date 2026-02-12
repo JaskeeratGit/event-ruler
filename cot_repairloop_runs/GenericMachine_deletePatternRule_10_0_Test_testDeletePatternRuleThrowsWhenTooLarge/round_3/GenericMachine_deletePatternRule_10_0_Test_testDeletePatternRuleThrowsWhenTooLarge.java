@@ -1,0 +1,49 @@
+package software.amazon.event.ruler;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+/**
+ * Fixed unit test compatible with environments that do not have JUnit 5 on the classpath.
+ *
+ * This test verifies that deletePatternRule throws a RuntimeException when the provided
+ * map size exceeds the implementation's MAXIMUM_RULE_SIZE (expected 256).
+ */
+public class GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleThrowsWhenTooLarge {
+
+    private GenericMachine<String> machine;
+
+    @Before
+    public void setUp() {
+        // Use the public no-arg constructor that the production class provides
+        machine = new GenericMachine<>();
+    }
+
+    @Test
+    public void testDeletePatternRuleThrowsWhenTooLarge() {
+        // Create a map whose size exceeds MAXIMUM_RULE_SIZE (256) -> use 257 entries
+        Map<String, List<Patterns>> bigMap = new HashMap<>();
+        for (int i = 0; i < 257; i++) {
+            // Use an empty list of Patterns for each key
+            bigMap.put("key" + i, Collections.<Patterns>emptyList());
+        }
+
+        try {
+            machine.deletePatternRule("ruleName", bigMap);
+            fail("Expected RuntimeException due to rule size > MAXIMUM_RULE_SIZE");
+        } catch (RuntimeException ex) {
+            // Ensure message mentions exceeding the max and includes the rule name
+            String msg = ex.getMessage();
+            assertTrue("Exception message should mention exceeding max value", msg != null && msg.contains("exceeds max value"));
+            assertTrue("Exception message should include the rule name", msg != null && msg.contains("ruleName"));
+        }
+    }
+}

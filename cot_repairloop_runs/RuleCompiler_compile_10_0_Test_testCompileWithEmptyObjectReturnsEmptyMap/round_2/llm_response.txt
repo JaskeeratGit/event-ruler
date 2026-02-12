@@ -1,0 +1,49 @@
+<<Generation Begin>>
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for RuleCompiler.compile(...) behavior when given an empty JSON object.
+ *
+ * These tests assert the actual behavior of the existing RuleCompiler implementation:
+ * an empty JSON object ("{}") is rejected with a JsonParseException containing
+ * "Empty objects are not allowed".
+ *
+ * Using JUnit 5 (Jupiter).
+ */
+public class RuleCompilerCompileEmptyObjectTest {
+
+    @Test
+    public void testCompileWithEmptyObjectThrowsJsonParseException_whenWithOverridingFalse() {
+        JsonParseException ex = assertThrows(JsonParseException.class, () -> {
+            // method under test
+            RuleCompiler.compile("{}", false);
+        }, "Expected a JsonParseException when compiling an empty JSON object");
+
+        // verify message to ensure we hit the same failure mode observed
+        String msg = ex.getMessage();
+        assertNotNull(msg);
+        assertTrue(msg.contains("Empty objects are not allowed"),
+                "Exception message should indicate empty objects are not allowed, was: " + msg);
+    }
+
+    @Test
+    public void testCompileWithEmptyObjectThrowsJsonParseException_whenWithOverridingTrue() {
+        JsonParseException ex = assertThrows(JsonParseException.class, () -> {
+            // method under test with the other boolean value
+            RuleCompiler.compile("{}", true);
+        }, "Expected a JsonParseException when compiling an empty JSON object (withOverriding=true)");
+
+        String msg = ex.getMessage();
+        assertNotNull(msg);
+        assertTrue(msg.contains("Empty objects are not allowed"),
+                "Exception message should indicate empty objects are not allowed, was: " + msg);
+    }
+}
+<<Generation Over>>

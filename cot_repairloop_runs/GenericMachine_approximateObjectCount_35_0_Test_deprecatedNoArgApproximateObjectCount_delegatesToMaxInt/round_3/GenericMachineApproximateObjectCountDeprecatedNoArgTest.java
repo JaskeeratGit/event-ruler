@@ -1,0 +1,91 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Set;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ * Unit tests for GenericMachine.approximateObjectCount() (deprecated no-arg version).
+ *
+ * These tests use reflection to replace the private final startState so we can control
+ * how many objects the machine "discovers" during counting.
+ */
+public class GenericMachineApproximateObjectCountDeprecatedNoArgTest {
+
+    /**
+     * A Test helper that overrides NameState.gatherObjects to controllably add objects.
+     *
+     * Note: This class relies on the (observed) signature:
+     *   public void gatherObjects(Set<Object> objectSet, int maxObjectCount)
+     * in the real NameState class.
+     */
+    static class CountingNameState extends NameState {
+
+        private final int toAdd;
+        private final boolean respectMax;
+
+        CountingNameState(int toAdd, boolean respectMax) {
+            this.toAdd = toAdd;
+            this.respectMax = respectMax;
+        }
+
+        @Override
+        public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {
+            // If respectMax is true, stop at maxObjectCount.
+            int limit = respectMax ? Math.min(toAdd, maxObjectCount) : toAdd;
+            for (int i = 0; i < limit; i++) {
+                // Use distinct objects to ensure set size increments.
+                objectSet.add(new StringBuilder("obj-" + i).toString());
+            }
+        }
+    }
+
+    /**
+     * Helper to replace the private final startState field via reflection.
+     */
+    private static void replaceStartState(GenericMachine machine, NameState replacement) throws Exception {
+        Field startField = GenericMachine.class.getDeclaredField("startState");
+        startField.setAccessible(true);
+
+        // Remove final modifier if present so we can set the field reliably in tests.
+        try {
+            Field modifiersField = Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(startField, startField.getModifiers() & ~Modifier.FINAL);
+        } catch (NoSuchFieldException ignored) {
+            // Some JVMs may not allow access to the "modifiers" field; in Java 8 environments this normally exists.
+            // If it isn't available, we still attempt to set the field (may succeed if not truly final at runtime).
+        }
+
+        startField.set(machine, replacement);
+    }
+
+    @Test
+    public void deprecatedNoArgApproximateObjectCount_delegatesToMaxInt_respectsMax() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that will add 7 objects and respects max
+        replaceStartState(machine, new CountingNameState(7, true));
+        // act
+        int result = machine.approximateObjectCount();
+        // assert
+        assertEquals("No-arg deprecated method should delegate to approximateObjectCount(Integer.MAX_VALUE)", 7, result);
+    }
+
+    @Test
+    public void deprecatedNoArgApproximateObjectCount_delegatesToMaxInt_ignoresMax() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that will add 100 objects and does NOT respect max
+        replaceStartState(machine, new CountingNameState(100, false));
+        // act
+        int result = machine.approximateObjectCount();
+        // assert
+        assertEquals("When the state ignores max, the deprecated no-arg should still collect all objects (max = Integer.MAX_VALUE)", 100, result);
+    }
+}
