@@ -1,0 +1,20 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+import java.io.InputStream;
+import static org.junit.Assert.fail;
+
+public class RuleCompiler_compile_14_0_Test_compile_withNullInput_shouldThrowNullPointerException {
+
+    @Test
+    public void compile_withNullInput_shouldThrowNullPointerException() throws Exception {
+        try {
+            // Passing null should result in a NullPointerException when the factory attempts to create a parser.
+            RuleCompiler.compile((InputStream) null, true);
+            fail("Expected NullPointerException when passing null InputStream");
+        } catch (NullPointerException expected) {
+            // expected
+        }
+    }
+
+}

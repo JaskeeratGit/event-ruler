@@ -1,0 +1,233 @@
+I need you to fix an error in a unit test. An error occurred while compiling or executing.
+
+Below are a few examples of similar fixes. Follow the same style: minimal changes to make the test compile and run.
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) {
+            this.id = id;
+        }
+        String getId() {
+            return id;
+        }
+    }
+    
+    testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+    
+}
+```
+
+Error chatMessage:
+ Error in Options_getOptionGroup_9_0_Test: line 46 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup,
+ Error in Options_getOptionGroup_9_0_Test: line 55 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup
+
+Fixed Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+   
+   testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+}
+}
+
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Error chatMessage:
+Error in CommandLine_getParsedOptionValues_46_0_Test: line 30 : reference to getParsedOptionValues is ambiguous
+  both method <T>getParsedOptionValues(org.apache.commons.cli.OptionGroup,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValues(java.lang.String,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine match
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+Now, fix the following.
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.util.Set;
+import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
+
+public class Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput {
+
+    // Helper: find a field of given type (or subtype) in object's class hierarchy and return its value
+    @SuppressWarnings("unchecked")
+    private <T> T getFieldValueByType(Object instance, Class<T> fieldType) throws IllegalAccessException {
+        Class<?> cls = instance.getClass();
+        while (cls != null) {
+            for (Field f : cls.getDeclaredFields()) {
+                if (fieldType.isAssignableFrom(f.getType())) {
+                    f.setAccessible(true);
+                    Object val = f.get(instance);
+                    return (T) val;
+                }
+            }
+            cls = cls.getSuperclass();
+        }
+        throw new AssertionError("No field of type " + fieldType.getName() + " found on " + instance.getClass());
+    }
+
+    @Test
+    public void testAnythingButIgnoreCaseWithNullInput() throws Exception {
+        Object result = software.amazon.event.ruler.Patterns.anythingButIgnoreCaseMatch((Set<String>) null);
+        assertNotNull(result);
+        software.amazon.event.ruler.MatchType matchTypeValue = getFieldValueByType(result, software.amazon.event.ruler.MatchType.class);
+        assertEquals(software.amazon.event.ruler.MatchType.ANYTHING_BUT_IGNORE_CASE, matchTypeValue);
+        // For null input, implementation may store null or an empty set. Accept either.
+        @SuppressWarnings("unchecked")
+        Set<String> stored = getFieldValueByType(result, Set.class);
+        if (stored != null) {
+            assertTrue(stored.isEmpty(), "Stored set should be empty when input is null (if implementation chooses empty collection)");
+        } else {
+            // acceptable: implementation stored null
+            assertNull(stored);
+        }
+    }
+
+}
+
+The error chatMessage is:
+
+[INFO] ACMachineTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[40,38] incompatible types: boolean cannot be converted to java.lang.String
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.702 s
+[INFO] Finished at: 2026-01-09T13:15:40-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project event-ruler: Compilation failure
+[ERROR] Patterns_anythingButIgnoreCaseMatch_12_0_Test_testAnythingButIgnoreCaseWithNullInput.java:[40,38] incompatible types: boolean cannot be converted to java.lang.String
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+The unit test is testing the method `anythingButIgnoreCaseMatch(Set)` in the class `Patterns`.
+
+Focal method source code:
+
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs) {
+        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_IGNORE_CASE, anythingButs);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+public class Patterns {
+public static final String EXISTS_BYTE_STRING = ...;
+private final MatchType type;
+Patterns(final MatchType type){}
+@Deprecated
+    public String pattern(){}
+public MatchType type(){}
+public static ValuePatterns exactMatch(final String value){}
+public static ValuePatterns prefixMatch(final String prefix){}
+public static ValuePatterns prefixEqualsIgnoreCaseMatch(final String prefix){}
+public static ValuePatterns suffixMatch(final String suffix){}
+public static ValuePatterns suffixEqualsIgnoreCaseMatch(final String suffix){}
+public static AnythingBut anythingButMatch(final String anythingBut){}
+@Deprecated
+    public static AnythingBut anythingButMatch(final double anythingBut){}
+public static AnythingBut anythingButNumberMatch(final String anythingBut){}
+public static AnythingBut anythingButMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final String anythingBut){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs){}
+@Deprecated
+    public static AnythingBut anythingButNumberMatch(final Set<Double> anythingButs){}
+public static AnythingBut anythingButNumbersMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButPrefix(final String prefix){}
+public static AnythingButValuesSet anythingButPrefix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButSuffix(final String suffix){}
+public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButWildcard(final String value){}
+public static AnythingButValuesSet anythingButWildcard(final Set<String> anythingButs){}
+@Deprecated
+    public static ValuePatterns numericEquals(final double val){}
+public static ValuePatterns numericEquals(final String val){}
+public static Patterns existencePatterns(){}
+public static Patterns absencePatterns(){}
+public static ValuePatterns equalsIgnoreCaseMatch(final String value){}
+public static ValuePatterns wildcardMatch(final String value){}
+@Override
+    public Object clone(){}
+@Override
+    public boolean equals(Object o){}
+@Override
+    public int hashCode(){}
+@Override
+    public String toString(){}
+Patterns(final MatchType type){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5, and Mockito 3. Adhere to Java 8 language style. No explanation is needed.
+Return only the fixed unit test.

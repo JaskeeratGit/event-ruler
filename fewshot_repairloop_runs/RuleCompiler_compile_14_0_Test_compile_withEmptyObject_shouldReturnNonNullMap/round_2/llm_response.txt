@@ -1,0 +1,15 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+import java.io.IOException;
+import java.util.Map;
+import static org.junit.Assert.assertNotNull;
+
+public class RuleCompiler_compile_14_0_Test_compile_withEmptyObject_shouldReturnNonNullMap {
+
+    @Test
+    public void compile_withEmptyObject_shouldReturnNonNullMap() throws IOException {
+        Map<String, ?> result = RuleCompiler.compile("{}", true);
+        assertNotNull("compile should not return null for an empty JSON object", result);
+    }
+}

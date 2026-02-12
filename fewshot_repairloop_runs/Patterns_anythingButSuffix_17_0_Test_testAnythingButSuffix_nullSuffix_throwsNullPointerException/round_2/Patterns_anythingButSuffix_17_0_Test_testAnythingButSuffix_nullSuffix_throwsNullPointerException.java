@@ -1,0 +1,16 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+public class Patterns_anythingButSuffix_17_0_Test_testAnythingButSuffix_nullSuffix_throwsNullPointerException {
+
+    @Test
+    public void testAnythingButSuffix_nullSuffix_throwsNullPointerException() {
+        try {
+            Patterns.anythingButSuffix((String) null);
+            org.junit.Assert.fail("Passing null suffix should throw NullPointerException");
+        } catch (NullPointerException expected) {
+            // expected
+        }
+    }
+}

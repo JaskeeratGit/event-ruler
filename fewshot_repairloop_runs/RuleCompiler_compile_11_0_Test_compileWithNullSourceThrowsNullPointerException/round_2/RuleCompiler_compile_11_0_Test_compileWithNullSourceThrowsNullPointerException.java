@@ -1,0 +1,20 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+import static org.junit.Assert.fail;
+
+public class RuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException {
+
+    @Test
+    public void compileWithNullSourceThrowsNullPointerException() {
+        try {
+            // JsonFactory.createParser(null) is expected to throw NullPointerException
+            RuleCompiler.compile((String) null);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException expected) {
+            // expected
+        } catch (Exception e) {
+            fail("Expected NullPointerException, but got: " + e);
+        }
+    }
+}

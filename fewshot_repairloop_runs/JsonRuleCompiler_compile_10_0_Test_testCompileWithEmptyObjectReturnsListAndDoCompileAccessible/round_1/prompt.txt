@@ -1,0 +1,284 @@
+I need you to fix an error in a unit test. An error occurred while compiling or executing.
+
+Below are a few examples of similar fixes. Follow the same style: minimal changes to make the test compile and run.
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) {
+            this.id = id;
+        }
+        String getId() {
+            return id;
+        }
+    }
+    
+    testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+    
+}
+```
+
+Error chatMessage:
+ Error in Options_getOptionGroup_9_0_Test: line 46 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup,
+ Error in Options_getOptionGroup_9_0_Test: line 55 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup
+
+Fixed Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+   
+   testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+}
+}
+
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Error chatMessage:
+Error in CommandLine_getParsedOptionValues_46_0_Test: line 30 : reference to getParsedOptionValues is ambiguous
+  both method <T>getParsedOptionValues(org.apache.commons.cli.OptionGroup,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValues(java.lang.String,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine match
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+Now, fix the following.
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+
+class JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible {
+
+
+    @Test
+    void testCompileWithEmptyObjectReturnsListAndDoCompileAccessible() throws Exception {
+        // Cover public compile method with a simple empty JSON object input.
+        // The concrete behavior of parseObject is implementation-dependent; we at least assert we get a List back.
+        List<Map<String, List<Patterns>>> result = JsonRuleCompiler.compile("{}", true);
+        assertNotNull(result, "compile should return a non-null List (possibly empty) for an empty JSON object");
+        // Also invoke the private doCompile directly with a parser that starts with START_OBJECT and ensure it completes.
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser("{}");
+        Method doCompile = JsonRuleCompiler.class.getDeclaredMethod("doCompile", JsonParser.class, boolean.class);
+        doCompile.setAccessible(true);
+        try {
+            Object invoked = doCompile.invoke(null, parser, true);
+            // doCompile returns List<Map<String, List<Patterns>>>, so at least assert it's a List
+            assertNotNull(invoked, "doCompile invocation should not return null for '{}'");
+            assertTrue(invoked instanceof List, "doCompile should return a List");
+        } catch (InvocationTargetException ite) {
+            // If implementation throws, fail the test with the underlying cause
+            throw new AssertionError("doCompile threw an unexpected exception", ite.getCause());
+        } finally {
+            parser.close();
+        }
+    }
+
+}
+
+The error chatMessage is:
+
+[ERROR] JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:26:8: Unused import - java.util.Set. [UnusedImports]
+[ERROR] JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:27:8: Unused import - java.util.stream.Collectors. [UnusedImports]
+[ERROR] JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:28:15: Unused import - software.amazon.event.ruler.input.DefaultParser.getParser. [UnusedImports]
+Audit done.
+[INFO] There are 20 errors reported by Checkstyle 9.3 with /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/config/checkstyle/checkstyle.xml ruleset.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[5,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonToken.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[6,8] (imports) UnusedImports: Unused import - java.io.IOException.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[7,8] (imports) UnusedImports: Unused import - java.lang.reflect.Constructor.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[12,19] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.*.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[13,29] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[14,34] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.Mockito.*.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[15,47] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[16,8] (imports) UnusedImports: Unused import - org.junit.jupiter.api.extension.ExtendWith.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[17,8] (imports) UnusedImports: Unused import - org.mockito.junit.jupiter.MockitoExtension.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[18,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonParseException.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[19,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.StreamReadFeature.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[20,8] (imports) UnusedImports: Unused import - software.amazon.event.ruler.input.ParseException.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[21,8] (imports) UnusedImports: Unused import - java.io.InputStream.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[22,8] (imports) UnusedImports: Unused import - java.io.Reader.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[23,8] (imports) UnusedImports: Unused import - java.util.ArrayList.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible.java:[24,8] (imports) UnusedImports: Unused import - java.util.HashMap.
+[ERROR] srcJsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAcc
+
+The unit test is testing the method `compile(String, boolean)` in the class `JsonRuleCompiler`.
+
+Focal method source code:
+
+public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding)
+            throws IOException {
+        return doCompile(JSON_FACTORY.createParser(source), withOverriding);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+public class JsonRuleCompiler {
+private static final JsonFactory JSON_FACTORY = ...;
+private JsonRuleCompiler(){}
+public static String check(final Reader source, final boolean withOverriding){}
+public static String check(final Reader source){}
+public static String check(final String source, final boolean withOverriding){}
+public static String check(final String source){}
+public static String check(final byte[] source, final boolean withOverriding){}
+public static String check(final byte[] source){}
+public static String check(final InputStream source, final boolean withOverriding){}
+public static String check(final InputStream source){}
+public static List<Map<String, List<Patterns>>> compile(final Reader source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final Reader source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source, final boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source) throws IOException{}
+private static List<Map<String, List<Patterns>>> doCompile(final JsonParser parser, boolean withOverriding) throws IOException{}
+private static void parseObject(final List<Map<String, List<Patterns>>> rules,
+                                    final Path path,
+                                    final JsonParser parser,
+                                    final boolean withQuotes,
+                                    final boolean withOverriding) throws IOException{}
+private static void parseObjectInsideOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                        final Path path,
+                                                        final JsonParser parser,
+                                                        final boolean withQuotes,
+                                                        final boolean withOverriding) throws IOException{}
+private static void parseIntoOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                final Path path,
+                                                final JsonParser parser,
+                                                final boolean withQuotes,
+                                                final boolean withOverriding) throws IOException{}
+private static List deepCopyRules(final List<Map<String, List<Patterns>>> rules){}
+private static void writeRules(final List<Map<String, List<Patterns>>> rules,
+                                   final String name,
+                                   final JsonParser parser,
+                                   final boolean withQuotes,
+                                   final boolean withOverriding) throws IOException{}
+private static Patterns processMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButValuesSetMatchExpression(JsonParser parser, MatchType matchType)
+            throws JsonParseException{}
+private static Patterns processAnythingButMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processAnythingButValuesSetSingleValueMatchExpression(JsonParser parser,
+                JsonToken anythingButExpressionToken, MatchType matchType) throws IOException{}
+private static String generateValueBasedOnMatchType(String text, MatchType matchType){}
+private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns completeNumericRange(final JsonParser parser,
+                                                 final JsonToken token,
+                                                 final String bottom,
+                                                 final boolean openBottom) throws IOException{}
+private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}
+private static void tooManyElements(final JsonParser parser) throws JsonParseException{}
+private static void barf(final JsonParser parser, final String message) throws JsonParseException{}
+private JsonRuleCompiler(){}
+}
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `com.fasterxml.jackson.core.JsonFactory` is
+```[java]
+createParser(String)
+```
+
+Please fix the error and return the whole fixed unit test. You can use Junit 5, and Mockito 3. Adhere to Java 8 language style. No explanation is needed.
+Return only the fixed unit test.

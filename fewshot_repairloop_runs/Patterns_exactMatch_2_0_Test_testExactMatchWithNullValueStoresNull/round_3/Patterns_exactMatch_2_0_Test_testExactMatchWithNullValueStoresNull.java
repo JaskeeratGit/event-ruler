@@ -1,0 +1,37 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+public class Patterns_exactMatch_2_0_Test_testExactMatchWithNullValueStoresNull {
+
+    @Test
+    public void testExactMatchWithNullValueStoresNull() throws Exception {
+        Object valuePatterns = Patterns.exactMatch((String) null);
+        assertNotNull("exactMatch should not return null even when passed null", valuePatterns);
+        Class<?> vpClass = valuePatterns.getClass();
+        Field stringField = null;
+        for (Field f : vpClass.getDeclaredFields()) {
+            f.setAccessible(true);
+            if (f.getType().equals(String.class)) {
+                stringField = f;
+                break;
+            }
+        }
+        if (stringField == null) {
+            for (Field f : vpClass.getDeclaredFields()) {
+                f.setAccessible(true);
+                if (CharSequence.class.isAssignableFrom(f.getType())) {
+                    stringField = f;
+                    break;
+                }
+            }
+        }
+        assertNotNull("Could not locate a String/CharSequence field in ValuePatterns", stringField);
+        Object storedValue = stringField.get(valuePatterns);
+        assertNull("When passing null to exactMatch, the stored value should be null", storedValue);
+    }
+
+}

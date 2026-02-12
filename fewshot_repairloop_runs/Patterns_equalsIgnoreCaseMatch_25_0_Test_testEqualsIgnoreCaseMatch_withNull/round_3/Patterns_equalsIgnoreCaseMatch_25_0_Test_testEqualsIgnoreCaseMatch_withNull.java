@@ -1,0 +1,23 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertNull;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withNull {
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withNull() throws Exception {
+        String input = null;
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        assertNotNull(vp);
+        // Use public API instead of reflection
+        assertSame(MatchType.EQUALS_IGNORE_CASE, vp.type());
+        assertNull("Stored value should be null when input is null", vp.pattern());
+    }
+
+}

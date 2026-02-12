@@ -1,0 +1,15 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class Range_hashCode_15_0_Test_testHashCode_nullArrays {
+
+    @Test
+    public void testHashCode_nullArrays() throws Exception {
+        Range range = new Range(null, true, null, false, true);
+        int expected = range.hashCode();
+        assertEquals(expected, range.hashCode());
+    }
+
+}

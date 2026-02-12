@@ -1,0 +1,59 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.util.Set;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class GenericMachine_approximateObjectCount_35_0_Test_approximateObjectCount_withZeroMaxReturnsZero {
+
+    /**
+     * A Test helper that overrides NameState.gatherObjects to controllably add objects.
+     *
+     * Note: This class relies on the (observed) signature:
+     *   public void gatherObjects(Set<Object> objectSet, int maxObjectCount)
+     * in the real NameState class.
+     */
+    static class CountingNameState extends NameState {
+
+        private final int toAdd;
+
+        private final boolean respectMax;
+
+        CountingNameState(int toAdd, boolean respectMax) {
+            this.toAdd = toAdd;
+            this.respectMax = respectMax;
+        }
+
+        @Override
+        public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {
+            // If respectMax is true, stop at maxObjectCount.
+            int limit = respectMax ? Math.min(toAdd, maxObjectCount) : toAdd;
+            for (int i = 0; i < limit; i++) {
+                // Use distinct objects to ensure set size increments.
+                objectSet.add(new StringBuilder("obj-" + i).toString());
+            }
+        }
+    }
+
+    // Helper to replace the private final startState field via reflection
+    private static void replaceStartState(GenericMachine machine, NameState replacement) throws Exception {
+        Field startField = GenericMachine.class.getDeclaredField("startState");
+        startField.setAccessible(true);
+        startField.set(machine, replacement);
+    }
+
+    @Test
+    public void approximateObjectCount_withZeroMaxReturnsZero() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that would add objects (but should respect max)
+        replaceStartState(machine, new CountingNameState(100, true));
+        // act
+        int result = machine.approximateObjectCount(0);
+        // assert
+        assertEquals("If maxObjectCount is zero, returned count must be zero", 0, result);
+    }
+
+}

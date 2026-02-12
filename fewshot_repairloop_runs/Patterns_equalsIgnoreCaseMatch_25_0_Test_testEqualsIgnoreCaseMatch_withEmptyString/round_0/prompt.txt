@@ -1,0 +1,295 @@
+I need you to fix an error in a unit test. An error occurred while compiling or executing.
+
+Below are a few examples of similar fixes. Follow the same style: minimal changes to make the test compile and run.
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) {
+            this.id = id;
+        }
+        String getId() {
+            return id;
+        }
+    }
+    
+    testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+    
+}
+```
+
+Error chatMessage:
+ Error in Options_getOptionGroup_9_0_Test: line 46 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup,
+ Error in Options_getOptionGroup_9_0_Test: line 55 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup
+
+Fixed Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+   
+   testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+}
+}
+
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Error chatMessage:
+Error in CommandLine_getParsedOptionValues_46_0_Test: line 30 : reference to getParsedOptionValues is ambiguous
+  both method <T>getParsedOptionValues(org.apache.commons.cli.OptionGroup,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValues(java.lang.String,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine match
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+Now, fix the following.
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withEmptyString {
+
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withEmptyString() throws Exception {
+        String input = "";
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        assertNotNull(vp);
+        Class<?> cls = vp.getClass();
+        Field typeField = cls.getDeclaredField("type");
+        Field valueField = cls.getDeclaredField("value");
+        typeField.setAccessible(true);
+        valueField.setAccessible(true);
+        Object typeVal = typeField.get(vp);
+        Object valueVal = valueField.get(vp);
+        assertSame(MatchType.EQUALS_IGNORE_CASE, typeVal);
+        assertEquals(input, valueVal);
+    }
+
+
+}
+
+/*
+ * Minimal dependent types required for compilation of the tests.
+ * These are package-private and intended for test compilation only.
+ */
+enum MatchType {
+
+    EQUALS_IGNORE_CASE
+}
+
+class ValuePatterns {
+
+    // keep fields private to require reflection in tests
+    private final MatchType type;
+
+    private final String value;
+
+    ValuePatterns(MatchType type, String value) {
+        this.type = type;
+        this.value = value;
+    }
+
+    // Optional: equals/hashCode may be helpful in some assertions, but not required
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof ValuePatterns))
+            return false;
+        ValuePatterns that = (ValuePatterns) o;
+        if (type != that.type)
+            return false;
+        return value != null ? value.equals(that.value) : that.value == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + (value != null ? value.hashCode() : 0);
+        return result;
+    }
+}
+
+
+The error chatMessage is:
+
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[12,35] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[14,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[14,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[15,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[15,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[16,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[16,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[17,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[17,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[18,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[18,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[19,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[19,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[20,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[20,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[21,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseOnSingletonField.java:[21,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[12,35] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[14,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[14,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[15,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[15,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[16,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[16,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[17,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[17,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[18,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[18,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[19,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[19,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[20,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[20,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[21,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateFourArgConstructor.java:[21,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[12,35] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[14,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[14,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[15,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[15,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[16,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[16,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[17,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[17,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[18,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[18,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[19,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[19,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[20,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[20,1] static import only from classes and interfaces
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[21,42] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+src/test/java/software/amazon/event/ruler/input/DefaultParser_parse_3_0_Test_testParseUsingPrivateNoArgConstructor.java:[21,1] static import only from classes and interfaces
+src/test/software/amazon/event/ruler/input/ParserTest.java:[4,35] software.amazon.event.ruler.MatchType is not public in software.amazon.event.ruler; cannot be accessed from outside package
+
+The unit test is testing the method `equalsIgnoreCaseMatch(String)` in the class `Patterns`.
+
+Focal method source code:
+
+public static ValuePatterns equalsIgnoreCaseMatch(final String value) {
+        return new ValuePatterns(MatchType.EQUALS_IGNORE_CASE, value);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+public class Patterns {
+public static final String EXISTS_BYTE_STRING = ...;
+private final MatchType type;
+Patterns(final MatchType type){}
+@Deprecated
+    public String pattern(){}
+public MatchType type(){}
+public static ValuePatterns exactMatch(final String value){}
+public static ValuePatterns prefixMatch(final String prefix){}
+public static ValuePatterns prefixEqualsIgnoreCaseMatch(final String prefix){}
+public static ValuePatterns suffixMatch(final String suffix){}
+public static ValuePatterns suffixEqualsIgnoreCaseMatch(final String suffix){}
+public static AnythingBut anythingButMatch(final String anythingBut){}
+@Deprecated
+    public static AnythingBut anythingButMatch(final double anythingBut){}
+public static AnythingBut anythingButNumberMatch(final String anythingBut){}
+public static AnythingBut anythingButMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final String anythingBut){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs){}
+@Deprecated
+    public static AnythingBut anythingButNumberMatch(final Set<Double> anythingButs){}
+public static AnythingBut anythingButNumbersMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButPrefix(final String prefix){}
+public static AnythingButValuesSet anythingButPrefix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButSuffix(final String suffix){}
+public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButWildcard(final String value){}
+public static AnythingButValuesSet anythingButWildcard(final Set<String> anythingButs){}
+@Deprecated
+    public static ValuePatterns numericEquals(final double val){}
+public static ValuePatterns numericEquals(final String val){}
+public static Patterns existencePatterns(){}
+public static Patterns absencePatterns(){}
+public static ValuePatterns equalsIgnoreCaseMatch(final String value){}
+public static ValuePatterns wildcardMatch(final String value){}
+@Override
+    public Object clone(){}
+@Override
+    public boolean equals(Object o){}
+@Override
+    public int hashCode(){}
+@Override
+    public String toString(){}
+Patterns(final MatchType type){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5, and Mockito 3. Adhere to Java 8 language style. No explanation is needed.
+Return only the fixed unit test.

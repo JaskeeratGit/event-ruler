@@ -1,0 +1,31 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withRegularString {
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withRegularString() throws Exception {
+        String input = "TeStValUe";
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        assertNotNull("Returned ValuePatterns should not be null", vp);
+        // use reflection to access private fields
+        Class<?> cls = vp.getClass();
+        Field typeField = cls.getDeclaredField("type");
+        Field valueField = cls.getDeclaredField("value");
+        typeField.setAccessible(true);
+        valueField.setAccessible(true);
+        Object typeVal = typeField.get(vp);
+        Object valueVal = valueField.get(vp);
+        assertSame("MatchType should be EQUALS_IGNORE_CASE", MatchType.EQUALS_IGNORE_CASE, typeVal);
+        assertEquals("Stored value should equal the input string", input, valueVal);
+    }
+
+}

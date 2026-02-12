@@ -11,16 +11,17 @@
   ~ on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
   ~ express or implied. See the License for the specific language governing
   ~ permissions and limitations under the License.
-
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>software.amazon.event.ruler</groupId>
   <artifactId>event-ruler</artifactId>
   <name>Event Ruler</name>
   <version>1.8.2</version>
+
   <description>Event Ruler is a Java library that allows matching Rules to Events. An event is a list of fields,
     which may be given as name/value pairs or as a JSON object. A rule associates event field names with lists of
     possible values. There are two reasons to use Ruler: 1/ It's fast; the time it takes to match Events doesn't
@@ -45,6 +46,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jmh.version>1.37</jmh.version>
     <exec.plugin.version>3.5.1</exec.plugin.version>
+
+    <!-- ========================= -->
+    <!-- JaCoCo additions for your one-by-one coverage script -->
+    <!-- Default values; override per run via -Djacoco.destFile=... and -Djacoco.append=false -->
+    <jacoco.version>0.8.11</jacoco.version>
+    <jacoco.destFile>${project.build.directory}/jacoco.exec</jacoco.destFile>
+    <jacoco.append>false</jacoco.append>
+    <!-- ========================= -->
   </properties>
 
   <licenses>
@@ -120,7 +129,6 @@
       <version>${jmh.version}</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>
@@ -128,6 +136,42 @@
     <testSourceDirectory>src/test</testSourceDirectory>
     <finalName>${project.artifactId}-${project.version}</finalName>
     <plugins>
+
+      <!-- ========================= -->
+      <!-- JaCoCo plugin (agent attaches during mvn test). -->
+      <!-- No report execution here because your Python script merges execs and generates the final report. -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <executions>
+          <execution>
+            <id>jacoco-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <!-- Use properties so CLI overrides work -->
+              <destFile>${jacoco.destFile}</destFile>
+              <append>${jacoco.append}</append>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- ========================= -->
+
+      <!-- Optional but recommended: make sure Surefire exists explicitly. -->
+      <!-- This project uses src/test (nonstandard), but Maven knows via testSourceDirectory above. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+          <!-- JUnit 4 runs fine without extra provider config -->
+          <!-- Keep defaults; your script runs with -Dtest=<FQN> -->
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -145,6 +189,7 @@
           </annotationProcessorPaths>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -170,6 +215,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -183,6 +229,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -199,6 +246,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -222,6 +270,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
@@ -240,6 +289,7 @@
           </execution>
         </executions>
       </plugin>
+
     </plugins>
   </build>
 

@@ -1,0 +1,43 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36msoftware.amazon.event.ruler:event-ruler[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Event Ruler 1.8.2[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-checkstyle-plugin:3.6.0:check[m [1m(validate)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Starting audit...
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:5:8: Unused import - java.util.Arrays. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:6:8: Unused import - java.util.Collections. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:7:8: Unused import - java.util.HashSet. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:9:19: Using the '.*' form of import should be avoided - org.mockito.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:10:29: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:11:34: Using the '.*' form of import should be avoided - org.mockito.Mockito.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:12:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:13:8: Unused import - org.junit.jupiter.api.extension.ExtendWith. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:14:8: Unused import - org.mockito.junit.jupiter.MockitoExtension. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:15:8: Unused import - java.util.stream.Collectors. [UnusedImports]
+Audit done.
+[[1;34mINFO[m] There are 10 errors reported by Checkstyle 9.3 with /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/config/checkstyle/checkstyle.xml ruleset.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[5,8] (imports) UnusedImports: Unused import - java.util.Arrays.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[6,8] (imports) UnusedImports: Unused import - java.util.Collections.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[7,8] (imports) UnusedImports: Unused import - java.util.HashSet.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[9,19] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[10,29] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[11,34] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.Mockito.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[12,47] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[13,8] (imports) UnusedImports: Unused import - org.junit.jupiter.api.extension.ExtendWith.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[14,8] (imports) UnusedImports: Unused import - org.mockito.junit.jupiter.MockitoExtension.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[15,8] (imports) UnusedImports: Unused import - java.util.stream.Collectors.
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  0.608 s
+[[1;34mINFO[m] Finished at: 2026-01-09T13:17:27-07:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check[m [1m(validate)[m on project [36mevent-ruler[m: [1;31mYou have 10 Checkstyle violations.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

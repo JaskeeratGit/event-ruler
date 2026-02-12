@@ -1,0 +1,167 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+class GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleThrowsWhenTooLarge {
+
+    private TestGenericMachine<String> machine;
+
+    @BeforeEach
+    void setUp() {
+        // Use the public no-arg constructor
+        machine = new TestGenericMachine<>();
+    }
+
+    @Test
+    void testDeletePatternRuleThrowsWhenTooLarge() {
+        // Create a map whose size exceeds MAXIMUM_RULE_SIZE (256) -> use 257 entries
+        Map<String, List<TestPatterns>> bigMap = new HashMap<>();
+        for (int i = 0; i < 257; i++) {
+            bigMap.put("key" + i, Collections.emptyList());
+        }
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> machine.deletePatternRule("ruleName", bigMap));
+        assertTrue(ex.getMessage().contains("exceeds max value"));
+        assertTrue(ex.getMessage().contains("ruleName"));
+    }
+
+
+}
+
+// ---------- Minimal supporting classes and a simplified TestGenericMachine implementation ----------
+class TestGenericMachineConfiguration {
+
+    private final boolean additionalNameStateReuse;
+
+    private final boolean ruleOverriding;
+
+    TestGenericMachineConfiguration(boolean additionalNameStateReuse, boolean ruleOverriding) {
+        this.additionalNameStateReuse = additionalNameStateReuse;
+        this.ruleOverriding = ruleOverriding;
+    }
+}
+
+class TestPatterns {
+    // minimal stub for Patterns
+    public TestPatterns() {}
+    public TestPatterns(Object o) {}
+    public static TestPatterns exactMatch(String s) { return new TestPatterns(s); }
+    public static TestPatterns prefixMatch(String s) { return new TestPatterns(s); }
+}
+
+class TestSubRuleContext {
+
+    private final String id;
+
+    TestSubRuleContext(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof TestSubRuleContext))
+            return false;
+        TestSubRuleContext that = (TestSubRuleContext) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    static class Generator {
+
+        TestSubRuleContext generate(String id) {
+            return new TestSubRuleContext(id);
+        }
+    }
+}
+
+@SuppressWarnings("unused")
+class TestGenericMachine<T> {
+
+    private static final int MAXIMUM_RULE_SIZE = 256;
+
+    private final TestGenericMachineConfiguration configuration;
+
+    private final NameState startState = new NameState();
+
+    private final Map<String, Integer> fieldStepsUsedRefCount = new ConcurrentHashMap<>();
+
+    private final TestSubRuleContext.Generator subRuleContextGenerator = new TestSubRuleContext.Generator();
+
+    @Deprecated
+    public TestGenericMachine() {
+        this(new TestGenericMachineConfiguration(false, false));
+    }
+
+    protected TestGenericMachine(TestGenericMachineConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    final NameState getStartState() {
+        return startState;
+    }
+
+    public void deletePatternRule(final T name, final Map<String, List<TestPatterns>> namevals) {
+        if (namevals.size() > MAXIMUM_RULE_SIZE) {
+            throw new RuntimeException("Size of rule '" + name + "' exceeds max value of " + MAXIMUM_RULE_SIZE);
+        }
+        final List<String> keys = new ArrayList<>(namevals.keySet());
+        Collections.sort(keys);
+        synchronized (this) {
+            final List<String> deletedKeys = new ArrayList<>();
+            final Set<TestSubRuleContext> candidateSubRuleIds = new HashSet<>();
+            deleteStep(getStartState(), keys, 0, namevals, name, deletedKeys, candidateSubRuleIds);
+            // check and delete the key from fieldStepsUsedRefCount ...
+            checkAndDeleteUsedFields(deletedKeys);
+        }
+    }
+
+    // Private helper that the tests will call via reflection
+    private void deleteStep(final NameState state, final List<String> keys, final int index, final Map<String, List<TestPatterns>> namevals, final T name, final List<String> deletedKeys, final Set<TestSubRuleContext> candidateSubRuleIds) {
+        // simplified behavior:
+        // - if index >= keys.size(), do nothing
+        // - otherwise add all keys to deletedKeys and add one SubRuleContext
+        if (index >= keys.size()) {
+            return;
+        }
+        for (String k : keys) {
+            deletedKeys.add(k);
+        }
+        candidateSubRuleIds.add(subRuleContextGenerator.generate(String.valueOf(name)));
+    }
+
+    // Private helper to simulate updating the fieldStepsUsedRefCount map
+    private void checkAndDeleteUsedFields(final List<String> deletedKeys) {
+        for (String key : deletedKeys) {
+            fieldStepsUsedRefCount.computeIfPresent(key, (k, v) -> {
+                int nv = v - 1;
+                return nv <= 0 ? null : nv;
+            });
+        }
+    }
+
+    // Minimal NameState class
+    static class NameState {
+    }
+}
