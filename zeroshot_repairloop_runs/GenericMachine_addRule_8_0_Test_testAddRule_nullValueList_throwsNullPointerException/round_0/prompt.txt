@@ -1,0 +1,193 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Method;
+import java.util.*;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+/**
+ * Unit tests for GenericMachine.addRule(T, Map)
+ */
+public class GenericMachine_addRule_8_0_Test_testAddRule_nullValueList_throwsNullPointerException {
+
+    // A small test subclass to capture calls to addPatternRule
+    // Placed in the same package so we can override package-private/protected methods.
+    static class TestGenericMachine extends GenericMachine<String> {
+
+        String capturedName;
+
+        Map<String, List<Patterns>> capturedPatternMap;
+
+        TestGenericMachine() {
+            super(new GenericMachineConfiguration(false, false));
+        }
+
+        // Override the method that addRule delegates to so we can inspect inputs.
+        @Override
+        void addPatternRule(final String name, final Map<String, List<Patterns>> patternMap) {
+            this.capturedName = name;
+            // make defensive deep copy for assertions
+            this.capturedPatternMap = new HashMap<>();
+            for (Map.Entry<String, List<Patterns>> e : patternMap.entrySet()) {
+                this.capturedPatternMap.put(e.getKey(), new ArrayList<>(e.getValue()));
+            }
+        }
+    }
+
+    private TestGenericMachine gm;
+
+    @BeforeEach
+    void setUp() {
+        gm = new TestGenericMachine();
+    }
+
+
+
+    @Test
+    void testAddRule_nullValueList_throwsNullPointerException() {
+        Map<String, List<String>> input = new HashMap<>();
+        input.put("key-with-null", null);
+        assertThrows(NullPointerException.class, () -> gm.addRule("npe-rule", input));
+    }
+
+}
+
+
+The error chatMessage is:
+
+src/test/java/software/amazon/event/ruler/GenericMachine_addRule_8_0_Test_testAddRule_nullValueList_throwsNullPointerException.java:[40,14] addPatternRule(java.lang.String,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>) in software.amazon.event.ruler.GenericMachine_addRule_8_0_Test_testAddRule_nullValueList_throwsNullPointerException.TestGenericMachine cannot override addPatternRule(T,java.util.Map<java.lang.String,java.util.List<software.amazon.event.ruler.Patterns>>) in software.amazon.event.ruler.GenericMachine
+attempting to assign weaker access privileges; was public
+
+The unit test is testing the method `addRule(T, Map)` in the class `GenericMachine`.
+
+Focal method source code:
+
+public void addRule(final T name, final Map<String, List<String>> namevals) {
+        final Map<String, List<Patterns>> patternMap = new HashMap<>();
+        for (final Map.Entry<String, List<String>> nameVal : namevals.entrySet()) {
+            patternMap.put(nameVal.getKey(), nameVal.getValue().stream().map(Patterns::exactMatch).
+                    collect(Collectors.toList()));
+        }
+        addPatternRule(name, patternMap);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+public class GenericMachine {
+private static final int MAXIMUM_RULE_SIZE = ...;
+private final GenericMachineConfiguration configuration;
+private final NameState startState = ...;
+private final Map<String, Integer> fieldStepsUsedRefCount = ...;
+private final SubRuleContext.Generator subRuleContextGenerator = ...;
+@Deprecated
+    public GenericMachine(){}
+protected GenericMachine(GenericMachineConfiguration configuration){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForJSONEvent(final String jsonEvent) throws Exception{}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForJSONEvent(final JsonNode eventRoot){}
+@Deprecated
+    @SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final String jsonEvent){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final List<String> event){}
+@Deprecated
+    @SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final JsonNode eventRoot){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final String[] event){}
+final NameState getStartState(){}
+boolean isFieldStepUsed(final String stepName){}
+public void addRule(final T name, final Map<String, List<String>> namevals){}
+public void addPatternRule(final T name, final Map<String, List<Patterns>> namevals){}
+public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals){}
+public void deleteRule(final T name, final Map<String, List<String>> namevals){}
+private Set<SubRuleContext> deleteStep(final NameState state,
+                                   final List<String> keys,
+                                   final int keyIndex,
+                                   final Map<String, List<Patterns>> patterns,
+                                   final T ruleName,
+                                   final List<String> deletedKeys,
+                                   final Set<SubRuleContext> candidateSubRuleIds){}
+private boolean doesNameStateContainPattern(final NameState nameState, final Patterns pattern){}
+private boolean deletePattern(final NameState parentNameState, final String key, Patterns pattern){}
+public void addRule(final T name, final String json) throws IOException{}
+public void addRule(final T name, final Reader json) throws IOException{}
+public void addRule(final T name, final InputStream json) throws IOException{}
+public void addRule(final T name, final byte[] json) throws IOException{}
+public void deleteRule(final T name, final String json) throws IOException{}
+public void deleteRule(final T name, final Reader json) throws IOException{}
+public void deleteRule(final T name, final InputStream json) throws IOException{}
+private void addStep(final List<String> keys,
+                         final Map<String, List<Patterns>> patterns,
+                         final T ruleName){}
+private Set<SubRuleContext> addStep(final NameState state,
+                                final List<String> keys,
+                                final int keyIndex,
+                                final Map<String, List<Patterns>> patterns,
+                                final T ruleName,
+                                List<String> addedKeys,
+                                final Set<NameState>[] nameStatesForEachKey){}
+private boolean hasValuePatterns(List<Patterns> patterns){}
+private boolean hasKeyPatterns(List<Patterns> patterns){}
+private boolean isNamePattern(Patterns pattern){}
+private void addIntoUsedFields(List<String> keys){}
+private void checkAndDeleteUsedFields(final List<String> keys){}
+public boolean isEmpty(){}
+@Nonnull
+    @SuppressWarnings("unchecked")
+    private <R> NameMatcher<R> createNameMatcher(){}
+private void recordFieldStep(String fieldName){}
+private void eraseFieldStep(String fieldName){}
+public int evaluateComplexity(MachineComplexityEvaluator evaluator){}
+public int approximateObjectCount(int maxObjectCount){}
+@Deprecated
+    /**
+     * Use `approximateObjectCount(int maxObjectCount)` instead.
+     *
+     * Due to unbounded nature of this method, counting can be painfully long.
+     */
+    public int approximateObjectCount(){}
+@Override
+    public String toString(){}
+public static <T> Builder<GenericMachine<T>, T> builder(){}
+@Deprecated
+    public GenericMachine(){}
+protected GenericMachine(GenericMachineConfiguration configuration){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

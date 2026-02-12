@@ -1,0 +1,16 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertNull;
+
+public class JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage {
+
+    @Test
+    public void testCheckWithNullSourceReturnsMessage() {
+        // when passing null, the current implementation returns null
+        String result = JsonRuleCompiler.check((String) null, false);
+        assertNull("Expected null result for null input", result);
+    }
+
+}

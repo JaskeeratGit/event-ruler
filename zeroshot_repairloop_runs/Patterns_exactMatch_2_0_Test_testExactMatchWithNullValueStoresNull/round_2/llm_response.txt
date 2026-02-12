@@ -1,0 +1,20 @@
+package software.amazon.event.ruler;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+public class Patterns_exactMatch_2_0_Test_testExactMatchWithNullValueStoresNull {
+
+    @Test
+    public void testExactMatchWithNullValueStoresNull() {
+        Patterns valuePatterns = Patterns.exactMatch(null);
+        assertNotNull("exactMatch should not return null even when passed null", valuePatterns);
+
+        // Patterns has a (deprecated) pattern() accessor; ValuePatterns is expected to extend Patterns.
+        String storedValue = valuePatterns.pattern();
+        assertNull("When passing null to exactMatch, the stored value should be null", storedValue);
+    }
+
+}

@@ -1,0 +1,70 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class GenericMachine_approximateObjectCount_35_0_Test_approximateObjectCount_respectsMaxAndCountsObjects {
+
+    /**
+     * A Test helper that overrides NameState.gatherObjects to controllably add objects.
+     *
+     * Note: This class relies on the (observed) signature:
+     *   void gatherObjects(Set<Object> objectSet, int maxObjectCount)
+     * in the real NameState class.
+     */
+    static class CountingNameState extends NameState {
+
+        private final int toAdd;
+
+        private final boolean respectMax;
+
+        CountingNameState(int toAdd, boolean respectMax) {
+            this.toAdd = toAdd;
+            this.respectMax = respectMax;
+        }
+
+        @Override
+        public void gatherObjects(Set<Object> objectSet, int maxObjectCount) {
+            // If respectMax is true, stop at maxObjectCount.
+            int limit = respectMax ? Math.min(toAdd, maxObjectCount) : toAdd;
+            for (int i = 0; i < limit; i++) {
+                // Use distinct objects to ensure set size increments.
+                objectSet.add(new StringBuilder("obj-" + i).toString());
+            }
+        }
+    }
+
+    // Helper to replace the private final startState field via reflection
+    private static void replaceStartState(GenericMachine machine, NameState replacement) throws Exception {
+        Field startField = GenericMachine.class.getDeclaredField("startState");
+        startField.setAccessible(true);
+        // Attempt to clear the FINAL modifier so we can set the field (works on many JDKs).
+        try {
+            Field modifiersField = Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(startField, startField.getModifiers() & ~Modifier.FINAL);
+        } catch (NoSuchFieldException ignored) {
+            // On some JVMs the 'modifiers' field is not present or not writable; proceed anyway.
+        }
+        startField.set(machine, replacement);
+    }
+
+    @Test
+    void approximateObjectCount_respectsMaxAndCountsObjects() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that will add 5 objects and respects max
+        replaceStartState(machine, new CountingNameState(5, true));
+        // act & assert
+        int counted = machine.approximateObjectCount(3);
+        assertEquals(3, counted, "Should return min(actualObjects, maxObjectCount)");
+        // a larger max should return full count (5)
+        int fullCount = machine.approximateObjectCount(10);
+        assertEquals(5, fullCount, "Should return actual object count when max is large enough");
+    }
+
+}

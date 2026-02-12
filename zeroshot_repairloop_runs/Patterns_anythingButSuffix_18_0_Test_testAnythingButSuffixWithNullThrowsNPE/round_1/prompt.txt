@@ -1,0 +1,148 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.function.Executable;
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.stream.Collectors;
+
+public class Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE {
+
+
+
+    @Test
+    public void testAnythingButSuffixWithNullThrowsNPE() {
+        Executable call = () -> Patterns.anythingButSuffix((Set<String>) null);
+        assertThrows(NullPointerException.class, call, "Passing null should throw NullPointerException");
+    }
+
+    /**
+     * Finds the first declared field in the given object's class that is assignable to the given type.
+     */
+    private static Field findFieldByType(Object obj, Class<?> type) {
+        Class<?> cls = obj.getClass();
+        for (Field f : cls.getDeclaredFields()) {
+            if (type.isAssignableFrom(f.getType())) {
+                f.setAccessible(true);
+                return f;
+            }
+        }
+        // If not found directly on the class, check superclasses
+        Class<?> superCls = cls.getSuperclass();
+        while (superCls != null && superCls != Object.class) {
+            for (Field f : superCls.getDeclaredFields()) {
+                if (type.isAssignableFrom(f.getType())) {
+                    f.setAccessible(true);
+                    return f;
+                }
+            }
+            superCls = superCls.getSuperclass();
+        }
+        return null;
+    }
+}
+
+The error chatMessage is:
+
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:13:8: Unused import - org.junit.jupiter.api.extension.ExtendWith. [UnusedImports]
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:14:8: Unused import - org.mockito.junit.jupiter.MockitoExtension. [UnusedImports]
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:15:8: Unused import - java.util.stream.Collectors. [UnusedImports]
+Audit done.
+[INFO] There are 10 errors reported by Checkstyle 9.3 with /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/config/checkstyle/checkstyle.xml ruleset.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[5,8] (imports) UnusedImports: Unused import - java.util.Arrays.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[6,8] (imports) UnusedImports: Unused import - java.util.Collections.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[7,8] (imports) UnusedImports: Unused import - java.util.HashSet.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[9,19] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.*.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[10,29] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[11,34] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.Mockito.*.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[12,47] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[13,8] (imports) UnusedImports: Unused import - org.junit.jupiter.api.extension.ExtendWith.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[14,8] (imports) UnusedImports: Unused import - org.mockito.junit.jupiter.MockitoExtension.
+[ERROR] srcPatterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[15,8] (imports) UnusedImports: Unused import - java.util.stream.Collectors.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.605 s
+[INFO] Finished at: 2026-01-16T13:29:32-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check (validate) on project event-ruler: You have 10 Checkstyle violations. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+The unit test is testing the method `anythingButSuffix(Set)` in the class `Patterns`.
+
+Focal method source code:
+
+public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs) {
+        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_SUFFIX,
+                anythingButs.stream().map(s -> new StringBuilder(s).reverse().toString()).collect(Collectors.toSet()));
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+public class Patterns {
+public static final String EXISTS_BYTE_STRING = ...;
+private final MatchType type;
+Patterns(final MatchType type){}
+@Deprecated
+    public String pattern(){}
+public MatchType type(){}
+public static ValuePatterns exactMatch(final String value){}
+public static ValuePatterns prefixMatch(final String prefix){}
+public static ValuePatterns prefixEqualsIgnoreCaseMatch(final String prefix){}
+public static ValuePatterns suffixMatch(final String suffix){}
+public static ValuePatterns suffixEqualsIgnoreCaseMatch(final String suffix){}
+public static AnythingBut anythingButMatch(final String anythingBut){}
+@Deprecated
+    public static AnythingBut anythingButMatch(final double anythingBut){}
+public static AnythingBut anythingButNumberMatch(final String anythingBut){}
+public static AnythingBut anythingButMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final String anythingBut){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs){}
+@Deprecated
+    public static AnythingBut anythingButNumberMatch(final Set<Double> anythingButs){}
+public static AnythingBut anythingButNumbersMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButPrefix(final String prefix){}
+public static AnythingButValuesSet anythingButPrefix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButSuffix(final String suffix){}
+public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButWildcard(final String value){}
+public static AnythingButValuesSet anythingButWildcard(final Set<String> anythingButs){}
+@Deprecated
+    public static ValuePatterns numericEquals(final double val){}
+public static ValuePatterns numericEquals(final String val){}
+public static Patterns existencePatterns(){}
+public static Patterns absencePatterns(){}
+public static ValuePatterns equalsIgnoreCaseMatch(final String value){}
+public static ValuePatterns wildcardMatch(final String value){}
+@Override
+    public Object clone(){}
+@Override
+    public boolean equals(Object o){}
+@Override
+    public int hashCode(){}
+@Override
+    public String toString(){}
+Patterns(final MatchType type){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

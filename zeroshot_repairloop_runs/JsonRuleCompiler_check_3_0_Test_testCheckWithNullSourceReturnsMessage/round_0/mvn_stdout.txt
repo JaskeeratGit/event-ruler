@@ -1,0 +1,73 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------< [0;36msoftware.amazon.event.ruler:event-ruler[0;1m >---------------[m
+[[1;34mINFO[m] [1mBuilding Event Ruler 1.8.2[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-checkstyle-plugin:3.6.0:check[m [1m(validate)[m @ [36mevent-ruler[0;1m ---[m
+[[1;34mINFO[m] Starting audit...
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:3:8: Unused import - java.lang.reflect.Constructor. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:4:1: Redundant import from the same package - software.amazon.event.ruler.JsonRuleCompiler. [RedundantImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:5:19: Using the '.*' form of import should be avoided - org.mockito.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:6:29: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:7:34: Using the '.*' form of import should be avoided - org.mockito.Mockito.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:8:47: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*. [AvoidStarImport]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:9:8: Unused import - org.junit.jupiter.api.extension.ExtendWith. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:10:8: Unused import - org.mockito.junit.jupiter.MockitoExtension. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:11:8: Unused import - com.fasterxml.jackson.core.JsonFactory. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:12:8: Unused import - com.fasterxml.jackson.core.JsonParseException. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:13:8: Unused import - com.fasterxml.jackson.core.JsonParser. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:14:8: Unused import - com.fasterxml.jackson.core.JsonToken. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:15:8: Unused import - com.fasterxml.jackson.core.StreamReadFeature. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:16:8: Unused import - software.amazon.event.ruler.input.ParseException. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:17:8: Unused import - java.io.IOException. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:18:8: Unused import - java.io.InputStream. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:19:8: Unused import - java.io.Reader. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:20:8: Unused import - java.util.ArrayList. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:21:8: Unused import - java.util.HashMap. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:22:8: Unused import - java.util.HashSet. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:23:8: Unused import - java.util.List. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:24:8: Unused import - java.util.Map. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:25:8: Unused import - java.util.Set. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:26:8: Unused import - java.util.stream.Collectors. [UnusedImports]
+[ERROR] /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:27:15: Unused import - software.amazon.event.ruler.input.DefaultParser.getParser. [UnusedImports]
+Audit done.
+[[1;34mINFO[m] There are 25 errors reported by Checkstyle 9.3 with /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/config/checkstyle/checkstyle.xml ruleset.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[3,8] (imports) UnusedImports: Unused import - java.lang.reflect.Constructor.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[4,1] (imports) RedundantImport: Redundant import from the same package - software.amazon.event.ruler.JsonRuleCompiler.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[5,19] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[6,29] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[7,34] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.Mockito.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[8,47] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[9,8] (imports) UnusedImports: Unused import - org.junit.jupiter.api.extension.ExtendWith.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[10,8] (imports) UnusedImports: Unused import - org.mockito.junit.jupiter.MockitoExtension.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[11,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonFactory.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[12,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonParseException.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[13,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonParser.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[14,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonToken.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[15,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.StreamReadFeature.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[16,8] (imports) UnusedImports: Unused import - software.amazon.event.ruler.input.ParseException.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[17,8] (imports) UnusedImports: Unused import - java.io.IOException.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[18,8] (imports) UnusedImports: Unused import - java.io.InputStream.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[19,8] (imports) UnusedImports: Unused import - java.io.Reader.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[20,8] (imports) UnusedImports: Unused import - java.util.ArrayList.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[21,8] (imports) UnusedImports: Unused import - java.util.HashMap.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[22,8] (imports) UnusedImports: Unused import - java.util.HashSet.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[23,8] (imports) UnusedImports: Unused import - java.util.List.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[24,8] (imports) UnusedImports: Unused import - java.util.Map.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[25,8] (imports) UnusedImports: Unused import - java.util.Set.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[26,8] (imports) UnusedImports: Unused import - java.util.stream.Collectors.
+[[1;31mERROR[m] src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[27,15] (imports) UnusedImports: Unused import - software.amazon.event.ruler.input.DefaultParser.getParser.
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  0.630 s
+[[1;34mINFO[m] Finished at: 2026-01-16T13:22:32-07:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check[m [1m(validate)[m on project [36mevent-ruler[m: [1;31mYou have 25 Checkstyle violations.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

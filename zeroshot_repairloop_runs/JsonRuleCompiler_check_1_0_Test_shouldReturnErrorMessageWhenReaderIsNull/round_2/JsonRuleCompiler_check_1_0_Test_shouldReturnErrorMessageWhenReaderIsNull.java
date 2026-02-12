@@ -1,0 +1,17 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+import java.io.Reader;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+class JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage {
+
+    @Test
+    void testCheckWithNullSourceReturnsMessage() {
+        // Passing null should be caught and an error message returned (non-null).
+        String result = JsonRuleCompiler.check((Reader) null);
+        assertNotNull(result, "Expected a non-null error message when Reader is null");
+        assertFalse(result.isEmpty(), "Error message should not be empty");
+    }
+}

@@ -1,0 +1,106 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package software.amazon.event.ruler.input;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+class InputMultiByteSet_toString_5_0_Test_testToStringWithImmutableInputAndUnmodifiableView {
+
+    @Test
+    void testToStringWithImmutableInputAndUnmodifiableView() throws Exception {
+        // Create a MultiByte mock whose toString matches the original test's expectation
+        MultiByte mb = mock(MultiByte.class);
+        when(mb.toString()).thenReturn("singleton");
+
+        Set<MultiByte> original = Collections.singleton(mb);
+        InputMultiByteSet instance = instantiateWithSet(original);
+
+        // toString should match the original set's toString
+        assertEquals(original.toString(), instance.toString());
+
+        // getMultiBytes() should return an unmodifiable view; attempting to modify it throws
+        Method getMultiBytes = InputMultiByteSet.class.getDeclaredMethod("getMultiBytes");
+        @SuppressWarnings("unchecked")
+        Set<MultiByte> returnedSet = (Set<MultiByte>) getMultiBytes.invoke(instance);
+        assertThrows(UnsupportedOperationException.class, () -> returnedSet.add(mock(MultiByte.class)));
+    }
+
+    // Helper to instantiate InputMultiByteSet via reflection (constructor is package-private)
+    private static InputMultiByteSet instantiateWithSet(Set<?> s) throws Exception {
+        Constructor<InputMultiByteSet> ctor = InputMultiByteSet.class.getDeclaredConstructor(Set.class);
+        ctor.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        InputMultiByteSet instance = ctor.newInstance((Set) s);
+        return instance;
+    }
+}
+
+The error chatMessage is:
+
+[ERROR] JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:25:8: Unused import - java.util.Set. [UnusedImports]
+[ERROR] JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:26:8: Unused import - java.util.stream.Collectors. [UnusedImports]
+[ERROR] JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:27:15: Unused import - software.amazon.event.ruler.input.DefaultParser.getParser. [UnusedImports]
+Audit done.
+[INFO] There are 25 errors reported by Checkstyle 9.3 with /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/config/checkstyle/checkstyle.xml ruleset.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[3,8] (imports) UnusedImports: Unused import - java.lang.reflect.Constructor.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[4,1] (imports) RedundantImport: Redundant import from the same package - software.amazon.event.ruler.JsonRuleCompiler.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[5,19] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.*.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[6,29] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[7,34] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.Mockito.*.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[8,47] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[9,8] (imports) UnusedImports: Unused import - org.junit.jupiter.api.extension.ExtendWith.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[10,8] (imports) UnusedImports: Unused import - org.mockito.junit.jupiter.MockitoExtension.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[11,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonFactory.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[12,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonParseException.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[13,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonParser.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[14,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonToken.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[15,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.StreamReadFeature.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[16,8] (imports) UnusedImports: Unused import - software.amazon.event.ruler.input.ParseException.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[17,8] (imports) UnusedImports: Unused import - java.io.IOException.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[18,8] (imports) UnusedImports: Unused import - java.io.InputStream.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[19,8] (imports) UnusedImports: Unused import - java.io.Reader.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[20,8] (imports) UnusedImports: Unused import - java.util.ArrayList.
+[ERROR] srcJsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:[21,8] (imports) UnusedImports: Unused import - java.util.HashMap.
+[ERROR] srcJsonRuleCom
+
+The unit test is testing the method `toString()` in the class `InputMultiByteSet`.
+
+Focal method source code:
+
+@Override
+    public String toString() {
+        return getMultiBytes().toString();
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
+import static software.amazon.event.ruler.input.InputCharacterType.MULTI_BYTE_SET;
+public class InputMultiByteSet {
+private final Set<MultiByte> multiBytes;
+InputMultiByteSet(Set<MultiByte> multiBytes){}
+public static InputMultiByteSet cast(InputCharacter character){}
+public Set<MultiByte> getMultiBytes(){}
+@Override
+    public InputCharacterType getType(){}
+@Override
+    public boolean equals(Object o){}
+@Override
+    public int hashCode(){}
+@Override
+    public String toString(){}
+InputMultiByteSet(Set<MultiByte> multiBytes){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

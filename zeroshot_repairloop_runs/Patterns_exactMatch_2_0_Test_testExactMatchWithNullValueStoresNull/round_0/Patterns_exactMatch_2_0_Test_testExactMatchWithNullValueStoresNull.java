@@ -1,0 +1,19 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class Patterns_exactMatch_2_0_Test_testExactMatchWithNullValueStoresNull {
+
+    @Test
+    public void testExactMatchWithNullValueStoresNull() {
+        Patterns valuePatterns = Patterns.exactMatch(null);
+        assertNotNull(valuePatterns, "exactMatch should not return null even when passed null");
+
+        // Patterns has a (deprecated) pattern() accessor; ValuePatterns is expected to extend Patterns.
+        String storedValue = valuePatterns.pattern();
+        assertNull(storedValue, "When passing null to exactMatch, the stored value should be null");
+    }
+
+}

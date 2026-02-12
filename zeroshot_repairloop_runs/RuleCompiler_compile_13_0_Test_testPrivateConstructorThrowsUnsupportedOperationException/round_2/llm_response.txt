@@ -1,0 +1,21 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates {
+
+    @Test
+    public void compile_byteArray_delegatesToTwoArgOverload() throws Exception {
+        byte[] source = "{}".getBytes("UTF-8");
+
+        JsonParseException e1 = assertThrows(JsonParseException.class, () -> RuleCompiler.compile(source, true));
+        JsonParseException e2 = assertThrows(JsonParseException.class, () -> RuleCompiler.compile(source));
+
+        assertEquals(e1.getClass(), e2.getClass());
+        assertEquals(e1.getMessage(), e2.getMessage());
+    }
+}

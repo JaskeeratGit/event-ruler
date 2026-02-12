@@ -1,0 +1,67 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for GenericMachine.addRule(T, Map)
+ */
+public class GenericMachine_addRule_8_0_Test_test_getStartState_viaReflection_isAccessibleAndNotNull {
+
+    // A small test subclass to capture calls to addPatternRule
+    // Placed in the same package so we can override package-private/protected methods.
+    static class TestGenericMachine extends GenericMachine<String> {
+
+        String capturedName;
+
+        Map<String, List<Patterns>> capturedPatternMap;
+
+        TestGenericMachine() {
+            super(new GenericMachineConfiguration(false, false));
+        }
+
+        // Override the method that addRule delegates to so we can inspect inputs.
+        @Override
+        public void addPatternRule(final String name, final Map<String, List<Patterns>> patternMap) {
+            this.capturedName = name;
+            // make defensive deep copy for assertions
+            this.capturedPatternMap = new HashMap<>();
+            for (Map.Entry<String, List<Patterns>> e : patternMap.entrySet()) {
+                this.capturedPatternMap.put(e.getKey(), new ArrayList<>(e.getValue()));
+            }
+        }
+    }
+
+    private TestGenericMachine gm;
+
+    @BeforeEach
+    void setUp() {
+        gm = new TestGenericMachine();
+    }
+
+    @Test
+    void test_getStartState_isAccessibleAndNotNull() throws Exception {
+        // Use reflection to access getStartState in case it's not public.
+        Method m = GenericMachine.class.getDeclaredMethod("getStartState");
+        m.setAccessible(true);
+        Object startState = m.invoke(gm);
+        assertNotNull(startState);
+
+        // Avoid compile-time reference to NameState (it may be a nested/non-public type).
+        Class<?> nameStateClazz = null;
+        for (Class<?> c : GenericMachine.class.getDeclaredClasses()) {
+            if ("NameState".equals(c.getSimpleName())) {
+                nameStateClazz = c;
+                break;
+            }
+        }
+        assertNotNull(nameStateClazz, "Could not find nested class NameState on GenericMachine");
+        assertEquals(nameStateClazz, startState.getClass());
+    }
+}

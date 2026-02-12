@@ -1,0 +1,42 @@
+package software.amazon.event.ruler.input;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+class InputMultiByteSet_toString_5_0_Test_testToStringWithImmutableInputAndUnmodifiableView {
+
+    @Test
+    void testToStringWithImmutableInputAndUnmodifiableView() throws Exception {
+        // Create a MultiByte mock whose toString matches the original test's expectation
+        MultiByte mb = mock(MultiByte.class);
+        when(mb.toString()).thenReturn("singleton");
+
+        Set<MultiByte> original = Collections.singleton(mb);
+        InputMultiByteSet instance = instantiateWithSet(original);
+
+        // toString should match the original set's toString
+        assertEquals(original.toString(), instance.toString());
+
+        // getMultiBytes() should return an unmodifiable view; attempting to modify it throws
+        Method getMultiBytes = InputMultiByteSet.class.getDeclaredMethod("getMultiBytes");
+        @SuppressWarnings("unchecked")
+        Set<MultiByte> returnedSet = (Set<MultiByte>) getMultiBytes.invoke(instance);
+        assertThrows(UnsupportedOperationException.class, () -> returnedSet.add(mock(MultiByte.class)));
+    }
+
+    // Helper to instantiate InputMultiByteSet via reflection (constructor is package-private)
+    private static InputMultiByteSet instantiateWithSet(Set<?> s) throws Exception {
+        Constructor<InputMultiByteSet> ctor = InputMultiByteSet.class.getDeclaredConstructor(Set.class);
+        ctor.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        InputMultiByteSet instance = ctor.newInstance((Set) s);
+        return instance;
+    }
+}

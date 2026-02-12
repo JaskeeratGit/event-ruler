@@ -1,0 +1,143 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE {
+
+    @Test
+    public void testAnythingButSuffixWithNullThrowsNPE() {
+        assertThrows(NullPointerException.class,
+                () -> Patterns.anythingButSuffix((Set<String>) null),
+                "Passing null should throw NullPointerException");
+    }
+
+    /**
+     * Finds the first declared field in the given object's class that is assignable to the given type.
+     */
+    private static Field findFieldByType(Object obj, Class<?> type) {
+        Class<?> cls = obj.getClass();
+        for (Field f : cls.getDeclaredFields()) {
+            if (type.isAssignableFrom(f.getType())) {
+                f.setAccessible(true);
+                return f;
+            }
+        }
+        // If not found directly on the class, check superclasses
+        Class<?> superCls = cls.getSuperclass();
+        while (superCls != null && superCls != Object.class) {
+            for (Field f : superCls.getDeclaredFields()) {
+                if (type.isAssignableFrom(f.getType())) {
+                    f.setAccessible(true);
+                    return f;
+                }
+            }
+            superCls = superCls.getSuperclass();
+        }
+        return null;
+    }
+}
+
+The error chatMessage is:
+
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 45 source files with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[5,29] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[6,36] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[6,1] static import only from classes and interfaces
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[10,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE
+[INFO] 4 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.466 s
+[INFO] Finished at: 2026-01-16T13:30:12-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project event-ruler: Compilation failure: Compilation failure: 
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[5,29] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[6,36] package org.junit.jupiter.api does not exist
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[6,1] static import only from classes and interfaces
+[ERROR] Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE.java:[10,6] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class software.amazon.event.ruler.Patterns_anythingButSuffix_18_0_Test_testAnythingButSuffixWithNullThrowsNPE
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+The unit test is testing the method `anythingButSuffix(Set)` in the class `Patterns`.
+
+Focal method source code:
+
+public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs) {
+        return new AnythingButValuesSet(MatchType.ANYTHING_BUT_SUFFIX,
+                anythingButs.stream().map(s -> new StringBuilder(s).reverse().toString()).collect(Collectors.toSet()));
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+public class Patterns {
+public static final String EXISTS_BYTE_STRING = ...;
+private final MatchType type;
+Patterns(final MatchType type){}
+@Deprecated
+    public String pattern(){}
+public MatchType type(){}
+public static ValuePatterns exactMatch(final String value){}
+public static ValuePatterns prefixMatch(final String prefix){}
+public static ValuePatterns prefixEqualsIgnoreCaseMatch(final String prefix){}
+public static ValuePatterns suffixMatch(final String suffix){}
+public static ValuePatterns suffixEqualsIgnoreCaseMatch(final String suffix){}
+public static AnythingBut anythingButMatch(final String anythingBut){}
+@Deprecated
+    public static AnythingBut anythingButMatch(final double anythingBut){}
+public static AnythingBut anythingButNumberMatch(final String anythingBut){}
+public static AnythingBut anythingButMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final String anythingBut){}
+public static AnythingButValuesSet anythingButIgnoreCaseMatch(final Set<String> anythingButs){}
+@Deprecated
+    public static AnythingBut anythingButNumberMatch(final Set<Double> anythingButs){}
+public static AnythingBut anythingButNumbersMatch(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButPrefix(final String prefix){}
+public static AnythingButValuesSet anythingButPrefix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButSuffix(final String suffix){}
+public static AnythingButValuesSet anythingButSuffix(final Set<String> anythingButs){}
+public static AnythingButValuesSet anythingButWildcard(final String value){}
+public static AnythingButValuesSet anythingButWildcard(final Set<String> anythingButs){}
+@Deprecated
+    public static ValuePatterns numericEquals(final double val){}
+public static ValuePatterns numericEquals(final String val){}
+public static Patterns existencePatterns(){}
+public static Patterns absencePatterns(){}
+public static ValuePatterns equalsIgnoreCaseMatch(final String value){}
+public static ValuePatterns wildcardMatch(final String value){}
+@Override
+    public Object clone(){}
+@Override
+    public boolean equals(Object o){}
+@Override
+    public int hashCode(){}
+@Override
+    public String toString(){}
+Patterns(final MatchType type){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

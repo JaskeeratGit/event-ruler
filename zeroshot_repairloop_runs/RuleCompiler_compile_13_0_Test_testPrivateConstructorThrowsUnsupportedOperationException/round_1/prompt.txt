@@ -1,0 +1,138 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates {
+
+    @Test
+    public void compile_byteArray_delegatesToTwoArgOverload() throws Exception {
+        byte[] source = "{}".getBytes("UTF-8");
+        Map<String, List<Patterns>> expected = RuleCompiler.compile(source, true);
+        Map<String, List<Patterns>> actual = RuleCompiler.compile(source);
+        assertEquals(expected, actual);
+    }
+}
+
+The error chatMessage is:
+
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 45 source files with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[3,29] package org.junit.jupiter.api does not exist
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[8,36] package org.junit.jupiter.api does not exist
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[8,1] static import only from classes and interfaces
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[12,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates
+[INFO] 4 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.655 s
+[INFO] Finished at: 2026-01-16T13:46:42-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project event-ruler: Compilation failure: Compilation failure: 
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[3,29] package org.junit.jupiter.api does not exist
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[8,36] package org.junit.jupiter.api does not exist
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[8,1] static import only from classes and interfaces
+[ERROR] RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates.java:[12,6] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class software.amazon.event.ruler.RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+The unit test is testing the method `compile(byte[])` in the class `RuleCompiler`.
+
+Focal method source code:
+
+public static Map<String, List<Patterns>> compile(final byte[] source) throws IOException {
+        return compile(source, true);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+public final class RuleCompiler {
+private static final JsonFactory JSON_FACTORY = ...;
+private RuleCompiler(){}
+public static String check(final Reader source, final boolean withOverriding){}
+public static String check(final Reader source){}
+public static String check(final String source, final boolean withOverriding){}
+public static String check(final String source){}
+public static String check(final byte[] source, final boolean withOverriding){}
+public static String check(final byte[] source){}
+public static String check(final InputStream source, final boolean withOverriding){}
+public static String check(final InputStream source){}
+public static Map<String, List<Patterns>> compile(final Reader source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final Reader source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final String source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final String source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final byte[] source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final byte[] source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final InputStream source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final InputStream source) throws IOException{}
+private static Map<String, List<Patterns>> doCompile(final JsonParser parser, final boolean withOverriding) throws IOException{}
+private static void parseObject(final Map<String, List<Patterns>> rule,
+                                    final Path path,
+                                    final JsonParser parser,
+                                    final boolean withQuotes,
+                                    final boolean withOverriding) throws IOException{}
+private static void writeRules(final Map<String, List<Patterns>> rule,
+                                   final String name,
+                                   final JsonParser parser,
+                                   final boolean withQuotes,
+                                   final boolean withOverriding) throws IOException{}
+private static Patterns processMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButEqualsIgnoreCaseListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processAnythingButEqualsIgnoreCaseMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns completeNumericRange(final JsonParser parser,
+                                                 final JsonToken token,
+                                                 final String bottom,
+                                                 final boolean openBottom) throws IOException{}
+private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}
+private static void tooManyElements(final JsonParser parser) throws JsonParseException{}
+private static void barf(final JsonParser parser, final String message) throws JsonParseException{}
+private RuleCompiler(){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

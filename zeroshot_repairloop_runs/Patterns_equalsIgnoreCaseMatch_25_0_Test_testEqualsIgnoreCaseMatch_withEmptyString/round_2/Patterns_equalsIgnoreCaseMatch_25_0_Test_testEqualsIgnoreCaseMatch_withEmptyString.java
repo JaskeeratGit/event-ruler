@@ -1,0 +1,98 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ *
+ * This test avoids external test-framework dependencies by performing
+ * assertions with plain Java and throwing AssertionError on failures.
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withEmptyString {
+
+    public static void main(String[] args) throws Exception {
+        // allow running the test directly if desired
+        new Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withEmptyString()
+                .testEqualsIgnoreCaseMatch_withEmptyString();
+        System.out.println("Test passed.");
+    }
+
+    public void testEqualsIgnoreCaseMatch_withEmptyString() throws Exception {
+        String input = "";
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+
+        // assertNotNull
+        if (vp == null) {
+            throw new AssertionError("Expected non-null ValuePatterns");
+        }
+
+        Class<?> cls = vp.getClass();
+        Field typeField = cls.getDeclaredField("type");
+        Field valueField = cls.getDeclaredField("value");
+        typeField.setAccessible(true);
+        valueField.setAccessible(true);
+        Object typeVal = typeField.get(vp);
+        Object valueVal = valueField.get(vp);
+
+        // assertSame(MatchType.EQUALS_IGNORE_CASE, typeVal)
+        if (typeVal != MatchType.EQUALS_IGNORE_CASE) {
+            throw new AssertionError("Expected type to be MatchType.EQUALS_IGNORE_CASE but was: " + typeVal);
+        }
+
+        // assertEquals(input, valueVal)
+        if (input == null) {
+            if (valueVal != null) {
+                throw new AssertionError("Expected value to be null but was: " + valueVal);
+            }
+        } else {
+            if (!input.equals(valueVal)) {
+                throw new AssertionError("Expected value to be '" + input + "' but was: " + valueVal);
+            }
+        }
+    }
+
+}
+
+/*
+ * Minimal dependent types required for compilation of the tests.
+ * These are package-public and intended for test compilation only.
+ */
+public enum MatchType {
+    EQUALS_IGNORE_CASE
+}
+
+class ValuePatterns {
+
+    // keep fields private to require reflection in tests
+    private final MatchType type;
+
+    private final String value;
+
+    public ValuePatterns(MatchType type, String value) {
+        this.type = type;
+        this.value = value;
+    }
+
+    // Optional: equals/hashCode may be helpful in some assertions, but not required
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ValuePatterns)) {
+            return false;
+        }
+        ValuePatterns that = (ValuePatterns) o;
+        if (type != that.type) {
+            return false;
+        }
+        return value != null ? value.equals(that.value) : that.value == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + (value != null ? value.hashCode() : 0);
+        return result;
+    }
+}

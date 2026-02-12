@@ -1,0 +1,18 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class RuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsEmptyMap {
+
+    @Test
+    public void testCompileWithEmptyObjectReturnsEmptyMap() throws Exception {
+        Map<String, List<Patterns>> result = RuleCompiler.compile("{}", false);
+        assertNotNull(result, "Result map should not be null");
+        assertTrue(result.isEmpty(), "Result map should be empty for empty JSON object");
+    }
+
+}

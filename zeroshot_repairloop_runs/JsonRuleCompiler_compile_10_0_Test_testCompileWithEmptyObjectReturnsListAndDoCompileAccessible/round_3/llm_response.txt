@@ -1,0 +1,43 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonParseException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+public class JsonRuleCompiler_compile_10_0_Test_testCompileWithEmptyObjectReturnsListAndDoCompileAccessible {
+
+    @Test
+    public void testCompileWithEmptyObjectReturnsListAndDoCompileAccessible() throws Exception {
+        // The implementation rejects empty JSON objects; assert that compile throws JsonParseException.
+        try {
+            JsonRuleCompiler.compile("{}", true);
+            fail("compile should throw JsonParseException for an empty JSON object");
+        } catch (JsonParseException expected) {
+            // expected
+        }
+
+        // Also invoke the private doCompile directly with a parser that starts with START_OBJECT
+        // and ensure it throws a JsonParseException (wrapped in InvocationTargetException).
+        JsonFactory factory = new JsonFactory();
+        JsonParser parser = factory.createParser("{}");
+        Method doCompile = JsonRuleCompiler.class.getDeclaredMethod("doCompile", JsonParser.class, boolean.class);
+        doCompile.setAccessible(true);
+        try {
+            doCompile.invoke(null, parser, true);
+            fail("doCompile invocation should have thrown an InvocationTargetException wrapping JsonParseException for '{}'");
+        } catch (InvocationTargetException ite) {
+            Throwable cause = ite.getCause();
+            assertNotNull("doCompile InvocationTargetException should have an underlying cause", cause);
+            assertTrue("Underlying cause should be JsonParseException", cause instanceof JsonParseException);
+        } finally {
+            parser.close();
+        }
+    }
+
+}

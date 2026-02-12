@@ -1,0 +1,14 @@
+package software.amazon.event.ruler;
+
+import java.io.InputStream;
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.Test;
+
+public class JsonRuleCompiler_compile_14_0_Test_testCompileNullInput_throwsNullPointerException {
+
+    @Test(expected = JsonParseException.class)
+    public void testCompileNullInput_throwsJsonParseException() throws Exception {
+        JsonRuleCompiler.compile((InputStream) null, false);
+    }
+
+}

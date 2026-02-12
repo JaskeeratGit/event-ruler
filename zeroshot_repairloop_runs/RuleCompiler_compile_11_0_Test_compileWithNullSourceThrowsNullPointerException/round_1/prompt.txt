@@ -1,0 +1,147 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+
+public class RuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException {
+
+    @Test
+    void compileWithNullSourceThrowsNullPointerException() {
+        // Ensure we call the String overload explicitly to avoid ambiguity between overloads.
+        assertThrows(NullPointerException.class, () -> RuleCompiler.compile((String) null));
+    }
+}
+
+The error chatMessage is:
+
+[ERROR] RuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:26:8: Unused import - java.util.Map. [UnusedImports]
+[ERROR] RuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:27:8: Unused import - java.util.Set. [UnusedImports]
+[ERROR] RuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:28:15: Unused import - software.amazon.event.ruler.input.DefaultParser.getParser. [UnusedImports]
+Audit done.
+[INFO] There are 26 errors reported by Checkstyle 9.3 with /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/config/checkstyle/checkstyle.xml ruleset.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[3,8] (imports) UnusedImports: Unused import - java.io.IOException.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[4,8] (imports) UnusedImports: Unused import - java.lang.reflect.Constructor.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[5,8] (imports) UnusedImports: Unused import - java.lang.reflect.InvocationTargetException.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[6,19] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.*.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[7,29] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.*.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[8,34] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.mockito.Mockito.*.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[9,47] (imports) AvoidStarImport: Using the '.*' form of import should be avoided - org.junit.jupiter.api.Assertions.*.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[10,8] (imports) UnusedImports: Unused import - org.junit.jupiter.api.extension.ExtendWith.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[11,8] (imports) UnusedImports: Unused import - org.mockito.junit.jupiter.MockitoExtension.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[12,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonFactory.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[13,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonParseException.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[14,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonParser.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[15,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.JsonToken.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[16,8] (imports) UnusedImports: Unused import - com.fasterxml.jackson.core.StreamReadFeature.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[17,8] (imports) UnusedImports: Unused import - software.amazon.event.ruler.input.ParseException.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[18,8] (imports) UnusedImports: Unused import - java.io.InputStream.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[19,8] (imports) UnusedImports: Unused import - java.io.Reader.
+[ERROR] srcRuleCompiler_compile_11_0_Test_compileWithNullSourceThrowsNullPointerException.java:[20,8] (imports) UnusedImports: Unused import - java.util.ArrayDeque.
+[ERROR] srcRuleCompiler_com
+
+The unit test is testing the method `compile(String)` in the class `RuleCompiler`.
+
+Focal method source code:
+
+public static Map<String, List<Patterns>> compile(final String source) throws IOException {
+        return compile(source, true);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+public final class RuleCompiler {
+private static final JsonFactory JSON_FACTORY = ...;
+private RuleCompiler(){}
+public static String check(final Reader source, final boolean withOverriding){}
+public static String check(final Reader source){}
+public static String check(final String source, final boolean withOverriding){}
+public static String check(final String source){}
+public static String check(final byte[] source, final boolean withOverriding){}
+public static String check(final byte[] source){}
+public static String check(final InputStream source, final boolean withOverriding){}
+public static String check(final InputStream source){}
+public static Map<String, List<Patterns>> compile(final Reader source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final Reader source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final String source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final String source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final byte[] source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final byte[] source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final InputStream source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final InputStream source) throws IOException{}
+private static Map<String, List<Patterns>> doCompile(final JsonParser parser, final boolean withOverriding) throws IOException{}
+private static void parseObject(final Map<String, List<Patterns>> rule,
+                                    final Path path,
+                                    final JsonParser parser,
+                                    final boolean withQuotes,
+                                    final boolean withOverriding) throws IOException{}
+private static void writeRules(final Map<String, List<Patterns>> rule,
+                                   final String name,
+                                   final JsonParser parser,
+                                   final boolean withQuotes,
+                                   final boolean withOverriding) throws IOException{}
+private static Patterns processMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButEqualsIgnoreCaseListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processAnythingButEqualsIgnoreCaseMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns completeNumericRange(final JsonParser parser,
+                                                 final JsonToken token,
+                                                 final String bottom,
+                                                 final boolean openBottom) throws IOException{}
+private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}
+private static void tooManyElements(final JsonParser parser) throws JsonParseException{}
+private static void barf(final JsonParser parser, final String message) throws JsonParseException{}
+private RuleCompiler(){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

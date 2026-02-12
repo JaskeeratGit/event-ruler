@@ -1,0 +1,168 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Constructor;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+public class JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible {
+
+    @Test
+    public void testPrivateConstructorAccessible() throws Exception {
+        // cover private constructor via reflection
+        Constructor<JsonRuleCompiler> ctor = JsonRuleCompiler.class.getDeclaredConstructor();
+        assertFalse(ctor.isAccessible());
+        ctor.setAccessible(true);
+        Object instance = ctor.newInstance();
+        assertNotNull(instance);
+    }
+
+}
+
+The error chatMessage is:
+
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 45 source files with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[4,29] package org.junit.jupiter.api does not exist
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[5,36] package org.junit.jupiter.api does not exist
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[5,1] static import only from classes and interfaces
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[6,36] package org.junit.jupiter.api does not exist
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[6,1] static import only from classes and interfaces
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[10,6] cannot find symbol
+  symbol:   class Test
+  location: class software.amazon.event.ruler.JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible
+[INFO] 6 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.430 s
+[INFO] Finished at: 2026-01-16T13:25:37-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project event-ruler: Compilation failure: Compilation failure: 
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[4,29] package org.junit.jupiter.api does not exist
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[5,36] package org.junit.jupiter.api does not exist
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[5,1] static import only from classes and interfaces
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[6,36] package org.junit.jupiter.api does not exist
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[6,1] static import only from classes and interfaces
+[ERROR] JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible.java:[10,6] cannot find symbol
+[ERROR]   symbol:   class Test
+[ERROR]   location: class software.amazon.event.ruler.JsonRuleCompiler_compile_12_0_Test_testPrivateConstructorAccessible
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+The unit test is testing the method `compile(byte[], boolean)` in the class `JsonRuleCompiler`.
+
+Focal method source code:
+
+public static List<Map<String, List<Patterns>>> compile(final byte[] source, boolean withOverriding)
+            throws IOException {
+        return doCompile(JSON_FACTORY.createParser(source), withOverriding);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+public class JsonRuleCompiler {
+private static final JsonFactory JSON_FACTORY = ...;
+private JsonRuleCompiler(){}
+public static String check(final Reader source, final boolean withOverriding){}
+public static String check(final Reader source){}
+public static String check(final String source, final boolean withOverriding){}
+public static String check(final String source){}
+public static String check(final byte[] source, final boolean withOverriding){}
+public static String check(final byte[] source){}
+public static String check(final InputStream source, final boolean withOverriding){}
+public static String check(final InputStream source){}
+public static List<Map<String, List<Patterns>>> compile(final Reader source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final Reader source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source, final boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source) throws IOException{}
+private static List<Map<String, List<Patterns>>> doCompile(final JsonParser parser, boolean withOverriding) throws IOException{}
+private static void parseObject(final List<Map<String, List<Patterns>>> rules,
+                                    final Path path,
+                                    final JsonParser parser,
+                                    final boolean withQuotes,
+                                    final boolean withOverriding) throws IOException{}
+private static void parseObjectInsideOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                        final Path path,
+                                                        final JsonParser parser,
+                                                        final boolean withQuotes,
+                                                        final boolean withOverriding) throws IOException{}
+private static void parseIntoOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                final Path path,
+                                                final JsonParser parser,
+                                                final boolean withQuotes,
+                                                final boolean withOverriding) throws IOException{}
+private static List deepCopyRules(final List<Map<String, List<Patterns>>> rules){}
+private static void writeRules(final List<Map<String, List<Patterns>>> rules,
+                                   final String name,
+                                   final JsonParser parser,
+                                   final boolean withQuotes,
+                                   final boolean withOverriding) throws IOException{}
+private static Patterns processMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButValuesSetMatchExpression(JsonParser parser, MatchType matchType)
+            throws JsonParseException{}
+private static Patterns processAnythingButMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processAnythingButValuesSetSingleValueMatchExpression(JsonParser parser,
+                JsonToken anythingButExpressionToken, MatchType matchType) throws IOException{}
+private static String generateValueBasedOnMatchType(String text, MatchType matchType){}
+private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns completeNumericRange(final JsonParser parser,
+                                                 final JsonToken token,
+                                                 final String bottom,
+                                                 final boolean openBottom) throws IOException{}
+private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}
+private static void tooManyElements(final JsonParser parser) throws JsonParseException{}
+private static void barf(final JsonParser parser, final String message) throws JsonParseException{}
+private JsonRuleCompiler(){}
+}
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `com.fasterxml.jackson.core.JsonFactory` is
+```[java]
+createParser(byte[])
+```
+
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

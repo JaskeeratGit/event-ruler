@@ -1,0 +1,34 @@
+package software.amazon.event.ruler;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+public class RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates {
+
+    @Test
+    public void compile_byteArray_delegatesToTwoArgOverload() throws Exception {
+        byte[] source = "{}".getBytes("UTF-8");
+
+        JsonParseException e1 = null;
+        try {
+            RuleCompiler.compile(source, true);
+            fail("Expected JsonParseException for two-arg overload");
+        } catch (JsonParseException e) {
+            e1 = e;
+        }
+
+        JsonParseException e2 = null;
+        try {
+            RuleCompiler.compile(source);
+            fail("Expected JsonParseException for single-arg overload");
+        } catch (JsonParseException e) {
+            e2 = e;
+        }
+
+        assertEquals(e1.getClass(), e2.getClass());
+        assertEquals(e1.getMessage(), e2.getMessage());
+    }
+}

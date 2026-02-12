@@ -1,0 +1,30 @@
+package software.amazon.event.ruler.input;
+
+import java.util.Collections;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+class InputMultiByteSet_toString_5_0_Test_testToStringWithImmutableInputAndUnmodifiableView {
+
+    @Test
+    void testToStringWithImmutableInputAndUnmodifiableView() {
+        // Create a MultiByte mock whose toString matches the original test's expectation
+        MultiByte mb = mock(MultiByte.class);
+        when(mb.toString()).thenReturn("singleton");
+
+        Set<MultiByte> original = Collections.singleton(mb);
+        // Constructor is package-private; test is in the same package so we can call it directly
+        InputMultiByteSet instance = new InputMultiByteSet(original);
+
+        // toString should match the original set's toString
+        assertEquals(original.toString(), instance.toString());
+
+        // getMultiBytes() is package-private; call directly and verify it's unmodifiable
+        Set<MultiByte> returnedSet = instance.getMultiBytes();
+        assertThrows(UnsupportedOperationException.class, () -> returnedSet.add(mock(MultiByte.class)));
+    }
+}

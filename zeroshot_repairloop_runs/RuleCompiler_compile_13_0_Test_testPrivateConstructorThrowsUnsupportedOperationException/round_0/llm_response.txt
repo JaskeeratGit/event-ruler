@@ -1,0 +1,19 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class RuleCompiler_compile_13_0_Test_testCompileByteArrayDelegates {
+
+    @Test
+    public void compile_byteArray_delegatesToTwoArgOverload() throws Exception {
+        byte[] source = "{}".getBytes("UTF-8");
+        Map<String, List<Patterns>> expected = RuleCompiler.compile(source, true);
+        Map<String, List<Patterns>> actual = RuleCompiler.compile(source);
+        assertEquals(expected, actual);
+    }
+}

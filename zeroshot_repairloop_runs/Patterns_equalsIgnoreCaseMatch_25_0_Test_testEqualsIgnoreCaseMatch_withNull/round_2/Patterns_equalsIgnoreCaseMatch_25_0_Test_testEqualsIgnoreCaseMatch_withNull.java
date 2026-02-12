@@ -1,0 +1,33 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withNull {
+
+    public static void main(String[] args) throws Exception {
+        new Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withNull().testEqualsIgnoreCaseMatch_withNull();
+        System.out.println("Test passed");
+    }
+
+    public void testEqualsIgnoreCaseMatch_withNull() throws Exception {
+        String input = null;
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        if (vp == null) {
+            throw new AssertionError("ValuePatterns should not be null");
+        }
+        Class<?> cls = vp.getClass();
+        Field typeField = cls.getDeclaredField("type");
+        Field valueField = cls.getDeclaredField("value");
+        typeField.setAccessible(true);
+        valueField.setAccessible(true);
+        Object typeVal = typeField.get(vp);
+        Object valueVal = valueField.get(vp);
+        if (typeVal != MatchType.EQUALS_IGNORE_CASE) {
+            throw new AssertionError("Expected MatchType.EQUALS_IGNORE_CASE but was: " + typeVal);
+        }
+        if (valueVal != null) {
+            throw new AssertionError("Stored value should be null when input is null");
+        }
+    }
+
+}
