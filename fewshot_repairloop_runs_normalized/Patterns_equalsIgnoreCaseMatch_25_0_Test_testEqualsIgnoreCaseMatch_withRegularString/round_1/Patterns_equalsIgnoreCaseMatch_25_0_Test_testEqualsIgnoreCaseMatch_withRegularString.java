@@ -1,0 +1,23 @@
+package software.amazon.event.ruler;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testEqualsIgnoreCaseMatch_withRegularString {
+
+    @Test
+    public void testEqualsIgnoreCaseMatch_withRegularString() throws Exception {
+        String input = "TeStValUe";
+        ValuePatterns vp = Patterns.equalsIgnoreCaseMatch(input);
+        assertNotNull(vp, "Returned ValuePatterns should not be null");
+
+        // use public API to verify stored values
+        assertSame(MatchType.EQUALS_IGNORE_CASE, vp.type(), "MatchType should be EQUALS_IGNORE_CASE");
+        assertEquals(input, vp.pattern(), "Stored value should equal the input string");
+    }
+
+}

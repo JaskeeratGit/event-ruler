@@ -1,0 +1,340 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+FEW-SHOT EXAMPLES (error -> minimal fix):
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) { this.id = id; }
+        String getId() { return id; }
+    }
+
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+Observed error:
+```
+incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to Options_getOptionGroup_9_0_Test.OptionGroup
+```
+
+Fixed Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        org.apache.commons.cli.OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Observed error:
+```
+reference to getParsedOptionValues is ambiguous
+```
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+
+NOW FIX THIS INPUT:
+
+Unit test to fix:
+
+```java
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+
+class GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount {
+
+    private GenericMachine<String> machine;
+
+    @BeforeEach
+    void setUp() {
+        // Use the public no-arg constructor
+        machine = new GenericMachine<>();
+    }
+
+    @Test
+    void testDeletePatternRuleDeletesKeysAndUpdatesRefCount() throws Exception {
+        // Prepare namevals with two keys in unsorted order to ensure sorting path is executed
+        Map<String, List<Patterns>> namevals = new HashMap<>();
+        namevals.put("b", Collections.singletonList(mock(Patterns.class)));
+        namevals.put("a", Collections.singletonList(mock(Patterns.class)));
+
+        // First add the pattern rule so internal structures are populated and can be deleted
+        machine.addPatternRule("myRule", namevals);
+
+        // Populate private fieldStepsUsedRefCount with entries for "a" and "b"
+        Field f = GenericMachine.class.getDeclaredField("fieldStepsUsedRefCount");
+        f.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<String, Integer> refCount = (Map<String, Integer>) f.get(machine);
+        // Put initial counts
+        refCount.put("a", 1);
+        refCount.put("b", 2);
+        // Invoke public method
+        machine.deletePatternRule("myRule", namevals);
+        // After deletion, per our implementation, both keys are deleted:
+        // "a" had count 1 -> should be removed
+        // "b" had count 2 -> decremented to 1
+        assertFalse(refCount.containsKey("a"), "Expected 'a' to be removed from ref count");
+        assertEquals(Integer.valueOf(1), refCount.get("b"));
+    }
+
+}
+```
+
+Observed error:
+
+```
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ event-ruler ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/jaskeerat/paper1/er_latest_stable/few_shot/event-ruler/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:testCompile (default-testCompile) @ event-ruler ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.0.0-M7:test (default-test) @ event-ruler ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.321 s <<< FAILURE! - in software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount
+[ERROR] software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount.testDeletePatternRuleDeletesKeysAndUpdatesRefCount  Time elapsed: 0.298 s  <<< ERROR!
+java.lang.NullPointerException
+	at software.amazon.event.ruler.GenericMachine.isNamePattern(GenericMachine.java:665)
+	at software.amazon.event.ruler.GenericMachine.lambda$hasValuePatterns$9(GenericMachine.java:657)
+	at java.util.stream.MatchOps$1MatchSink.accept(MatchOps.java:90)
+	at java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1361)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:499)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:486)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:230)
+	at java.util.stream.MatchOps$MatchOp.evaluateSequential(MatchOps.java:196)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.anyMatch(ReferencePipeline.java:516)
+	at software.amazon.event.ruler.GenericMachine.hasValuePatterns(GenericMachine.java:657)
+	at software.amazon.event.ruler.GenericMachine.addStep(GenericMachine.java:556)
+	at software.amazon.event.ruler.GenericMachine.addStep(GenericMachine.java:516)
+	at software.amazon.event.ruler.GenericMachine.addPatternRule(GenericMachine.java:222)
+	at software.amazon.event.ruler.GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount.testDeletePatternRuleDeletesKeysAndUpdatesRefCount(GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount.java:28)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   GenericMachine_deletePatternRule_10_0_Test_testDeletePatternRuleDeletesKeysAndUpdatesRefCount.testDeletePatternRuleDeletesKeysAndUpdatesRefCount:28 » NullPointer
+[INFO] 
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.825 s
+[INFO] Finished at: 2026-02-13T03:27:46-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M7:test (default-test) on project event-ruler: 
+[ERROR] 
+[ERROR] Please refer to /home/j
+```
+
+Target under test: method `deletePatternRule(T, Map)` in class `GenericMachine`.
+
+Focal method source:
+
+```java
+public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals) {
+        if (namevals.size() > MAXIMUM_RULE_SIZE) {
+            throw new RuntimeException("Size of rule '" + name + "' exceeds max value of " + MAXIMUM_RULE_SIZE);
+        }
+        final List<String> keys = new ArrayList<>(namevals.keySet());
+        Collections.sort(keys);
+        synchronized(this) {
+            final List<String> deletedKeys =  new ArrayList<>();
+            final Set<SubRuleContext> candidateSubRuleIds = new HashSet<>();
+            deleteStep(getStartState(), keys, 0, namevals, name, deletedKeys, candidateSubRuleIds);
+            // check and delete the key from filedUsed ...
+            checkAndDeleteUsedFields(deletedKeys);
+        }
+
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+public class GenericMachine {
+private static final int MAXIMUM_RULE_SIZE = ...;
+private final GenericMachineConfiguration configuration;
+private final NameState startState = ...;
+private final Map<String, Integer> fieldStepsUsedRefCount = ...;
+private final SubRuleContext.Generator subRuleContextGenerator = ...;
+@Deprecated
+    public GenericMachine(){}
+protected GenericMachine(GenericMachineConfiguration configuration){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForJSONEvent(final String jsonEvent) throws Exception{}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForJSONEvent(final JsonNode eventRoot){}
+@Deprecated
+    @SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final String jsonEvent){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final List<String> event){}
+@Deprecated
+    @SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final JsonNode eventRoot){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final String[] event){}
+final NameState getStartState(){}
+boolean isFieldStepUsed(final String stepName){}
+public void addRule(final T name, final Map<String, List<String>> namevals){}
+public void addPatternRule(final T name, final Map<String, List<Patterns>> namevals){}
+public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals){}
+public void deleteRule(final T name, final Map<String, List<String>> namevals){}
+private Set<SubRuleContext> deleteStep(final NameState state,
+                                   final List<String> keys,
+                                   final int keyIndex,
+                                   final Map<String, List<Patterns>> patterns,
+                                   final T ruleName,
+                                   final List<String> deletedKeys,
+                                   final Set<SubRuleContext> candidateSubRuleIds){}
+private boolean doesNameStateContainPattern(final NameState nameState, final Patterns pattern){}
+private boolean deletePattern(final NameState parentNameState, final String key, Patterns pattern){}
+public void addRule(final T name, final String json) throws IOException{}
+public void addRule(final T name, final Reader json) throws IOException{}
+public void addRule(final T name, final InputStream json) throws IOException{}
+public void addRule(final T name, final byte[] json) throws IOException{}
+public void deleteRule(final T name, final String json) throws IOException{}
+public void deleteRule(final T name, final Reader json) throws IOException{}
+public void deleteRule(final T name, final InputStream json) throws IOException{}
+private void addStep(final List<String> keys,
+                         final Map<String, List<Patterns>> patterns,
+                         final T ruleName){}
+private Set<SubRuleContext> addStep(final NameState state,
+                                final List<String> keys,
+                                final int keyIndex,
+                                final Map<String, List<Patterns>> patterns,
+                                final T ruleName,
+                                List<String> addedKeys,
+                                final Set<NameState>[] nameStatesForEachKey){}
+private boolean hasValuePatterns(List<Patterns> patterns){}
+private boolean hasKeyPatterns(List<Patterns> patterns){}
+private boolean isNamePattern(Patterns pattern){}
+private void addIntoUsedFields(List<String> keys){}
+private void checkAndDeleteUsedFields(final List<String> keys){}
+public boolean isEmpty(){}
+@Nonnull
+    @SuppressWarnings("unchecked")
+    private <R> NameMatcher<R> createNameMatcher(){}
+private void recordFieldStep(String fieldName){}
+private void eraseFieldStep(String fieldName){}
+public int evaluateComplexity(MachineComplexityEvaluator evaluator){}
+public int approximateObjectCount(int maxObjectCount){}
+@Deprecated
+    /**
+     * Use `approximateObjectCount(int maxObjectCount)` instead.
+     *
+     * Due to unbounded nature of this method, counting can be painfully long.
+     */
+    public int approximateObjectCount(){}
+@Override
+    public String toString(){}
+public static <T> Builder<GenericMachine<T>, T> builder(){}
+@Deprecated
+    public GenericMachine(){}
+protected GenericMachine(GenericMachineConfiguration configuration){}
+}
+```
+
+Return ONLY the complete fixed unit test file.

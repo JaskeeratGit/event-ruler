@@ -1,0 +1,245 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+FEW-SHOT EXAMPLES (error -> minimal fix):
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) { this.id = id; }
+        String getId() { return id; }
+    }
+
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+Observed error:
+```
+incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to Options_getOptionGroup_9_0_Test.OptionGroup
+```
+
+Fixed Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        org.apache.commons.cli.OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Observed error:
+```
+reference to getParsedOptionValues is ambiguous
+```
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+
+NOW FIX THIS INPUT:
+
+Unit test to fix:
+
+```java
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.function.Function;
+import static software.amazon.event.ruler.Constants.BASE128_DIGITS;
+import static software.amazon.event.ruler.Constants.HEX_DIGITS;
+import static software.amazon.event.ruler.Constants.MAX_HEX_DIGIT;
+import static software.amazon.event.ruler.Constants.MAX_NUM_DIGIT;
+import static software.amazon.event.ruler.Constants.MIN_HEX_DIGIT;
+import static software.amazon.event.ruler.Constants.MIN_NUM_DIGIT;
+
+class Range_hashCode_15_0_Test_testHashCode_nullArrays {
+
+
+    @Test
+    void testHashCode_nullArrays() throws Exception {
+        Range range = new Range(null, true, null, false, true);
+        Method patternsHash = Patterns.class.getDeclaredMethod("hashCode");
+        patternsHash.setAccessible(true);
+        int superHash = (Integer) patternsHash.invoke(range);
+        int expected = superHash;
+        expected = 31 * expected + Arrays.hashCode(null);
+        expected = 31 * expected + Boolean.hashCode(true);
+        expected = 31 * expected + Arrays.hashCode(null);
+        expected = 31 * expected + Boolean.hashCode(false);
+        assertEquals(expected, range.hashCode());
+    }
+
+
+}
+
+```
+
+Observed error:
+
+```
+src/test/java/software/amazon/event/ruler/Range_hashCode_15_0_Test_testHashCode_nullArrays.java:[32,42] reference to hashCode is ambiguous
+both method hashCode(double[]) in java.util.Arrays and method hashCode(java.lang.Object[]) in java.util.Arrays match
+src/test/java/software/amazon/event/ruler/Range_hashCode_15_0_Test_testHashCode_nullArrays.java:[34,42] reference to hashCode is ambiguous
+both method hashCode(double[]) in java.util.Arrays and method hashCode(java.lang.Object[]) in java.util.Arrays match
+```
+
+Target under test: method `hashCode()` in class `Range`.
+
+Focal method source:
+
+```java
+@Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Arrays.hashCode(bottom);
+        result = 31 * result + Boolean.hashCode(openBottom);
+        result = 31 * result + Arrays.hashCode(top);
+        result = 31 * result + Boolean.hashCode(openTop);
+        return result;
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.function.Function;
+import static software.amazon.event.ruler.Constants.BASE128_DIGITS;
+import static software.amazon.event.ruler.Constants.HEX_DIGITS;
+import static software.amazon.event.ruler.Constants.MAX_HEX_DIGIT;
+import static software.amazon.event.ruler.Constants.MAX_NUM_DIGIT;
+import static software.amazon.event.ruler.Constants.MIN_HEX_DIGIT;
+import static software.amazon.event.ruler.Constants.MIN_NUM_DIGIT;
+public final class Range {
+private static final byte[] MIN_RANGE_BYTES = ...;
+private static final byte[] MAX_RANGE_BYTES = ...;
+private static final int HEX_DIGIT_A_DECIMAL_VALUE = ...;
+final byte[] bottom;
+final boolean openBottom;
+final byte[] top;
+final boolean openTop;
+final boolean isCIDR;
+Range(final byte[] bottom, final boolean openBottom, final byte[] top, final boolean openTop, final boolean isCIDR){}
+private Range(Range range){}
+public static Range lessThan(final String val){}
+public static Range lessThanOrEqualTo(final String val){}
+public static Range greaterThan(final String val){}
+public static Range greaterThanOrEqualTo(final String val){}
+public static Range between(final String bottom, final boolean openBottom, final String top, final boolean openTop){}
+public static Range between(final byte[] bottom, final boolean openBottom, final byte[] top, final boolean openTop){}
+private static Range deepCopy(final Range range){}
+private static void ensureValidRange(byte[] byteBottom, byte[] byteTops){}
+public byte maxDigit(){}
+public byte minDigit(){}
+static byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast, boolean isCIDR){}
+private static byte[] digitSequence(byte first, byte last, boolean includeFirst, boolean includeLast,
+                                        byte[] digits, Function<Byte, Integer> byteIndexFunc){}
+private static int getHexByteIndex(byte value){}
+@Override
+    public Object clone(){}
+@Override
+    public boolean equals(Object o){}
+@Override
+    public int hashCode(){}
+public String toString(){}
+private static byte[] doubleToComparableBytes(double d){}
+private static byte[] stringToComparableBytes(String string){}
+Range(final byte[] bottom, final boolean openBottom, final byte[] top, final boolean openTop, final boolean isCIDR){}
+private Range(Range range){}
+}
+```
+
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `software.amazon.event.ruler.Patterns` is
+```[java]
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+public class Patterns {
+public static final String EXISTS_BYTE_STRING = ...;
+private final MatchType type;
+Patterns(final MatchType type){}
+@Override
+    public int hashCode(){}
+}
+```
+
+The brief information of dependent class `software.amazon.event.ruler.Patterns` is
+```[java]
+hashCode()
+```
+
+Return ONLY the complete fixed unit test file.
