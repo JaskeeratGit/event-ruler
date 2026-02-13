@@ -1,0 +1,35 @@
+package software.amazon.event.ruler;
+
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import static software.amazon.event.ruler.Constants.BASE128_DIGITS;
+import static software.amazon.event.ruler.Constants.HEX_DIGITS;
+import static software.amazon.event.ruler.Constants.MAX_HEX_DIGIT;
+import static software.amazon.event.ruler.Constants.MAX_NUM_DIGIT;
+import static software.amazon.event.ruler.Constants.MIN_HEX_DIGIT;
+import static software.amazon.event.ruler.Constants.MIN_NUM_DIGIT;
+
+class Range_hashCode_15_0_Test_testHashCode_nullArrays {
+
+    @Test
+    void testHashCode_nullArrays() throws Exception {
+        Range range = new Range(null, true, null, false, true);
+        // Invoke the superclass (Patterns) implementation of hashCode to get the same value used by super.hashCode()
+        MethodHandles.Lookup lookup = MethodHandles.lookup().in(Patterns.class);
+        MethodType mt = MethodType.methodType(int.class);
+        MethodHandle mh = lookup.findSpecial(Patterns.class, "hashCode", mt, Patterns.class);
+        int superHash = (int) mh.bindTo(range).invoke();
+        int expected = superHash;
+        expected = 31 * expected + Arrays.hashCode(range.bottom);
+        expected = 31 * expected + Boolean.hashCode(range.openBottom);
+        expected = 31 * expected + Arrays.hashCode(range.top);
+        expected = 31 * expected + Boolean.hashCode(range.openTop);
+        assertEquals(expected, range.hashCode());
+    }
+
+}

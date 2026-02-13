@@ -1,0 +1,18 @@
+package software.amazon.event.ruler;
+
+import java.io.IOException;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class RuleCompiler_compile_14_0_Test_compile_withEmptyObject_shouldReturnNonNullMap {
+
+    @Test
+    void compile_withEmptyObject_shouldReturnNonNullMap() throws IOException {
+        // "{}" is a valid JSON object; compile should advance past START_OBJECT and attempt to parse the contents.
+        // We only assert that it returns a non-null map (implementation-specific contents may vary).
+        Map<String, ?> result = RuleCompiler.compile("{}".getBytes(), true);
+        assertNotNull(result, "compile should not return null for an empty JSON object");
+    }
+
+}

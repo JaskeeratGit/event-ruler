@@ -1,0 +1,23 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class RuleCompiler_compile_13_0_Test_testPrivateConstructorThrowsUnsupportedOperationException {
+
+    @Test
+    public void testPrivateConstructorThrowsUnsupportedOperationException() throws Exception {
+        Constructor<RuleCompiler> ctor = RuleCompiler.class.getDeclaredConstructor();
+        ctor.setAccessible(true);
+        try {
+            ctor.newInstance();
+            fail("Expected InvocationTargetException to be thrown");
+        } catch (InvocationTargetException itEx) {
+            assertNotNull(itEx.getCause());
+            assertTrue("Expected cause to be UnsupportedOperationException",
+                    itEx.getCause() instanceof UnsupportedOperationException);
+        }
+    }
+}

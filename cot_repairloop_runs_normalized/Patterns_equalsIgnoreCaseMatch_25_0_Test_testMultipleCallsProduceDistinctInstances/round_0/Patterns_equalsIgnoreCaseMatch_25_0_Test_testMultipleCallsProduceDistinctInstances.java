@@ -1,0 +1,24 @@
+import software.amazon.event.ruler.Patterns;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+/**
+ * Unit tests for Patterns.equalsIgnoreCaseMatch(String)
+ */
+public class Patterns_equalsIgnoreCaseMatch_25_0_Test_testMultipleCallsProduceDistinctInstances {
+
+    @Test
+    public void testMultipleCallsProduceDistinctInstances() {
+        Object vp1 = Patterns.equalsIgnoreCaseMatch("a");
+        Object vp2 = Patterns.equalsIgnoreCaseMatch("b");
+        assertNotSame(vp1, vp2, "Each call should produce a new ValuePatterns instance");
+    }
+}
