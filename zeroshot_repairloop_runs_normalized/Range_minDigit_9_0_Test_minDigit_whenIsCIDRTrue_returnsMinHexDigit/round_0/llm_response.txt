@@ -1,0 +1,34 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class Range_minDigit_9_0_Test_minDigit_whenIsCIDRTrue_returnsMinHexDigit {
+
+    private static byte getConstantByte(String name) throws Exception {
+        Class<?> constantsClass = Class.forName("software.amazon.event.ruler.Constants");
+        Field f = constantsClass.getDeclaredField(name);
+        f.setAccessible(true);
+        Object value = f.get(null);
+        if (value instanceof Number) {
+            return ((Number) value).byteValue();
+        } else if (value instanceof Character) {
+            return (byte) ((Character) value).charValue();
+        } else if (value instanceof String) {
+            return Byte.parseByte((String) value);
+        } else {
+            throw new IllegalStateException("Unsupported constant type for field " + name + ": " + (value == null ? "null" : value.getClass()));
+        }
+    }
+
+    @Test
+    public void minDigit_whenIsCIDRTrue_returnsMinHexDigit() throws Exception {
+        byte[] bottom = new byte[] { 0x01 };
+        byte[] top = new byte[] { 0x02 };
+        Range r = new Range(bottom, false, top, false, true);
+        byte expected = getConstantByte("MIN_HEX_DIGIT");
+        assertEquals(expected, r.minDigit());
+    }
+
+}

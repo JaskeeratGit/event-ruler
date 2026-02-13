@@ -1,0 +1,234 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+INPUTS:
+Unit test to fix:
+
+```java
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Set;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+
+class GenericMachine_approximateObjectCount_35_0_Test_approximateObjectCount_withZeroMaxReturnsZero {
+
+    /**
+     * A Test helper that overrides NameState.gatherObjects to controllably add objects.
+     *
+     * Note: This class relies on the (observed) signature:
+     *   void gatherObjects(Set<Object> objectSet, int maxObjectCount)
+     * in the real NameState class.
+     */
+    static class CountingNameState extends NameState {
+
+        private final int toAdd;
+
+        private final boolean respectMax;
+
+        CountingNameState(int toAdd, boolean respectMax) {
+            this.toAdd = toAdd;
+            this.respectMax = respectMax;
+        }
+
+        @Override
+        void gatherObjects(Set<Object> objectSet, int maxObjectCount) {
+            // If respectMax is true, stop at maxObjectCount.
+            int limit = respectMax ? Math.min(toAdd, maxObjectCount) : toAdd;
+            for (int i = 0; i < limit; i++) {
+                // Use distinct objects to ensure set size increments.
+                objectSet.add(new StringBuilder("obj-" + i).toString());
+            }
+        }
+    }
+
+    // Helper to replace the private final startState field via reflection
+    private static void replaceStartState(GenericMachine machine, NameState replacement) throws Exception {
+        Field startField = GenericMachine.class.getDeclaredField("startState");
+        startField.setAccessible(true);
+        startField.set(machine, replacement);
+    }
+
+
+
+    @Test
+    void approximateObjectCount_withZeroMaxReturnsZero() throws Exception {
+        // arrange
+        GenericMachineConfiguration cfg = new GenericMachineConfiguration(false, false);
+        GenericMachine machine = new GenericMachine(cfg);
+        // replace start state with one that would add objects (but should respect max)
+        replaceStartState(machine, new CountingNameState(100, true));
+        // act
+        int result = machine.approximateObjectCount(0);
+        // assert
+        assertEquals(0, result, "If maxObjectCount is zero, returned count must be zero");
+    }
+
+
+}
+
+```
+
+Observed error:
+
+```
+src/test/java/software/amazon/event/ruler/GenericMachine_approximateObjectCount_35_0_Test_approximateObjectCount_withZeroMaxReturnsZero.java:[50,14] gatherObjects(java.util.Set<java.lang.Object>,int) in software.amazon.event.ruler.GenericMachine_approximateObjectCount_35_0_Test_approximateObjectCount_withZeroMaxReturnsZero.CountingNameState cannot override gatherObjects(java.util.Set<java.lang.Object>,int) in software.amazon.event.ruler.NameState
+attempting to assign weaker access privileges; was public
+```
+
+Target under test: method `approximateObjectCount()` in class `GenericMachine`.
+
+Focal method source:
+
+```java
+@Deprecated
+    /**
+     * Use `approximateObjectCount(int maxObjectCount)` instead.
+     *
+     * Due to unbounded nature of this method, counting can be painfully long.
+     */
+    public int approximateObjectCount() {
+        return approximateObjectCount(Integer.MAX_VALUE);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonNode;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.SetOperations.intersection;
+public class GenericMachine {
+private static final int MAXIMUM_RULE_SIZE = ...;
+private final GenericMachineConfiguration configuration;
+private final NameState startState = ...;
+private final Map<String, Integer> fieldStepsUsedRefCount = ...;
+private final SubRuleContext.Generator subRuleContextGenerator = ...;
+@Deprecated
+    public GenericMachine(){}
+protected GenericMachine(GenericMachineConfiguration configuration){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForJSONEvent(final String jsonEvent) throws Exception{}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForJSONEvent(final JsonNode eventRoot){}
+@Deprecated
+    @SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final String jsonEvent){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final List<String> event){}
+@Deprecated
+    @SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final JsonNode eventRoot){}
+@SuppressWarnings("unchecked")
+    public List<T> rulesForEvent(final String[] event){}
+final NameState getStartState(){}
+boolean isFieldStepUsed(final String stepName){}
+public void addRule(final T name, final Map<String, List<String>> namevals){}
+public void addPatternRule(final T name, final Map<String, List<Patterns>> namevals){}
+public void deletePatternRule(final T name, final Map<String, List<Patterns>> namevals){}
+public void deleteRule(final T name, final Map<String, List<String>> namevals){}
+private Set<SubRuleContext> deleteStep(final NameState state,
+                                   final List<String> keys,
+                                   final int keyIndex,
+                                   final Map<String, List<Patterns>> patterns,
+                                   final T ruleName,
+                                   final List<String> deletedKeys,
+                                   final Set<SubRuleContext> candidateSubRuleIds){}
+private boolean doesNameStateContainPattern(final NameState nameState, final Patterns pattern){}
+private boolean deletePattern(final NameState parentNameState, final String key, Patterns pattern){}
+public void addRule(final T name, final String json) throws IOException{}
+public void addRule(final T name, final Reader json) throws IOException{}
+public void addRule(final T name, final InputStream json) throws IOException{}
+public void addRule(final T name, final byte[] json) throws IOException{}
+public void deleteRule(final T name, final String json) throws IOException{}
+public void deleteRule(final T name, final Reader json) throws IOException{}
+public void deleteRule(final T name, final InputStream json) throws IOException{}
+private void addStep(final List<String> keys,
+                         final Map<String, List<Patterns>> patterns,
+                         final T ruleName){}
+private Set<SubRuleContext> addStep(final NameState state,
+                                final List<String> keys,
+                                final int keyIndex,
+                                final Map<String, List<Patterns>> patterns,
+                                final T ruleName,
+                                List<String> addedKeys,
+                                final Set<NameState>[] nameStatesForEachKey){}
+private boolean hasValuePatterns(List<Patterns> patterns){}
+private boolean hasKeyPatterns(List<Patterns> patterns){}
+private boolean isNamePattern(Patterns pattern){}
+private void addIntoUsedFields(List<String> keys){}
+private void checkAndDeleteUsedFields(final List<String> keys){}
+public boolean isEmpty(){}
+@Nonnull
+    @SuppressWarnings("unchecked")
+    private <R> NameMatcher<R> createNameMatcher(){}
+private void recordFieldStep(String fieldName){}
+private void eraseFieldStep(String fieldName){}
+public int evaluateComplexity(MachineComplexityEvaluator evaluator){}
+public int approximateObjectCount(int maxObjectCount){}
+@Deprecated
+    /**
+     * Use `approximateObjectCount(int maxObjectCount)` instead.
+     *
+     * Due to unbounded nature of this method, counting can be painfully long.
+     */
+    public int approximateObjectCount(){}
+@Override
+    public String toString(){}
+public static <T> Builder<GenericMachine<T>, T> builder(){}
+@Deprecated
+    public GenericMachine(){}
+protected GenericMachine(GenericMachineConfiguration configuration){}
+}
+```
+
+Return the complete fixed unit test file now.

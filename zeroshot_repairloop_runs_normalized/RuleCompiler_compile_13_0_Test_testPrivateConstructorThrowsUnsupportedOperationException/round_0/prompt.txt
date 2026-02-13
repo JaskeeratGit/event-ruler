@@ -1,0 +1,159 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+INPUTS:
+Unit test to fix:
+
+```java
+package software.amazon.event.ruler;
+
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+
+public class RuleCompiler_compile_13_0_Test_testPrivateConstructorThrowsUnsupportedOperationException {
+
+
+    @Test
+    public void testPrivateConstructorThrowsUnsupportedOperationException() throws Exception {
+        Constructor<RuleCompiler> ctor = RuleCompiler.class.getDeclaredConstructor();
+        ctor.setAccessible(true);
+        InvocationTargetException itEx = Assertions.assertThrows(InvocationTargetException.class, ctor::newInstance);
+        Assertions.assertNotNull(itEx.getCause());
+        Assertions.assertTrue(itEx.getCause() instanceof UnsupportedOperationException, "Expected cause to be UnsupportedOperationException");
+    }
+}
+
+```
+
+Observed error:
+
+```
+Tests run: 75, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 976.7 s <<< FAILURE! -- in software.amazon.event.ruler.MachineTest
+software.amazon.event.ruler.MachineTest.testApproximateSizeWhenCapped -- Time elapsed: 975.5 s <<< FAILURE!
+at org.junit.Assert.fail(Assert.java:87)
+at org.junit.Assert.assertTrue(Assert.java:42)
+at org.junit.Assert.assertTrue(Assert.java:53)
+at software.amazon.event.ruler.MachineTest.assertApproximateCountWithTime(MachineTest.java:2508)
+at software.amazon.event.ruler.MachineTest.testApproximateSizeWhenCapped(MachineTest.java:2502)
+at java.lang.reflect.Method.invoke(Method.java:498)
+```
+
+Target under test: method `compile(byte[])` in class `RuleCompiler`.
+
+Focal method source:
+
+```java
+public static Map<String, List<Patterns>> compile(final byte[] source) throws IOException {
+        return compile(source, true);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+public final class RuleCompiler {
+private static final JsonFactory JSON_FACTORY = ...;
+private RuleCompiler(){}
+public static String check(final Reader source, final boolean withOverriding){}
+public static String check(final Reader source){}
+public static String check(final String source, final boolean withOverriding){}
+public static String check(final String source){}
+public static String check(final byte[] source, final boolean withOverriding){}
+public static String check(final byte[] source){}
+public static String check(final InputStream source, final boolean withOverriding){}
+public static String check(final InputStream source){}
+public static Map<String, List<Patterns>> compile(final Reader source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final Reader source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final String source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final String source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final byte[] source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final byte[] source) throws IOException{}
+public static Map<String, List<Patterns>> compile(final InputStream source, final boolean withOverriding) throws IOException{}
+public static Map<String, List<Patterns>> compile(final InputStream source) throws IOException{}
+private static Map<String, List<Patterns>> doCompile(final JsonParser parser, final boolean withOverriding) throws IOException{}
+private static void parseObject(final Map<String, List<Patterns>> rule,
+                                    final Path path,
+                                    final JsonParser parser,
+                                    final boolean withQuotes,
+                                    final boolean withOverriding) throws IOException{}
+private static void writeRules(final Map<String, List<Patterns>> rule,
+                                   final String name,
+                                   final JsonParser parser,
+                                   final boolean withQuotes,
+                                   final boolean withOverriding) throws IOException{}
+private static Patterns processMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButEqualsIgnoreCaseListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processAnythingButEqualsIgnoreCaseMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns completeNumericRange(final JsonParser parser,
+                                                 final JsonToken token,
+                                                 final String bottom,
+                                                 final boolean openBottom) throws IOException{}
+private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}
+private static void tooManyElements(final JsonParser parser) throws JsonParseException{}
+private static void barf(final JsonParser parser, final String message) throws JsonParseException{}
+private RuleCompiler(){}
+}
+```
+
+Return the complete fixed unit test file now.

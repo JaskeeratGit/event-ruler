@@ -1,0 +1,218 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+INPUTS:
+Unit test to fix:
+
+```java
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Constructor;
+import software.amazon.event.ruler.JsonRuleCompiler;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+
+public class JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage {
+
+
+
+    @Test
+    public void testCheckWithNullSourceReturnsMessage() {
+        String result = JsonRuleCompiler.check((String) null);
+        assertNotNull(result, "Null source should return an error message (not null).");
+        assertFalse(result.isEmpty(), "Error message should not be empty.");
+    }
+
+}
+```
+
+Observed error:
+
+```
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ event-ruler ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:testCompile (default-testCompile) @ event-ruler ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.0.0-M7:test (default-test) @ event-ruler ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running software.amazon.event.ruler.JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.241 s <<< FAILURE! - in software.amazon.event.ruler.JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage
+[ERROR] software.amazon.event.ruler.JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.testCheckWithNullSourceReturnsMessage  Time elapsed: 0.195 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Null source should return an error message (not null). ==> expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:312)
+	at software.amazon.event.ruler.JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.testCheckWithNullSourceReturnsMessage(JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.java:36)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   JsonRuleCompiler_check_3_0_Test_testCheckWithNullSourceReturnsMessage.testCheckWithNullSourceReturnsMessage:36 Null source should return an error message (not null). ==> expected: not <null>
+[INFO] 
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.760 s
+[INFO] Finished at: 2026-02-13T03:32:12-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M7:test (default-test) on project event-ruler: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /home/jaskeerat/paper1/er_latest_stable/zero_shot/event-ruler/target/surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+Target under test: method `check(String)` in class `JsonRuleCompiler`.
+
+Focal method source:
+
+```java
+public static String check(final String source) {
+        return check(source, true);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+public class JsonRuleCompiler {
+private static final JsonFactory JSON_FACTORY = ...;
+private JsonRuleCompiler(){}
+public static String check(final Reader source, final boolean withOverriding){}
+public static String check(final Reader source){}
+public static String check(final String source, final boolean withOverriding){}
+public static String check(final String source){}
+public static String check(final byte[] source, final boolean withOverriding){}
+public static String check(final byte[] source){}
+public static String check(final InputStream source, final boolean withOverriding){}
+public static String check(final InputStream source){}
+public static List<Map<String, List<Patterns>>> compile(final Reader source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final Reader source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source, final boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source) throws IOException{}
+private static List<Map<String, List<Patterns>>> doCompile(final JsonParser parser, boolean withOverriding) throws IOException{}
+private static void parseObject(final List<Map<String, List<Patterns>>> rules,
+                                    final Path path,
+                                    final JsonParser parser,
+                                    final boolean withQuotes,
+                                    final boolean withOverriding) throws IOException{}
+private static void parseObjectInsideOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                        final Path path,
+                                                        final JsonParser parser,
+                                                        final boolean withQuotes,
+                                                        final boolean withOverriding) throws IOException{}
+private static void parseIntoOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                final Path path,
+                                                final JsonParser parser,
+                                                final boolean withQuotes,
+                                                final boolean withOverriding) throws IOException{}
+private static List deepCopyRules(final List<Map<String, List<Patterns>>> rules){}
+private static void writeRules(final List<Map<String, List<Patterns>>> rules,
+                                   final String name,
+                                   final JsonParser parser,
+                                   final boolean withQuotes,
+                                   final boolean withOverriding) throws IOException{}
+private static Patterns processMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButValuesSetMatchExpression(JsonParser parser, MatchType matchType)
+            throws JsonParseException{}
+private static Patterns processAnythingButMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processAnythingButValuesSetSingleValueMatchExpression(JsonParser parser,
+                JsonToken anythingButExpressionToken, MatchType matchType) throws IOException{}
+private static String generateValueBasedOnMatchType(String text, MatchType matchType){}
+private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns completeNumericRange(final JsonParser parser,
+                                                 final JsonToken token,
+                                                 final String bottom,
+                                                 final boolean openBottom) throws IOException{}
+private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}
+private static void tooManyElements(final JsonParser parser) throws JsonParseException{}
+private static void barf(final JsonParser parser, final String message) throws JsonParseException{}
+private JsonRuleCompiler(){}
+}
+```
+
+Return the complete fixed unit test file now.

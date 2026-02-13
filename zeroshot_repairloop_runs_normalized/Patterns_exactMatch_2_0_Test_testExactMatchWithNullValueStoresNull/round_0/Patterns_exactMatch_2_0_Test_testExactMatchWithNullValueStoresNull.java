@@ -1,0 +1,66 @@
+package software.amazon.event.ruler;
+
+import java.lang.reflect.Field;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class Patterns_exactMatch_2_0_Test_testExactMatchWithNullValueStoresNull {
+
+
+    @Test
+    public void testExactMatchWithNullValueStoresNull() throws Exception {
+        Object valuePatterns = Patterns.exactMatch(null);
+        assertNotNull(valuePatterns, "exactMatch should not return null even when passed null");
+        Class<?> vpClass = valuePatterns.getClass();
+
+        Field candidateField = null;
+
+        // Prefer a field whose name suggests it stores the value/pattern
+        for (Field f : vpClass.getDeclaredFields()) {
+            f.setAccessible(true);
+            String name = f.getName().toLowerCase();
+            if (name.contains("value") || name.contains("pattern") || name.contains("pat")) {
+                candidateField = f;
+                break;
+            }
+        }
+
+        // Fallback to a String field
+        if (candidateField == null) {
+            for (Field f : vpClass.getDeclaredFields()) {
+                f.setAccessible(true);
+                if (f.getType().equals(String.class)) {
+                    candidateField = f;
+                    break;
+                }
+            }
+        }
+
+        // Fallback to a CharSequence field
+        if (candidateField == null) {
+            for (Field f : vpClass.getDeclaredFields()) {
+                f.setAccessible(true);
+                if (CharSequence.class.isAssignableFrom(f.getType())) {
+                    candidateField = f;
+                    break;
+                }
+            }
+        }
+
+        // Final fallback: first non-primitive field
+        if (candidateField == null) {
+            for (Field f : vpClass.getDeclaredFields()) {
+                f.setAccessible(true);
+                if (!f.getType().isPrimitive()) {
+                    candidateField = f;
+                    break;
+                }
+            }
+        }
+
+        assertNotNull(candidateField, "Could not locate a candidate field in ValuePatterns to inspect stored value");
+        Object storedValue = candidateField.get(valuePatterns);
+        assertNull(storedValue, "When passing null to exactMatch, the stored value should be null");
+    }
+
+}

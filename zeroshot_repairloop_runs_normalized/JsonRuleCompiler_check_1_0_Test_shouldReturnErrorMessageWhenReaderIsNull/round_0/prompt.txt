@@ -1,0 +1,193 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+INPUTS:
+Unit test to fix:
+
+```java
+package software.amazon.event.ruler;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.lang.reflect.Constructor;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+
+class JsonRuleCompiler_check_1_0_Test_shouldReturnErrorMessageWhenReaderIsNull {
+
+    private static class ThrowingReader extends Reader {
+
+        private final String message;
+
+        ThrowingReader(String message) {
+            this.message = message;
+        }
+
+        @Override
+        public int read(char[] cbuf, int off, int len) throws IOException {
+            throw new IOException(message);
+        }
+
+        @Override
+        public void close() throws IOException {
+            // no-op
+        }
+
+        @Override
+        public int read() throws IOException {
+            throw new IOException(message);
+        }
+    }
+
+
+
+    @Test
+    void shouldReturnErrorMessageWhenReaderIsNull() {
+        // Passing null should be caught and an error message returned (non-null).
+        String result = JsonRuleCompiler.check(null);
+        assertNotNull(result, "Expected a non-null error message when Reader is null");
+        assertFalse(result.isEmpty(), "Error message should not be empty");
+    }
+
+}
+
+```
+
+Observed error:
+
+```
+src/test/java/software/amazon/event/ruler/JsonRuleCompiler_check_1_0_Test_shouldReturnErrorMessageWhenReaderIsNull.java:[60,41] reference to check is ambiguous
+both method check(byte[]) in software.amazon.event.ruler.JsonRuleCompiler and method check(java.io.InputStream) in software.amazon.event.ruler.JsonRuleCompiler match
+```
+
+Target under test: method `check(Reader)` in class `JsonRuleCompiler`.
+
+Focal method source:
+
+```java
+public static String check(final Reader source) {
+        return check(source, true);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import software.amazon.event.ruler.input.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import static software.amazon.event.ruler.input.DefaultParser.getParser;
+public class JsonRuleCompiler {
+private static final JsonFactory JSON_FACTORY = ...;
+private JsonRuleCompiler(){}
+public static String check(final Reader source, final boolean withOverriding){}
+public static String check(final Reader source){}
+public static String check(final String source, final boolean withOverriding){}
+public static String check(final String source){}
+public static String check(final byte[] source, final boolean withOverriding){}
+public static String check(final byte[] source){}
+public static String check(final InputStream source, final boolean withOverriding){}
+public static String check(final InputStream source){}
+public static List<Map<String, List<Patterns>>> compile(final Reader source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final Reader source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final String source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source, boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final byte[] source) throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source, final boolean withOverriding)
+            throws IOException{}
+public static List<Map<String, List<Patterns>>> compile(final InputStream source) throws IOException{}
+private static List<Map<String, List<Patterns>>> doCompile(final JsonParser parser, boolean withOverriding) throws IOException{}
+private static void parseObject(final List<Map<String, List<Patterns>>> rules,
+                                    final Path path,
+                                    final JsonParser parser,
+                                    final boolean withQuotes,
+                                    final boolean withOverriding) throws IOException{}
+private static void parseObjectInsideOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                        final Path path,
+                                                        final JsonParser parser,
+                                                        final boolean withQuotes,
+                                                        final boolean withOverriding) throws IOException{}
+private static void parseIntoOrRelationship(final List<Map<String, List<Patterns>>> rules,
+                                                final Path path,
+                                                final JsonParser parser,
+                                                final boolean withQuotes,
+                                                final boolean withOverriding) throws IOException{}
+private static List deepCopyRules(final List<Map<String, List<Patterns>>> rules){}
+private static void writeRules(final List<Map<String, List<Patterns>>> rules,
+                                   final String name,
+                                   final JsonParser parser,
+                                   final boolean withQuotes,
+                                   final boolean withOverriding) throws IOException{}
+private static Patterns processMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns processPrefixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processSuffixEqualsIgnoreCaseExpression(final JsonParser parser) throws IOException{}
+private static Patterns processAnythingButListMatchExpression(JsonParser parser) throws JsonParseException{}
+private static Patterns processAnythingButValuesSetMatchExpression(JsonParser parser, MatchType matchType)
+            throws JsonParseException{}
+private static Patterns processAnythingButMatchExpression(JsonParser parser,
+                                                              JsonToken anythingButExpressionToken) throws IOException{}
+private static Patterns processAnythingButValuesSetSingleValueMatchExpression(JsonParser parser,
+                JsonToken anythingButExpressionToken, MatchType matchType) throws IOException{}
+private static String generateValueBasedOnMatchType(String text, MatchType matchType){}
+private static Patterns processNumericMatchExpression(final JsonParser parser) throws IOException{}
+private static Patterns completeNumericRange(final JsonParser parser,
+                                                 final JsonToken token,
+                                                 final String bottom,
+                                                 final boolean openBottom) throws IOException{}
+private static Patterns processExistsExpression(final JsonParser parser) throws IOException{}
+private static void tooManyElements(final JsonParser parser) throws JsonParseException{}
+private static void barf(final JsonParser parser, final String message) throws JsonParseException{}
+private JsonRuleCompiler(){}
+}
+```
+
+Return the complete fixed unit test file now.
